@@ -19,10 +19,3 @@ private:
 
 };
 
-Map::Map()
-{
-}
-
-Map::~Map()
-{
-}

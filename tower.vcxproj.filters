@@ -58,7 +58,6 @@
     <ClCompile Include="src\Map.cpp">
       <Filter>src\Map</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="src\Tile.cpp">
       <Filter>src\Map\Tiles</Filter>
     </ClCompile>
@@ -97,7 +96,6 @@
     <ClInclude Include="src\Map.hpp">
       <Filter>src\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.hpp" />
     <ClInclude Include="src\Tile.hpp">
       <Filter>src\Map\Tiles</Filter>
     </ClInclude>

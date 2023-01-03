@@ -98,7 +98,6 @@
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tower.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
-    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.hpp" />
@@ -113,7 +112,6 @@
     <ClInclude Include="src\Tile.hpp" />
     <ClInclude Include="src\Tower.hpp" />
     <ClInclude Include="src\Vector2D.hpp" />
-    <ClInclude Include="Tile.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
