@@ -1,5 +1,5 @@
 #include<math.h>
-#include "../include/Calcul.hpp"
+#include "Calcul.hpp"
 
 
   
@@ -52,7 +52,7 @@ float coefficendirector(Point2D A, Point2D B)
 float distPoints2(const Point2D &p1, const Point2D &p2)
 {
     // fabsf
-    return fabsf(sqrtf(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)));
+    return fabsf(sqrtf(powf(p2.x - p1.x, 2) + powf(p2.y - p1.y, 2)));
 }
 
 Vector2D crossProduct2d(const Point2D &a, const Point2D &b)
@@ -203,6 +203,7 @@ Point2D isobaryCenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const
     return isobarycentre;
 }
 
+/*
 Point2D circumcenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
 {
     Point2D output;
@@ -216,6 +217,7 @@ Point2D circumcenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const 
 
     return output;
 }
+*/
 
 float *getTriangleSidesPoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
 {

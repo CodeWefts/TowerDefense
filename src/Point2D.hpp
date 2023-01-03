@@ -1,6 +1,5 @@
 #pragma once
 #include<iostream>
-//#include"entity.hpp"
 #include "float2.hpp"
 
 

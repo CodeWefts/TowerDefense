@@ -3,7 +3,6 @@
 #include <math.h>
 
 #include "Point2D.hpp"
-//#include "entity.hpp"
 
 
 class Vector2D : public float2

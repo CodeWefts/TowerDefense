@@ -1,6 +1,7 @@
 #include<iostream>
 
-class Tower : public float2 
+
+class Tower 
 {
 public:  
 	
