@@ -9,9 +9,8 @@ class Map
 public:
 
 
-	std::vector<Tile> Tiles;
 
-
+	void ManageMap( std::vector<Tile>& Tiles);
 	Map();
 	~Map();
 

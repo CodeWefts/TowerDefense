@@ -5,6 +5,7 @@
 
 App::App()
 {
+	towerGame.GameInit();
 }
 
 App::~App()
@@ -13,5 +14,5 @@ App::~App()
 
 void App::Update()
 {
-	dl = ImGui::GetBackgroundDrawList();
+	towerGame.UpdateAndDraw();
 }

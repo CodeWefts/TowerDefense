@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "types.hpp"
+#include "float2.hpp"
 
 
 static inline float2 operator+(float2 a, float2 b) { return { a.x + b.x, a.y + b.y }; }

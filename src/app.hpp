@@ -1,5 +1,6 @@
 #pragma once
 #include "imgui_utils.hpp"
+#include "TowerGame.hpp"
 
 class App
 {
@@ -9,12 +10,6 @@ public:
 
     void Update();
 
-
-    ImDrawList* dl;
-    ImGuiIO* io;
-
-    Texture grass;
-
-
+    TowerGame towerGame;
 
 };

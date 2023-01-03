@@ -61,6 +61,9 @@
     <ClCompile Include="src\Tile.cpp">
       <Filter>src\Map\Tiles</Filter>
     </ClCompile>
+    <ClCompile Include="src\TowerGame.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.hpp">
@@ -98,6 +101,12 @@
     </ClInclude>
     <ClInclude Include="src\Tile.hpp">
       <Filter>src\Map\Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\calc.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TowerGame.hpp">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

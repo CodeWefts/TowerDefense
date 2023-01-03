@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-
+#include <imgui.h>
 
 
 
@@ -13,6 +13,11 @@ public:
 
     float x ;
     float y ;
+
+    operator ImVec2() {
+        return { x, y };
+    }
+   
 
 
    virtual float2 operator+(const float2& float2_2)
@@ -83,6 +88,38 @@ public:
         this->y /= float2_2.y ;
         return *this ;
         
+    }
+
+    virtual float2& operator=(const float2& float2_2)
+    {
+        this->x = float2_2.x;
+        this->y = float2_2.y;
+        return *this;
+
+    }
+
+    virtual float2 operator+(const float& value)
+    {
+        float2 newFloat2;
+
+        newFloat2.x = this->x + value;
+        newFloat2.y = this->y + value;
+
+
+        return *this;
+
+    }
+
+    virtual float2 operator-(const float& value)
+    {
+        float2 newFloat2;
+
+        newFloat2.x = this->x - value;
+        newFloat2.y = this->y - value;
+
+
+        return *this;
+
     }
 
     
