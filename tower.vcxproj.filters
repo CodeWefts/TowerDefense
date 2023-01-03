@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\app.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui_utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui_demo.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui_draw.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui_impl_glfw.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui_impl_opengl3.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui_tables.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\imgui_widgets.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="externals\src\stb_image.cpp">
+      <Filter>externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tower.cpp">
+      <Filter>src\entity\tower</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Calcul.cpp">
+      <Filter>src\Toolbox</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Collider2D.cpp">
+      <Filter>src\Toolbox</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Point2D.cpp">
+      <Filter>src\Toolbox</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector2D.cpp">
+      <Filter>src\Toolbox</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui_utils.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tower.hpp">
+      <Filter>src\entity\tower</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Calcul.hpp">
+      <Filter>src\Toolbox</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collider2D.hpp">
+      <Filter>src\Toolbox</Filter>
+    </ClInclude>
+    <ClInclude Include="src\float2.hpp">
+      <Filter>src\Toolbox</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Point2D.hpp">
+      <Filter>src\Toolbox</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector2D.hpp">
+      <Filter>src\Toolbox</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d0dab916-f416-4d00-9162-9c88687021f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="externals">
+      <UniqueIdentifier>{adcf2b31-4982-46f4-b41b-28e85e73017e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Toolbox">
+      <UniqueIdentifier>{1c76374d-1a2f-4627-8abc-3959388c0342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity">
+      <UniqueIdentifier>{5857141a-3870-443c-a580-f6579ba6c05a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower">
+      <UniqueIdentifier>{10e2f16f-3a21-41f4-bc48-5be020ef975c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\enemy">
+      <UniqueIdentifier>{64d98e3a-2041-4b6a-bd62-edbf2d24a448}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
