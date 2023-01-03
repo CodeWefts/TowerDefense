@@ -92,10 +92,13 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\imgui_utils.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Point2D.cpp" />
+    <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tower.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.hpp" />
@@ -104,10 +107,13 @@
     <ClInclude Include="src\float2.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\imgui_utils.hpp" />
+    <ClInclude Include="src\Map.hpp" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Point2D.hpp" />
+    <ClInclude Include="src\Tile.hpp" />
     <ClInclude Include="src\Tower.hpp" />
     <ClInclude Include="src\Vector2D.hpp" />
+    <ClInclude Include="Tile.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

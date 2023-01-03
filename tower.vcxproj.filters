@@ -55,6 +55,13 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>src\Player</Filter>
     </ClCompile>
+    <ClCompile Include="src\Map.cpp">
+      <Filter>src\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="src\Tile.cpp">
+      <Filter>src\Map\Tiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.hpp">
@@ -87,6 +94,13 @@
     <ClInclude Include="src\Player.hpp">
       <Filter>src\Player</Filter>
     </ClInclude>
+    <ClInclude Include="src\Map.hpp">
+      <Filter>src\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.hpp" />
+    <ClInclude Include="src\Tile.hpp">
+      <Filter>src\Map\Tiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -112,6 +126,12 @@
     </Filter>
     <Filter Include="src\Game">
       <UniqueIdentifier>{2546f1f9-4e3a-4c67-be46-e257c6ba5ee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Map">
+      <UniqueIdentifier>{27a308ae-1588-42b6-a8dc-6d7e1ed382f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Map\Tiles">
+      <UniqueIdentifier>{ae68f3b2-7d16-41c3-b154-0aa0cedd3d3a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
