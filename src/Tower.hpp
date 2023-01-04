@@ -1,11 +1,13 @@
 #include<iostream>
+#include"entity.hpp"
 
 
-class Tower 
+class Tower : public entity
 {
 public:  
 	
 	
+	/*
 	std::string name;
 	
 	bool isSelected;
@@ -22,6 +24,7 @@ public:
 	int range;
 	int damage;
 	int cost;
+	*/
 
 	// enemy target ;
 

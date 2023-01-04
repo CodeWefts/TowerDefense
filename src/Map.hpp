@@ -11,7 +11,11 @@ public:
 
 	ImGuiIO* io;
 
-	void ManageMap( std::vector<Tile>& Tiles);
+	int Width;
+	int Height;
+	std::vector<Tile> Tiles;
+
+	void CreateMap();
 	Map();
 	~Map();
 

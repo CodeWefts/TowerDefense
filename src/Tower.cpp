@@ -5,8 +5,8 @@
 
 Tower::Tower()
 {
-	this->aimClosest = false;
-
+	
+	
 }
 
 Tower::~Tower()

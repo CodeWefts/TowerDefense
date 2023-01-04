@@ -1,37 +1,26 @@
+#pragma once
 #include "imgui_utils.hpp"
 #include"Map.hpp"
+#include"TowerRenderer.hpp"
+#include"Player.hpp"
 
 using namespace std;
 
 struct GameData
 {
-	Map map;
+	bool enableDebug;
+	float acceleRateTime;
 
-	std::vector<Tile> Tiles;
+
+
+
+
+	Map map;
 	GameData();
 
 };
 
-class TowerRenderer
-{
-public:
 
-
-
-
-
-	ImDrawList* dl;
-
-	
-
-	void RendererGame( GameData& data);
-
-	TowerRenderer();
-	~TowerRenderer();
-
-private:
-
-};
 
 
 class TowerGame

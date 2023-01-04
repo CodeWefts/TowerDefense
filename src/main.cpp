@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
     // Create window with graphics context
-    GLFWwindow* window = glfwCreateWindow(1332, 720, "Template", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1296, 720, "Tower Defens", NULL, NULL);
     if (window == NULL)
         return 1;
     

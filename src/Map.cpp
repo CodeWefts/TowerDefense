@@ -3,29 +3,30 @@
 #include"calc.hpp"
 #include "imgui_utils.hpp"
 
-#define Height 20
-#define With 36
 
 
 
-void Map::ManageMap(std::vector<Tile>& Tiles)
+
+void Map::CreateMap()
 {
+#if 0
+
 	ImGuiIO& io = ImGui::GetIO();
 
-	float2 headCenterPos = Tiles.at(0).centerPos;
-	float2 headposMax = Tiles.at(0).posMax;
-	float2 headposMin = Tiles.at(0).posMin;
+	int With = io.DisplaySize.x / 36;
+	int Height = io.DisplaySize.y / 36;
 
-	/*
-	/Tiles.at(0).centerPos = {500,500};
-	Tiles.at(0).posMin.x = Tiles.at(0).centerPos.x - 25;
-	Tiles.at(0).posMin.y = Tiles.at(0).centerPos.y + 25;
+	Tiles.resize(With * Height);
+
+	auto it = Tiles.begin();
+	it->centerPos = { 36 , 36 };
+
+	float2 headCenterPos = Tiles[0].centerPos;
+	float2 headposMax = Tiles[0].posMax;
+	float2 headposMin = Tiles[0].posMin;
 
 
 
-	Tiles.at(0).posMax.x = Tiles.at(0).centerPos.x + 25;
-	Tiles.at(0).posMax.y = Tiles.at(0).centerPos.y - 25;
-	*/
 
 	int i = 0;
 
@@ -33,42 +34,102 @@ void Map::ManageMap(std::vector<Tile>& Tiles)
 	// 
 	for (auto it = Tiles.begin(); it != Tiles.end(); it++)
 	{
-		
-			it->centerPos.x = headCenterPos.x + (k * 36) * 2;
-			it->posMax.x = (it->centerPos.x + 36);
-			it->posMin.x = (it->centerPos.x - 36);
+		it->centerPos.x = headCenterPos.x + (k * 36) * 2;
+		it->posMax.x = (it->centerPos.x + (36));
+		it->posMin.x = (it->centerPos.x - (36));
 
-		
-			it->centerPos.y = headCenterPos.y + (i * 36) * 2;
-			it->posMax.y = (it->centerPos.y + 36);
-			it->posMin.y = (it->centerPos.y - 36);
+		it->centerPos.y = headCenterPos.y + (i * (36)) * 2;
+		it->posMax.y = (it->centerPos.y + (36));
+		it->posMin.y = (it->centerPos.y - (36));
 
+		if (k != With - 1)
+		{
 
-			//it->pos.x += (Space_between_bricks * k) + Startpos.x; // compteur ligne 
-			//it->pos.y += (Space_between_bricks * j) + Startpos.y; // compteur colone
-
-
-			
-
-
-			if (k != With - 1)
+			k++;
+		}
+		else if (k == With - 1)
+		{
+			if (i != Height)
 			{
-
-				k++;
+				i++;
+				k = 0;
 			}
-			else if (k == With - 1)
-			{
-				if(i != Height)
-				{
-					i++;
-					k = 0;
-				}
-			}	
+		}
+		it->IndexX = k;
+		it->IndexY = i;
 	}
-		
-			
-			
 
+
+
+
+
+	int w = Width;
+	int h = Height;
+	const char* map =
+		"                  "
+		"      o           "
+		"       ooooooooo  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"         o        "
+		"                  "
+		"                  ";
+
+
+
+
+	for (auto it = Tiles.begin(); it < Tiles.end(); it++)
+	{
+		int idx = it->IndexX + it->IndexY * w;
+		it->Texture_type = map[idx];
+		
+		//for (int y = 0; y < h; ++y)
+		//{
+		//	for (int x = 0; x < w; ++x)
+		//	{
+		//		int idx = x + y * w;
+
+		//		if(x == it->IndexX && y == it->IndexY )
+		//			it->Texture_type = map[idx];
+		//	}
+
+
+		//	//Tile tile;
+		//	//tile.IndexX = x;
+		//	//tile.IndexY = y;
+
+
+		//	//Tiles.push_back(tile);
+		//}
+	}
+#endif
+
+	Width = 18;
+	Height = 9;
+	const char* map =
+		"                  "
+		"      o           "
+		"       ooooooooo  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"         o        "
+		"                  "
+		"                  ";
+
+	for (int y = 0; y < Height; ++y)
+	{
+		for (int x = 0; x < Width; ++x)
+		{
+			int idx = x + y * Width;
+			Tile tile;
+			tile.Texture_type = map[idx];
+			Tiles.push_back(tile);
+		}
+	}
 		/*
 		float2 min = {0 , 0};
 		float2 max = { 36 , 36 };
