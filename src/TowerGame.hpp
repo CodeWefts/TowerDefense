@@ -6,6 +6,16 @@
 
 using namespace std;
 
+struct Asset
+{
+	Texture textureDirt , textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
+		texturePathLeft, texturePathRight , texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight, textureCostaud,
+		textureGringalet, textureSoigneur;
+
+	Asset();
+	
+};
+
 struct GameData
 {
 	bool enableDebug;
@@ -14,7 +24,7 @@ struct GameData
 
 
 
-
+	Asset asset;
 	Map map;
 	GameData();
 

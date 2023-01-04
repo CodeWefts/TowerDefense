@@ -131,7 +131,7 @@
     <Image Include="assets\map\pathBottomANDRight.png" />
     <Image Include="assets\map\pathBottomLeft.png" />
     <Image Include="assets\map\pathBottomRight.png" />
-    <Image Include="assets\map\pathLeftt.png" />
+    <Image Include="assets\map\pathLeft.png" />
     <Image Include="assets\map\pathRight.png" />
     <Image Include="assets\map\pathTop.png" />
     <Image Include="assets\map\pathTopANDLeft.png" />

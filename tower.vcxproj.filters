@@ -149,67 +149,67 @@
     <Filter Include="src\Map\Tiles">
       <UniqueIdentifier>{ae68f3b2-7d16-41c3-b154-0aa0cedd3d3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="asset">
+    <Filter Include="assets">
       <UniqueIdentifier>{6c9c2aa2-5372-4741-ae30-fba13ad8d36a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="asset\map">
+    <Filter Include="assets\map">
       <UniqueIdentifier>{48a70928-ea77-4e9e-83fc-211ddf0a81b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="asset\ennemies">
+    <Filter Include="assets\ennemies">
       <UniqueIdentifier>{f76e22c6-0810-46aa-8f3c-f3636b849843}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\map\dirt.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\grass.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathBottom.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathBottomANDLeft.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathBottomANDRight.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathBottomLeft.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathBottomRight.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
-    <Image Include="assets\map\pathLeftt.png">
-      <Filter>asset\map</Filter>
+    <Image Include="assets\map\pathLeft.png">
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathRight.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathTop.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathTopANDLeft.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathTopANDRight.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathTopLeft.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\map\pathTopRight.png">
-      <Filter>asset\map</Filter>
+      <Filter>assets\map</Filter>
     </Image>
     <Image Include="assets\ennemies\costaud.png">
-      <Filter>asset\ennemies</Filter>
+      <Filter>assets\ennemies</Filter>
     </Image>
     <Image Include="assets\ennemies\gringalet.png">
-      <Filter>asset\ennemies</Filter>
+      <Filter>assets\ennemies</Filter>
     </Image>
     <Image Include="assets\ennemies\soigneur.png">
-      <Filter>asset\ennemies</Filter>
+      <Filter>assets\ennemies</Filter>
     </Image>
   </ItemGroup>
 </Project>
