@@ -23,10 +23,31 @@ void TowerRenderer::drawMap(GameData& data)
 		dl->AddRect(topLeft, toRight, IM_COL32(255, 255, 255, 255), 0);
 
 		ImVec2 center = { topLeft.x + tileSize / 2.f, topLeft.y + tileSize / 2.f, };
-		if (tile.Texture_type == 'o')
+		/*
+			if (tile.Texture_type == 'o')
 			dl->AddCircle(center, 5.f, IM_COL32(255, 0, 0, 255), 32, 1);
-		else
+			else
 			dl->AddCircle(center, 5.f, IM_COL32(255, 255, 255, 255), 32, 1);
+		*/
+
+		
+
+		switch (tile.Texture_type)
+		{
+
+		default:
+			break;
+
+		case ' ':
+			dl->AddImage(data.asset.textureGrass.id, topLeft, toRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case 'p':
+			dl->AddImage(data.asset.textureDirt.id, topLeft, toRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case 'c':
+			//chateaux
+			break;
+		}
 
 	}
 }

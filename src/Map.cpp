@@ -107,17 +107,17 @@ void Map::CreateMap()
 #endif
 
 	Width = 18;
-	Height = 9;
-	 char map[181] =
-		"                  "
-		"      o           "
-		"       ooooooooo  "
+	Height = 10;
+	 char map[199] =
 		"                  "
 		"                  "
 		"                  "
-		"                  "
-		"         o        "
-		"                  "
+		"   pppppppp       "
+		"   p      p       "
+		"   p      p       "
+		"   p      p       "
+		"pppp      p       "
+		"          pppppppp"
 		"                  ";
 
 	for (int y = 0; y < Height; ++y)
