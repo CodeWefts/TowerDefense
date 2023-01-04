@@ -1,7 +1,8 @@
 #include "Tile.hpp"
 
 
-#define size 30
+#define size 48
+
 
 Tile::Tile(float2 pos)
 {
@@ -9,6 +10,7 @@ Tile::Tile(float2 pos)
 	this->posMax = centerPos + size;
 	this->posMin = centerPos - size;
 }
+
 
 Tile::Tile()
 {

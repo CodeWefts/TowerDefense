@@ -21,11 +21,10 @@ public:
 
 
 	ImDrawList* dl;
-	ImGuiIO* io;
 
 	
 
-	void RendererGame(const GameData& data);
+	void RendererGame( GameData& data);
 
 	TowerRenderer();
 	~TowerRenderer();
