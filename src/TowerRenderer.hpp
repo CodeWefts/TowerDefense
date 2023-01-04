@@ -14,6 +14,7 @@ public:
 	ImDrawList* dl;
 
 
+	void drawMap(GameData& data);
 
 	void RendererGame(GameData& data);
 

@@ -5,10 +5,9 @@
 
 
 
-
-void TowerRenderer::RendererGame(GameData& data)
+void TowerRenderer::drawMap(GameData& data)
 {
-	static float tileSize = 172.f;
+	static float tileSize = 72.f;
 	ImGui::SliderFloat("tileSize", &tileSize, 0.f, 100.f);
 
 	float originX = 0.f;
@@ -28,7 +27,17 @@ void TowerRenderer::RendererGame(GameData& data)
 			dl->AddCircle(center, 5.f, IM_COL32(255, 0, 0, 255), 32, 1);
 		else
 			dl->AddCircle(center, 5.f, IM_COL32(255, 255, 255, 255), 32, 1);
+
 	}
+}
+
+
+
+
+
+void TowerRenderer::RendererGame(GameData& data)
+{
+	drawMap(data);
 
 	//for (int y = 0; y < data.map.Height; ++y)
 	//{

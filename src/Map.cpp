@@ -108,7 +108,7 @@ void Map::CreateMap()
 
 	Width = 18;
 	Height = 9;
-	const char* map =
+	 char map[181] =
 		"                  "
 		"      o           "
 		"       ooooooooo  "
