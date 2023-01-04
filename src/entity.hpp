@@ -1,17 +1,13 @@
-#include "imgui_utils.hpp"
+#pragma once
+
+#include "float2.hpp"
 
 class entity
 {
 public:
 
 	
-	float x;
-	float y;
-
-
-
-	//Texture texture;
-
+	float2 pos;
 
 
 	entity();

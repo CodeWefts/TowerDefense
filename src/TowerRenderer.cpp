@@ -2,6 +2,7 @@
 #include "Point2D.hpp"
 #include "TowerGame.hpp"
 #include "TowerRenderer.hpp"
+#include"float2.hpp"
 
 
 
@@ -47,9 +48,48 @@ void TowerRenderer::drawMap(GameData& data)
 		case 'c':
 			//chateaux
 			break;
+
+		case 'g':
+			//dl->AddImage(data.asset.textureSoigneur.id, topLeft, toRight, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			break;
 		}
 
 	}
+}
+
+
+void TowerRenderer::drawEnemies(GameData& data)
+{
+	ImDrawList* enemydrawlist = ImGui::GetBackgroundDrawList();
+
+	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
+	{
+		if (it->name == "soigneur")
+		{
+			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
+			it->texture = data.asset.textureSoigneur;
+			dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+		}
+		else if (it->name == "costaud")
+		{
+			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
+			it->texture = data.asset.textureCostaud;
+			dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+		}
+		else if (it->name == "gringalet")
+		{
+			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
+			it->texture = data.asset.textureGringalet;
+			dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+		}
+			
+			
+			
+			
+			//dl->AddCircle(it->pos, 10.f, 0XFFFFFFFF, 30, 1);
+	}
+	//dl->AddImage(data.asset.textureSoigneur.id, float2(200,200), float2(400, 400), ImVec2(0, 0), ImVec2(0.35, 0.25));
+	
 }
 
 
@@ -59,6 +99,7 @@ void TowerRenderer::drawMap(GameData& data)
 void TowerRenderer::RendererGame(GameData& data)
 {
 	drawMap(data);
+	drawEnemies(data);
 
 	//for (int y = 0; y < data.map.Height; ++y)
 	//{

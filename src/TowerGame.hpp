@@ -1,8 +1,11 @@
 #pragma once
+#include<vector>
 #include "imgui_utils.hpp"
 #include"Map.hpp"
 #include"TowerRenderer.hpp"
 #include"Player.hpp"
+#include"soigneur.hpp"
+
 
 using namespace std;
 
@@ -22,8 +25,8 @@ struct GameData
 	float acceleRateTime;
 
 
-
-
+	vector<enemy> enemyVector;
+	//vector<int> intvector;
 	Asset asset;
 	Map map;
 	GameData();

@@ -67,6 +67,22 @@ public:
         return *this ;
         
     }
+
+    virtual float2& operator+=(const float& value)
+    {
+        this->x += value;
+        this->y += value;
+        return *this;
+
+    }
+
+    virtual float2& operator-=(const float& value)
+    {
+        this->x -= value;
+        this->y -= value;
+        return *this;
+
+    }
     virtual float2& operator-=(const float2& float2_2)
     {
         this->x -= float2_2.x ;

@@ -11,6 +11,12 @@ void PlayerInput()
 
 Player::Player()
 {
+	this->coins = 0;
+	this->health = 0;
+	this->power = 0; 
+	this->score = 0;
+	this->wave = 0;
+	this->wave = 0;
 }
 
 Player::~Player()

@@ -1,5 +1,7 @@
 ﻿#include"TowerGame.hpp"
 #include"calc.hpp"
+#include"soigneur.hpp"
+#include "costaud.hpp"
 
 using namespace std;
 
@@ -28,10 +30,26 @@ Asset::Asset()
 
 GameData::GameData()
 {
+	this->acceleRateTime = 1.f;
+	this->enableDebug = false;
+	enemyVector.resize(2);
 	
+	enemy* enemie = new soigneur();
 	
-	//map.CreateMap();
+	enemie->pos = { 100,100 };
+
+	enemyVector.push_back(*enemie);
+
+	enemy* enemie2 = new costaud();
+
+	enemie2->pos = { 300,300 };
+
+	enemyVector.push_back(*enemie2);
+
+
+
 	
+
 	
 
 }
@@ -48,10 +66,11 @@ void TowerGame::UpdateAndDraw()
 	
 	//cout << gameData.Tiles.at(0).centerPos.x << endl;
 
-	
+	//enemy enemie;
 
 	//cout << gameData.Tiles.at(0).centerPos.x << endl;
 
+	//gameData.intvector.resize(10);
 
 	renderer.dl = ImGui::GetBackgroundDrawList();
 	gameData.map.CreateMap();

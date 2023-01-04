@@ -70,6 +70,15 @@
     <ClCompile Include="src\enemy.cpp">
       <Filter>src\entity\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="src\soigneur.cpp">
+      <Filter>src\entity\enemy\soigneur</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gringalet.cpp">
+      <Filter>src\entity\enemy\gringalet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\costaud.cpp">
+      <Filter>src\entity\enemy\costaud</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.hpp">
@@ -120,6 +129,15 @@
     <ClInclude Include="src\enemy.hpp">
       <Filter>src\entity\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="src\soigneur.hpp">
+      <Filter>src\entity\enemy\soigneur</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gringalet.hpp">
+      <Filter>src\entity\enemy\gringalet</Filter>
+    </ClInclude>
+    <ClInclude Include="src\costaud.hpp">
+      <Filter>src\entity\enemy\costaud</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -157,6 +175,15 @@
     </Filter>
     <Filter Include="assets\ennemies">
       <UniqueIdentifier>{f76e22c6-0810-46aa-8f3c-f3636b849843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\enemy\soigneur">
+      <UniqueIdentifier>{760df93d-ef4d-4588-874d-91dbde4fb751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\enemy\gringalet">
+      <UniqueIdentifier>{392e9c5a-954f-4f04-aa4e-06f593468a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\enemy\costaud">
+      <UniqueIdentifier>{45d1a5ce-8df9-4667-a2e4-e7faa5027dc5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
