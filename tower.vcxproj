@@ -120,6 +120,25 @@
     <ClInclude Include="src\TowerRenderer.hpp" />
     <ClInclude Include="src\Vector2D.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\ennemies\costaud.png" />
+    <Image Include="assets\ennemies\gringalet.png" />
+    <Image Include="assets\ennemies\soigneur.png" />
+    <Image Include="assets\map\dirt.png" />
+    <Image Include="assets\map\grass.png" />
+    <Image Include="assets\map\pathBottom.png" />
+    <Image Include="assets\map\pathBottomANDLeft.png" />
+    <Image Include="assets\map\pathBottomANDRight.png" />
+    <Image Include="assets\map\pathBottomLeft.png" />
+    <Image Include="assets\map\pathBottomRight.png" />
+    <Image Include="assets\map\pathLeftt.png" />
+    <Image Include="assets\map\pathRight.png" />
+    <Image Include="assets\map\pathTop.png" />
+    <Image Include="assets\map\pathTopANDLeft.png" />
+    <Image Include="assets\map\pathTopANDRight.png" />
+    <Image Include="assets\map\pathTopLeft.png" />
+    <Image Include="assets\map\pathTopRight.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
