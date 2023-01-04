@@ -79,6 +79,9 @@
     <ClCompile Include="src\costaud.cpp">
       <Filter>src\entity\enemy\costaud</Filter>
     </ClCompile>
+    <ClCompile Include="src\EnemyManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.hpp">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="src\costaud.hpp">
       <Filter>src\entity\enemy\costaud</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EnemyManager.hpp">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

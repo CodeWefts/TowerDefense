@@ -2,9 +2,16 @@
 #include"TowerGame.hpp"
 
 
-void PlayerInput()
+void Player::PlayerInput(GameData& gamedata)
 {
-	//if(ImGui::IsKeyPressed(ImGuiKey_N,false))
+	if(ImGui::IsKeyPressed(ImGuiKey_N,false) )
+	{
+
+		gamedata.enableDebug = not gamedata.enableDebug;
+
+	
+		std::cout << gamedata.enableDebug << std::endl;
+	}
 
 
 }

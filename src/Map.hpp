@@ -11,8 +11,8 @@ public:
 
 	ImGuiIO* io;
 
-	int Width;
-	int Height;
+	 int Width ;
+	 int Height;
 	std::vector<Tile> Tiles;
 
 	void CreateMap();

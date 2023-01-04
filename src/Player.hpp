@@ -22,7 +22,7 @@ public:
 	// tower
 	int tower;
 
-	//void PlayerInput(GameData& gamedata);
+	void PlayerInput(GameData& gamedata);
 
 	Player();
 	~Player();

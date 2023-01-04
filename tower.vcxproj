@@ -91,6 +91,7 @@
     <ClCompile Include="src\Collider2D.cpp" />
     <ClCompile Include="src\costaud.cpp" />
     <ClCompile Include="src\enemy.cpp" />
+    <ClCompile Include="src\EnemyManager.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\gringalet.cpp" />
     <ClCompile Include="src\imgui_utils.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="src\Collider2D.hpp" />
     <ClInclude Include="src\costaud.hpp" />
     <ClInclude Include="src\enemy.hpp" />
+    <ClInclude Include="src\EnemyManager.hpp" />
     <ClInclude Include="src\entity.hpp" />
     <ClInclude Include="src\float2.hpp" />
     <ClInclude Include="src\gringalet.hpp" />

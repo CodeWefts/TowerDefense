@@ -106,9 +106,11 @@ void Map::CreateMap()
 	}
 #endif
 
-	Width = 18;
-	Height = 10;
-	 char map[199] =
+	this->Width = 18;
+	this->Height = 10;
+
+
+	 char map[181] =
 		"                  "
 		"                  "
 		"                  "
@@ -119,6 +121,9 @@ void Map::CreateMap()
 		"pppp      p       "
 		"          pppppppp"
 		"                  ";
+	
+
+	 
 
 	for (int y = 0; y < Height; ++y)
 	{
@@ -130,31 +135,7 @@ void Map::CreateMap()
 			Tiles.push_back(tile);
 		}
 	}
-		/*
-		float2 min = {0 , 0};
-		float2 max = { 36 , 36 };
-
-		for (int j = 0; (min.y <= io.DisplaySize.y); j++) // afficher le décors (grass) qui fait une taille de 120 x 120 pixels
-		{
-			min.x = 0;
-			max.x = 36;
-
-			for (int i = 0; (min.x <= io.DisplaySize.x); i++) // permet dessiner une seule ligne horizontale
-			{
 				
-				min = operator+(min, { 36,0 });
-				max = operator+(max, { 36,0 });
-			}
-
-			min = operator+(min, { 0,36 });
-			max = operator+(max, { 0,36 });
-		}
-		*/
-			
-				
-				
-			
-			
 		
 	}
 	

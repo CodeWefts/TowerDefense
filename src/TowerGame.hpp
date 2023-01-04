@@ -3,6 +3,7 @@
 #include "imgui_utils.hpp"
 #include"Map.hpp"
 #include"TowerRenderer.hpp"
+#include"EnemyManager.hpp"
 #include"Player.hpp"
 #include"soigneur.hpp"
 
@@ -29,6 +30,10 @@ struct GameData
 	//vector<int> intvector;
 	Asset asset;
 	Map map;
+	Player player;
+	EnemyManager enemyManager;
+
+
 	GameData();
 
 };

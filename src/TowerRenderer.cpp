@@ -21,7 +21,7 @@ void TowerRenderer::drawMap(GameData& data)
 
 		ImVec2 topLeft = { originX + x * tileSize, y * tileSize };
 		ImVec2 toRight = { topLeft.x + tileSize, topLeft.y + tileSize };
-		dl->AddRect(topLeft, toRight, IM_COL32(255, 255, 255, 255), 0);
+		
 
 		ImVec2 center = { topLeft.x + tileSize / 2.f, topLeft.y + tileSize / 2.f, };
 		/*
@@ -53,6 +53,9 @@ void TowerRenderer::drawMap(GameData& data)
 			//dl->AddImage(data.asset.textureSoigneur.id, topLeft, toRight, ImVec2(0, 0), ImVec2(0.35, 0.25));
 			break;
 		}
+
+		if(data.enableDebug)
+		dl->AddRect(topLeft, toRight, IM_COL32(255, 255, 255, 255), 0);
 
 	}
 }
@@ -100,6 +103,7 @@ void TowerRenderer::RendererGame(GameData& data)
 {
 	drawMap(data);
 	drawEnemies(data);
+	
 
 	//for (int y = 0; y < data.map.Height; ++y)
 	//{

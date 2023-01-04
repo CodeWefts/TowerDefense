@@ -75,6 +75,7 @@ void TowerGame::UpdateAndDraw()
 	renderer.dl = ImGui::GetBackgroundDrawList();
 	gameData.map.CreateMap();
 	renderer.RendererGame(this->gameData);
+	gameData.player.PlayerInput(gameData);
 }
 
 
