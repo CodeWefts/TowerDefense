@@ -203,7 +203,7 @@ Point2D isobaryCenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const
     return isobarycentre;
 }
 
-/*
+
 Point2D circumcenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
 {
     Point2D output;
@@ -217,7 +217,7 @@ Point2D circumcenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const 
 
     return output;
 }
-*/
+
 
 float *getTriangleSidesPoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
 {

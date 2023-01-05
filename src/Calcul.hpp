@@ -7,6 +7,7 @@
 
 float coefficendirector(Point2D A , Point2D B);
 float getTriangleSurfacePoints2(const Point2D& p1, const Point2D& p2, const Point2D& p3);
+float distPoints2(const Point2D& p1, const Point2D& p2);
 
 
 

@@ -122,7 +122,7 @@ public:
         newFloat2.y = this->y + value;
 
 
-        return *this;
+        return newFloat2;
 
     }
 
@@ -134,7 +134,7 @@ public:
         newFloat2.y = this->y - value;
 
 
-        return *this;
+        return newFloat2;
 
     }
 
@@ -143,7 +143,7 @@ public:
     float2()
     {
         this->x = 0 ; 
-        this->y = 0 ; 
+        this->y = this->x;
     }
     float2(float x, float y )
     {

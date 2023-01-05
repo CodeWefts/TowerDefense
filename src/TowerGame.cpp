@@ -63,17 +63,13 @@ void TowerGame::GameInit()
 
 void TowerGame::UpdateAndDraw()
 {
-	
-	//cout << gameData.Tiles.at(0).centerPos.x << endl;
+	ImGuiIO& io = ImGui::GetIO();
+	gameData.deltatime = io.DeltaTime;
 
-	//enemy enemie;
-
-	//cout << gameData.Tiles.at(0).centerPos.x << endl;
-
-	//gameData.intvector.resize(10);
 
 	renderer.dl = ImGui::GetBackgroundDrawList();
 	gameData.map.CreateMap();
+	enemyManager.ManageEnemy(gameData);
 	renderer.RendererGame(this->gameData);
 	gameData.player.PlayerInput(gameData);
 }

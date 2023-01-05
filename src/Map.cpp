@@ -106,11 +106,12 @@ void Map::CreateMap()
 	}
 #endif
 
-	this->Width = 18;
-	this->Height = 10;
+	Width = 18;
+	Height = 10;
 
-
-	 char map[181] =
+	
+	
+	char Mapchar[181] =
 		"                  "
 		"                  "
 		"                  "
@@ -121,8 +122,6 @@ void Map::CreateMap()
 		"pppp      p       "
 		"          pppppppp"
 		"                  ";
-	
-
 	 
 
 	for (int y = 0; y < Height; ++y)
@@ -131,7 +130,7 @@ void Map::CreateMap()
 		{
 			int idx = x + y * Width;
 			Tile tile;
-			tile.Texture_type = map[idx];
+			tile.Texture_type = Mapchar[idx];
 			Tiles.push_back(tile);
 		}
 	}
@@ -142,6 +141,7 @@ void Map::CreateMap()
 
 Map::Map()
 {
+	Tilesize = 72.f;
 	
 }
 

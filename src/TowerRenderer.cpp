@@ -8,29 +8,27 @@
 
 void TowerRenderer::drawMap(GameData& data)
 {
-	static float tileSize = 72.f;
+	static float tileSize = data.map.Tilesize;
+
 	ImGui::SliderFloat("tileSize", &tileSize, 0.f, 100.f);
 
 	float originX = 0.f;
 	// Build tilemap from string
 	for (int i = 0; i < data.map.Width * data.map.Height; ++i)
 	{
-		int x = i % data.map.Width;
-		int y = i / data.map.Width;
-		Tile& tile = data.map.Tiles[i];
+		int x = i % data.map.Width; // return pos x on char table
+		int y = i / data.map.Width; // return pos y on char table
+		Tile& tile = data.map.Tiles[i]; // Get Tile texture type
 
 		ImVec2 topLeft = { originX + x * tileSize, y * tileSize };
-		ImVec2 toRight = { topLeft.x + tileSize, topLeft.y + tileSize };
+		ImVec2 topRight = { topLeft.x + tileSize, topLeft.y + tileSize };
+
+		//std::cout << " map x = " << x << " map y = " << y  << " topLeft x = " << topLeft.x << " topLeft y = " << topLeft.y << std::endl;
 		
 
-		ImVec2 center = { topLeft.x + tileSize / 2.f, topLeft.y + tileSize / 2.f, };
-		/*
-			if (tile.Texture_type == 'o')
-			dl->AddCircle(center, 5.f, IM_COL32(255, 0, 0, 255), 32, 1);
-			else
-			dl->AddCircle(center, 5.f, IM_COL32(255, 255, 255, 255), 32, 1);
-		*/
-
+		ImVec2 center = { topLeft.x + tileSize / 2.f, topLeft.y + tileSize / 2.f, }; // center / checkpooint
+		
+		// TO DO return NEARBEST CHEKPOINT
 		
 
 		switch (tile.Texture_type)
@@ -40,22 +38,22 @@ void TowerRenderer::drawMap(GameData& data)
 			break;
 
 		case ' ':
-			dl->AddImage(data.asset.textureGrass.id, topLeft, toRight, ImVec2(0, 0), ImVec2(1, 1));
+			dl->AddImage(data.asset.textureGrass.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 		case 'p':
-			dl->AddImage(data.asset.textureDirt.id, topLeft, toRight, ImVec2(0, 0), ImVec2(1, 1));
+			dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 		case 'c':
 			//chateaux
 			break;
 
 		case 'g':
-			//dl->AddImage(data.asset.textureSoigneur.id, topLeft, toRight, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			//dl->AddImage(data.asset.textureSoigneur.id, topLeft, topRight, ImVec2(0, 0), ImVec2(0.35, 0.25));
 			break;
 		}
 
 		if(data.enableDebug)
-		dl->AddRect(topLeft, toRight, IM_COL32(255, 255, 255, 255), 0);
+		dl->AddRect(topLeft, topRight, IM_COL32(255, 255, 255, 255), 0);
 
 	}
 }
@@ -86,12 +84,8 @@ void TowerRenderer::drawEnemies(GameData& data)
 			dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 			
-			
-			
-			
-			//dl->AddCircle(it->pos, 10.f, 0XFFFFFFFF, 30, 1);
 	}
-	//dl->AddImage(data.asset.textureSoigneur.id, float2(200,200), float2(400, 400), ImVec2(0, 0), ImVec2(0.35, 0.25));
+
 	
 }
 

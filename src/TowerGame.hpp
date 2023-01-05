@@ -24,14 +24,13 @@ struct GameData
 {
 	bool enableDebug;
 	float acceleRateTime;
-
+	float deltatime;
 
 	vector<enemy> enemyVector;
-	//vector<int> intvector;
 	Asset asset;
 	Map map;
 	Player player;
-	EnemyManager enemyManager;
+	
 
 
 	GameData();
@@ -46,6 +45,7 @@ class TowerGame
 public:
 
 	GameData gameData;
+	EnemyManager enemyManager;
 
 	void GameInit();
 
