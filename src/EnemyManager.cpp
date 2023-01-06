@@ -6,9 +6,9 @@
 
 #define enemy_Move_Speed 0.5f
 
-float2 ReturnCheckPointNearbest(Map map , float2 enemmyPos)
+float2 ReturnCheckPointNearbest(Map map , float2& enemmyPos)
 {
-	float2 nearBestCheckPoint = {300000,300000000 };
+	float2 nearBestCheckPoint = {2000,2000};
 	
 	float2 CheckPoint;
 
@@ -23,15 +23,17 @@ float2 ReturnCheckPointNearbest(Map map , float2 enemmyPos)
 			std::cout << "x = " << x << std::endl;
 			std::cout << "y = " << y << std::endl;
 
-			float2 topLeft = { 0.f + (float)x * 72.f, y * 72.f };
-			float2 topRight = { topLeft.x + 72.f, topLeft.y + 72.f };
+			// TO DO FUNCTION Returntopleft etc..
 
-			float2 center = { topLeft.x + 72.f / 2.f, topLeft.y + 72.f / 2.f, }; // center / checkpooint
+			float2 topLeft = { 0.f + (float)x * map.Tilesize, y * map.Tilesize };
+			float2 topRight = { topLeft.x + map.Tilesize, topLeft.y + map.Tilesize };
+			float2 center = { topLeft.x + map.Tilesize / 2.f, topLeft.y + map.Tilesize / 2.f, }; // center / checkpooint
 
 
 			CheckPoint.x = center.x;
 			CheckPoint.y = center.y;
 
+			//TO DO 
 			if (distPoints2(enemmyPos, CheckPoint) <= distPoints2(enemmyPos, nearBestCheckPoint))
 				nearBestCheckPoint = CheckPoint; 
 		}

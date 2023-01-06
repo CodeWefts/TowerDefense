@@ -63,6 +63,8 @@ void TowerRenderer::drawEnemies(GameData& data)
 {
 	ImDrawList* enemydrawlist = ImGui::GetBackgroundDrawList();
 
+	
+
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
 	{
 		if (it->name == "soigneur")
