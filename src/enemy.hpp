@@ -17,8 +17,10 @@ public:
 
 	std::string name;
 	Texture texture;
+	float velocity;
 
 
+	char baseChekcpoint = 'a';
 	char destination = 'b';
 
 

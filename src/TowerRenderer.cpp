@@ -157,25 +157,26 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 	
 
+
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
 	{
 		if (it->name == "soigneur")
 		{
 			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
 			it->texture = data.asset.textureSoigneur;
-			data.dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(it->texture.id, it->pos -= 30, it->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 		else if (it->name == "costaud")
 		{
 			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
 			it->texture = data.asset.textureCostaud2;
-			data.dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(it->texture.id, it->pos -= 30, it->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 		else if (it->name == "gringalet")
 		{
 			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
 			it->texture = data.asset.textureGringalet;
-			data.dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(it->texture.id, it->pos -= 30, it->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 			
 	}

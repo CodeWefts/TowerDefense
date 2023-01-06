@@ -8,7 +8,7 @@ public:
 
 	
 	float2 pos;
-
+	
 
 	entity();
 	~entity();

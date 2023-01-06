@@ -36,6 +36,7 @@ struct GameData
 	float acceleRateTime;
 	float deltatime;
 
+
 	vector<enemy> enemyVector;
 	Asset asset;
 	Map map;
@@ -59,6 +60,7 @@ public:
 	TowerRenderer renderer;
 
 	void GameInit();
+	void Debug();
 
 	void UpdateAndDraw();
 

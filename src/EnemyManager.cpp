@@ -5,9 +5,9 @@
 
 
 
-#define enemy_Move_Speed 3.f
+#define enemy_Move_Speed 0.5f
 
-float2 ReturnCheckPointNearbest(Map map , enemy& currentenemy)
+float2 ReturnCheckPointNearbest(Map& map , enemy& currentenemy)
 {
 
 	float2 CheckPoint;
@@ -25,6 +25,9 @@ float2 ReturnCheckPointNearbest(Map map , enemy& currentenemy)
 			std::cout << "y = " << y << std::endl;*/
 
 			// TO DO FUNCTION Returntopleft etc..
+
+			//std::cout <<currentenemy.baseChekcpoint<<','<< std::endl;
+			//printf("%c", currentenemy.baseChekcpoint);
 
 			float2 topLeft = ReturnTileMin(x, y, map);
 			float2 topRight = ReturnTileMax(x, y, map);
@@ -48,46 +51,71 @@ float2 ReturnCheckPointNearbest(Map map , enemy& currentenemy)
 
 void EnemyManager::ManageEnemy(GameData& data)
 {
-	if(data.enemyVector.size() != 0)
-	for(auto it = data.enemyVector.begin() ; it != data.enemyVector.end() ; it++)
+	
+
+	for(auto it = data.enemyVector.begin() ; it != data.enemyVector.end() ;)
 	{
-		
-		float2 FollowPath = ReturnCheckPointNearbest(data.map, *(it));
-
-		
-		// TO DO GET ENEMY TILE POS ANS NEXT CHECKPOINT TILE POS
-		// TO DO ADD VECTOR BETWEEN 2 CHECK POINT B - nextcheckpoint
-		
+			float2 FollowPath = ReturnCheckPointNearbest(data.map, *(it));
 
 
-		it->pos -= (it->pos - FollowPath) * data.deltatime   * enemy_Move_Speed;
-		
+			// TO DO GET ENEMY TILE POS ANS NEXT CHECKPOINT TILE POS
+			// TO DO ADD VECTOR BETWEEN 2 CHECK POINT B - nextcheckpoint
+
+			float2 vectorenemy;
+
+			//std::cout << ReturnPosfromChar(it->destination, data.map).x << " , " << ReturnPosfromChar(it->destination, data.map).y << std::endl;
+			//std::cout << ReturnPosfromChar(it->baseChekcpoint, data.map).x << " , " << ReturnPosfromChar(it->baseChekcpoint, data.map).y << std::endl;
+
+			//std::cout << it->baseChekcpoint << " , " << it->destination << std::endl;
+
+			vectorenemy.x = ReturnPosfromChar(it->baseChekcpoint, data.map).x - ReturnPosfromChar(it->destination, data.map).x;
+			vectorenemy.y = ReturnPosfromChar(it->baseChekcpoint, data.map).y - ReturnPosfromChar(it->destination, data.map).y;
+
+			//std::cout << vectorenemy.x << " , " << vectorenemy.y << std::endl;
+			it->pos -= vectorenemy * data.deltatime * enemy_Move_Speed * it->velocity;
 
 
 
 
-		if (it->pos > FollowPath -10 && it->pos < FollowPath + 10)
-		{
-			it->destination++;
 
-
-			// make enemy destroy when on castle
-			if (it->destination == 'g' && it != data.enemyVector.begin())
+			if (it->pos > FollowPath - 10 && it->pos < FollowPath + 10)
 			{
-				data.enemyVector.erase(it--);
+				it->baseChekcpoint = it->destination;
+				it->destination++;
+
+
+				// make enemy destroy when on castle
+				if (it->destination == 'g' && it != data.enemyVector.begin())
+				{
+					//it->velocity = 0; 
+					data.enemyVector.erase(it--);
+				}
+				else if (it->destination == 'g' && it == data.enemyVector.begin())
+				{
+					//it->velocity = 0;
+					data.enemyVector.erase(it);
+					break;
+
+
+				}
+
+
+
 			}
-			else if (it->destination == 'g' && it == data.enemyVector.begin())
+
+			if ((it->pos.x > 1300 || it->pos.x < -10 || it->pos.y > 720 || it->pos.y < 0) && ((it->pos.x > 1300 || it->pos.x < -10 || it->pos.y > 720 || it->pos.y < 0) && it == data.enemyVector.begin()))
 			{
-				data.enemyVector.erase(it);
-				data.enemyVector.resize(0);
-				break;
-				
-				
+				it = data.enemyVector.erase(it);
 			}
+			else
+			{
+				it++;
+			}
+		
+
+
 			
-				
-			
-		}
+	
 
 	
 	}

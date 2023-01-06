@@ -56,13 +56,19 @@ GameData::GameData()
 {
 	this->acceleRateTime = 1.f;
 	this->enableDebug = false;
-	enemyVector.resize(2);
+	
+	enemyVector.resize(10);
+	
+	
 	
 	enemy* enemie = new soigneur();
 	
 	enemie->pos = ReturnCenter(0, 6, map);
 
 	enemyVector.push_back(*enemie);
+	
+
+	
 
 
 }
@@ -73,20 +79,51 @@ void TowerGame::GameInit()
 	
 }
 
+void TowerGame::Debug()
+{
+	
 
+
+
+
+
+
+}
 void TowerGame::UpdateAndDraw()
 {
 	ImGuiIO& io = ImGui::GetIO();
 	gameData.deltatime = io.DeltaTime;
-
+	
 
 	this->gameData.dl = ImGui::GetBackgroundDrawList();
 	gameData.map.CreateMap();
+	if (ImGui::IsKeyDown(ImGuiKey_Z))
+	{
+		enemy* enemie = new soigneur();
+
+		enemie->pos = ReturnCenter(0, 6, gameData.map);
+
+		gameData.enemyVector.push_back(*enemie);
+
+	}
+
+	//printf("enemie nbr  = %ld", gameData.enemyVector.size());
+
 	enemyManager.ManageEnemy(gameData);
+	//Debug();
+
+		ImGui::Text("Time %f", gameData.deltatime);
+		ImGui::Text("vectorsise %d", gameData.enemyVector.size());
+
+
+	
+
 	renderer.RendererGame(gameData);
 
 	gameData.player.PlayerTile(gameData);
 	gameData.player.PlayerInput(gameData);
+
+
 }
 
 

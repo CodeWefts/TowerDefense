@@ -16,7 +16,22 @@ void Map::CreateMap()
 
 	Width = 18;
 	Height = 10;
+	/*
 	char map[181] =
+		"                  "
+		"  *________+      "
+		"  /cppppppd|      "
+		"  /pt----!p|      "
+		"  /p|    /p|      "
+		"__jp|    /p|      "
+		"appb|    /pl______"
+		"----,    /eppppppf"
+		"         ;--------"
+		"    133333332     ";
+	
+	*/
+
+		 map =
 		"                  "
 		"  *________+      "
 		"  /cppppppd|      "
@@ -122,3 +137,33 @@ float2 ReturnCenter(int indexX, int indexY, Map& map)
 {
 	return { ReturnTileMax(indexX,indexY,map).x - map.Tilesize,ReturnTileMax(indexX,indexY,map).y - map.Tilesize };
 }
+
+
+float2 ReturnPosfromChar(char c, Map& map)
+{
+	int idx = 0;
+	for (int y = 0; y < map.Height; ++y)
+	{
+		for (int x = 0; x < map.Width; ++x)
+		{
+			// char
+			 idx = ReturnIndexIncharMap(x, y, map);
+			 
+				
+				if (map.map[idx] == c)
+				{
+					//printf("idx = %d \n", idx);
+					//printf("map.idx = %c \n", map.map[idx]);
+				 
+					return ReturnCenter(x, y, map);
+				}
+				
+			 
+
+			
+		}
+	}
+	return { 0,0 };
+}
+
+

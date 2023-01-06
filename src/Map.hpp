@@ -12,6 +12,9 @@ using namespace std;
 
 
 
+
+
+
 class Map
 {
 public:
@@ -23,8 +26,7 @@ public:
 	
 	
 	
-	
-
+	std::string map;
 	 int Height;
 	 int Width;
 	 float2 origin;
@@ -41,6 +43,8 @@ private:
 	float2 ReturnTileMax(int indexX, int indexY, Map& map);
 	float2 ReturnTileMin(int indexX, int indexY, Map& map);
 	float2 ReturnCenter(int indexX, int indexY, Map& map);
+	float2 ReturnPosfromChar(char c, Map& map);
+
 
 	int  ReturnTileIndexX(int x, Map& map);
 	int  ReturnTileIndexY(int y, Map& map);

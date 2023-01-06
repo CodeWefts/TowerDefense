@@ -8,6 +8,7 @@ enemy::enemy()
 	
 	maxHealt = 100;
 	currentHealth = maxHealt;
+	velocity = 2.f;
 
 }
 
