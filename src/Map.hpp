@@ -11,7 +11,7 @@ public:
 
 	ImGuiIO* io;
 
-		float Tilesize;
+	float Tilesize;
 	 
 	 int Height;
 	 int Width;
@@ -25,3 +25,21 @@ private:
 
 };
 
+/*class Hud
+{
+public:
+
+	ImGuiIO* io;
+
+	float Tilesize;
+
+	int Height;
+	int Width;
+	std::vector<Tile> Tiles;
+
+	Hud();
+	~Hud();
+
+private:
+
+};*/

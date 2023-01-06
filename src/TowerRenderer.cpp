@@ -38,25 +38,92 @@ void TowerRenderer::drawMap(GameData& data)
 			break;
 
 		case ' ':
-			dl->AddImage(data.asset.textureGrass.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			data.dl->AddImage(data.asset.textureGrass.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 		case 'p':
-			dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
+
+
+		case 'j':
+			data.dl->AddImage(data.asset.texturePathBottomANDRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case 'l':
+			data.dl->AddImage(data.asset.texturePathBottomANDLeft.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case 't':
+			data.dl->AddImage(data.asset.texturePathTopANDLeft.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case '!':
+			data.dl->AddImage(data.asset.texturePathTopANDRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+
+		case '_':
+			data.dl->AddImage(data.asset.texturePathBottom.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case '-':
+			data.dl->AddImage(data.asset.texturePathTop.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+
+		case '|':
+			data.dl->AddImage(data.asset.texturePathRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case '/':
+			data.dl->AddImage(data.asset.texturePathLeft.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+
+		case '*':
+			data.dl->AddImage(data.asset.texturePathTopLeft.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case '+':
+			data.dl->AddImage(data.asset.texturePathTopRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case ',':
+			data.dl->AddImage(data.asset.texturePathBottomLeft.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case ';':
+			data.dl->AddImage(data.asset.texturePathBottomRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+
 		case 'c':
 			//chateaux
 			break;
 
 		case 'g':
-			//dl->AddImage(data.asset.textureSoigneur.id, topLeft, topRight, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			//data.dl->AddImage(data.asset.textureSoigneur.id, topLeft, topRight, ImVec2(0, 0), ImVec2(0.35, 0.25));
 			break;
-		}
 
+
+		case '1':
+			data.dl->AddImage(data.asset.textureGrass.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			data.dl->AddImage(data.asset.textureTowerSideLeft.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case '2':
+			data.dl->AddImage(data.asset.textureGrass.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			data.dl->AddImage(data.asset.textureTowerSideRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case '3':
+			data.dl->AddImage(data.asset.textureGrass.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			data.dl->AddImage(data.asset.textureTowerCase.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+
+
+		}
+		
 		if(data.enableDebug)
-		dl->AddRect(topLeft, topRight, IM_COL32(255, 255, 255, 255), 0);
+			data.dl->AddRect(topLeft, topRight, IM_COL32(255, 255, 255, 255), 0);
+
 
 	}
+
+
 }
+
 
 
 void TowerRenderer::drawEnemies(GameData& data)
@@ -69,19 +136,19 @@ void TowerRenderer::drawEnemies(GameData& data)
 		{
 			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
 			it->texture = data.asset.textureSoigneur;
-			dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 		else if (it->name == "costaud")
 		{
 			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
-			it->texture = data.asset.textureCostaud;
-			dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			it->texture = data.asset.textureCostaud2;
+			data.dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 		else if (it->name == "gringalet")
 		{
 			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
 			it->texture = data.asset.textureGringalet;
-			dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(it->texture.id, it->pos -= 50, it->pos += 50, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 			
 	}
@@ -97,17 +164,6 @@ void TowerRenderer::RendererGame(GameData& data)
 {
 	drawMap(data);
 	drawEnemies(data);
-	
-
-	//for (int y = 0; y < data.map.Height; ++y)
-	//{
-	//	for (int x = 0; x < data.map.Width; ++x)
-	//	{
-	//		int i = x + y * data.map.Width;
-	//
-	//		Tile& tile = data.map.Tiles[i];
-	//	}
-	//}
 
 #if 0
 	// draw tiles
@@ -133,7 +189,7 @@ void TowerRenderer::RendererGame(GameData& data)
 
 TowerRenderer::TowerRenderer()
 {
-	dl = nullptr;
+	//dl = nullptr;
 }
 
 TowerRenderer::~TowerRenderer()

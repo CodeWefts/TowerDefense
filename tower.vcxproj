@@ -129,9 +129,23 @@
     <ClInclude Include="src\Vector2D.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\ennemies\costaud.png" />
+    <Image Include="assets\ennemies\costaud\costaud1.png" />
+    <Image Include="assets\ennemies\costaud\costaud10.png" />
+    <Image Include="assets\ennemies\costaud\costaud11.png" />
+    <Image Include="assets\ennemies\costaud\costaud12.png" />
+    <Image Include="assets\ennemies\costaud\costaud2.png" />
+    <Image Include="assets\ennemies\costaud\costaud3.png" />
+    <Image Include="assets\ennemies\costaud\costaud4.png" />
+    <Image Include="assets\ennemies\costaud\costaud5.png" />
+    <Image Include="assets\ennemies\costaud\costaud6.png" />
+    <Image Include="assets\ennemies\costaud\costaud7.png" />
+    <Image Include="assets\ennemies\costaud\costaud8.png" />
+    <Image Include="assets\ennemies\costaud\costaud9.png" />
     <Image Include="assets\ennemies\gringalet.png" />
     <Image Include="assets\ennemies\soigneur.png" />
+    <Image Include="assets\hud\SideLeft.png" />
+    <Image Include="assets\hud\SideRight.png" />
+    <Image Include="assets\hud\TowerCase.png" />
     <Image Include="assets\map\dirt.png" />
     <Image Include="assets\map\grass.png" />
     <Image Include="assets\map\pathBottom.png" />
@@ -146,6 +160,7 @@
     <Image Include="assets\map\pathTopANDRight.png" />
     <Image Include="assets\map\pathTopLeft.png" />
     <Image Include="assets\map\pathTopRight.png" />
+    <Image Include="assets\tower\tower.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

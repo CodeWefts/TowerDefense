@@ -9,134 +9,59 @@
 
 void Map::CreateMap()
 {
-#if 0
-
-	ImGuiIO& io = ImGui::GetIO();
-
-	int With = io.DisplaySize.x / 36;
-	int Height = io.DisplaySize.y / 36;
-
-	Tiles.resize(With * Height);
-
-	auto it = Tiles.begin();
-	it->centerPos = { 36 , 36 };
-
-	float2 headCenterPos = Tiles[0].centerPos;
-	float2 headposMax = Tiles[0].posMax;
-	float2 headposMin = Tiles[0].posMin;
-
-
-
-
-	int i = 0;
-
-	int k = 0;
-	// 
-	for (auto it = Tiles.begin(); it != Tiles.end(); it++)
-	{
-		it->centerPos.x = headCenterPos.x + (k * 36) * 2;
-		it->posMax.x = (it->centerPos.x + (36));
-		it->posMin.x = (it->centerPos.x - (36));
-
-		it->centerPos.y = headCenterPos.y + (i * (36)) * 2;
-		it->posMax.y = (it->centerPos.y + (36));
-		it->posMin.y = (it->centerPos.y - (36));
-
-		if (k != With - 1)
-		{
-
-			k++;
-		}
-		else if (k == With - 1)
-		{
-			if (i != Height)
-			{
-				i++;
-				k = 0;
-			}
-		}
-		it->IndexX = k;
-		it->IndexY = i;
-	}
-
-
-
-
-
-	int w = Width;
-	int h = Height;
-	const char* map =
-		"                  "
-		"      o           "
-		"       ooooooooo  "
-		"                  "
-		"                  "
-		"                  "
-		"                  "
-		"         o        "
-		"                  "
-		"                  ";
-
-
-
-
-	for (auto it = Tiles.begin(); it < Tiles.end(); it++)
-	{
-		int idx = it->IndexX + it->IndexY * w;
-		it->Texture_type = map[idx];
-		
-		//for (int y = 0; y < h; ++y)
-		//{
-		//	for (int x = 0; x < w; ++x)
-		//	{
-		//		int idx = x + y * w;
-
-		//		if(x == it->IndexX && y == it->IndexY )
-		//			it->Texture_type = map[idx];
-		//	}
-
-
-		//	//Tile tile;
-		//	//tile.IndexX = x;
-		//	//tile.IndexY = y;
-
-
-		//	//Tiles.push_back(tile);
-		//}
-	}
-#endif
 
 	Width = 18;
 	Height = 10;
+	char map[181] =
+		"                  "
+		"  *________+      "
+		"  /pppppppp|      "
+		"  /pt----!p|      "
+		"  /p|    /p|      "
+		"__jp|    /p|      "
+		"pppp|    /pl______"
+		"----,    /pppppppp"
+		"         ;--------"
+		"    133333332     ";
 
-	
-	
-	char Mapchar[181] =
+	/*char hud[181] =
 		"                  "
 		"                  "
 		"                  "
-		"   pppppppp       "
-		"   p      p       "
-		"   p      p       "
-		"   p      p       "
-		"pppp      p       "
-		"          pppppppp"
-		"                  ";
-	 
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"        13332     ";*/
 
 	for (int y = 0; y < Height; ++y)
 	{
 		for (int x = 0; x < Width; ++x)
 		{
 			int idx = x + y * Width;
+
 			Tile tile;
-			tile.Texture_type = Mapchar[idx];
+			tile.Texture_type = map[idx];
 			Tiles.push_back(tile);
 		}
 	}
+
+	/*for (int y = 0; y < Height; ++y)
+	{
+		for (int x = 0; x < Width; ++x)
+		{
+			int idx = x + y * Width;
+
+			Tile tile;
+			tile.Texture_type = hud[idx];
+			Tiles.push_back(tile);
+		}
+	}*/
 				
 		
-	}
+}
 	
 
 Map::Map()
@@ -148,3 +73,12 @@ Map::Map()
 Map::~Map()
 {
 }
+
+/*Hud::Hud()
+{
+
+}
+
+Hud::~Hud()
+{
+}*/
