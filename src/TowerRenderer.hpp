@@ -7,12 +7,6 @@ class TowerRenderer
 {
 public:
 
-
-
-
-
-	ImDrawList* dl;
-
 	void drawEnemies(GameData& data);
 
 	void drawMap(GameData& data);

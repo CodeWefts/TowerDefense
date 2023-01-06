@@ -1,7 +1,6 @@
 #pragma once
 #include "imgui_utils.hpp"
 
-
 struct GameData;
 
 
@@ -21,6 +20,11 @@ public:
 	
 	// tower
 	int tower;
+
+
+
+
+	void PlayerTile(GameData& gamedata);
 
 	void PlayerInput(GameData& gamedata);
 

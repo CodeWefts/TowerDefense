@@ -21,9 +21,33 @@ Asset::Asset()
 	texturePathTopANDRight = ImGuiUtils::LoadTexture("assets/map/pathTopANDRight.png");
 	texturePathTopLeft = ImGuiUtils::LoadTexture("assets/map/pathTopLeft.png");
 	texturePathTopRight = ImGuiUtils::LoadTexture("assets/map/pathTopRight.png");
-	textureCostaud = ImGuiUtils::LoadTexture("assets/ennemies/costaud.png");
+
+	textureCostaud1 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud1.png");
+	textureCostaud2 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud2.png");
+	textureCostaud3 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud3.png");
+	textureCostaud4 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud4.png");
+	textureCostaud5 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud5.png");
+	textureCostaud6 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud6.png");
+	textureCostaud7 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud7.png");
+	textureCostaud8 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud8.png");
+	textureCostaud9 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud9.png");
+	textureCostaud10 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud10.png");
+	textureCostaud11 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud11.png");
+	textureCostaud12 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud12.png");
+
+
 	textureGringalet = ImGuiUtils::LoadTexture("assets/ennemies/gringalet.png");
 	textureSoigneur = ImGuiUtils::LoadTexture("assets/ennemies/soigneur.png");
+
+	textureTower = ImGuiUtils::LoadTexture("assets/tower/tower.png");
+
+	textureTowerSideLeft = ImGuiUtils::LoadTexture("assets/hud/SideLeft.png");
+	textureTowerSideRight = ImGuiUtils::LoadTexture("assets/hud/SideRight.png");
+	textureTowerCase = ImGuiUtils::LoadTexture("assets/hud/TowerCase.png");
+
+
+
+
 
 }
 
@@ -47,11 +71,6 @@ GameData::GameData()
 	enemyVector.push_back(*enemie2);
 
 
-
-	
-
-	
-
 }
 
 
@@ -67,10 +86,12 @@ void TowerGame::UpdateAndDraw()
 	gameData.deltatime = io.DeltaTime;
 
 
-	renderer.dl = ImGui::GetBackgroundDrawList();
+	this->gameData.dl = ImGui::GetBackgroundDrawList();
 	gameData.map.CreateMap();
 	enemyManager.ManageEnemy(gameData);
 	renderer.RendererGame(this->gameData);
+
+	gameData.player.PlayerTile(gameData);
 	gameData.player.PlayerInput(gameData);
 }
 
@@ -87,7 +108,7 @@ void TowerGame::UpdateAndDraw()
 
 TowerGame::TowerGame()
 {
-	renderer.dl = nullptr;
+	this->gameData.dl = nullptr;
 }
 
 TowerGame::~TowerGame()

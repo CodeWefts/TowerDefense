@@ -19,9 +19,9 @@ float2 ReturnCheckPointNearbest(Map map , float2& enemmyPos)
 		Tile& tile = map.Tiles[i]; // Get Tile texture type
 		if (tile.Texture_type == 'p')
 		{
-			std::cout << tile.Texture_type << std::endl;
+			/*std::cout << tile.Texture_type << std::endl;
 			std::cout << "x = " << x << std::endl;
-			std::cout << "y = " << y << std::endl;
+			std::cout << "y = " << y << std::endl;*/
 
 			// TO DO FUNCTION Returntopleft etc..
 
