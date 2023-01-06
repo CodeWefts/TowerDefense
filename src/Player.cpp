@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include"TowerGame.hpp"
+#include"Map.hpp"
 
 
 void Player::PlayerTile(GameData& gamedata)
@@ -11,15 +12,20 @@ void Player::PlayerTile(GameData& gamedata)
 
 	int TileSize = gamedata.map.Tilesize;
 
-	int TileMouseX = (MouseX / TileSize) % 18;
-	int TileMouseY = MouseY / TileSize;
+	int TileMouseX = ReturnTileIndexX(MouseX,gamedata.map);
+	int TileMouseY = ReturnTileIndexX(MouseY, gamedata.map);
 
 
-	int TileMinX = TileMouseX * 72;
-	int TileMaxX = TileMouseX * 72 + 72;
+	int TileMinX = ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).x;	
+	int TileMinY = ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).y;
 
-	int TileMinY = TileMouseY * 72;
-	int TileMaxY = TileMouseY * 72 + 72;
+
+
+	int TileMaxX = ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).x;
+
+	//float2 Tilemax = ReturntopLeft(TileMouseX, TileMouseY, gamedata.map);
+
+	int TileMaxY = ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).y;
 
 
 

@@ -19,6 +19,10 @@ public:
 	Texture texture;
 
 
+	char destination = 'b';
+
+
+
 	 enemy();
 	 ~enemy();
 

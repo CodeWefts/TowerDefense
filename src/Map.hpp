@@ -5,6 +5,13 @@
 #include "imgui_utils.hpp"
 
 
+using namespace std;
+
+
+
+
+
+
 class Map
 {
 public:
@@ -12,10 +19,16 @@ public:
 	ImGuiIO* io;
 
 	float Tilesize;
-	 
+	
+	
+	
+	
+	
+
 	 int Height;
 	 int Width;
-	std::vector<Tile> Tiles;
+	 float2 origin;
+	vector<Tile> Tiles;
 
 	void CreateMap();
 	Map();
@@ -24,6 +37,15 @@ public:
 private:
 
 };
+
+	float2 ReturnTileMax(int indexX, int indexY, Map& map);
+	float2 ReturnTileMin(int indexX, int indexY, Map& map);
+	float2 ReturnCenter(int indexX, int indexY, Map& map);
+
+	int  ReturnTileIndexX(int x, Map& map);
+	int  ReturnTileIndexY(int y, Map& map);
+	int ReturnIndexIncharMap(int x, int y, Map& map);
+
 
 /*class Hud
 {

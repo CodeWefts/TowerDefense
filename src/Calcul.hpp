@@ -27,7 +27,8 @@ float determinantVector2( Vector2D v1,  Vector2D v2);
 
 float dotproductvector2(const Vector2D &v1, const Vector2D &v2);
 Vector2D getVectorFromPoint2d(Point2D &p1, Point2D &p2);
-Vector2D normaliseVector(Vector2D Vector);
+//Vector2D normaliseVector(Vector2D Vector);
+float2 normaliseVector(float2 Vector);
 
 Vector2D NormalVector(Vector2D vector);
 

@@ -30,7 +30,7 @@ public:
         
     }
     
-    virtual float2 operator-(const float2& float2_2)
+    virtual float2 operator-(  float2& float2_2)
     {
         float2 res ;
         res.x = this->x - float2_2.x ;
@@ -40,15 +40,7 @@ public:
         
     }
 
-    virtual float2 operator*(const float2& float2_2)
-    {
-        float2 res ;
-        res.x = this->x * float2_2.x ;
-        res.y = this->y * float2_2.y ; 
-
-        return res ;
-        
-    }
+  
 
     virtual float2 operator/(const float2& float2_2) 
     {

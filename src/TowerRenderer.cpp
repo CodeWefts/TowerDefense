@@ -10,7 +10,7 @@ void TowerRenderer::drawMap(GameData& data)
 {
 	static float tileSize = data.map.Tilesize;
 
-	ImGui::SliderFloat("tileSize", &tileSize, 0.f, 100.f);
+	ImGui::SliderFloat("tileSize", &data.map.Tilesize, 0.f, 100.f);
 
 	float originX = 0.f;
 	// Build tilemap from string
@@ -20,13 +20,13 @@ void TowerRenderer::drawMap(GameData& data)
 		int y = i / data.map.Width; // return pos y on char table
 		Tile& tile = data.map.Tiles[i]; // Get Tile texture type
 
-		ImVec2 topLeft = { originX + x * tileSize, y * tileSize };
-		ImVec2 topRight = { topLeft.x + tileSize, topLeft.y + tileSize };
+		ImVec2 topLeft = ReturnTileMin(x, y, data.map);
+		ImVec2 topRight = ReturnTileMax(x, y, data.map);
 
 		//std::cout << " map x = " << x << " map y = " << y  << " topLeft x = " << topLeft.x << " topLeft y = " << topLeft.y << std::endl;
 		
 
-		ImVec2 center = { topLeft.x + tileSize / 2.f, topLeft.y + tileSize / 2.f, }; // center / checkpooint
+		ImVec2 center = ReturnCenter(x,y, data.map); // center / checkpooint
 		
 		// TO DO return NEARBEST CHEKPOINT
 		
@@ -42,6 +42,31 @@ void TowerRenderer::drawMap(GameData& data)
 			break;
 		case 'p':
 			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+		case 'a':
+			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+		case 'b':
+			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+		case 'c':
+			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+
+		case 'd':
+			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+		case 'e':
+			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+		case 'f':
+			//data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 
 
@@ -89,7 +114,7 @@ void TowerRenderer::drawMap(GameData& data)
 			break;
 
 
-		case 'c':
+		case 'k':
 			//chateaux
 			break;
 
@@ -167,26 +192,7 @@ void TowerRenderer::RendererGame(GameData& data)
 	drawMap(data);
 	drawEnemies(data);
 
-#if 0
-	// draw tiles
-	for(auto it = data.map.Tiles.begin(); it != data.map.Tiles.end(); it++)
-	//for (Tile& tile : data.map.Tiles)
-	{
 
-		// TO do draw texture
-		dl->AddRect(it->posMin, it->posMax, IM_COL32(255, 255, 255, 255), 0);
-
-		if (it->Texture_type == 'o')
-		{
-			dl->AddCircle(it->centerPos, 5.f, IM_COL32(255, 0, 0, 255), 32, 1);
-		}
-		else
-		{
-			dl->AddCircle(it->centerPos, 5.f, IM_COL32(255, 255, 255, 255), 32, 1);
-		}
-
-	}
-#endif
 }
 
 TowerRenderer::TowerRenderer()

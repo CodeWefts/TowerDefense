@@ -60,15 +60,9 @@ GameData::GameData()
 	
 	enemy* enemie = new soigneur();
 	
-	enemie->pos = { 100,100 };
+	enemie->pos = ReturnCenter(0, 6, map);
 
 	enemyVector.push_back(*enemie);
-
-	enemy* enemie2 = new costaud();
-
-	enemie2->pos = { 300,300 };
-
-	enemyVector.push_back(*enemie2);
 
 
 }
@@ -89,7 +83,7 @@ void TowerGame::UpdateAndDraw()
 	this->gameData.dl = ImGui::GetBackgroundDrawList();
 	gameData.map.CreateMap();
 	enemyManager.ManageEnemy(gameData);
-	renderer.RendererGame(this->gameData);
+	renderer.RendererGame(gameData);
 
 	gameData.player.PlayerTile(gameData);
 	gameData.player.PlayerInput(gameData);

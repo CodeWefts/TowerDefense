@@ -235,7 +235,8 @@ float *getTriangleSidesPoints2(const Point2D &p1, const Point2D &p2, const Point
 
 
  
-    Vector2D normaliseVector(Vector2D Vector)
+    /*
+    * Vector2D normaliseVector(Vector2D Vector)
     {
         float normedVector = toNormVector(Vector);
        
@@ -244,6 +245,18 @@ float *getTriangleSidesPoints2(const Point2D &p1, const Point2D &p2, const Point
 
         return Vector;
     }
+    */
+
+    float2 normaliseVector(float2 Vector)
+    {
+        float normedVector = toNormVector(Vector);
+
+        Vector.x = Vector.x / normedVector;
+        Vector.y = Vector.y / normedVector;
+
+        return Vector;
+    }
+
 
     
 
