@@ -4,7 +4,7 @@
 
   
 
-float determinantVector2( Vector2D v1,  Vector2D v2)
+float determinantVector2( float2 v1,  float2 v2)
 {
         
     float output = (v1.x * v2.y) - (v1.y * v2.x);
@@ -12,16 +12,16 @@ float determinantVector2( Vector2D v1,  Vector2D v2)
     return output;
 }
 
-float toNormVector(Vector2D v)
+float toNormVector(float2 v)
 {
     return sqrtf(pow(v.x, 2) + pow(v.y, 2));
 }
 
-float getAngleVector2( Vector2D v1,  Vector2D v2)
+float getAngleVector2( float2 v1,  float2 v2)
 {
     float output = 0;
-    Vector2D vector1 = v1;
-    Vector2D vector2 = v2;
+    float2 vector1 = v1;
+    float2 vector2 = v2;
 
     float normV1 = toNormVector(v1);
     float normV2 = toNormVector(v2);
@@ -42,23 +42,23 @@ float getAngleVector2( Vector2D v1,  Vector2D v2)
     }
 }
 
-float coefficendirector(Point2D A, Point2D B)
+float coefficendirector(float2 A, float2 B)
 {
     float output = ((B.y - A.y) / (B.y - A.y));
 
     return output;
 }
 
-float distPoints2(const Point2D &p1, const Point2D &p2)
+float distPoints2(const float2& p1, const float2& p2)
 {
     // fabsf
     return fabsf(sqrtf(powf(p2.x - p1.x, 2) + powf(p2.y - p1.y, 2)));
 }
 
-Vector2D crossProduct2d(const Point2D &a, const Point2D &b)
+float2 crossProduct2d(const float2& a, const float2& b)
 {
-    Vector2D t;
-    Vector2D n;
+    float2 t;
+    float2 n;
 
     t.x = b.x - a.x;
     t.y = b.y - a.y;
@@ -71,9 +71,9 @@ Vector2D crossProduct2d(const Point2D &a, const Point2D &b)
 
 
 
-Point2D Point2DInRange(Point2D p1, Point2D p2, float range)
+float2 float2InRange(float2 p1, float2 p2, float range)
 {
-    Point2D newPoint;
+    float2 newPoint;
 
     newPoint.x = (p2.x - p1.x) * range + p1.x;
     newPoint.y = (p2.y - p1.y) * range + p1.y;
@@ -81,9 +81,9 @@ Point2D Point2DInRange(Point2D p1, Point2D p2, float range)
     return newPoint;
 }
 
-Point2D midPoint2D(Point2D p1, Point2D p2)
+float2 midfloat2(float2 p1, float2 p2)
 {
-    Point2D midPoint;
+    float2 midPoint;
 
     // X
     if (p1.x < p2.x)
@@ -110,21 +110,21 @@ Point2D midPoint2D(Point2D p1, Point2D p2)
 
 
 
-Point2D  RotationPoint2D(Point2D& P,const Point2D& R, float angle)
+float2  Rotationfloat2(float2& P, const float2& R, float angle)
 {
-   
-  
-   
-    // Calcule de la rotation de parametre angle 
-    P.x = ( ( R.x * cosf(angle) ) - ( R.y * sinf(angle) ) ) ;
-    P.y = ( ( R.x * sinf(angle) ) + ( R.y * cosf(angle) ) ) ;
 
-    
-    
+
+
+    // Calcule de la rotation de parametre angle 
+    P.x = ((R.x * cosf(angle)) - (R.y * sinf(angle)));
+    P.y = ((R.x * sinf(angle)) + (R.y * cosf(angle)));
+
+
+
     return P;
 }
 
-float getTriangleSurfacePoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
+float getTriangleSurfacePoints2(const float2& p1, const float2& p2, const float2& p3)
 {
     // calcule de la base
 
@@ -186,13 +186,13 @@ float getTriangleSurfacePoints2(const Point2D &p1, const Point2D &p2, const Poin
     return Aire;
 }
 
-Point2D isobaryCenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
+float2 isobaryCenterTrianglePoints2(const float2& p1, const float2& p2, const float2& p3)
 {
     /*float a = distPoints2(p1, p2);
     float b = distPoints2(p1, p3);
     float c = distPoints2(p2, p3);*/
 
-    Point2D isobarycentre;
+    float2 isobarycentre;
 
     isobarycentre.x = (p1.x + p2.x + p3.x);
     isobarycentre.x *= 1.0f / 3.0f;
@@ -204,9 +204,9 @@ Point2D isobaryCenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const
 }
 
 
-Point2D circumcenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
+float2 circumcenterTrianglePoints2(const float2& p1, const float2& p2, const float2& p3)
 {
-    Point2D output;
+    float2 output;
     float dia = 2.0f * (p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y));
 
     float xu = 1.0f / dia * (((pow(p1.x, 2.0) + pow(p1.y, 2.0)) * (p2.y - p3.y) + (pow(p2.x, 2.0) + pow(p2.y, 2.0)) * (p3.y - p1.y) + (pow(p3.x, 2.0) + pow(p3.y, 2.0)) * (p1.y - p2.y)));
@@ -219,9 +219,9 @@ Point2D circumcenterTrianglePoints2(const Point2D &p1, const Point2D &p2, const 
 }
 
 
-float *getTriangleSidesPoints2(const Point2D &p1, const Point2D &p2, const Point2D &p3)
+float* getTriangleSidesPoints2(const float2& p1, const float2& p2, const float2& p3)
 {
-    float *output = new float[3];
+    float* output = new float[3];
 
     output[0] = distPoints2(p1, p2);
     output[1] = distPoints2(p2, p3);
@@ -234,50 +234,50 @@ float *getTriangleSidesPoints2(const Point2D &p1, const Point2D &p2, const Point
 
 
 
- 
-    /*
-    * Vector2D normaliseVector(Vector2D Vector)
+
+/*
+* float2 normaliseVector(float2 Vector)
+{
+    float normedVector = toNormVector(Vector);
+
+    Vector.x = Vector.x / normedVector;
+    Vector.y = Vector.y / normedVector;
+
+    return Vector;
+}
+*/
+
+float2 normaliseVector(float2 Vector)
+{
+    float normedVector = toNormVector(Vector);
+
+    Vector.x = Vector.x / normedVector;
+    Vector.y = Vector.y / normedVector;
+
+    return Vector;
+}
+
+
+
+
+
+
+float dotproductvector2(const float2& v1, const float2& v2)
+{
+    float angle = atan2f(v2.y, v2.x) - atan2(v1.y, v1.x);
+    float output = toNormVector(v1) * toNormVector(v2) * cos(angle);
+    return output;
+}
+
+float2 getVectorFromPoint2d(float2& p1, float2&p2)
     {
-        float normedVector = toNormVector(Vector);
-       
-        Vector.x = Vector.x / normedVector;
-        Vector.y = Vector.y / normedVector;
-
-        return Vector;
-    }
-    */
-
-    float2 normaliseVector(float2 Vector)
-    {
-        float normedVector = toNormVector(Vector);
-
-        Vector.x = Vector.x / normedVector;
-        Vector.y = Vector.y / normedVector;
-
-        return Vector;
-    }
-
-
-    
-
-   
-
-    float dotproductvector2(const Vector2D &v1, const Vector2D &v2)
-    {
-        float angle = atan2f(v2.y, v2.x) - atan2(v1.y, v1.x);
-        float output = toNormVector(v1) * toNormVector(v2) * cos(angle);
-        return output;
-    }
-
-    Vector2D getVectorFromPoint2d(Point2D &p1, Point2D &p2)
-    {
-        Vector2D vec(p2.x - p1.x, p2.y - p1.y);
+        float2 vec(p2.x - p1.x, p2.y - p1.y);
         return vec;
     }
 
-    Vector2D NormalVector(Vector2D vector)
+    float2 NormalVector(float2 vector)
     {
-        Vector2D output;
+        float2 output;
 
         output.x = -vector.y;
         if (vector.x < 0)

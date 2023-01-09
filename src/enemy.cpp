@@ -1,14 +1,25 @@
 #include<random>
 #include "enemy.hpp"
+#include"calc.hpp"
 
 
-int getOffsetCheckpoint(int max)
+float getOffsetCheckpoint(float max)
 {
+	/*
+	
 	std::default_random_engine rd;
 
-	std::uniform_int_distribution<int> dist(0,max);
+	std::uniform_real<float> dist(0,max);
 
 	return dist(rd);
+	*/
+
+	srand(time(NULL));
+
+
+
+
+	return Calc::randomFloat(10, 20);
 
 }
 
@@ -22,7 +33,7 @@ enemy::enemy()
 	this->maxHealt = 100;
 	this->currentHealth = maxHealt;
 	this->velocity = 2.f;
-	this->offsetCheckPoint = getOffsetCheckpoint(10);
+	this->offsetCheckPoint = getOffsetCheckpoint(6);
 
 }
 

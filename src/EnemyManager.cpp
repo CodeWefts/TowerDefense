@@ -1,11 +1,12 @@
 #include"EnemyManager.hpp"
 #include "TowerGame.hpp"
 #include"calc.hpp"
+#include"Calcul.hpp"
 
 
 
 
-#define enemy_Move_Speed 0.5f
+#define enemy_Move_Speed 100.f
 
 float2 ReturnCheckPointNearbest(Map& map , enemy** currentenemy)
 {
@@ -65,21 +66,7 @@ void EnemyManager::ManageWave(GameData& data)
 			data.enemyVector.push_back(ptr[i]);
 		
 		}
-	
-		
-			
-		
-			
-
-		
-		
 			//data.enemyVector.at(10) = new soigneur();
-		
-		
-
-			
-			
-
 		
 		data.addEnemy = false;
 		
@@ -106,7 +93,6 @@ void EnemyManager::ManageWave(GameData& data)
 // to Do add /per check point index distance
 void EnemyManager::MoveEnemyPath(GameData& data)
 {
-	if(!data.enemyVector.empty())
 	for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end();)
 	{
 		float2 FollowPath = ReturnCheckPointNearbest(data.map, &*it);
@@ -123,8 +109,8 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 
 		float2 vectorenemy;
 
-		std::cout << ReturnPosfromChar(current->destination, data.map).x << " , " << ReturnPosfromChar(current->destination, data.map).y << std::endl;
-		std::cout << ReturnPosfromChar(current->baseChekcpoint, data.map).x << " , " << ReturnPosfromChar(current->baseChekcpoint, data.map).y << std::endl;
+		//std::cout << ReturnPosfromChar(current->destination, data.map).x << " , " << ReturnPosfromChar(current->destination, data.map).y << std::endl;
+		//std::cout << ReturnPosfromChar(current->baseChekcpoint, data.map).x << " , " << ReturnPosfromChar(current->baseChekcpoint, data.map).y << std::endl;
 
 		//std::cout << it->baseChekcpoint << " , " << it->destination << std::endl;
 
@@ -132,7 +118,12 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		vectorenemy.y = ReturnPosfromChar(current->baseChekcpoint, data.map).y - ReturnPosfromChar(current->destination, data.map).y;
 
 		//std::cout << vectorenemy.x << " , " << vectorenemy.y << std::endl;
-		current->pos -= vectorenemy * data.deltatime * enemy_Move_Speed * current->velocity;
+
+		//std::cout << " ad = " << &*current << std::endl;
+
+		//std::cout << " Destination = " << current->destination << std::endl;
+		std::cout << " offset =  " << current->offsetCheckPoint << std::endl;
+		current->pos -= normaliseVector(vectorenemy) * data.deltatime * enemy_Move_Speed * current->velocity;
 
 		
 
@@ -198,9 +189,9 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 void EnemyManager::ManageEnemy(GameData& data)
 {
 	//TO DO ADD WAWE
+	this->MoveEnemyPath(data);
 	this->ManageWave(data);
 
-	this->MoveEnemyPath(data);
 
 
 }

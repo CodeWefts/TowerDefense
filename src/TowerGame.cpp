@@ -149,10 +149,17 @@ void TowerGame::UpdateAndDraw()
 	
 	
 			
+	// work
+	if (ImGui::IsKeyPressed(ImGuiKey_A, false))
+	{
+		enemy* enemy = new soigneur();
+		enemy->pos = ReturnCenter(0, 6, gameData.map);
 
+		gameData.enemyVector.push_back(enemy);
+
+	}
 
 	
-
 	
 
 

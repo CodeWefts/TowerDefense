@@ -1,6 +1,5 @@
 #pragma once
 #include<iostream>
-#include"calc.hpp"
 #include "entity.hpp"
 #include "imgui_utils.hpp"
 
@@ -24,7 +23,7 @@ public:
 	char baseChekcpoint = 'a';
 	char destination = 'b';
 
-	
+
 
 	 enemy();
 	 ~enemy();
@@ -32,3 +31,4 @@ public:
 private:
 
 };
+

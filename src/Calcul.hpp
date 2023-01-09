@@ -5,32 +5,32 @@
 
 
 
-float coefficendirector(Point2D A , Point2D B);
-float getTriangleSurfacePoints2(const Point2D& p1, const Point2D& p2, const Point2D& p3);
-float distPoints2(const Point2D& p1, const Point2D& p2);
+float coefficendirector(float2 A, float2 B);
+float getTriangleSurfacePoints2(const float2& p1, const float2& p2, const float2& p3);
+float distPoints2(const float2& p1, const float2& p2);
 
 
 
 
-Point2D Point2DInRange(Point2D p1, Point2D p2, float range);
-Point2D circumcenterTrianglePoints2(const Point2D& p1, const Point2D& p2, const Point2D& p3);
-Point2D isobaryCenterTrianglePoints2(const Point2D& p1, const Point2D& p2, const Point2D& p3);
-Point2D midPoint2D(Point2D p1 , Point2D p2 );
-Point2D  RotationPoint2D(Point2D& P,const Point2D& R, float angle);
+float2 float2InRange(float2 p1, float2 p2, float range);
+float2 circumcenterTrianglePoints2(const float2& p1, const float2& p2, const float2& p3);
+float2 isobaryCenterTrianglePoints2(const float2& p1, const float2& p2, const float2& p3);
+float2 midfloat2(float2 p1, float2 p2);
+float2  Rotationfloat2(float2& P, const float2& R, float angle);
 
-Vector2D crossProduct2d(const Point2D& a , const Point2D& b );
+float2 crossProduct2d(const float2& a, const float2& b);
 
-float toNormVector(Vector2D v);
+float toNormVector(float2 v);
 
-float determinantVector2( Vector2D v1,  Vector2D v2);
+float determinantVector2(float2 v1, float2 v2);
 
 
-float dotproductvector2(const Vector2D &v1, const Vector2D &v2);
-Vector2D getVectorFromPoint2d(Point2D &p1, Point2D &p2);
-//Vector2D normaliseVector(Vector2D Vector);
+float dotproductvector2(const float2& v1, const float2& v2);
+float2 getVectorFromPoint2d(float2& p1, float2& p2);
+//float2 normaliseVector(float2 Vector);
 float2 normaliseVector(float2 Vector);
 
-Vector2D NormalVector(Vector2D vector);
+float2 NormalVector(float2 vector);
 
 
 
