@@ -36,3 +36,5 @@ Vector2D NormalVector(Vector2D vector);
 
 
 
+
+

@@ -29,20 +29,39 @@ struct Asset
 };
 
 
+enum Wave : int
+{
+	Wave1 = 1,
+	Wave2,
+	Wave3,
+	Wave4,
+	Wave5,
+	Wave6,
+	Wave7,
+	Wave8,
+	Wave9,
+};
+
+
+
 
 struct GameData
 {
+	bool addEnemy;
+	bool WaveStart;
 	bool enableDebug;
+	int currentWave;
 	float acceleRateTime;
 	float deltatime;
 
 
-	vector<enemy> enemyVector;
+	vector<enemy*> enemyVector;
 	Asset asset;
 	Map map;
 	//Hud hud;
 	Player player;
 
+	//Wave waveEnenum;
 	ImGuiIO* io;
 	ImDrawList* dl;
 
@@ -54,8 +73,8 @@ struct GameData
 class TowerGame
 {
 public:
-
 	GameData gameData;
+
 	EnemyManager enemyManager;
 	TowerRenderer renderer;
 
@@ -72,6 +91,10 @@ public:
 	
 
 };
+
+
+
+
 
 
 

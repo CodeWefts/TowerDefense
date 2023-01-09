@@ -5,6 +5,17 @@
 
 using namespace std;
 
+
+
+
+
+
+
+
+
+
+
+
 Asset::Asset()
 {
 	textureDirt = ImGuiUtils::LoadTexture("assets/map/dirt.png");
@@ -54,20 +65,35 @@ Asset::Asset()
 
 GameData::GameData()
 {
+	this->WaveStart = false;
+	this->addEnemy = false;
+
 	this->acceleRateTime = 1.f;
 	this->enableDebug = false;
-	
-	enemyVector.resize(10);
-	
-	
-	
-	enemy* enemie = new soigneur();
-	
-	enemie->pos = ReturnCenter(0, 6, map);
 
-	enemyVector.push_back(*enemie);
+	currentWave = Wave::Wave1;
+	
+	//enemyVector.resize(10);
 	
 
+	
+	enemy* enemy = new soigneur();
+	enemy->pos = ReturnCenter(0, 6,map);
+
+	enemyVector.push_back(enemy);
+	
+	
+	
+		/*soigneur* soin = new soigneur();
+		enemy* enemie = soin;
+
+		enemie->pos = ReturnCenter(0, 6, map);
+
+		enemyVector.push_back(enemie);
+	
+	*/
+
+	
 	
 
 
@@ -76,7 +102,9 @@ GameData::GameData()
 
 void TowerGame::GameInit()
 {
-	
+
+
+
 }
 
 void TowerGame::Debug()
@@ -95,21 +123,47 @@ void TowerGame::UpdateAndDraw()
 	gameData.deltatime = io.DeltaTime;
 	
 
+
+
+
 	this->gameData.dl = ImGui::GetBackgroundDrawList();
 	gameData.map.CreateMap();
-	if (ImGui::IsKeyDown(ImGuiKey_Z))
+
+	if (ImGui::IsKeyPressed(ImGuiKey_E, false))
 	{
-		enemy* enemie = new soigneur();
+		gameData.addEnemy = !gameData.addEnemy;
+		cout << "add enemy = " <<gameData.addEnemy << endl;
 
-		enemie->pos = ReturnCenter(0, 6, gameData.map);
-
-		gameData.enemyVector.push_back(*enemie);
+		//printf("%s \n", gameData.map.map.c_str());	
+		//ptr = &gameData.map.map;//ptr->replace(0, 0, "L");//printf("%s \n", gameData.map.map.c_str());
 
 	}
 
-	//printf("enemie nbr  = %ld", gameData.enemyVector.size());
 
+	if (ImGui::IsKeyPressed(ImGuiKey_Z, false))
+	{
+		gameData.WaveStart = !gameData.WaveStart;
+		cout <<"Start  = " << gameData.WaveStart << endl;
+	}
+
+	
+	
+			
+
+
+	
+
+	
+
+
+	//	std::cout << gameData.map.map
+
+	//printf("enemie nbr  = %ld", gameData.enemyVector.size());
 	enemyManager.ManageEnemy(gameData);
+
+
+
+
 	//Debug();
 
 		ImGui::Text("Time %f", gameData.deltatime);
@@ -117,13 +171,13 @@ void TowerGame::UpdateAndDraw()
 
 
 	
-
+		
 	renderer.RendererGame(gameData);
 
 	gameData.player.PlayerTile(gameData);
 	gameData.player.PlayerInput(gameData);
 
-
+	
 }
 
 
@@ -144,6 +198,7 @@ TowerGame::TowerGame()
 
 TowerGame::~TowerGame()
 {
+	
 }
 
 

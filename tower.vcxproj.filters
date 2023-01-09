@@ -142,7 +142,7 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Map.hpp">
-      <Filter>src\Player</Filter>
+      <Filter>src\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

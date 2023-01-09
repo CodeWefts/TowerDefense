@@ -39,6 +39,7 @@ static inline bool operator<(float2 a, float2 b) { if (a.x < b.x && a.y < b.y) {
 
 
 
+
 namespace Calc
 {
     static const float GRAVITY = 9.80665f;

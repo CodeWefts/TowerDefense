@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include"calc.hpp"
 #include "entity.hpp"
 #include "imgui_utils.hpp"
 
@@ -18,12 +19,12 @@ public:
 	std::string name;
 	Texture texture;
 	float velocity;
-
+	float offsetCheckPoint;
 
 	char baseChekcpoint = 'a';
 	char destination = 'b';
 
-
+	
 
 	 enemy();
 	 ~enemy();

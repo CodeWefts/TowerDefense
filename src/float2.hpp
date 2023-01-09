@@ -40,6 +40,18 @@ public:
         
     }
 
+    /*
+    virtual bool operator==(float2& float2_2)
+    {
+        
+        if(this->x == float2_2.x && this->y == float2_2.y)
+            return true;
+
+        return false;
+    }
+    */
+
+    
   
 
     virtual float2 operator/(const float2& float2_2) 

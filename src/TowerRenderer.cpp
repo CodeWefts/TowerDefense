@@ -133,7 +133,7 @@ void TowerRenderer::drawMap(GameData& data)
 			break;
 		case '3':
 			data.dl->AddImage(data.asset.textureGrass.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
-			data.dl->AddImage(data.asset.textureTowerCase.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			data.dl->AddImage(data.asset.textureTowerCase.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));	
 			break;
 
 
@@ -158,25 +158,27 @@ void TowerRenderer::drawEnemies(GameData& data)
 	
 
 
-	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
+	for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
 	{
-		if (it->name == "soigneur")
+		enemy* currentEnemy = *it;
+
+		if (currentEnemy->name == "soigneur")
 		{
-			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
-			it->texture = data.asset.textureSoigneur;
-			data.dl->AddImage(it->texture.id, it->pos -= 30, it->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
+			currentEnemy->texture = data.asset.textureSoigneur;
+			data.dl->AddImage(currentEnemy->texture.id, currentEnemy->pos -= 30, currentEnemy->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
-		else if (it->name == "costaud")
+		else if (currentEnemy->name == "costaud")
 		{
-			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
-			it->texture = data.asset.textureCostaud2;
-			data.dl->AddImage(it->texture.id, it->pos -= 30, it->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
+			currentEnemy->texture = data.asset.textureCostaud2;
+			data.dl->AddImage(currentEnemy->texture.id, currentEnemy->pos -= 30, currentEnemy->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
-		else if (it->name == "gringalet")
+		else if (currentEnemy->name == "gringalet")
 		{
-			//std::cout << " x = " << it->pos.x << "y = " << it->pos.y << std::endl;
-			it->texture = data.asset.textureGringalet;
-			data.dl->AddImage(it->texture.id, it->pos -= 30, it->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
+			currentEnemy->texture = data.asset.textureGringalet;
+			data.dl->AddImage(currentEnemy->texture.id, currentEnemy->pos -= 30, currentEnemy->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 			
 	}
