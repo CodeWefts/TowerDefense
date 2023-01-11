@@ -55,6 +55,8 @@ struct GameData
 	float deltatime;
 
 
+
+
 	vector<enemy*> enemyVector;
 	Asset asset;
 	Map map;
@@ -64,6 +66,9 @@ struct GameData
 	//Wave waveEnenum;
 	ImGuiIO* io;
 	ImDrawList* dl;
+
+
+	float timerWave;
 
 	GameData();
 

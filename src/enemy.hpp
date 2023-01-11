@@ -3,6 +3,7 @@
 #include "entity.hpp"
 #include "imgui_utils.hpp"
 
+struct GameData;
 
 
 
@@ -23,6 +24,19 @@ public:
 	char baseChekcpoint = 'a';
 	char destination = 'b';
 
+
+
+	float2 healBoxSize;
+
+
+
+
+
+
+	virtual void DrawDebug(ImDrawList& dl);
+	virtual void UpdateEnemy(GameData& data);
+
+	virtual void Heal(GameData& data);
 
 
 	 enemy();

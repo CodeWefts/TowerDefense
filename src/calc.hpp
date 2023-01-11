@@ -24,15 +24,15 @@ static inline ImVec2 operator+(ImVec2 a, float2 b) { return { a.x + b.x, a.y + b
 * 
 */
 
-static inline bool operator==(float2 a, float2 b) { if (a.x == b.x && a.y == b.y) { return true; } return false; }
+static inline bool operator==(const float2& a, const float2& b) { if (a.x == b.x && a.y == b.y) { return true; } return false; }
 
-static inline bool operator>(float2 a, float2 b) { if (a.x > b.x && a.y > b.y) { return true; } return false; }
+static inline bool operator>(const float2& a, const float2& b) { if (a.x > b.x && a.y > b.y) { return true; } return false; }
 
-static inline bool operator<(float2 a, float2 b) { if (a.x < b.x && a.y < b.y) { return true; } return false; }
-
-
+static inline bool operator<(const float2& a, const float2& b) { if (a.x < b.x && a.y < b.y) { return true; } return false; }
 
 
+
+        
 
 
 

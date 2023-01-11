@@ -162,25 +162,33 @@ void TowerRenderer::drawEnemies(GameData& data)
 	{
 		enemy* currentEnemy = *it;
 
+		float2 enemy = currentEnemy->pos;
+
+
 		if (currentEnemy->name == "soigneur")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureSoigneur;
-			data.dl->AddImage(currentEnemy->texture.id, currentEnemy->pos -= 30, currentEnemy->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy + 15, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 		else if (currentEnemy->name == "costaud")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureCostaud2;
-			data.dl->AddImage(currentEnemy->texture.id, currentEnemy->pos -= 30, currentEnemy->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy += 15, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
 		else if (currentEnemy->name == "gringalet")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureGringalet;
-			data.dl->AddImage(currentEnemy->texture.id, currentEnemy->pos -= 30, currentEnemy->pos += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 30, enemy += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
 		}
-			
+
+
+		
+		currentEnemy->DrawDebug(*(enemydrawlist));
+
+
 	}
 
 	

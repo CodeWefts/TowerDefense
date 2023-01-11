@@ -65,6 +65,8 @@ Asset::Asset()
 
 GameData::GameData()
 {
+	this->acceleRateTime = 0.f;
+
 	this->WaveStart = false;
 	this->addEnemy = false;
 
@@ -72,30 +74,10 @@ GameData::GameData()
 	this->enableDebug = false;
 
 	currentWave = Wave::Wave1;
-	
-	//enemyVector.resize(10);
-	
 
-	
-	enemy* enemy = new soigneur();
-	enemy->pos = ReturnCenter(0, 6,map);
-
-	enemyVector.push_back(enemy);
-	
-	
-	
-		/*soigneur* soin = new soigneur();
-		enemy* enemie = soin;
-
-		enemie->pos = ReturnCenter(0, 6, map);
-
-		enemyVector.push_back(enemie);
-	
-	*/
-
-	
-	
-
+	timerWave = 5.f;
+	this->deltatime = 0.f;
+	this->dl = nullptr;
 
 }
 
@@ -109,48 +91,33 @@ void TowerGame::GameInit()
 
 void TowerGame::Debug()
 {
-	
 
+	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
+	{
+		gameData.map.map.at(3) = 'k';
+		printf("%s \n", gameData.map.map.c_str());
 
-
-
-
-
-}
-void TowerGame::UpdateAndDraw()
-{
-	ImGuiIO& io = ImGui::GetIO();
-	gameData.deltatime = io.DeltaTime;
-	
-
-
-
-
-	this->gameData.dl = ImGui::GetBackgroundDrawList();
-	gameData.map.CreateMap();
-
+	}
 	if (ImGui::IsKeyPressed(ImGuiKey_E, false))
 	{
 		gameData.addEnemy = !gameData.addEnemy;
-		cout << "add enemy = " <<gameData.addEnemy << endl;
+		cout << "add enemy = " << gameData.addEnemy << endl;
 
-		//printf("%s \n", gameData.map.map.c_str());	
 		//ptr = &gameData.map.map;//ptr->replace(0, 0, "L");//printf("%s \n", gameData.map.map.c_str());
 
 	}
 
 
+
 	if (ImGui::IsKeyPressed(ImGuiKey_Z, false))
 	{
 		gameData.WaveStart = !gameData.WaveStart;
-		cout <<"Start  = " << gameData.WaveStart << endl;
+		cout << "Start  = " << gameData.WaveStart << endl;
 	}
 
-	
-	
-			
+
 	// work
-	if (ImGui::IsKeyPressed(ImGuiKey_A, false))
+	if (ImGui::IsKeyDown(ImGuiKey_A))
 	{
 		enemy* enemy = new soigneur();
 		enemy->pos = ReturnCenter(0, 6, gameData.map);
@@ -159,22 +126,50 @@ void TowerGame::UpdateAndDraw()
 
 	}
 
+
+
+
+
+}
+void TowerGame::UpdateAndDraw()
+{
+	srand(time(NULL));
+	ImGuiIO& io = ImGui::GetIO();
+
 	
 	
+	gameData.deltatime = io.DeltaTime * gameData.acceleRateTime;
+	gameData.player.PlayerInput(gameData);
+
+	
 
 
-	//	std::cout << gameData.map.map
+	this->gameData.dl = ImGui::GetBackgroundDrawList();
+	gameData.map.CreateMap();
 
-	//printf("enemie nbr  = %ld", gameData.enemyVector.size());
+
+
+
+		
+	
+	
+			
+
+	
+
+
+	gameData.timerWave -= gameData.deltatime;
+	
 	enemyManager.ManageEnemy(gameData);
 
 
 
 
-	//Debug();
+	Debug();
 
-		ImGui::Text("Time %f", gameData.deltatime);
-		ImGui::Text("vectorsise %d", gameData.enemyVector.size());
+	ImGui::Text("Time %f", gameData.deltatime);
+	ImGui::Text("vectorsise %d", gameData.enemyVector.size());
+	ImGui::Text("Wavetimer = %f ", gameData.timerWave);
 
 
 	
@@ -182,7 +177,6 @@ void TowerGame::UpdateAndDraw()
 	renderer.RendererGame(gameData);
 
 	gameData.player.PlayerTile(gameData);
-	gameData.player.PlayerInput(gameData);
 
 	
 }

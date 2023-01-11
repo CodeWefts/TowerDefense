@@ -1,9 +1,16 @@
 #include<random>
 #include "enemy.hpp"
 #include"calc.hpp"
+#include"TowerGame.hpp"
 
 
-float getOffsetCheckpoint(float max)
+
+#define HealBoxSize 40
+
+
+
+
+float getOffsetCheckpoint()
 {
 	/*
 	
@@ -24,6 +31,23 @@ float getOffsetCheckpoint(float max)
 }
 
 
+ void enemy::UpdateEnemy(GameData& data)
+{
+	
+
+}
+
+void enemy::Heal(GameData& data)
+{
+
+}
+
+
+void  enemy::DrawDebug(ImDrawList& dl)
+{
+
+}
+
 
 
 
@@ -32,8 +56,11 @@ enemy::enemy()
 	
 	this->maxHealt = 100;
 	this->currentHealth = maxHealt;
-	this->velocity = 2.f;
-	this->offsetCheckPoint = getOffsetCheckpoint(6);
+	
+	this->offsetCheckPoint = getOffsetCheckpoint();
+
+	this->healBoxSize = { HealBoxSize , HealBoxSize };
+
 
 }
 

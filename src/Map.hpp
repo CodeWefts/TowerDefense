@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<vector>
+#include"enemy.hpp"
 #include"Tile.hpp"
 #include "imgui_utils.hpp"
 
@@ -44,6 +45,8 @@ private:
 	float2 ReturnTileMin(int indexX, int indexY, Map& map);
 	float2 ReturnCenter(int indexX, int indexY, Map& map);
 	float2 ReturnPosfromChar(char c, Map& map);
+	float2 ReturnCheckPointNearbest(Map& map, enemy** currentenemy);
+
 
 
 	int  ReturnTileIndexX(int x, Map& map);

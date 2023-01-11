@@ -2,12 +2,18 @@
 #include<iostream>
 #include "enemy.hpp"
 
+struct GameData;
+
 
 
 class soigneur : public enemy
 {
 public:
 
+
+	void Heal(GameData& data) override;
+	void UpdateEnemy(GameData& Data) override;
+	 void DrawDebug(ImDrawList& dl) override;
 
 
 	 soigneur() ;

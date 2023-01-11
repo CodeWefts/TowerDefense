@@ -55,6 +55,49 @@ bool colPoint2dtoAABB2d (const float& xmin , const float& xmax, const float& ymi
 }
 
 
+float minimum(float a, float b)
+{
+    if (a < b)
+        return a;
+    if (b < a)
+        return b;
+
+    return -1;
+}
+
+/* Return the Max value between 2 float*/
+float maximum(float a, float b)
+{
+    if (a > b)
+        return a;
+    if (b > a)
+        return b;
+
+
+}
+
+
+
+
+bool colSStoAABB(float2& Amin, float2& Amax, float2& C, float& rC)
+{
+
+    float2 P;
+
+    P.x = maximum(Amin.x, minimum(C.x, Amax.x));
+    P.y = maximum(Amin.x, minimum(C.y, Amax.y));
+
+
+    if (powf((P.x - C.x), 2) + powf((P.y - C.y), 2) < sqrtf(rC))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+
+
 
 
 

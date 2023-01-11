@@ -48,7 +48,7 @@ void Player::PlayerTile(GameData& gamedata)
 }
 
 
-
+bool l = false;
 
 void Player::PlayerInput(GameData& gamedata)
 {
@@ -62,6 +62,24 @@ void Player::PlayerInput(GameData& gamedata)
 		std::cout << gamedata.enableDebug << std::endl;
 	}
 
+
+
+	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false))
+	{
+		gamedata.acceleRateTime++;
+	}
+	if (ImGui::IsKeyPressed(ImGuiKey_LeftArrow, false))
+	{
+		gamedata.acceleRateTime--;
+	}
+
+
+	if (ImGui::IsKeyDown(ImGuiKey_DownArrow))
+	{
+		
+		gamedata.deltatime = 0;
+	}
+	
 
 }
 

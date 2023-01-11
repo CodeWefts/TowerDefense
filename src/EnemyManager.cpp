@@ -1,49 +1,36 @@
-#include"EnemyManager.hpp"
+#include"EnemyManager.hpp"&
 #include "TowerGame.hpp"
 #include"calc.hpp"
 #include"Calcul.hpp"
+#include"Map.hpp"
+#include"costaud.hpp"
+#include"gringalet.hpp"
 
 
 
 
-#define enemy_Move_Speed 100.f
 
-float2 ReturnCheckPointNearbest(Map& map , enemy** currentenemy)
+
+
+
+
+
+bool isOffscreen(float2 pos)
 {
 
-	float2 CheckPoint;
-	
-	for (int i = 0; i < map.Width * map.Height; ++i)
+	if (pos.x > 1300 || pos.x < -10 || pos.y > 720 || pos.y < 0) 
 	{
-		int x = i % map.Width; // return pos x on char table
-		int y = i / map.Width; // return pos y on char table
-		Tile& tile = map.Tiles[i]; // Get Tile texture type
-		enemy* current = *currentenemy;
-		if (tile.Texture_type == current->destination)
-		{
-			/*std::cout << tile.Texture_type << std::endl;
-			std::cout << "x = " << x << std::endl;
-			std::cout << "y = " << y << std::endl;*/
-
-			//std::cout <<currentenemy.baseChekcpoint<<','<< std::endl;
-			//printf("%c", currentenemy.baseChekcpoint);
-
-			float2 topLeft = ReturnTileMin(x, y, map);
-			float2 topRight = ReturnTileMax(x, y, map);
-			float2 center = ReturnCenter(x, y, map); // center / checkpooint
-
-
-			CheckPoint.x = center.x;
-			CheckPoint.y = center.y;
-
-			return CheckPoint;
-		}
+		return  true;
 	}
-	
 
-	//std::cout << nearBestCheckPoint.x << " , " << nearBestCheckPoint.y << std::endl;
-
+	return  false;
 }
+
+
+
+
+
+
 
 
 void EnemyManager::ManageWave(GameData& data)
@@ -52,29 +39,49 @@ void EnemyManager::ManageWave(GameData& data)
 	
 	//std::vector<soigneur> soigneur;
 	int nbrEenemy = 1;
-	enemy* ptr[2];
+	enemy* ptr[4];
 	
 
-	 if (data.currentWave == Wave1 && data.addEnemy == true)
-	{	
-		
-
-		for (int i = 1; i < 2; i++)
+	if (data.timerWave <= 0)
+	{
+		if (data.currentWave == Wave1)
 		{
-			 ptr[i] = new soigneur[i];
-			 ptr[i]->pos = { ReturnCenter(0, 6,data.map).x,ReturnCenter(0, 6,data.map).y + 20 * i };
-			data.enemyVector.push_back(ptr[i]);
-		
+
+			//min + rand() % (max+1 - min)
+			int random = 2 + rand() % (3+1 - 2 ) ;
+			std::cout << random << std::endl;
+
+
+			if (random == 3)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+
+					ptr[i] = new soigneur();
+					ptr[i]->pos = { ReturnCenter(0, 6,data.map).x + 20 * i,ReturnCenter(0, 6,data.map).y };
+					data.enemyVector.push_back(ptr[i]);
+				}
+			}
+			else if(random == 2)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					ptr[i] = new gringalet();
+					ptr[i]->pos = { ReturnCenter(0, 6,data.map).x + 20 * i,ReturnCenter(0, 6,data.map).y };
+					data.enemyVector.push_back(ptr[i]);
+				}
+			}
+			data.addEnemy = false;
 		}
-			//data.enemyVector.at(10) = new soigneur();
-		
-		data.addEnemy = false;
-		
+		data.timerWave = 5.f;
 	}
 	
 
+
 	
-	
+
+
+	 
 
 }
 
@@ -95,14 +102,23 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 {
 	for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end();)
 	{
+
+		
+		
+		
 		float2 FollowPath = ReturnCheckPointNearbest(data.map, &*it);
 
 		
 
 		enemy* current = *it;
 		bool erase = false;
+		if (isOffscreen(current->pos))
+		{
+			erase = true;
+		}
 
 
+		current->Heal(data);
 
 		// TO DO GET ENEMY TILE POS ANS NEXT CHECKPOINT TILE POS
 		// TO DO ADD VECTOR BETWEEN 2 CHECK POINT B - nextcheckpoint
@@ -119,18 +135,19 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 
 		//std::cout << vectorenemy.x << " , " << vectorenemy.y << std::endl;
 
-		//std::cout << " ad = " << &*current << std::endl;
+
+		//std::cout << " it = " << &**it << std::endl;
+		//std::cout << " current = " << &*current << std::endl;
 
 		//std::cout << " Destination = " << current->destination << std::endl;
-		std::cout << " offset =  " << current->offsetCheckPoint << std::endl;
-		current->pos -= normaliseVector(vectorenemy) * data.deltatime * enemy_Move_Speed * current->velocity;
-
+		//std::cout << " offset =  " << current->offsetCheckPoint << std::endl;
+		current->pos -= normaliseVector(vectorenemy) * data.deltatime  * current->velocity;
+	
+		
 		
 
-
-		// enemy change check point off set
-		
-		if (current->pos > FollowPath - current->offsetCheckPoint && current->pos < FollowPath + current->offsetCheckPoint)
+		// TODO ADD better change pos if in tile
+		if (current->pos > FollowPath - 2.f  && current->pos < FollowPath + 2.f)
 		{
 			current->baseChekcpoint = current->destination;
 			current->destination++;
@@ -139,15 +156,11 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 			// make enemy destroy when on castle
 			if (current->destination == 'g' && it != data.enemyVector.begin())
 			{
-				//it->velocity = 0; 
-				//data.enemyVector.erase(it--);
-				erase = true;
+								erase = true;
 			}
 			else if (current->destination == 'g' && it == data.enemyVector.begin())
 			{
-				//it->velocity = 0;
-				//data.enemyVector.erase(it);
-				//break;
+				
 				erase = true;
 
 
@@ -155,11 +168,10 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		}
 
 
+		
+
 		// KILL enemy if off secreen
-		if ((current->pos.x > 1300 || current->pos.x < -10 || current->pos.y > 720 || current->pos.y < 0)  && it == data.enemyVector.begin())
-		{
-			erase = true;
-		}
+	
 
 		if (erase && it != data.enemyVector.end())
 		{
@@ -168,7 +180,6 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		else if (erase && it == data.enemyVector.begin())
 		{
 			it = data.enemyVector.erase(it);
-			
 		}
 		else
 		{
@@ -180,6 +191,17 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 	}
 	
 	
+
+
+	/*
+	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
+	{
+		enemy* current = *it;
+
+		current->UpdateEnemy(data);
+		
+	}
+	*/
 }
 
 
@@ -189,10 +211,8 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 void EnemyManager::ManageEnemy(GameData& data)
 {
 	//TO DO ADD WAWE
-	this->MoveEnemyPath(data);
 	this->ManageWave(data);
-
-
+	this->MoveEnemyPath(data);
 
 }
 
