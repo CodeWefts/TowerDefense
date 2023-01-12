@@ -42,10 +42,6 @@ float2 ReturnCheckPointNearbest(Map& map, enemy* currentenemy)
 			return CheckPoint;
 		}
 	}
-
-
-	//std::cout << nearBestCheckPoint.x << " , " << nearBestCheckPoint.y << std::endl;
-
 }
 
 void Map::CreateMap()
@@ -66,19 +62,7 @@ void Map::CreateMap()
 		"appb|    /pl______"
 		"----,    /eppppppf"
 		"         ;--------"
-		"    133333332     ";
-
-	/*char hud[181] =
-		"                  "
-		"                  "
-		"                  "
-		"                  "
-		"                  "
-		"                  "
-		"                  "
-		"                  "
-		"                  "
-		"        13332     ";*/
+		"                  ";
 
 	for (int y = 0; y < mapHeight; ++y)
 	{
@@ -91,20 +75,6 @@ void Map::CreateMap()
 			Tiles.push_back(tile);
 		}
 	}
-
-	/*for (int y = 0; y < Height; ++y)
-	{
-		for (int x = 0; x < Width; ++x)
-		{
-			int idx = x + y * Width;
-
-			Tile tile;
-			tile.Texture_type = hud[idx];
-			Tiles.push_back(tile);
-		}
-	}*/
-				
-		
 }
 	
 
@@ -119,14 +89,6 @@ Map::~Map()
 {
 }
 
-/*Hud::Hud()
-{
-
-}
-
-Hud::~Hud()
-{
-}*/
 
 
 int ReturnTileIndexX(int x, Map& map)

@@ -24,13 +24,7 @@ void TowerRenderer::drawMap(GameData& data)
 		ImVec2 topLeft = ReturnTileMin(x, y, data.map);
 		ImVec2 topRight = ReturnTileMax(x, y, data.map);
 
-		//std::cout << " map x = " << x << " map y = " << y  << " topLeft x = " << topLeft.x << " topLeft y = " << topLeft.y << std::endl;
-		
-
 		ImVec2 center = ReturnCenter(x,y, data.map); // center / checkpooint
-		
-		// TO DO return NEARBEST CHEKPOINT
-		
 
 		switch (tile.Texture_type)
 		{
@@ -147,18 +141,10 @@ void TowerRenderer::drawMap(GameData& data)
 
 	}
 
-
 }
-
-
-
 void TowerRenderer::drawEnemies(GameData& data)
 {
 	ImDrawList* enemydrawlist = ImGui::GetBackgroundDrawList();
-
-	
-
-
 	for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
 	{
 		enemy* currentEnemy = *it;
@@ -190,31 +176,53 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 		if(data.enableDebug)
 		currentEnemy->DrawDebug(*(enemydrawlist));
-		
-
-
 	}
 
-	
-
-
-
 }
-
-
-
-void TowerRenderer::DrawHud(GameData& data)
+void TowerRenderer::DrawSliderLifePlayerHud(GameData& data)
 {
-
-
 	data.dl->AddRectFilled(float2(10, 10), float2(500, 50), IM_COL32(0, 255, 0, 255), 5.f, 0);
 	data.dl->AddRect(float2(10, 10), float2(500, 50), IM_COL32(255, 255, 255, 255), 5.f, 0, 4.f);
-	
 }
 
 
 
+void TowerInInventoryHUD(GameData& data)
+{
 
+	ImVec2 min = { 7 * 72 + 15, 9 * 72 + 13 };
+	ImVec2	max = { 8 * 72 - 10, 10 * 72 - 13 };
+
+
+	data.dl->AddImage(data.asset.textureTowerClassique.id, min, max, ImVec2(0, 0), ImVec2(1, 1));
+}
+void TowerRenderer::HudInventory(GameData& data)
+{
+
+	// BRUT 
+	int minX = 6;
+	int maxX = 7;
+
+	int minY = 9;
+	int maxY = 10;
+
+	for (int i = 0; i <= 5; i++)
+	{
+		if (i == 0)
+			data.dl->AddImage(data.asset.textureTowerSideLeft.id, { minX * data.map.Tilesize, minY * data.map.Tilesize }, { maxX * data.map.Tilesize, maxY * data.map.Tilesize });
+
+		else if (i >= 1 && i <= 4)
+			data.dl->AddImage(data.asset.textureTowerCase.id, { minX * data.map.Tilesize, minY * data.map.Tilesize }, { maxX * data.map.Tilesize, maxY * data.map.Tilesize });
+
+		else
+			data.dl->AddImage(data.asset.textureTowerSideRight.id, { minX * data.map.Tilesize, minY * data.map.Tilesize }, { maxX * data.map.Tilesize, maxY * data.map.Tilesize });
+
+		minX++;
+		maxX++;
+	}
+
+	TowerInInventoryHUD(data);
+}
 
 
 
@@ -222,18 +230,7 @@ void TowerRenderer::RendererGame(GameData& data)
 {
 	drawMap(data);
 	drawEnemies(data);
-	DrawHud(data);
-
-	//data.max.x += (data.deltatime * 100);
- 
-		 
-	
-
-	//std::cout << data.max.x << std::endl;
-
-	//data.dl->AddRect(float2(200 , 200), data.max, IM_COL32(255, 0, 255, 255));
- 	
-
+	DrawSliderLifePlayerHud(data);
 
 }
 

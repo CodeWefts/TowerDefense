@@ -1,12 +1,14 @@
 #pragma once
 #include<vector>
 #include "imgui_utils.hpp"
-#include"Map.hpp"
-#include"TowerRenderer.hpp"
-#include"EnemyManager.hpp"
-#include"Player.hpp"
-#include"soigneur.hpp"
 
+#include "Map.hpp"
+#include "TowerRenderer.hpp"
+#include "EnemyManager.hpp"
+#include "Player.hpp"
+#include "Tower.hpp"
+
+#include"soigneur.hpp"
 
 
 
@@ -14,17 +16,28 @@ using namespace std;
 
 struct Asset
 {
-	Texture textureDirt , textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
-		texturePathLeft, texturePathRight , texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight,
+	//Texture MAP
+	Texture textureDirt, textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
+		texturePathLeft, texturePathRight, texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight,
 
+		//texture ennemy COSTAUD
 		textureCostaud1, textureCostaud2, textureCostaud3, textureCostaud4, textureCostaud5, textureCostaud6, textureCostaud7, textureCostaud8, textureCostaud9,
 		textureCostaud10, textureCostaud11, textureCostaud12,
 
-		textureGringalet, textureSoigneur,
-		
-		textureTower,
-		
-		textureTowerSideLeft, textureTowerSideRight, textureTowerCase;
+		//texture ennemy GRINGALET
+		textureGringalet,
+
+		//texture ennemy SOIGNEUR
+		textureSoigneur,
+
+		//texture tower TOWER
+		textureTowerClassique,// textureTowerRalentissante, textureTowerExplosive,
+
+
+		//texture hud INVENTORY TOWER
+		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
+
+		textureAnimation;
 
 	Asset();
 	
@@ -51,8 +64,9 @@ struct GameData
 
 
 
-
+	std::vector<Tower*> towerVector;
 	vector<enemy*> enemyVector;
+
 	Asset asset;
 	Map map;
 	Player player;

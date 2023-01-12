@@ -6,20 +6,13 @@
 using namespace std;
 
 
-
-
-
-
-
-
-
-
-
-
 Asset::Asset()
 {
-	textureDirt = ImGuiUtils::LoadTexture("assets/map/dirt.png");
+	//Grass
 	textureGrass = ImGuiUtils::LoadTexture("assets/map/grass.png");
+
+	//Path
+	textureDirt = ImGuiUtils::LoadTexture("assets/map/dirt.png");
 	texturePathBottom = ImGuiUtils::LoadTexture("assets/map/pathBottom.png");
 	texturePathBottomANDLeft = ImGuiUtils::LoadTexture("assets/map/pathBottomANDLeft.png");
 	texturePathBottomANDRight = ImGuiUtils::LoadTexture("assets/map/pathBottomANDRight.png");
@@ -33,6 +26,13 @@ Asset::Asset()
 	texturePathTopLeft = ImGuiUtils::LoadTexture("assets/map/pathTopLeft.png");
 	texturePathTopRight = ImGuiUtils::LoadTexture("assets/map/pathTopRight.png");
 
+	//ENNEMY 1 : GRINGALET
+	textureGringalet = ImGuiUtils::LoadTexture("assets/ennemies/gringalet.png");
+
+	//ENNEMY 2 : SOIGNEUR
+	textureSoigneur = ImGuiUtils::LoadTexture("assets/ennemies/soigneur.png");
+
+	//ENNEMY 3 : COSTAUD
 	textureCostaud1 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud1.png");
 	textureCostaud2 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud2.png");
 	textureCostaud3 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud3.png");
@@ -46,18 +46,17 @@ Asset::Asset()
 	textureCostaud11 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud11.png");
 	textureCostaud12 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud12.png");
 
+	//TOWER 1 : TOWER
+	textureTowerClassique = ImGuiUtils::LoadTexture("assets/tower/classique.png");
 
-	textureGringalet = ImGuiUtils::LoadTexture("assets/ennemies/gringalet.png");
-	textureSoigneur = ImGuiUtils::LoadTexture("assets/ennemies/soigneur.png");
-
-	textureTower = ImGuiUtils::LoadTexture("assets/tower/tower.png");
-
+	//INVENTORY HUD
 	textureTowerSideLeft = ImGuiUtils::LoadTexture("assets/hud/SideLeft.png");
 	textureTowerSideRight = ImGuiUtils::LoadTexture("assets/hud/SideRight.png");
 	textureTowerCase = ImGuiUtils::LoadTexture("assets/hud/TowerCase.png");
 
 
-
+	//MENU : START GAME
+	textureAnimation = ImGuiUtils::LoadTexture("assets/menu/Animation.png");
 
 
 }
@@ -110,8 +109,6 @@ void TowerGame::Debug()
 
 	}
 
-
-
 	if (ImGui::IsKeyPressed(ImGuiKey_Z, false))
 	{
 		gameData.WaveStart = !gameData.WaveStart;
@@ -129,70 +126,38 @@ void TowerGame::Debug()
 
 	}
 
-
-
-
-
 }
+
 void TowerGame::UpdateAndDraw()
 {
 	srand(time(NULL));
 	ImGuiIO& io = ImGui::GetIO();
-
-	
-	
 	gameData.deltatime = io.DeltaTime * gameData.acceleRateTime;
-	gameData.player.PlayerInput(gameData);
-
-	
-
-
 	this->gameData.dl = ImGui::GetBackgroundDrawList();
-	gameData.map.CreateMap();
-
-
-
-
-		
-	
-	
-			
-
-	
-
-
 	gameData.timerWave -= gameData.deltatime;
 	
-	enemyManager.ManageEnemy(gameData);
-
-
-
-
 	Debug();
-
 	ImGui::Text("Time %f", gameData.deltatime);
 	ImGui::Text("vectorsise %d", gameData.enemyVector.size());
 	ImGui::Text("Wavetimer = %f ", gameData.timerWave);
-
-
 	
-		
+	
+	
+	gameData.map.CreateMap();
+	enemyManager.ManageEnemy(gameData);
+
 	renderer.RendererGame(gameData);
 
 	gameData.player.PlayerTile(gameData);
+	gameData.player.PlayerInput(gameData);
+
+	renderer.HudInventory(gameData);
+	gameData.player.DragAndDrop(gameData);
+
+
 
 	
 }
-
-
-
-
-
-
-
-
-
-
 
 
 TowerGame::TowerGame()

@@ -11,7 +11,8 @@ public:
 	void drawEnemies(GameData& data);
 
 	void drawMap(GameData& data);
-	void DrawHud(GameData& data);
+	void DrawSliderLifePlayerHud(GameData& data);
+	void HudInventory(GameData& data);
 
 	void RendererGame(GameData& data);
 	TowerRenderer();
@@ -27,3 +28,6 @@ private:
 
 
 };
+
+
+void TowerInInventoryHUD(GameData& data);

@@ -47,20 +47,10 @@ void Player::PlayerTile(GameData& gamedata)
 	ImVec2 TileY = { (float)TileMaxX,  (float)TileMaxY };
 
 	gamedata.dl->AddRect(TileX, TileY, IM_COL32(255, 255, 0, 255), 0);
-	
-
 }
-
-
-
 
 void Player::PlayerInput(GameData& gamedata)
 {
-
-
-
-
-
 
 	if(ImGui::IsKeyPressed(ImGuiKey_N,false) )
 	{
@@ -70,8 +60,6 @@ void Player::PlayerInput(GameData& gamedata)
 	
 		std::cout << gamedata.enableDebug << std::endl;
 	}
-		
-
 
 	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false) && gamedata.acceleRateTime < maxAcelerateTime)
 	{
@@ -100,10 +88,63 @@ void Player::PlayerInput(GameData& gamedata)
 		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
 		gamedata.playerStopTime = !gamedata.playerStopTime;
 	}
-	
-	
 
 }
+
+
+void Player::DragAndDrop(GameData& gamedata)
+{
+	ImGuiIO& io2 = ImGui::GetIO();
+	ImTextureID textureID = nullptr;
+	
+	//Coord MOUSE && CLICK 
+	float posMaxX = ImGui::GetMousePos().x + 72; 
+	float posMaxY = ImGui::GetMousePos().y + 72;
+
+	ImVec2 posMin = ImGui::GetMousePos(); 
+	ImVec2 posMax = { posMaxX , posMaxY };
+
+	float clickX = io2.MouseClickedPos->x;
+	float clickY = io2.MouseClickedPos->y;
+
+	bool click;
+
+	const ImVec2 mouseMin;
+	const ImVec2 mouseMax;
+
+	if (ImGui::IsKeyDown(ImGuiKey_MouseLeft))
+	{
+		if ((clickX > (7 * 72))
+			&& (clickX < (8 * 72))
+			&& (clickY > (9 * 72))
+			&& (clickY < (10 * 72)))
+		{
+			click = true;
+			textureID = gamedata.asset.textureTowerClassique.id;
+
+		}
+	}
+
+	if (textureID != nullptr)
+	{
+		gamedata.dl->AddImage(textureID, posMin, posMax);
+	}
+
+	else
+	{
+		const ImVec2 mouseMin = posMin;
+		const ImVec2 mouseMax = posMax;
+	}
+	
+	gamedata.dl->AddImage(textureID, mouseMin, mouseMax);
+
+	ImGui::Text(" Min : %f , %f ", mouseMin.x, mouseMin.y);
+	ImGui::Text(" Max : %f , %f ", mouseMax.x, mouseMax.y);
+
+}
+
+
+
 
 Player::Player()
 {
