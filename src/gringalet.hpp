@@ -10,7 +10,7 @@ class gringalet : public enemy
 {
 public:
 
-	 void UpdateEnemy(GameData& data) override;
+	 void UpdateEnemy(GameData& data,bool& erase) override;
 
 	gringalet();
 	~gringalet();

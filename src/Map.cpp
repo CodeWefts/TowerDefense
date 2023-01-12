@@ -11,7 +11,7 @@
 
 
 
-float2 ReturnCheckPointNearbest(Map& map, enemy** currentenemy)
+float2 ReturnCheckPointNearbest(Map& map, enemy* currentenemy)
 {
 
 	float2 CheckPoint;
@@ -21,8 +21,8 @@ float2 ReturnCheckPointNearbest(Map& map, enemy** currentenemy)
 		int x = i % map.Width; // return pos x on char table
 		int y = i / map.Width; // return pos y on char table
 		Tile& tile = map.Tiles[i]; // Get Tile texture type
-		enemy* current = *currentenemy;
-		if (tile.Texture_type == current->destination)
+		//enemy* current = *currentenemy;
+		if (tile.Texture_type == currentenemy->destination)
 		{
 			/*std::cout << tile.Texture_type << std::endl;
 			std::cout << "x = " << x << std::endl;

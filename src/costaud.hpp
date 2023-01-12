@@ -12,7 +12,7 @@ public:
 
 
 
-	void UpdateEnemy(GameData& data) override;
+	void UpdateEnemy(GameData& data,bool& erase) override;
 
 	
 	costaud();

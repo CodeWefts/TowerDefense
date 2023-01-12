@@ -45,13 +45,13 @@ private:
 	float2 ReturnTileMin(int indexX, int indexY, Map& map);
 	float2 ReturnCenter(int indexX, int indexY, Map& map);
 	float2 ReturnPosfromChar(char c, Map& map);
-	float2 ReturnCheckPointNearbest(Map& map, enemy** currentenemy);
+	float2 ReturnCheckPointNearbest(Map& map, enemy* currentenemy);
 
 
 
 	int  ReturnTileIndexX(int x, Map& map);
 	int  ReturnTileIndexY(int y, Map& map);
-	int ReturnIndexIncharMap(int x, int y, Map& map);
+	int  ReturnIndexIncharMap(int x, int y, Map& map);
 
 
 /*class Hud

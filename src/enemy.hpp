@@ -6,6 +6,7 @@
 struct GameData;
 
 
+#define IsIncenter 2.0
 
 
 class enemy : public entity
@@ -31,10 +32,10 @@ public:
 
 
 
-
+	virtual void DrawSlider(ImDrawList& dl);
 
 	virtual void DrawDebug(ImDrawList& dl);
-	virtual void UpdateEnemy(GameData& data);
+	virtual void UpdateEnemy(GameData& data,bool& erase);
 
 	virtual void Heal(GameData& data);
 

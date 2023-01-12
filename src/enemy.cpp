@@ -31,7 +31,7 @@ float getOffsetCheckpoint()
 }
 
 
- void enemy::UpdateEnemy(GameData& data)
+ void enemy::UpdateEnemy(GameData& data,bool& erase)
 {
 	
 
@@ -48,6 +48,10 @@ void  enemy::DrawDebug(ImDrawList& dl)
 
 }
 
+ void enemy::DrawSlider(ImDrawList& dl)
+{
+
+}
 
 
 

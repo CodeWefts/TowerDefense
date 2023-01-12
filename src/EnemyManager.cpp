@@ -1,4 +1,4 @@
-#include"EnemyManager.hpp"&
+#include"EnemyManager.hpp"
 #include "TowerGame.hpp"
 #include"calc.hpp"
 #include"Calcul.hpp"
@@ -44,12 +44,10 @@ void EnemyManager::ManageWave(GameData& data)
 
 	if (data.timerWave <= 0)
 	{
-		if (data.currentWave == Wave1)
-		{
 
 			//min + rand() % (max+1 - min)
-			int random = 2 + rand() % (3+1 - 2 ) ;
-			std::cout << random << std::endl;
+			int random = 1 + rand() % (4 + 1 - 1);
+			//std::cout << random << std::endl;
 
 
 			if (random == 3)
@@ -58,7 +56,7 @@ void EnemyManager::ManageWave(GameData& data)
 				{
 
 					ptr[i] = new soigneur();
-					ptr[i]->pos = { ReturnCenter(0, 6,data.map).x + 20 * i,ReturnCenter(0, 6,data.map).y };
+					ptr[i]->pos = { ReturnCenter(0, 6,data.map).x + 40 * i,ReturnCenter(0, 6,data.map).y };
 					data.enemyVector.push_back(ptr[i]);
 				}
 			}
@@ -67,13 +65,23 @@ void EnemyManager::ManageWave(GameData& data)
 				for (int i = 0; i < 3; i++)
 				{
 					ptr[i] = new gringalet();
-					ptr[i]->pos = { ReturnCenter(0, 6,data.map).x + 20 * i,ReturnCenter(0, 6,data.map).y };
+					ptr[i]->pos = { ReturnCenter(0, 6,data.map).x + 40 * i,ReturnCenter(0, 6,data.map).y };
+					data.enemyVector.push_back(ptr[i]);
+				}
+			}
+
+			else if (random == 1)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					ptr[i] = new costaud();
+					ptr[i]->pos = { ReturnCenter(0, 6,data.map).x + 40 * i,ReturnCenter(0, 6,data.map).y };
 					data.enemyVector.push_back(ptr[i]);
 				}
 			}
 			data.addEnemy = false;
-		}
-		data.timerWave = 5.f;
+		
+		data.timerWave = 1;
 	}
 	
 
@@ -100,7 +108,7 @@ void EnemyManager::ManageWave(GameData& data)
 // to Do add /per check point index distance
 void EnemyManager::MoveEnemyPath(GameData& data)
 {
-	for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end();)
+	/*for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end();)
 	{
 
 		
@@ -188,20 +196,39 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		
 
 		
-	}
+	}*/
 	
 	
 
 
-	/*
-	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
+	
+	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end();)
 	{
 		enemy* current = *it;
+		bool erase = false;
 
-		current->UpdateEnemy(data);
+		if (isOffscreen(current->pos))
+		{
+			erase = true;
+		}
+
+		current->UpdateEnemy(data,erase);
+
+		if (erase && it != data.enemyVector.end())
+		{
+			it = data.enemyVector.erase(it);
+		}
+		else if (erase && it == data.enemyVector.begin())
+		{
+			it = data.enemyVector.erase(it);
+		}
+		else
+		{
+			it++;
+		}
 		
 	}
-	*/
+	
 }
 
 

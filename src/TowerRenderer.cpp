@@ -6,6 +6,7 @@
 
 
 
+
 void TowerRenderer::drawMap(GameData& data)
 {
 	static float tileSize = data.map.Tilesize;
@@ -169,30 +170,41 @@ void TowerRenderer::drawEnemies(GameData& data)
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureSoigneur;
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy + 15, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy + 15, ImVec2(0, 0), ImVec2(0.35, 0.25),IM_COL32(255,255,255,255));
 		}
 		else if (currentEnemy->name == "costaud")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureCostaud2;
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy += 15, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 30, enemy += 30, ImVec2(0, 0), ImVec2(1, 1),IM_COL32(255, 255, 255, 255));
 		}
 		else if (currentEnemy->name == "gringalet")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureGringalet;
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 30, enemy += 30, ImVec2(0, 0), ImVec2(0.35, 0.25));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 30, enemy += 30, ImVec2(0, 0), ImVec2(0.35, 0.25), IM_COL32(255, 255, 255, 255));
 		}
 
 
-		
+		currentEnemy->DrawSlider(*data.dl);
+
+		if(data.enableDebug)
 		currentEnemy->DrawDebug(*(enemydrawlist));
+		
 
 
 	}
 
 	
+
+
+
 }
+
+
+
+
+
 
 
 
@@ -202,6 +214,16 @@ void TowerRenderer::RendererGame(GameData& data)
 {
 	drawMap(data);
 	drawEnemies(data);
+
+	//data.max.x += (data.deltatime * 100);
+ 
+		 
+	
+
+	//std::cout << data.max.x << std::endl;
+
+	//data.dl->AddRect(float2(200 , 200), data.max, IM_COL32(255, 0, 255, 255));
+ 	
 
 
 }

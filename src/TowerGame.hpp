@@ -8,6 +8,8 @@
 #include"soigneur.hpp"
 
 
+
+
 using namespace std;
 
 struct Asset
@@ -29,18 +31,7 @@ struct Asset
 };
 
 
-enum Wave : int
-{
-	Wave1 = 1,
-	Wave2,
-	Wave3,
-	Wave4,
-	Wave5,
-	Wave6,
-	Wave7,
-	Wave8,
-	Wave9,
-};
+
 
 
 
@@ -50,8 +41,12 @@ struct GameData
 	bool addEnemy;
 	bool WaveStart;
 	bool enableDebug;
+	bool playerStopTime;
 	int currentWave;
-	float acceleRateTime;
+
+
+	int acceleRateTimeBuffer;
+	int acceleRateTime;
 	float deltatime;
 
 
@@ -63,11 +58,10 @@ struct GameData
 	//Hud hud;
 	Player player;
 
-	//Wave waveEnenum;
 	ImGuiIO* io;
 	ImDrawList* dl;
 
-
+	float2 max; 
 	float timerWave;
 
 	GameData();
@@ -83,16 +77,18 @@ public:
 	EnemyManager enemyManager;
 	TowerRenderer renderer;
 
+
 	void GameInit();
 	void Debug();
 
 	void UpdateAndDraw();
-
-
 	TowerGame();
 	~TowerGame();
 
+
 	
+private :
+
 	
 
 };

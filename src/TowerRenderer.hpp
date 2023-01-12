@@ -7,15 +7,22 @@ class TowerRenderer
 {
 public:
 
+
 	void drawEnemies(GameData& data);
 
 	void drawMap(GameData& data);
 
 	void RendererGame(GameData& data);
-
 	TowerRenderer();
 	~TowerRenderer();
 
+
+protected : 
+
+
+
 private:
+	
+
 
 };

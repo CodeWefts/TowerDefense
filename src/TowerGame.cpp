@@ -65,19 +65,23 @@ Asset::Asset()
 
 GameData::GameData()
 {
-	this->acceleRateTime = 0.f;
+	this->acceleRateTime = 0;
+	this->acceleRateTimeBuffer = 0;
 
 	this->WaveStart = false;
 	this->addEnemy = false;
+	this->playerStopTime = false;
 
 	this->acceleRateTime = 1.f;
 	this->enableDebug = false;
 
-	currentWave = Wave::Wave1;
 
 	timerWave = 5.f;
 	this->deltatime = 0.f;
 	this->dl = nullptr;
+
+	max = { 300  , 400 };
+
 
 }
 

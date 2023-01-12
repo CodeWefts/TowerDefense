@@ -3,6 +3,10 @@
 #include"Map.hpp"
 
 
+
+#define maxAcelerateTime 4
+
+
 void Player::PlayerTile(GameData& gamedata)
 {
 	ImGuiIO& io2 = ImGui::GetIO();
@@ -48,10 +52,15 @@ void Player::PlayerTile(GameData& gamedata)
 }
 
 
-bool l = false;
+
 
 void Player::PlayerInput(GameData& gamedata)
 {
+
+
+
+
+
 
 	if(ImGui::IsKeyPressed(ImGuiKey_N,false) )
 	{
@@ -61,24 +70,37 @@ void Player::PlayerInput(GameData& gamedata)
 	
 		std::cout << gamedata.enableDebug << std::endl;
 	}
+		
 
 
-
-	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false))
-	{
-		gamedata.acceleRateTime++;
-	}
-	if (ImGui::IsKeyPressed(ImGuiKey_LeftArrow, false))
-	{
-		gamedata.acceleRateTime--;
-	}
-
-
-	if (ImGui::IsKeyDown(ImGuiKey_DownArrow))
+	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false) && gamedata.acceleRateTime < maxAcelerateTime)
 	{
 		
-		gamedata.deltatime = 0;
+		gamedata.acceleRateTime++;
+		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
 	}
+	if (ImGui::IsKeyPressed(ImGuiKey_LeftArrow, false) && gamedata.acceleRateTime  > 0)
+	{
+		gamedata.acceleRateTime--;
+		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
+	}
+
+
+	if (ImGui::IsKeyPressed(ImGuiKey_DownArrow,false) &&  !gamedata.playerStopTime)
+	{
+		gamedata.acceleRateTimeBuffer = gamedata.acceleRateTime;
+		std::cout << "Buffer = " << gamedata.acceleRateTime << std::endl;
+		gamedata.acceleRateTime = 0;
+		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
+		gamedata.playerStopTime = !gamedata.playerStopTime; 
+	}
+	else if (ImGui::IsKeyPressed(ImGuiKey_DownArrow, false) && gamedata.playerStopTime)
+	{
+		gamedata.acceleRateTime = gamedata.acceleRateTimeBuffer;
+		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
+		gamedata.playerStopTime = !gamedata.playerStopTime;
+	}
+	
 	
 
 }
