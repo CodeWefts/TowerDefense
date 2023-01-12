@@ -51,6 +51,19 @@ void  enemy::DrawDebug(ImDrawList& dl)
  void enemy::DrawSlider(ImDrawList& dl)
 {
 
+	 
+		 // To Do ADD % HEALTH
+
+
+		 float posx = pos.x - 25;
+		 float maxlenght = 50;
+		 float currentLenght = maxlenght * (float(this->currentHealth) / this->maxHealt);
+		 // std::cout << (float(this->currentHealth) / this->maxHealt) << std::endl;
+
+		 dl.AddRect(float2(pos.x - 28, pos.y - 35), float2(pos.x + 28, pos.y - 20), IM_COL32(255, 0, 0, 255), 0, 8.f);
+		 dl.AddRectFilled(float2(posx, pos.y - 33), float2(posx + currentLenght, pos.y - 22), IM_COL32(0, 255, 0, 255), 0, 5.f);
+	 
+
 }
 
 

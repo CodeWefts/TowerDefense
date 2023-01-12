@@ -11,6 +11,7 @@ public:
 	void drawEnemies(GameData& data);
 
 	void drawMap(GameData& data);
+	void DrawHud(GameData& data);
 
 	void RendererGame(GameData& data);
 	TowerRenderer();

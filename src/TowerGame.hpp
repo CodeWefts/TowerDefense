@@ -55,13 +55,10 @@ struct GameData
 	vector<enemy*> enemyVector;
 	Asset asset;
 	Map map;
-	//Hud hud;
 	Player player;
 
 	ImGuiIO* io;
 	ImDrawList* dl;
-
-	float2 max; 
 	float timerWave;
 
 	GameData();

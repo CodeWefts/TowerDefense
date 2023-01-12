@@ -10,7 +10,6 @@ class soigneur : public enemy
 {
 public:
 
-	void DrawSlider(ImDrawList& dl) override;
 
 	void Heal(GameData& data) override;
 	void UpdateEnemy(GameData& Data,bool& erase) override;

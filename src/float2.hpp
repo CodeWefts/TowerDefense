@@ -29,8 +29,8 @@ public:
         return res ;
         
     }
-    
-    virtual float2 operator-(  float2& float2_2)
+    /*
+     virtual float2 operator-(float2& float2_2)
     {
         float2 res ;
         res.x = this->x - float2_2.x ;
@@ -39,6 +39,8 @@ public:
         return res ;
         
     }
+    */
+   
 
     /*
     virtual bool operator==(float2& float2_2)

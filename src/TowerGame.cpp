@@ -80,7 +80,6 @@ GameData::GameData()
 	this->deltatime = 0.f;
 	this->dl = nullptr;
 
-	max = { 300  , 400 };
 
 
 }

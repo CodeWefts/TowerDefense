@@ -1,7 +1,6 @@
 #include"costaud.hpp"
 #include"TowerGame.hpp"
 #include"calc.hpp"
-#include"Calcul.hpp"
 
 
 costaud::costaud()
@@ -15,6 +14,7 @@ costaud::costaud()
 
 costaud::~costaud()
 {
+
 }
 
 

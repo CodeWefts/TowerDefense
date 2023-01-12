@@ -203,6 +203,14 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 
 
+void TowerRenderer::DrawHud(GameData& data)
+{
+
+
+	data.dl->AddRectFilled(float2(10, 10), float2(500, 50), IM_COL32(0, 255, 0, 255), 5.f, 0);
+	data.dl->AddRect(float2(10, 10), float2(500, 50), IM_COL32(255, 255, 255, 255), 5.f, 0, 4.f);
+	
+}
 
 
 
@@ -214,6 +222,7 @@ void TowerRenderer::RendererGame(GameData& data)
 {
 	drawMap(data);
 	drawEnemies(data);
+	DrawHud(data);
 
 	//data.max.x += (data.deltatime * 100);
  

@@ -3,6 +3,7 @@
 #include"TowerGame.hpp"
 #include"calc.hpp"
 #include"Calcul.hpp"
+#include"float2.hpp"
 
 gringalet::gringalet()
 {
@@ -37,8 +38,7 @@ void gringalet::UpdateEnemy(GameData& data,bool& erase)
 
 	//std::cout << it->baseChekcpoint << " , " << it->destination << std::endl;
 
-	vectorenemy.x = ReturnPosfromChar(this->baseChekcpoint, data.map).x - ReturnPosfromChar(this->destination, data.map).x;
-	vectorenemy.y = ReturnPosfromChar(this->baseChekcpoint, data.map).y - ReturnPosfromChar(this->destination, data.map).y;
+	vectorenemy = ReturnPosfromChar(this->baseChekcpoint, data.map) - ReturnPosfromChar(this->destination, data.map);
 
 	//std::cout << vectorenemy.x << " , " << vectorenemy.y << std::endl;
 

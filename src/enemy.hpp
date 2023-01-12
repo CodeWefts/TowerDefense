@@ -32,7 +32,7 @@ public:
 
 
 
-	virtual void DrawSlider(ImDrawList& dl);
+	 void DrawSlider(ImDrawList& dl);
 
 	virtual void DrawDebug(ImDrawList& dl);
 	virtual void UpdateEnemy(GameData& data,bool& erase);
