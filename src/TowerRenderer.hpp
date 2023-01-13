@@ -11,6 +11,8 @@ public:
 	void drawEnemies(GameData& data);
 
 	void drawMap(GameData& data);
+	void HudInventory(GameData& data);
+	void DrawPlacedTurret(GameData& data);
 	void DrawHud(GameData& data);
 
 	void RendererGame(GameData& data);
@@ -27,3 +29,6 @@ private:
 
 
 };
+
+
+void TowerInInventoryHUD(GameData& data);

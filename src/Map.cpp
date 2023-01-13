@@ -33,24 +33,22 @@ float2 ReturnCheckPointNearbest(Map& map, enemy* currentenemy)
 				//std::cout <<currentenemy.baseChekcpoint<<','<< std::endl;
 				//printf("%c", currentenemy.baseChekcpoint);
 
-				
-				float2 center = ReturnCenterFromTile(x, y, *currentenemy,map); // center / checkpooint
 
-				
+				float2 center = ReturnCenterFromTile(x, y, *currentenemy, map); // center / checkpooint
+
+
 				CheckPoint.x = center.x;
 				CheckPoint.y = center.y;
 
 				return CheckPoint;
 			}
 		}
-	
-
-
+	}
 
 
 	//std::cout << nearBestCheckPoint.x << " , " << nearBestCheckPoint.y << std::endl;
 
-}
+
 
 void Map::CreateMap()
 {
@@ -70,7 +68,19 @@ void Map::CreateMap()
 		"appb|    /pl______"
 		"----,    /eppppppf"
 		"         ;--------"
-		"    133333332     ";
+		"                 ";
+
+	/*char hud[181] =
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"                  "
+		"        13332     ";*/
 
 	for (int y = 0; y < mapHeight; ++y)
 	{
@@ -82,7 +92,20 @@ void Map::CreateMap()
 			tile.Texture_type = map[idx];
 			Tiles.push_back(tile);
 		}
-	}	
+	}
+
+	/*for (int y = 0; y < Height; ++y)
+	{
+		for (int x = 0; x < Width; ++x)
+		{
+			int idx = x + y * Width;
+
+			Tile tile;
+			tile.Texture_type = hud[idx];
+			Tiles.push_back(tile);
+		}
+	}*/
+				
 		
 }
 	
@@ -98,14 +121,6 @@ Map::~Map()
 {
 }
 
-/*Hud::Hud()
-{
-
-}
-
-Hud::~Hud()
-{
-}*/
 
 
 int ReturnTileIndexX(int x, Map& map)
@@ -140,66 +155,63 @@ float2 ReturnTileMin(int indexX, int indexY, Map& map)
 float2 ReturnCenterFromTile(int indexX, int indexY,enemy& enemy, Map& map)
 {
 	float2 base = ReturnPosfromChar(enemy.baseChekcpoint,map);
-	float2 destinationTilePos = ReturnPosfromChar(enemy.baseChekcpoint, map);
+	float2 destinationTilePos = ReturnPosfromChar(enemy.destination, map);
 	float2 afterDestinationTilePos = ReturnPosfromChar(enemy.afterDestination, map);
 
 
 	if (enemy.path == 1)
 	{
-		if (afterDestinationTilePos.y > destinationTilePos.y)
+		if (afterDestinationTilePos.y >= destinationTilePos.y)
 		{
-			if (base.x > destinationTilePos.x)
+			if (base.x > destinationTilePos.x || base.y > destinationTilePos.y)
 			{
 				return ReturnCaseofTile(UpLeft, indexX, indexY, map);
 			}
-			else
+			else if (base.x < destinationTilePos.x || base.y < destinationTilePos.y)
 			{
-				
-
 				return ReturnCaseofTile(UpRight, indexX, indexY, map);
 			}
 			
 		}
 		else if (afterDestinationTilePos.y < destinationTilePos.y)
 		{
-			if (base.x > destinationTilePos.x)
-			{
-					
-				return ReturnCaseofTile(UpRight, indexX, indexY, map);
-			}
-			else
+			if (base.x < destinationTilePos.x || base.y < destinationTilePos.y)
 			{
 				return ReturnCaseofTile(UpLeft, indexX, indexY, map);
 			}
+			else if (base.x <= destinationTilePos.x || base.y > destinationTilePos.y)
+			{
+				return ReturnCaseofTile(UpRight, indexX, indexY, map);
+			}
+		
 
 		}
 	}
 
 	if (enemy.path == 3)
 	{
-		if (afterDestinationTilePos.y > destinationTilePos.y)
+		//std::cout << afterDestinationTilePos.y << " = " << destinationTilePos.y << std::endl;
+		if (afterDestinationTilePos.y >= destinationTilePos.y)
 		{
-			if (afterDestinationTilePos.x > destinationTilePos.x)
+			if (base.x > destinationTilePos.x || base.y > destinationTilePos.y)
 			{
 				return ReturnCaseofTile(DownRight, indexX, indexY, map);
 			}
-			else
+			else if (base.x < destinationTilePos.x || base.y < destinationTilePos.y)
 			{
 				return ReturnCaseofTile(DownLeft, indexX, indexY, map);
 			}
-
 		}
 		else if (afterDestinationTilePos.y < destinationTilePos.y)
 		{
-			if (afterDestinationTilePos.x > destinationTilePos.x)
-			{
-				return ReturnCaseofTile(DownLeft, indexX, indexY, map);
-			}
-			else
+			if (base.x < destinationTilePos.x || base.y < destinationTilePos.y)
 			{
 				return ReturnCaseofTile(DownRight, indexX, indexY, map);
 			}
-
+			else if (base.x <= destinationTilePos.x || base.y > destinationTilePos.y)
+			{
+				return ReturnCaseofTile(DownLeft, indexX, indexY, map);
+			}
 		}
 	}
 
@@ -212,8 +224,8 @@ float2 ReturnCenterFromTile(int indexX, int indexY,enemy& enemy, Map& map)
 
 
 
-
-
+	// Path2;
+	return destinationTilePos;
 
 
 
@@ -256,13 +268,13 @@ float2 ReturnCaseofTile(const int& nbr, const int& indexX, const int& indexY,Map
 	}
 	else if (nbr == DownLeft)
 	{
-		float2 tileDownLeft = { TileCenter.x + map.Tilesize / 4, TileCenter.y + map.Tilesize / 4 };
+		float2 tileDownLeft = { TileCenter.x - map.Tilesize / 4, TileCenter.y + map.Tilesize / 4 };
 		return tileDownLeft ;
 
 	}
 	else if (nbr == DownRight)
 	{
-		float2 tileDownRight = { TileCenter.x - map.Tilesize / 4, TileCenter.y + map.Tilesize / 4 };
+		float2 tileDownRight = { TileCenter.x + map.Tilesize / 4, TileCenter.y + map.Tilesize / 4 };
 		return tileDownRight ;
 	}
 

@@ -20,14 +20,16 @@ public:
 	int power;
 	
 	// tower
-	int tower;
+	int typeTower;
+
+
 
 
 
 
 	void PlayerTile(GameData& gamedata);
-
 	void PlayerInput(GameData& gamedata);
+	void DragAndDrop(GameData& gamedata);
 
 	Player();
 	~Player();
@@ -36,26 +38,4 @@ private:
 
 };
 
-/*Player::Player()
-{
-}
-
-Player::~Player()
-{
-}*/
-
-
-enum class Power : int
-{
-
-};
-
-
-enum class Tower : int
-{
-	Classique,
-	Ralentissante,
-	Explosive,
-};
-
-
+//void DrawTower(ImTextureID textureID, float Min, float Max);

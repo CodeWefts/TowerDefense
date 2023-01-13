@@ -88,17 +88,20 @@
     <ClCompile Include="externals\src\stb_image.cpp" />
     <ClCompile Include="src\app.cpp" />
     <ClCompile Include="src\Calcul.cpp" />
+    <ClCompile Include="src\classique.cpp" />
     <ClCompile Include="src\Collider2D.cpp" />
     <ClCompile Include="src\costaud.cpp" />
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\EnemyManager.cpp" />
     <ClCompile Include="src\entity.cpp" />
+    <ClCompile Include="src\explosive.cpp" />
     <ClCompile Include="src\gringalet.cpp" />
     <ClCompile Include="src\imgui_utils.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Point2D.cpp" />
+    <ClCompile Include="src\ralentissante.cpp" />
     <ClCompile Include="src\soigneur.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tower.cpp" />
@@ -110,17 +113,20 @@
     <ClInclude Include="src\app.hpp" />
     <ClInclude Include="src\calc.hpp" />
     <ClInclude Include="src\Calcul.hpp" />
+    <ClInclude Include="src\classique.hpp" />
     <ClInclude Include="src\Collider2D.hpp" />
     <ClInclude Include="src\costaud.hpp" />
     <ClInclude Include="src\enemy.hpp" />
     <ClInclude Include="src\EnemyManager.hpp" />
     <ClInclude Include="src\entity.hpp" />
+    <ClInclude Include="src\explosive.hpp" />
     <ClInclude Include="src\float2.hpp" />
     <ClInclude Include="src\gringalet.hpp" />
     <ClInclude Include="src\imgui_utils.hpp" />
     <ClInclude Include="src\Map.hpp" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Point2D.hpp" />
+    <ClInclude Include="src\ralentissante.hpp" />
     <ClInclude Include="src\soigneur.hpp" />
     <ClInclude Include="src\Tile.hpp" />
     <ClInclude Include="src\Tower.hpp" />
@@ -161,7 +167,7 @@
     <Image Include="assets\map\pathTopANDRight.png" />
     <Image Include="assets\map\pathTopLeft.png" />
     <Image Include="assets\map\pathTopRight.png" />
-    <Image Include="assets\tower\tower.png" />
+    <Image Include="assets\tower\classique.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="src\3X5_____.TTF" />

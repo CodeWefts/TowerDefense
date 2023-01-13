@@ -9,6 +9,16 @@ struct GameData;
 #define IsIncenter 5.0
 
 
+enum PathNbr : int
+{
+	Path1 = 1,
+	Path2,
+	Path3
+};
+
+
+
+
 class enemy : public entity
 {
 public:

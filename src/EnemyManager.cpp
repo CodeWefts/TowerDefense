@@ -83,25 +83,8 @@ void EnemyManager::ManageWave(GameData& data)
 		
 		data.timerWave = 1;
 	}
-	
-
-
-	
-
-
-	 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

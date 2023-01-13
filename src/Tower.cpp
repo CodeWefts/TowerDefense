@@ -3,16 +3,3 @@
 
 
 
-Tower::Tower()
-{
-	
-	
-}
-
-Tower::~Tower()
-{
-}
-
-
-
-

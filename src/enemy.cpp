@@ -59,14 +59,18 @@ void  enemy::pathFollow(GameData& data, bool& erase)
 	//std::cout << " it = " << &**it << std::endl;
 	//std::cout << " current = " << &*current << std::endl;
 
-	//std::cout << " Destination = " << current->destination << std::endl;
+	//std::cout << " base = " << this->baseChekcpoint << std::endl;
+	//std::cout << " Destination = " << this->destination << std::endl;
+	//std::cout << " Destination++  = " << this->afterDestination << std::endl;
+	//std::cout << " path = " << this->path << std::endl;
+
 	//std::cout << " offset =  " << current->offsetCheckPoint << std::endl;
 	this->pos -= normaliseVector(vectorenemy) * data.deltatime * this->velocity;
 
 
 
-	std::cout << "this->pos " << this->pos.x <<" , "<< this->pos.y << std::endl;
-	std::cout << " FollowPath - IsIncenter = " << (FollowPath - IsIncenter).x <<" , " << (FollowPath - IsIncenter).y << std::endl;
+	//std::cout << "this->pos " << this->pos.x <<" , "<< this->pos.y << std::endl;
+	//std::cout << " FollowPath - IsIncenter = " << (FollowPath - IsIncenter).x <<" , " << (FollowPath - IsIncenter).y << std::endl;
 	// TODO ADD better change pos if in tile
 
 

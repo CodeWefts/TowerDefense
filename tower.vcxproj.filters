@@ -49,9 +49,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>src\Player</Filter>
-    </ClCompile>
     <ClCompile Include="src\Map.cpp">
       <Filter>src\Map</Filter>
     </ClCompile>
@@ -81,6 +78,18 @@
     </ClCompile>
     <ClCompile Include="src\EnemyManager.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classique.cpp">
+      <Filter>src\entity\tower\classique</Filter>
+    </ClCompile>
+    <ClCompile Include="src\explosive.cpp">
+      <Filter>src\entity\tower\explosive</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ralentissante.cpp">
+      <Filter>src\entity\tower\ralentissante</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>src\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +153,15 @@
     <ClInclude Include="src\Map.hpp">
       <Filter>src\Map</Filter>
     </ClInclude>
+    <ClInclude Include="src\classique.hpp">
+      <Filter>src\entity\tower\classique</Filter>
+    </ClInclude>
+    <ClInclude Include="src\explosive.hpp">
+      <Filter>src\entity\tower\explosive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ralentissante.hpp">
+      <Filter>src\entity\tower\ralentissante</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -199,6 +217,15 @@
     </Filter>
     <Filter Include="assets\hud">
       <UniqueIdentifier>{ce7f68da-83a6-4582-83e3-0841a90518c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\classique">
+      <UniqueIdentifier>{fa8fd5b5-5c87-44a8-8d89-93e16e7ad59a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\explosive">
+      <UniqueIdentifier>{313e5fb7-cc0d-4661-b1a8-f68b04cfdc00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\ralentissante">
+      <UniqueIdentifier>{0d0bbe2a-a837-44ac-b15c-18f82a819e20}</UniqueIdentifier>
     </Filter>
     <Filter Include="assets\hud\Font">
       <UniqueIdentifier>{06aa7244-347f-4cf8-bd76-b6099e94c3fd}</UniqueIdentifier>
@@ -289,7 +316,7 @@
     <Image Include="assets\ennemies\costaud\costaud12.png">
       <Filter>assets\ennemies\costaud</Filter>
     </Image>
-    <Image Include="assets\tower\tower.png">
+    <Image Include="assets\tower\classique.png">
       <Filter>assets\tower</Filter>
     </Image>
     <Image Include="assets\hud\SideLeft.png">
