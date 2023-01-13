@@ -143,6 +143,7 @@
     <Image Include="assets\ennemies\costaud\costaud9.png" />
     <Image Include="assets\ennemies\gringalet.png" />
     <Image Include="assets\ennemies\soigneur.png" />
+    <Image Include="assets\hud\pixel-heart-png.png" />
     <Image Include="assets\hud\SideLeft.png" />
     <Image Include="assets\hud\SideRight.png" />
     <Image Include="assets\hud\TowerCase.png" />
@@ -161,6 +162,9 @@
     <Image Include="assets\map\pathTopLeft.png" />
     <Image Include="assets\map\pathTopRight.png" />
     <Image Include="assets\tower\tower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\3X5_____.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

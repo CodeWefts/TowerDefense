@@ -54,7 +54,8 @@ Asset::Asset()
 
 	textureTowerSideLeft = ImGuiUtils::LoadTexture("assets/hud/SideLeft.png");
 	textureTowerSideRight = ImGuiUtils::LoadTexture("assets/hud/SideRight.png");
-	textureTowerCase = ImGuiUtils::LoadTexture("assets/hud/TowerCase.png");
+	textureTowerCase = ImGuiUtils::LoadTexture("assets/hud/TowerCase.png"); 
+	PlayerHeart = ImGuiUtils::LoadTexture("assets/hud/pixel-heart-png.png");
 
 
 
@@ -76,12 +77,13 @@ GameData::GameData()
 	this->enableDebug = false;
 
 
-	timerWave = 5.f;
+	this->timerWave = 5.f;
 	this->deltatime = 0.f;
 	this->dl = nullptr;
 
 
-
+	//this->font = io.Fonts->AddFontFromFileTTF("C:\Data\Isart\Projet\C++\2022_tower_gp2027_tower-debon\src\3X5_____.TTF", 16.f, NULL, io.Fonts->GetGlyphRangesDefault());
+	//this->font = nullptr;
 }
 
 
@@ -120,12 +122,23 @@ void TowerGame::Debug()
 
 
 	// work
-	if (ImGui::IsKeyDown(ImGuiKey_A))
+	if (ImGui::IsKeyPressed(ImGuiKey_A,false))
 	{
-		enemy* enemy = new soigneur();
-		enemy->pos = ReturnCenter(0, 6, gameData.map);
+		enemy* enemy1 = new soigneur();
+		
+		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
+		enemy1->pos.y -= 10;
+		enemy1->path = 1;
 
-		gameData.enemyVector.push_back(enemy);
+		gameData.enemyVector.push_back(enemy1);
+
+		enemy* enemy2 = new soigneur();
+
+		enemy2->pos = ReturnCenterTile(0, 6, gameData.map);
+		enemy2->pos.y += 10;
+		enemy2->path = 3;
+
+		gameData.enemyVector.push_back(enemy2);
 
 	}
 
@@ -136,50 +149,33 @@ void TowerGame::Debug()
 }
 void TowerGame::UpdateAndDraw()
 {
+
 	srand(time(NULL));
 	ImGuiIO& io = ImGui::GetIO();
-
-	
-	
 	gameData.deltatime = io.DeltaTime * gameData.acceleRateTime;
-	gameData.player.PlayerInput(gameData);
-
-	
-
-
-	this->gameData.dl = ImGui::GetBackgroundDrawList();
-	gameData.map.CreateMap();
-
-
-
-
-		
-	
-	
-			
-
-	
-
-
 	gameData.timerWave -= gameData.deltatime;
 	
+	
+	
+	
+	
+	gameData.player.PlayerInput(gameData);
+	gameData.dl = ImGui::GetBackgroundDrawList();
+	gameData.map.CreateMap();
 	enemyManager.ManageEnemy(gameData);
-
+	renderer.RendererGame(gameData);
+	gameData.player.PlayerTile(gameData);
 
 
 
 	Debug();
-
 	ImGui::Text("Time %f", gameData.deltatime);
 	ImGui::Text("vectorsise %d", gameData.enemyVector.size());
 	ImGui::Text("Wavetimer = %f ", gameData.timerWave);
 
 
 	
-		
-	renderer.RendererGame(gameData);
 
-	gameData.player.PlayerTile(gameData);
 
 	
 }

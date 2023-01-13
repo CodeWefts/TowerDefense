@@ -13,6 +13,7 @@ public:
 	int score;
 	int wave;
 	int health;
+	int maxHealth;
 
 
 	// power

@@ -200,6 +200,9 @@
     <Filter Include="assets\hud">
       <UniqueIdentifier>{ce7f68da-83a6-4582-83e3-0841a90518c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="assets\hud\Font">
+      <UniqueIdentifier>{06aa7244-347f-4cf8-bd76-b6099e94c3fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\map\dirt.png">
@@ -298,5 +301,13 @@
     <Image Include="assets\hud\TowerCase.png">
       <Filter>assets\hud</Filter>
     </Image>
+    <Image Include="assets\hud\pixel-heart-png.png">
+      <Filter>assets\hud</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\3X5_____.TTF">
+      <Filter>assets\hud\Font</Filter>
+    </Font>
   </ItemGroup>
 </Project>

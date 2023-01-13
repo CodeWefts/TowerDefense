@@ -6,7 +6,7 @@
 struct GameData;
 
 
-#define IsIncenter 2.0
+#define IsIncenter 30.0
 
 
 class enemy : public entity
@@ -15,22 +15,24 @@ public:
 
 	int maxHealt;
 	int currentHealth;
-
+	int damageToPlayer;
+	int path;
 
 	std::string name;
 	Texture texture;
 	float velocity;
 	float offsetCheckPoint;
 
-	char baseChekcpoint = 'a';
-	char destination = 'b';
+	char baseChekcpoint;
+	char destination;
+	char afterDestination;
 
-
+	
 
 	float2 healBoxSize;
 
 
-
+	void pathFollow(GameData& data,bool& erase);
 
 	 void DrawSlider(ImDrawList& dl);
 

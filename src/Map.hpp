@@ -41,11 +41,28 @@ private:
 
 };
 
+enum CaseOfTile : int
+{
+	UpRight = 1,
+	UpLeft ,
+	DownRight ,
+	DownLeft,
+
+};
+
+
+
+
+	float2 ReturnCaseofTile(const int& nbr, const int& indexX, const int& indexY , Map& map);
 	float2 ReturnTileMax(int indexX, int indexY, Map& map);
 	float2 ReturnTileMin(int indexX, int indexY, Map& map);
-	float2 ReturnCenter(int indexX, int indexY, Map& map);
+	float2 ReturnCenterFromTile(int indexX, int indexY,enemy& enemy, Map& map);
 	float2 ReturnPosfromChar(char c, Map& map);
 	float2 ReturnCheckPointNearbest(Map& map, enemy* currentenemy);
+	float2 ReturnCenter(const float2& Max, const float2& Min);
+	float2 ReturnCenterTile(int indexX, int indexY, Map& map);
+
+
 
 
 

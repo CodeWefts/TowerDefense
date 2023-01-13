@@ -87,3 +87,24 @@ void ImGuiUtils::DrawTextureEx(ImDrawList& dl, const Texture& tex, ImVec2 pos, I
         IM_COL32_WHITE
     );
 }
+
+
+ImColor ColorByHealth(const float& percent, const float& valueMin, const float& valueMax)
+{
+    if (percent > valueMax)
+    {
+        return IM_COL32(0, 255, 0, 255);
+    }
+    else if (percent > valueMin && percent <= valueMax)
+    {
+        return IM_COL32(255, 255, 0, 255);
+    }
+    else if (percent <= valueMin)
+    {
+        return IM_COL32(255, 0, 0, 255);
+
+    }
+
+    return IM_COL32(0, 0, 0, 0);
+}
+

@@ -17,3 +17,6 @@ public:
 
     static void DrawTextureEx(ImDrawList& dl, const Texture& tex, ImVec2 pos, ImVec2 scale = { 1.f, 1.f }, float angle = 0.f);
 };
+
+
+ImColor ColorByHealth(const float& percent, const float& valueMin, const float& valueMax);

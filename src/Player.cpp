@@ -108,7 +108,8 @@ void Player::PlayerInput(GameData& gamedata)
 Player::Player()
 {
 	this->coins = 0;
-	this->health = 5000;
+	this->maxHealth = 5000;
+	this->health = this->maxHealth;
 
 	this->power = 0; 
 	this->tower = 0;

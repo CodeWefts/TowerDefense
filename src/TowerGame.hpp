@@ -14,17 +14,18 @@ using namespace std;
 
 struct Asset
 {
-	Texture textureDirt , textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
-		texturePathLeft, texturePathRight , texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight,
+	Texture textureDirt, textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
+		texturePathLeft, texturePathRight, texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight,
 
 		textureCostaud1, textureCostaud2, textureCostaud3, textureCostaud4, textureCostaud5, textureCostaud6, textureCostaud7, textureCostaud8, textureCostaud9,
 		textureCostaud10, textureCostaud11, textureCostaud12,
 
 		textureGringalet, textureSoigneur,
-		
+
 		textureTower,
-		
-		textureTowerSideLeft, textureTowerSideRight, textureTowerCase;
+
+		textureTowerSideLeft, textureTowerSideRight, textureTowerCase
+		, PlayerHeart;
 
 	Asset();
 	
@@ -38,11 +39,11 @@ struct Asset
 
 struct GameData
 {
+	
 	bool addEnemy;
 	bool WaveStart;
 	bool enableDebug;
 	bool playerStopTime;
-	int currentWave;
 
 
 	int acceleRateTimeBuffer;
@@ -57,8 +58,9 @@ struct GameData
 	Map map;
 	Player player;
 
-	ImGuiIO* io;
+	ImGuiIO& io = ImGui::GetIO();
 	ImDrawList* dl;
+	ImFont* font;
 	float timerWave;
 
 	GameData();

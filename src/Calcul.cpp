@@ -270,10 +270,10 @@ float dotproductvector2(const float2& v1, const float2& v2)
 }
 
 float2 getVectorFromPoint2d(float2& p1, float2&p2)
-    {
+   {
         float2 vec(p2.x - p1.x, p2.y - p1.y);
         return vec;
-    }
+ }
 
     float2 NormalVector(float2 vector)
     {
@@ -286,5 +286,6 @@ float2 getVectorFromPoint2d(float2& p1, float2&p2)
         output.y = vector.x;
 
         return output;
-    }
+    }   
     
+

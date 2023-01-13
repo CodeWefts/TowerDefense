@@ -2,6 +2,7 @@
 #include "Point2D.hpp"
 #include "TowerGame.hpp"
 #include "TowerRenderer.hpp"
+#include"Calcul.hpp"
 #include"float2.hpp"
 
 
@@ -27,7 +28,7 @@ void TowerRenderer::drawMap(GameData& data)
 		//std::cout << " map x = " << x << " map y = " << y  << " topLeft x = " << topLeft.x << " topLeft y = " << topLeft.y << std::endl;
 		
 
-		ImVec2 center = ReturnCenter(x,y, data.map); // center / checkpooint
+		ImVec2 center = ReturnCenterTile(x,y, data.map); // center / checkpooint
 		
 		// TO DO return NEARBEST CHEKPOINT
 		
@@ -205,10 +206,22 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 void TowerRenderer::DrawHud(GameData& data)
 {
+	if (ImGui::IsKeyPressed(ImGuiKey_Y, false))
+	{
+		data.player.health -= 100;
+	}
+	
+	float maxlenght = 520;
+	float returnHealPercent = (float(data.player.health) / data.player.maxHealth);
+	float currentLenght = maxlenght * returnHealPercent;
 
+	ImColor color = ColorByHealth(returnHealPercent, 0.35f, 0.75f);
+	
+	data.dl->AddRectFilled(float2(20, 20), float2(currentLenght, 60), color, 5.f, 0);
+	data.dl->AddRect(float2(20, 20), float2(520, 60), IM_COL32(255, 255, 255, 255), 5.f, 0, 4.f);
+	data.dl->AddImage(data.asset.PlayerHeart.id, float2(2.5, 2.5), float2(75, 75));
 
-	data.dl->AddRectFilled(float2(10, 10), float2(500, 50), IM_COL32(0, 255, 0, 255), 5.f, 0);
-	data.dl->AddRect(float2(10, 10), float2(500, 50), IM_COL32(255, 255, 255, 255), 5.f, 0, 4.f);
+	//data.dl->AddText(float2(10, 70), IM_COL32(255, 255, 255, 255), "sqdsqdqsdqsdsq", NULL);
 	
 }
 
