@@ -13,6 +13,7 @@ public:
 	void drawMap(GameData& data);
 	void DrawSliderLifePlayerHud(GameData& data);
 	void HudInventory(GameData& data);
+	void DrawPlacedTurret(GameData& data);
 
 	void RendererGame(GameData& data);
 	TowerRenderer();

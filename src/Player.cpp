@@ -2,6 +2,12 @@
 #include"TowerGame.hpp"
 #include"Map.hpp"
 
+#include "classique.hpp"
+#include "explosive.hpp"
+#include "ralentissante.hpp"
+
+#include <vector>
+
 
 
 #define maxAcelerateTime 4
@@ -95,23 +101,20 @@ void Player::PlayerInput(GameData& gamedata)
 void Player::DragAndDrop(GameData& gamedata)
 {
 	ImGuiIO& io2 = ImGui::GetIO();
-	ImTextureID textureID = nullptr;
-	
-	//Coord MOUSE && CLICK 
+	Texture textureID;
+
+	//Coord MOUSE
 	float posMaxX = ImGui::GetMousePos().x + 72; 
 	float posMaxY = ImGui::GetMousePos().y + 72;
 
 	ImVec2 posMin = ImGui::GetMousePos(); 
 	ImVec2 posMax = { posMaxX , posMaxY };
 
+	//coord CLICK
 	float clickX = io2.MouseClickedPos->x;
 	float clickY = io2.MouseClickedPos->y;
 
-	bool click;
-
-	const ImVec2 mouseMin;
-	const ImVec2 mouseMax;
-
+	// DRAG
 	if (ImGui::IsKeyDown(ImGuiKey_MouseLeft))
 	{
 		if ((clickX > (7 * 72))
@@ -119,27 +122,63 @@ void Player::DragAndDrop(GameData& gamedata)
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			click = true;
-			textureID = gamedata.asset.textureTowerClassique.id;
+			typeTower = 0;
+			textureID = gamedata.asset.textureTowerClassique;
+		}
+
+		else if ((clickX > (8 * 72))
+			&& (clickX < (9 * 72))
+			&& (clickY > (9 * 72))
+			&& (clickY < (10 * 72)))
+		{
+			typeTower = 1;
+			textureID = gamedata.asset.textureTowerExplosive;
 
 		}
+
+		else if ((clickX > (9 * 72))
+			&& (clickX < (10 * 72))
+			&& (clickY > (9 * 72))
+			&& (clickY < (10 * 72)))
+		{
+			typeTower = 2;
+			textureID = gamedata.asset.textureTowerRalentissante;
+
+		}
+
+		gamedata.dl->AddImage(textureID.id, posMin, posMax);
 	}
 
-	if (textureID != nullptr)
+
+	//PUSH BACK POINTER TOWER
+	if (ImGui::IsKeyReleased(ImGuiKey_MouseLeft))
 	{
-		gamedata.dl->AddImage(textureID, posMin, posMax);
-	}
 
-	else
-	{
-		const ImVec2 mouseMin = posMin;
-		const ImVec2 mouseMax = posMax;
-	}
-	
-	gamedata.dl->AddImage(textureID, mouseMin, mouseMax);
+		if (typeTower == 0)
+		{
+			Tower *tower = new Classique();
+			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
 
-	ImGui::Text(" Min : %f , %f ", mouseMin.x, mouseMin.y);
-	ImGui::Text(" Max : %f , %f ", mouseMax.x, mouseMax.y);
+			gamedata.towerVector.push_back(tower);
+		}
+		else if (typeTower == 1)
+		{
+			Tower* tower = new Explosive();
+			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+
+			gamedata.towerVector.push_back(tower);
+		}
+		else if (typeTower == 2)
+		{
+			Tower* tower = new Ralentissante();
+			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+
+			gamedata.towerVector.push_back(tower);
+		}
+	}
 
 }
 
@@ -152,7 +191,7 @@ Player::Player()
 	this->health = 5000;
 
 	this->power = 0; 
-	this->tower = 0;
+	this->typeTower = 0;
 
 	this->score = 0;
 	this->wave = 0;

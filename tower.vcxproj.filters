@@ -49,9 +49,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>src\Player</Filter>
-    </ClCompile>
     <ClCompile Include="src\Map.cpp">
       <Filter>src\Map</Filter>
     </ClCompile>
@@ -81,6 +78,18 @@
     </ClCompile>
     <ClCompile Include="src\EnemyManager.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classique.cpp">
+      <Filter>src\entity\tower\classique</Filter>
+    </ClCompile>
+    <ClCompile Include="src\explosive.cpp">
+      <Filter>src\entity\tower\explosive</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ralentissante.cpp">
+      <Filter>src\entity\tower\ralentissante</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>src\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +152,15 @@
     </ClInclude>
     <ClInclude Include="src\Map.hpp">
       <Filter>src\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classique.hpp">
+      <Filter>src\entity\tower\classique</Filter>
+    </ClInclude>
+    <ClInclude Include="src\explosive.hpp">
+      <Filter>src\entity\tower\explosive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ralentissante.hpp">
+      <Filter>src\entity\tower\ralentissante</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

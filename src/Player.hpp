@@ -19,7 +19,9 @@ public:
 	int power;
 	
 	// tower
-	int tower;
+	int typeTower;
+
+
 
 
 

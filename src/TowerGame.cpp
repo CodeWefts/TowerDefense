@@ -117,7 +117,7 @@ void TowerGame::Debug()
 
 
 	// work
-	if (ImGui::IsKeyDown(ImGuiKey_A))
+	if (ImGui::IsKeyPressed(ImGuiKey_A,false))
 	{
 		enemy* enemy = new soigneur();
 		enemy->pos = ReturnCenter(0, 6, gameData.map);

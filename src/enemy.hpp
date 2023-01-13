@@ -26,11 +26,7 @@ public:
 	char destination = 'b';
 
 
-
 	float2 healBoxSize;
-
-
-
 
 	 void DrawSlider(ImDrawList& dl);
 

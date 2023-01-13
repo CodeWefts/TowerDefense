@@ -9,4 +9,5 @@ entity::entity()
 
 entity::~entity()
 {
+	  
 }

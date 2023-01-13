@@ -224,6 +224,41 @@ void TowerRenderer::HudInventory(GameData& data)
 	TowerInInventoryHUD(data);
 }
 
+void TowerRenderer::DrawPlacedTurret(GameData& data)
+{
+	ImDrawList* enemydrawlist = ImGui::GetBackgroundDrawList();
+
+	for (std::vector<Tower*>::iterator it = data.towerVector.begin(); it != data.towerVector.end(); it++)
+	{
+		Tower* currentTower = *it;
+
+		if (currentTower->type == 0)
+		{
+			//std::cout << "Tile X :: " << currentTower->TileX << std::endl;
+			//std::cout << "Tile Y :: " << currentTower->TileY << std::endl;
+			
+			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
+			ImVec2 TileMax = { (float)currentTower->TileX +72, (float)currentTower->TileY +72 };
+			currentTower->texture = data.asset.textureTowerClassique;
+			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
+		}
+		if (currentTower->type == 1)
+		{
+			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
+			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
+			currentTower->texture = data.asset.textureTowerExplosive;
+			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
+		}
+		if (currentTower->type == 2)
+		{
+			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
+			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
+			currentTower->texture = data.asset.textureTowerRalentissante;
+			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
+		}
+	}
+
+}
 
 
 void TowerRenderer::RendererGame(GameData& data)
@@ -231,8 +266,11 @@ void TowerRenderer::RendererGame(GameData& data)
 	drawMap(data);
 	drawEnemies(data);
 	DrawSliderLifePlayerHud(data);
+	DrawPlacedTurret(data);
 
 }
+
+
 
 TowerRenderer::TowerRenderer()
 {

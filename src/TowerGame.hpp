@@ -31,7 +31,7 @@ struct Asset
 		textureSoigneur,
 
 		//texture tower TOWER
-		textureTowerClassique,// textureTowerRalentissante, textureTowerExplosive,
+		textureTowerClassique, textureTowerRalentissante, textureTowerExplosive,
 
 
 		//texture hud INVENTORY TOWER
@@ -64,7 +64,7 @@ struct GameData
 
 
 
-	std::vector<Tower*> towerVector;
+	vector<Tower*> towerVector;
 	vector<enemy*> enemyVector;
 
 	Asset asset;

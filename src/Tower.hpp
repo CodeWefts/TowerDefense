@@ -15,11 +15,18 @@ class Tower
 {
 public:
 
-	//TowerChoice choice = CLASSIQUE;
-	//ImTextureID textureID = nullptr;
-
 	std::string name;
 	Texture texture;
+
+	int type;
+	int cost;
+	bool placed;
+
+	int TileX, TileY;
+	int range;
+
+
+
 
 	//functions
 };
