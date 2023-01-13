@@ -69,7 +69,8 @@ void  enemy::pathFollow(GameData& data, bool& erase)
 	std::cout << " FollowPath - IsIncenter = " << (FollowPath - IsIncenter).x <<" , " << (FollowPath - IsIncenter).y << std::endl;
 	// TODO ADD better change pos if in tile
 
-	data.dl->AddRect(FollowPath - IsIncenter, FollowPath + IsIncenter, IM_COL32(255, 0, 0, 255), 2, 0, 4);
+
+	data.dl->AddRect(FollowPath , FollowPath , IM_COL32(255, 0, 0, 255), 2, 0, 4);
 	if (this->pos > FollowPath - IsIncenter && this->pos < FollowPath + IsIncenter)
 	{
 		this->baseChekcpoint = this->destination;

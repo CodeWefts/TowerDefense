@@ -6,7 +6,7 @@
 struct GameData;
 
 
-#define IsIncenter 30.0
+#define IsIncenter 5.0
 
 
 class enemy : public entity

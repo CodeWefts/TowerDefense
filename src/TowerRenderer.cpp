@@ -155,7 +155,7 @@ void TowerRenderer::drawMap(GameData& data)
 
 void TowerRenderer::drawEnemies(GameData& data)
 {
-	ImDrawList* enemydrawlist = ImGui::GetBackgroundDrawList();
+	//ImDrawList* data.dl = ImGui::GetBackgroundDrawList();
 
 	
 
@@ -190,7 +190,7 @@ void TowerRenderer::drawEnemies(GameData& data)
 		currentEnemy->DrawSlider(*data.dl);
 
 		if(data.enableDebug)
-		currentEnemy->DrawDebug(*(enemydrawlist));
+		currentEnemy->DrawDebug(*(data.dl));
 		
 
 

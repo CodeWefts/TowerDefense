@@ -127,18 +127,20 @@ void TowerGame::Debug()
 		enemy* enemy1 = new soigneur();
 		
 		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
-		enemy1->pos.y -= 10;
+		enemy1->pos.y -= 20	;
 		enemy1->path = 1;
 
 		gameData.enemyVector.push_back(enemy1);
 
+		
 		enemy* enemy2 = new soigneur();
 
 		enemy2->pos = ReturnCenterTile(0, 6, gameData.map);
-		enemy2->pos.y += 10;
+		enemy2->pos.y += 20;
 		enemy2->path = 3;
 
 		gameData.enemyVector.push_back(enemy2);
+		
 
 	}
 

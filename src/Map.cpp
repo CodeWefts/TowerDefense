@@ -150,13 +150,13 @@ float2 ReturnCenterFromTile(int indexX, int indexY,enemy& enemy, Map& map)
 		{
 			if (base.x > destinationTilePos.x)
 			{
-				return ReturnCaseofTile(UpRight, indexX, indexY, map);
+				return ReturnCaseofTile(UpLeft, indexX, indexY, map);
 			}
 			else
 			{
 				
 
-				return ReturnCaseofTile(UpLeft, indexX, indexY, map);
+				return ReturnCaseofTile(UpRight, indexX, indexY, map);
 			}
 			
 		}
@@ -226,7 +226,7 @@ float2 ReturnCenterFromTile(int indexX, int indexY,enemy& enemy, Map& map)
 
 float2 ReturnCenter(const float2& Max, const float2& Min)
 {
-	return { (Max + Min) / 2 }; 
+	return { (Max + Min) }; 
 }
 
 float2 ReturnCenterTile(int indexX, int indexY, Map& map)
@@ -240,31 +240,30 @@ float2 ReturnCaseofTile(const int& nbr, const int& indexX, const int& indexY,Map
 	float2 TileCenter = ReturnCenterTile(indexX, indexY, map);
 	
 	
-	float2 tileUpRight = { TileCenter.x + map.Tilesize, TileCenter.y - map.Tilesize };
 
 
 
 	if(nbr == UpRight)
 	{
-		float2 tileUpRight = { TileCenter.x - map.Tilesize, TileCenter.y - map.Tilesize };
-		return ReturnCenter(TileCenter, tileUpRight);
+		float2 tileUpRight = { TileCenter.x + map.Tilesize/4, TileCenter.y - map.Tilesize / 4 };
+		return tileUpRight ;
 
 	}
 	else if (nbr == UpLeft)
 	{
-		float2 tileUpLeft = { TileCenter.x + map.Tilesize, TileCenter.y - map.Tilesize };
-		return ReturnCenter(TileCenter, tileUpLeft);
+		float2 tileUpLeft = { TileCenter.x - map.Tilesize / 4, TileCenter.y - map.Tilesize / 4 };
+		return tileUpLeft ;
 	}
 	else if (nbr == DownLeft)
 	{
-		float2 tileDownLeft = { TileCenter.x + map.Tilesize, TileCenter.y + map.Tilesize };
-		return ReturnCenter(TileCenter, tileDownLeft);
+		float2 tileDownLeft = { TileCenter.x + map.Tilesize / 4, TileCenter.y + map.Tilesize / 4 };
+		return tileDownLeft ;
 
 	}
 	else if (nbr == DownRight)
 	{
-		float2 tileDownRight = { TileCenter.x - map.Tilesize, TileCenter.y + map.Tilesize };
-		return ReturnCenter(TileCenter, tileDownRight);
+		float2 tileDownRight = { TileCenter.x - map.Tilesize / 4, TileCenter.y + map.Tilesize / 4 };
+		return tileDownRight ;
 	}
 
 	return { 0,0 };
