@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
 #include "imgui_utils.hpp"
+//#include"raylib/src/raylib.h"
 
 #include "Map.hpp"
 #include "TowerRenderer.hpp"
@@ -11,11 +12,20 @@
 #include"soigneur.hpp"
 
 
+#define TimerLevel 20.f
+#define TimerWave 15.f
+#define nbrOfLevel 5
+
+
+
+#define TypeOfEnemy 3
 
 using namespace std;
 
 struct Asset
 {
+	
+	
 	Texture textureDirt, textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
 		texturePathLeft, texturePathRight, texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight,
 
@@ -41,6 +51,9 @@ struct Asset
 
 		textureAnimation;
 
+
+	//Sound SoundTest;
+
 	Asset();
 	
 };
@@ -64,8 +77,15 @@ struct GameData
 	int acceleRateTime;
 	float deltatime;
 
+	int currentLevel;
+	int currentWave;
+	float timerWave;
+	float timerLevel;
+	
 
-
+	vector<float2> listOfRoad[3];
+	
+	
 	vector<Tower*> towerVector;
 	vector<enemy*> enemyVector;
 
@@ -76,7 +96,8 @@ struct GameData
 	ImGuiIO& io = ImGui::GetIO();
 	ImDrawList* dl;
 	ImFont* font;
-	float timerWave;
+	
+	Level level[nbrOfLevel];
 
 	GameData();
 
@@ -86,6 +107,10 @@ struct GameData
 class TowerGame
 {
 public:
+
+
+
+
 	GameData gameData;
 
 	EnemyManager enemyManager;

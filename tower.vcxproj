@@ -127,6 +127,7 @@
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Point2D.hpp" />
     <ClInclude Include="src\ralentissante.hpp" />
+    <ClInclude Include="src\raylib\src\raylib.h" />
     <ClInclude Include="src\soigneur.hpp" />
     <ClInclude Include="src\Tile.hpp" />
     <ClInclude Include="src\Tower.hpp" />

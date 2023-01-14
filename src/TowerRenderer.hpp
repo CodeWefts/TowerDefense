@@ -14,6 +14,7 @@ public:
 	void HudInventory(GameData& data);
 	void DrawPlacedTurret(GameData& data);
 	void DrawHud(GameData& data);
+	void DrawCheckPoint(GameData& data);
 
 	void RendererGame(GameData& data);
 	TowerRenderer();

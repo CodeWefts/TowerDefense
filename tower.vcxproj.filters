@@ -162,6 +162,9 @@
     <ClInclude Include="src\ralentissante.hpp">
       <Filter>src\entity\tower\ralentissante</Filter>
     </ClInclude>
+    <ClInclude Include="src\raylib\src\raylib.h">
+      <Filter>externals\raylib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -229,6 +232,12 @@
     </Filter>
     <Filter Include="assets\hud\Font">
       <UniqueIdentifier>{06aa7244-347f-4cf8-bd76-b6099e94c3fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="externals\raylib">
+      <UniqueIdentifier>{7740a3e1-f7a7-4896-ae27-2788966f66fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\sound">
+      <UniqueIdentifier>{df9b2e12-6ccd-4125-a251-dadfeab5b8fc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,10 @@
 #include"gringalet.hpp"
 
 
+#define Squishy 0
+#define Healer 1
+#define Heavy 2
+
 
 
 
@@ -38,16 +42,17 @@ void EnemyManager::ManageWave(GameData& data)
 	//Init Enemy
 	
 	//std::vector<soigneur> soigneur;
-	int nbrEenemy = 1;
+	/*
+		int nbrEenemy = 1;
 	enemy* ptr[4];
 	
-
+	data.timerWave -= data.deltatime;
 	if (data.timerWave <= 0)
 	{
 
-			//min + rand() % (max+1 - min)
+		
 			int random = 1 + rand() % (4 + 1 - 1);
-			//std::cout << random << std::endl;
+		
 
 
 			if (random == 3)
@@ -57,6 +62,7 @@ void EnemyManager::ManageWave(GameData& data)
 
 					ptr[i] = new soigneur();
 					ptr[i]->pos = { ReturnCenterTile(0, 6,data.map).x + 40 * i,ReturnCenterTile(0, 6,data.map).y };
+					ptr[i]->roadChoice = rand() % 3;
 					data.enemyVector.push_back(ptr[i]);
 				}
 			}
@@ -66,6 +72,7 @@ void EnemyManager::ManageWave(GameData& data)
 				{
 					ptr[i] = new gringalet();
 					ptr[i]->pos = { ReturnCenterTile(0, 6,data.map).x + 40 * i,ReturnCenterTile(0, 6,data.map).y };
+					ptr[i]->roadChoice = rand() % 3;
 					data.enemyVector.push_back(ptr[i]);
 				}
 			}
@@ -76,13 +83,65 @@ void EnemyManager::ManageWave(GameData& data)
 				{
 					ptr[i] = new costaud();
 					ptr[i]->pos = { ReturnCenterTile(0, 6,data.map).x + 40 * i,ReturnCenterTile(0, 6,data.map).y };
+					ptr[i]->roadChoice = rand() % 3;
 					data.enemyVector.push_back(ptr[i]);
 				}
 			}
 			data.addEnemy = false;
 		
-		data.timerWave = 1;
+		data.timerWave = 6.f;
+	}	
+	
+	*/	data.timerLevel -= data.deltatime;
+
+	for (int i = 0; i < nbrOfLevel; i++)
+	{
+		printf("timerLevel = %f \n", data.timerLevel);
+	
+	
+		if (data.timerLevel <= 0 )
+		{
+			data.timerWave -= data.deltatime;
+			if (data.currentWave <= 0 && data.currentWave != data.level[i].nbrOfWave)
+			{
+				//  to do add enemyADD enemy
+
+				enemy* enemy = nullptr;
+				if (rand() % TypeOfEnemy == Squishy)
+				{
+					enemy = new gringalet();
+				}
+				else if (rand() % TypeOfEnemy == Healer)
+				{
+					enemy = new soigneur();
+				}
+				else if (rand() % TypeOfEnemy == Heavy)
+				{
+					enemy = new costaud();
+				}
+
+				float2 SpawnPoint = ReturnPosfromChar('a', data.map);
+				enemy->pos = SpawnPoint;
+				data.enemyVector.push_back(enemy);
+				data.timerWave = TimerWave;
+
+			}
+		
+
+				data.level[i].timerBetweenSpawn = Calc::randomFloat(3.5, 7.5);
+				data.timerLevel = TimerLevel;
+		}
+		
+			
+
+	
+		
+
 	}
+
+	
+	
+
 
 }
 
@@ -97,8 +156,14 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		enemy* current = *it;
 		bool erase = false;
 
+
+		if (current->currentHealth > current->maxHealt)
+		{
+			current->currentHealth = current->maxHealt;
+		}
+
 		// Erase if off Screen
-		if (isOffscreen(data, current->pos))
+		if (isOffscreen(data, current->pos) || current->currentHealth <= 0 )
 		{
 			erase = true;
 		}
@@ -129,7 +194,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 void EnemyManager::ManageEnemy(GameData& data)
 {
 	//TO DO ADD WAWE
-	//this->ManageWave(data);
+	this->ManageWave(data);
 	this->MoveEnemyPath(data);
 
 }

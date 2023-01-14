@@ -59,6 +59,10 @@ Asset::Asset()
 	//MENU : START GAME
 	textureAnimation = ImGuiUtils::LoadTexture("assets/menu/Animation.png");
 
+	//Sound
+
+	//SoundTest = LoadSound("assets/sound/item_respawn.mp3");
+
 
 }
 
@@ -72,18 +76,33 @@ GameData::GameData()
 	this->addEnemy = false;
 	this->playerStopTime = false;
 
-	this->acceleRateTime = 1.f;
+	this->acceleRateTime = 1;
 	this->enableDebug = false;
 
 
-	this->timerWave = 5.f;
+	
 	this->deltatime = 0.f;
 	this->dl = nullptr;
 
 
+	this->currentLevel = 0;
+	this->timerLevel = TimerLevel;
+	this->timerWave = TimerWave;
+
+	for (int i = 0; i < 5; i++)
+	{
+		level[i].nbrOfWave = 3 + (i * 2);
+		level[i].nbrOfGringalet = 10 + (i * 5);
+		level[i].nbrOfHealer = 2 + (i * 2);
+		level[i].nbrOfHeavy = 3 + (i * 4);
+		level[i].timerBetweenSpawn = 0;
+	}
+
+}
+
 	//this->font = io.Fonts->AddFontFromFileTTF("C:\Data\Isart\Projet\C++\2022_tower_gp2027_tower-debon\src\3X5_____.TTF", 16.f, NULL, io.Fonts->GetGlyphRangesDefault());
 	//this->font = nullptr;
-}
+
 
 
 void TowerGame::GameInit()
@@ -98,16 +117,22 @@ void TowerGame::Debug()
 
 	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
 	{
-		gameData.map.map.at(3) = 'k';
-		printf("%s \n", gameData.map.map.c_str());
+		/*
+		for (int i = 0; i < gameData.map.map.size(); i++)
+		{
+			gameData.map.map.pop_back();
+		}
+		*/
+		for (auto it = gameData.enemyVector.begin(); it != gameData.enemyVector.end(); it++)
+		{
+			enemy* current = *it;
+			current->currentHealth -= 10;
+		}
 
 	}
 	if (ImGui::IsKeyPressed(ImGuiKey_E, false))
 	{
-		gameData.addEnemy = !gameData.addEnemy;
-		cout << "add enemy = " << gameData.addEnemy << endl;
-
-		//ptr = &gameData.map.map;//ptr->replace(0, 0, "L");//printf("%s \n", gameData.map.map.c_str());
+		//PlaySound(gameData.asset.SoundTest);
 
 	}
 
@@ -124,13 +149,14 @@ void TowerGame::Debug()
 		enemy* enemy1 = new soigneur();
 		
 		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
-		enemy1->pos.y -= 20	;
-		enemy1->path = Path1;
+		enemy1->path = Path0;
 
 		gameData.enemyVector.push_back(enemy1);
+		/*
+		* 
 
-
-		enemy* enemy2 = new soigneur();
+		/*
+				enemy* enemy2 = new soigneur();
 
 		enemy2->pos = ReturnCenterTile(0, 6, gameData.map);
 		enemy2->path = Path2;
@@ -147,9 +173,30 @@ void TowerGame::Debug()
 
 		gameData.enemyVector.push_back(enemy3);
 	
+		*/
+
+		
 		
 
 	}
+	if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft, false))
+	{
+		if (ImGui::IsKeyDown(ImGuiKey_V))
+		{
+			gameData.listOfRoad[0].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+		}
+		if (ImGui::IsKeyDown(ImGuiKey_B))
+		{
+			gameData.listOfRoad[1].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+		}
+		if (ImGui::IsKeyDown(ImGuiKey_N))
+		{
+			gameData.listOfRoad[2].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+		}
+
+		
+	}
+	
 
 }
 
@@ -160,11 +207,16 @@ void TowerGame::UpdateAndDraw()
 	ImGuiIO& io = ImGui::GetIO();
 	gameData.deltatime = io.DeltaTime * gameData.acceleRateTime;
 	this->gameData.dl = ImGui::GetBackgroundDrawList();
-	gameData.timerWave -= gameData.deltatime;
+	
 
-	Debug();
+	
 	ImGui::Text("Time %f", gameData.deltatime);
 	ImGui::Text("vectorsise %d", gameData.enemyVector.size());
+	ImGui::Text(" Press V gameData.listOfRoad[0] = %d", gameData.listOfRoad[0].size());
+	ImGui::Text(" Press B gameData.listOfRoad[1] = %d", gameData.listOfRoad[1].size());
+	ImGui::Text(" Press N gameData.listOfRoad[2] = %d ", gameData.listOfRoad[2].size());
+
+	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
 	ImGui::Text("Wavetimer = %f ", gameData.timerWave);
 
 
@@ -178,9 +230,9 @@ void TowerGame::UpdateAndDraw()
 	gameData.player.PlayerInput(gameData);
 
 	renderer.HudInventory(gameData);
-	gameData.player.DragAndDrop(gameData);
+	//gameData.player.DragAndDrop(gameData);
 
-
+	Debug();
 
 	
 }
@@ -189,8 +241,9 @@ void TowerGame::UpdateAndDraw()
 TowerGame::TowerGame()
 {
 	this->gameData.dl = nullptr;
-}
+	//InitAudioDevice();
 
+}
 TowerGame::~TowerGame()
 {
 	

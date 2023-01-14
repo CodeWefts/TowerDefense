@@ -23,6 +23,7 @@ gringalet::~gringalet()
 
 void gringalet::UpdateEnemy(GameData& data,bool& erase)
 {
+
 	pathFollow(data, erase);
 
 }

@@ -7,6 +7,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 void TowerRenderer::drawMap(GameData& data)
 {
 	static float tileSize = data.map.Tilesize;
@@ -20,7 +31,7 @@ void TowerRenderer::drawMap(GameData& data)
 		int x = i % data.map.Width; // return pos x on char table
 		int y = i / data.map.Width; // return pos y on char table
 		Tile& tile = data.map.Tiles[i]; // Get Tile texture type
-
+	
 		ImVec2 topLeft = ReturnTileMin(x, y, data.map);
 		ImVec2 topRight = ReturnTileMax(x, y, data.map);
 
@@ -248,7 +259,11 @@ void TowerRenderer::DrawHud(GameData& data)
 	ImColor color = ColorByHealth(returnHealPercent, 0.35f, 0.75f);
 	
 	data.dl->AddRectFilled(float2(20, 20), float2(currentLenght, 60), color, 5.f, 0);
-	data.dl->AddRect(float2(20, 20), float2(520, 60), IM_COL32(255, 255, 255, 255), 5.f, 0, 4.f);
+	if (data.player.health >= 0)
+	{
+		data.dl->AddRect(float2(20, 20), float2(520, 60), IM_COL32(255, 255, 255, 255), 5.f, 0, 4.f);
+	}
+	
 	data.dl->AddImage(data.asset.PlayerHeart.id, float2(2.5, 2.5), float2(75, 75));
 
 	//data.dl->AddText(float2(10, 70), IM_COL32(255, 255, 255, 255), "sqdsqdqsdqsdsq", NULL);
@@ -288,8 +303,26 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
 		}
 	}
-
+	
 }
+
+
+void TowerRenderer::DrawCheckPoint(GameData& data) 
+{
+	for (auto it = data.listOfRoad[0].begin(); it != data.listOfRoad[0].end(); it++)
+	{
+		data.dl->AddCircle(*it, 15.f, IM_COL32(255, 0, 0, 255), 32, 2.f);
+	}
+	for (auto it = data.listOfRoad[1].begin(); it != data.listOfRoad[1].end(); it++)
+	{
+		data.dl->AddCircle(*it, 15.f, IM_COL32(0, 255, 0, 255), 32, 2.f);
+	}
+	for (auto it = data.listOfRoad[2].begin(); it != data.listOfRoad[2].end(); it++)
+	{
+		data.dl->AddCircle(*it, 15.f, IM_COL32(0, 0, 255, 255), 32, 2.f);
+	}
+}
+
 
 
 void TowerRenderer::RendererGame(GameData& data)
@@ -298,6 +331,7 @@ void TowerRenderer::RendererGame(GameData& data)
 	drawEnemies(data);
 	DrawPlacedTurret(data);
 	DrawHud(data);
+	DrawCheckPoint(data);
 
 }
 

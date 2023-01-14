@@ -7,6 +7,22 @@
 
 struct GameData;
 
+
+
+
+struct Level
+{
+	int nbrOfGringalet;
+	int nbrOfHealer;
+	int nbrOfHeavy;		
+	
+	int nbrOfWave;
+
+	float timerBetweenSpawn;
+
+
+};
+
 class EnemyManager
 {
 public:

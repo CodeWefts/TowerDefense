@@ -6,14 +6,14 @@
 struct GameData;
 
 
-#define IsIncenter 5.0
+#define IsIncenter 4.0
 
 
 enum PathNbr : int
 {
-	Path1 = 1,
-	Path2,
-	Path3
+	Path0 = 0,
+	Path1,
+	Path2
 };
 
 
@@ -31,21 +31,18 @@ public:
 	std::string name;
 	Texture texture;
 	float velocity;
-	float offsetCheckPoint;
-
-	char baseChekcpoint;
-	char destination;
-	char afterDestination;
 
 	
+	int destinationIndex;
+	int roadChoice;
 
 	float2 healBoxSize;
 
+	float2 ReturnCheckPoint(GameData& data, int& checkPoint);
+
 
 	void pathFollow(GameData& data,bool& erase);
-
-	 void DrawSlider(ImDrawList& dl);
-
+	void DrawSlider(ImDrawList& dl);
 	virtual void DrawDebug(ImDrawList& dl);
 	virtual void UpdateEnemy(GameData& data,bool& erase);
 

@@ -146,7 +146,7 @@ void Player::DragAndDrop(GameData& gamedata)
 
 		}
 
-		gamedata.dl->AddImage(textureID.id, posMin, posMax);
+			//gamedata.dl->AddImage(textureID.id, posMin, posMax);
 	}
 
 

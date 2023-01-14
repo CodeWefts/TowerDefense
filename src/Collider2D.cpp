@@ -40,17 +40,24 @@ bool colbetween2AABBS (const Point2D& Amin , const Point2D& Amax , const Point2D
 
 }
 
-// Add Flot2 to min maxs
-bool colPoint2dtoAABB2d (const float& xmin , const float& xmax, const float& ymin , const float& ymax , const Point2D& P)
-{  
+bool colPoint2dtoAABB2d(float2& min, float2& max, float2& P)
+{
     if
-    (
-        (xmin < P.x && xmax > P.x ) && 
-        (ymin < P.y && ymax > P.y )
-    )
-    return true ;
+        (
+            (min.x < P.x && max.x > P.x)
+            &&
+            (min.y < P.y && max.y > P.y)
+            )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
 
-    return false ;
+    }
+
+    return false;
 
 }
 

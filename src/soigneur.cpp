@@ -2,6 +2,7 @@
 #include"soigneur.hpp"
 #include"TowerGame.hpp"
 #include"Collider2D.hpp"
+
 #include"imgui.h"
 #include"calc.hpp"
 
@@ -15,7 +16,7 @@ soigneur::soigneur()
 	this->currentHealth = this->maxHealt;
 	this->pos = {0,0};
 	this->velocity = 90.f;
-	
+	this->healRate = HealRate;
 	
 }
 
@@ -41,9 +42,27 @@ void soigneur::Heal(GameData& data)
 
 
 	
+	ImGui::Text("Healrate %f", healRate);
+	healRate -= data.deltatime;
+
 	for (auto it  = data.enemyVector.begin() ; it != data.enemyVector.end(); it++)
 	{
 		enemy* current = *it;
+	
+		float2 min = this->pos - healBoxSize;
+		float2 max = this->pos + healBoxSize;
+		if (colPoint2dtoAABB2d(min, max, current->pos))
+		{
+			
+			
+			if (healRate <= 0 )
+			{
+				current->currentHealth += 10.f;
+				healRate = HealRate;
+				std::cout << " = " << healRate << " , ";
+			}
+			
+		}
 
 	}
 
@@ -53,6 +72,6 @@ void soigneur::Heal(GameData& data)
 
 void soigneur::UpdateEnemy(GameData& data,bool& erase)
 {
-		pathFollow(data, erase);
+	pathFollow(data, erase);
 	 Heal(data);
 }

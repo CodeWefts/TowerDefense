@@ -4,12 +4,13 @@
 
 struct GameData;
 
-
+#define HealRate 7.5f
 
 class soigneur : public enemy
 {
 public:
 
+	float healRate;
 
 	void Heal(GameData& data) override;
 	void UpdateEnemy(GameData& Data,bool& erase) override;
