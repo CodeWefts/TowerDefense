@@ -31,7 +31,20 @@ bool isOffscreen(const GameData& data, const float2& pos)
 }
 
 
+/*
+void SpawnEnemy(enemy* enemyToSpawn)
+{
+	enemy* enemyToSpawn;
 
+	enemyToSpawn = new costaud();
+	data.level[i].nbrOfHeavy--;
+
+
+	float2 SpawnPoint = ReturnPosfromChar('a', data.map);
+	enemyToSpawn->pos = SpawnPoint;
+	data.enemyVector.push_back(enemyToSpawn);
+}
+*/
 
 
 
@@ -96,40 +109,69 @@ void EnemyManager::ManageWave(GameData& data)
 
 	for (int i = 0; i < nbrOfLevel; i++)
 	{
-		printf("timerLevel = %f \n", data.timerLevel);
 
-
+		
 		if (data.timerLevel <= 0)
 		{
 			data.timerWave -= data.deltatime;
 			if (data.currentWave <= 0 && data.currentWave != data.level[i].nbrOfWave)
 			{
-				//  to do add enemyADD enemy
+				printf("dsfdsf");
+				int nbrofEnemy = data.level[i].nbrOfGringalet + data.level[i].nbrOfHealer + data.level[i].nbrOfHeavy;
+				data.level[i].timerBetweenSpawn -= data.deltatime;
 
-				enemy* enemy = nullptr;
-				if (rand() % TypeOfEnemy == Squishy)
-				{
-					enemy = new gringalet();
-				}
-				else if (rand() % TypeOfEnemy == Healer)
-				{
-					enemy = new soigneur();
-				}
-				else if (rand() % TypeOfEnemy == Heavy)
-				{
-					enemy = new costaud();
+				if (nbrofEnemy >= 0 && data.level[i].timerBetweenSpawn <= 0)
+				{//  to do add enemyADD enemy
+					int random = rand() % TypeOfEnemy;
+					int nbrofHealer = data.level[i].nbrOfHealer;
+					int nbrofSquishy = data.level[i].nbrOfGringalet;
+					int nbrofheavy = data.level[i].nbrOfHeavy;
+
+					enemy* enemyToSpawn;
+					if (random == Squishy && data.level[i].nbrOfGringalet > 0)
+					{
+
+						enemyToSpawn = new gringalet();
+						data.level[i].nbrOfGringalet--;
+						float2 SpawnPoint = ReturnPosfromChar('a', data.map);
+						enemyToSpawn->pos = SpawnPoint;
+						data.enemyVector.push_back(enemyToSpawn);
+					}
+					else if (random == Healer && data.level[i].nbrOfHealer > 0)
+					{
+						enemyToSpawn = new soigneur();
+						data.level[i].nbrOfHealer--;
+						float2 SpawnPoint = ReturnPosfromChar('a', data.map);
+						enemyToSpawn->pos = SpawnPoint;
+						data.enemyVector.push_back(enemyToSpawn);
+					}
+					else if (random == Heavy && data.level[i].nbrOfHeavy > 0)
+					{
+						enemyToSpawn = new costaud();
+						data.level[i].nbrOfHeavy--;
+						float2 SpawnPoint = ReturnPosfromChar('a', data.map);
+						enemyToSpawn->pos = SpawnPoint;
+						data.enemyVector.push_back(enemyToSpawn);
+					}
+					data.level[i].timerBetweenSpawn = Calc::randomFloat(3.5, 7.5);
 				}
 
-				float2 SpawnPoint = ReturnPosfromChar('a', data.map);
-				enemy->pos = SpawnPoint;
-				data.enemyVector.push_back(enemy);
-				data.timerWave = TimerWave;
+					
+				
+					
+				
+				
+				
 
 			}
 
-
-			data.level[i].timerBetweenSpawn = Calc::randomFloat(3.5, 7.5);
-			data.timerLevel = TimerLevel;
+			if (data.level[i].nbrOfGringalet == 0 && data.level[i].nbrOfHealer == 0 && data.level[i].nbrOfHeavy == 0)
+			{
+				data.timerWave = TimerWave;
+				data.timerLevel = TimerLevel;
+			}
+			
+		
 		}
 
 

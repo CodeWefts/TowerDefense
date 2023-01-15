@@ -172,6 +172,9 @@
   <ItemGroup>
     <Font Include="src\3X5_____.TTF" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\checkPointData\lvl1.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

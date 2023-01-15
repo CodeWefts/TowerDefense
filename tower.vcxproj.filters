@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\app.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\imgui_utils.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="externals\src\imgui.cpp">
       <Filter>externals</Filter>
     </ClCompile>
@@ -46,9 +40,6 @@
     <ClCompile Include="src\Vector2D.cpp">
       <Filter>src\Toolbox</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Player.cpp">
       <Filter>src\Player</Filter>
     </ClCompile>
@@ -57,12 +48,6 @@
     </ClCompile>
     <ClCompile Include="src\Tile.cpp">
       <Filter>src\Map\Tiles</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TowerGame.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TowerRenderer.cpp">
-      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\entity.cpp">
       <Filter>src\entity</Filter>
@@ -79,9 +64,6 @@
     <ClCompile Include="src\costaud.cpp">
       <Filter>src\entity\enemy\costaud</Filter>
     </ClCompile>
-    <ClCompile Include="src\EnemyManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ralentissante.cpp">
       <Filter>src\entity\tower\ralentissante</Filter>
     </ClCompile>
@@ -91,14 +73,26 @@
     <ClCompile Include="src\classique.cpp">
       <Filter>src\entity\tower\classique</Filter>
     </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\app.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnemyManager.cpp">
+      <Filter>src\Update</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TowerGame.cpp">
+      <Filter>src\Update</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TowerRenderer.cpp">
+      <Filter>src\Update</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui_utils.cpp">
+      <Filter>src\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\app.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\imgui_utils.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\Tower.hpp">
       <Filter>src\entity\tower</Filter>
     </ClInclude>
@@ -123,15 +117,6 @@
     <ClInclude Include="src\Tile.hpp">
       <Filter>src\Map\Tiles</Filter>
     </ClInclude>
-    <ClInclude Include="src\calc.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TowerGame.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TowerRenderer.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\entity.hpp">
       <Filter>src\entity</Filter>
     </ClInclude>
@@ -147,9 +132,6 @@
     <ClInclude Include="src\costaud.hpp">
       <Filter>src\entity\enemy\costaud</Filter>
     </ClInclude>
-    <ClInclude Include="src\EnemyManager.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\Map.hpp">
       <Filter>src\Map</Filter>
     </ClInclude>
@@ -161,6 +143,24 @@
     </ClInclude>
     <ClInclude Include="src\classique.hpp">
       <Filter>src\entity\tower\classique</Filter>
+    </ClInclude>
+    <ClInclude Include="src\app.hpp">
+      <Filter>src\main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EnemyManager.hpp">
+      <Filter>src\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TowerGame.hpp">
+      <Filter>src\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TowerRenderer.hpp">
+      <Filter>src\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui_utils.hpp">
+      <Filter>src\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\calc.hpp">
+      <Filter>src\Toolbox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +229,18 @@
     </Filter>
     <Filter Include="src\entity\tower\classique">
       <UniqueIdentifier>{03881b5b-825c-47f8-a31e-93b582ac914b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\main">
+      <UniqueIdentifier>{5eb1cc9f-3d72-4769-9b6b-d021ce0cb5b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Update">
+      <UniqueIdentifier>{c35d5001-d7ba-4b71-b5de-d3c7bd0bbb29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\imgui">
+      <UniqueIdentifier>{0069932f-9652-4d38-98fa-d62b2066303c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\checkpointData">
+      <UniqueIdentifier>{333c4d69-c7c7-48e2-8395-4c0ecd2ec2a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -336,5 +348,10 @@
     <Font Include="src\3X5_____.TTF">
       <Filter>assets\hud\Font</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\checkPointData\lvl1.txt">
+      <Filter>src\checkpointData</Filter>
+    </Text>
   </ItemGroup>
 </Project>

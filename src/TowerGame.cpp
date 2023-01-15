@@ -3,6 +3,7 @@
 #include"soigneur.hpp"
 #include "costaud.hpp"
 
+
 using namespace std;
 
 
@@ -70,7 +71,6 @@ GameData::GameData()
 	this->acceleRateTime = 0;
 	this->acceleRateTimeBuffer = 0;
 
-	this->WaveStart = false;
 	this->addEnemy = false;
 	this->playerStopTime = false;
 
@@ -131,13 +131,62 @@ void TowerGame::Debug()
 	if (ImGui::IsKeyPressed(ImGuiKey_E, false))
 	{
 		//PlaySound(gameData.asset.SoundTest);
+	
+		ifstream file;
+		file.open("src/checkPointData/lvl1.txt", std::ios::in);  // write
+		
+		if (file.is_open())
+		{
+			
+			for (int i = 0; i < 3;i++)
+			{
+				int size = 0;
+				file >> size;
 
+				
+			
+			
+				for (int  k = 0; k < size; k++)
+				{
+					float2 ptr = { 0,0 };
+					file >> ptr.x;
+
+					file >> ptr.y;
+					gameData.listOfRoad[i].push_back(ptr);
+				}
+				
+
+				
+				
+				
+					
+			}
+			file.close();
+		}
 	}
 
 	if (ImGui::IsKeyPressed(ImGuiKey_Z, false))
 	{
-		gameData.WaveStart = !gameData.WaveStart;
-		cout << "Start  = " << gameData.WaveStart << endl;
+		//Load Data 
+		ofstream file;
+		file.open("src/checkPointData/lvl1.txt", std::ios::out);  // write
+
+		if (file.is_open())
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				file << gameData.listOfRoad[i].size() << std::endl;
+				for (auto it = gameData.listOfRoad[i].begin(); it != gameData.listOfRoad[i].end(); it++)
+				{
+					file << it->x << std::endl;
+					file << it->y << std::endl;
+				}
+				//file << EndOfVector << std::endl;
+			}
+			file.close();
+		}
+	
+		
 	}
 
 
@@ -150,31 +199,6 @@ void TowerGame::Debug()
 		enemy1->path = Path0;
 
 		gameData.enemyVector.push_back(enemy1);
-		/*
-		*
-
-		/*
-				enemy* enemy2 = new soigneur();
-
-		enemy2->pos = ReturnCenterTile(0, 6, gameData.map);
-		enemy2->path = Path2;
-
-		gameData.enemyVector.push_back(enemy2);
-
-
-
-		enemy* enemy3 = new soigneur();
-
-		enemy3->pos = ReturnCenterTile(0, 6, gameData.map);
-		enemy3->pos.y += 20;
-		enemy3->path = Path3;
-
-		gameData.enemyVector.push_back(enemy3);
-
-		*/
-
-
-
 
 	}
 	if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft, false))
@@ -192,9 +216,32 @@ void TowerGame::Debug()
 			gameData.listOfRoad[2].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
 		}
 
-
 	}
 
+	if (ImGui::Begin("CheckPoint",nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	{
+		ImGui::Text("ROAD 0");
+		for (auto it = gameData.listOfRoad[0].begin(); it != gameData.listOfRoad[0].end(); it++)
+		{
+			ImGui::Text(" Road 1 x = %f , y = %f ", it->x, it->y);
+			
+
+		}
+		ImGui::Text("  \n ");
+		ImGui::Text("ROAD 1");
+		for (auto it = gameData.listOfRoad[1].begin(); it != gameData.listOfRoad[1].end(); it++)
+		{
+			ImGui::Text(" Road 2 x = %f , y =  %f ", it->x, it->y);
+		}
+		ImGui::Text("  \n ");
+		ImGui::Text("ROAD 2");
+		for (auto it = gameData.listOfRoad[2].begin(); it != gameData.listOfRoad[2].end(); it++)
+		{
+			ImGui::Text("Road 3 x = %f , y = %f", it->x, it->y);
+		}
+	};
+	ImGui::End();
+	
 
 }
 

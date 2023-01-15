@@ -1,5 +1,6 @@
 #pragma once
 #include<vector>
+#include<fstream>
 #include "imgui_utils.hpp"
 
 #include "Map.hpp"
@@ -10,6 +11,7 @@
 
 #include"soigneur.hpp"
 
+#define EndOfVector '$'
 
 #define TimerLevel 20.f
 #define TimerWave 15.f
@@ -66,7 +68,6 @@ struct GameData
 {
 
 	bool addEnemy;
-	bool WaveStart;
 	bool enableDebug;
 	bool playerStopTime;
 
