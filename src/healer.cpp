@@ -1,17 +1,16 @@
 
-#include"soigneur.hpp"
-#include"TowerGame.hpp"
+#include"Healer.hpp"
+#include"tower_game.hpp"
 #include"Collider2D.hpp"
 
 #include"imgui.h"
 #include"calc.hpp"
 
 
-
-soigneur::soigneur()
+Healer::Healer()
 {
-	this->name = "soigneur";
-	this->maxHealt = 100;
+	this->name = "Healer";
+	this->maxHealt = 200;
 	this->damageToPlayer = 100;
 	this->currentHealth = this->maxHealt;
 	this->pos = { 0,0 };
@@ -20,12 +19,12 @@ soigneur::soigneur()
 
 }
 
-soigneur::~soigneur()
+Healer::~Healer()
 {
 }
 
 
-void soigneur::DrawDebug(ImDrawList& dl)
+void Healer::DrawDebug(ImDrawList& dl)
 {
 	float2 enemypos = this->pos;
 
@@ -33,7 +32,7 @@ void soigneur::DrawDebug(ImDrawList& dl)
 }
 
 
-void soigneur::Heal(GameData& data)
+void Healer::Heal(GameData& data)
 {
 	//ImDrawList* boxhealer = ImGui::GetBackgroundDrawList();
 
@@ -47,22 +46,26 @@ void soigneur::Heal(GameData& data)
 
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
 	{
+
 		enemy* current = *it;
+
+
 
 		float2 min = this->pos - healBoxSize;
 		float2 max = this->pos + healBoxSize;
-		if (colPoint2dtoAABB2d(min, max, current->pos))
+
+		// Not DIED
+
+
+		if (colPoint2dtoAABB2d(min, max, current->pos) && current->currentHealth <= maxHealt && healRate <= 0)
 		{
-
-
-			if (healRate <= 0)
-			{
-				current->currentHealth += 10.f;
-				healRate = HealRate;
-				std::cout << " = " << healRate << " , ";
-			}
-
+			current->currentHealth += 10;
+			healRate = HealRate;
 		}
+
+
+
+
 
 	}
 
@@ -70,7 +73,7 @@ void soigneur::Heal(GameData& data)
 
 
 
-void soigneur::UpdateEnemy(GameData& data, bool& erase)
+void Healer::UpdateEnemy(GameData& data, bool& erase)
 {
 	pathFollow(data, erase);
 	Heal(data);

@@ -3,13 +3,13 @@
 #include<fstream>
 #include "imgui_utils.hpp"
 
-#include "Map.hpp"
-#include "TowerRenderer.hpp"
-#include "EnemyManager.hpp"
-#include "Player.hpp"
+#include "map.hpp"
+#include "tower_renderer.hpp"
+#include "enemy_manager.hpp"
+#include "player.hpp"
 #include "Tower.hpp"
 
-#include"soigneur.hpp"
+#include"Healer.hpp"
 
 #define EndOfVector '$'
 
@@ -55,6 +55,7 @@ struct Asset
 
 
 	Asset();
+	
 
 };
 
@@ -101,7 +102,7 @@ struct GameData
 
 	ImGuiIO& io = ImGui::GetIO();
 	ImDrawList* dl;
-	ImFont* font;
+	//ImFont* font;
 
 	Level level[nbrOfLevel];
 
@@ -115,7 +116,16 @@ class TowerGame
 public:
 
 
-	
+	void GameInit();
+	void Debug();
+
+	void UpdateAndDraw();
+
+
+
+	TowerGame();
+	~TowerGame();
+protected:
 
 	GameData gameData;
 
@@ -123,15 +133,7 @@ public:
 	TowerRenderer renderer;
 
 
-	void GameInit();
-	void Debug();
-
-	void UpdateAndDraw();
-	TowerGame();
-	~TowerGame();
-
-
-
+	
 private:
 
 

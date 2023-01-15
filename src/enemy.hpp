@@ -9,24 +9,17 @@ struct GameData;
 #define IsIncenter 4.0
 
 
-enum PathNbr : int
-{
-	Path0 = 0,
-	Path1,
-	Path2
-};
-
-
 
 
 class enemy : public entity
 {
 public:
 
+	bool erase = false;
+
 	int maxHealt;
 	int currentHealth;
 	int damageToPlayer;
-	int path;
 
 	std::string name;
 	Texture texture;
@@ -41,7 +34,6 @@ public:
 	float2 ReturnCheckPoint(GameData& data, int& checkPoint);
 
 
-	void pathFollow(GameData& data, bool& erase);
 	void DrawSlider(ImDrawList& dl);
 	virtual void DrawDebug(ImDrawList& dl);
 	virtual void UpdateEnemy(GameData& data, bool& erase);
@@ -51,6 +43,11 @@ public:
 
 	enemy();
 	~enemy();
+
+protected:
+	void pathFollow(GameData& data, bool& erase);
+
+
 
 private:
 

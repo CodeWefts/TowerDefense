@@ -1,15 +1,15 @@
-#include"EnemyManager.hpp"
-#include "TowerGame.hpp"
-#include"calc.hpp"
-#include"Calcul.hpp"
-#include"Map.hpp"
-#include"costaud.hpp"
-#include"gringalet.hpp"
+#include "enemy_manager.hpp"
+#include "tower_game.hpp"
+#include "calc.hpp"
+#include "Calcul.hpp"
+#include "map.hpp"
+#include "heavy.hpp"
+#include "weakling.hpp"
 
 
-#define Squishy 0
-#define Healer 1
-#define Heavy 2
+#define Squishy_def 0
+#define Healer_def 1
+#define Heavy_def 2
 
 
 
@@ -31,20 +31,7 @@ bool isOffscreen(const GameData& data, const float2& pos)
 }
 
 
-/*
-void SpawnEnemy(enemy* enemyToSpawn)
-{
-	enemy* enemyToSpawn;
 
-	enemyToSpawn = new costaud();
-	data.level[i].nbrOfHeavy--;
-
-
-	float2 SpawnPoint = ReturnPosfromChar('a', data.map);
-	enemyToSpawn->pos = SpawnPoint;
-	data.enemyVector.push_back(enemyToSpawn);
-}
-*/
 
 
 
@@ -94,7 +81,7 @@ void EnemyManager::ManageWave(GameData& data)
 			{
 				for (int i = 0; i < 3; i++)
 				{
-					ptr[i] = new costaud();
+					ptr[i] = new Heavy();
 					ptr[i]->pos = { ReturnCenterTile(0, 6,data.map).x + 40 * i,ReturnCenterTile(0, 6,data.map).y };
 					ptr[i]->roadChoice = rand() % 3;
 					data.enemyVector.push_back(ptr[i]);
@@ -116,43 +103,39 @@ void EnemyManager::ManageWave(GameData& data)
 			data.timerWave -= data.deltatime;
 			if (data.currentWave <= 0 && data.currentWave != data.level[i].nbrOfWave)
 			{
-				printf("dsfdsf");
 				int nbrofEnemy = data.level[i].nbrOfGringalet + data.level[i].nbrOfHealer + data.level[i].nbrOfHeavy;
 				data.level[i].timerBetweenSpawn -= data.deltatime;
 
 				if (nbrofEnemy >= 0 && data.level[i].timerBetweenSpawn <= 0)
 				{//  to do add enemyADD enemy
 					int random = rand() % TypeOfEnemy;
-					int nbrofHealer = data.level[i].nbrOfHealer;
-					int nbrofSquishy = data.level[i].nbrOfGringalet;
-					int nbrofheavy = data.level[i].nbrOfHeavy;
-
+					float2 SpawnPoint = ReturnPosfromChar('a', data.map);
 					enemy* enemyToSpawn;
-					if (random == Squishy && data.level[i].nbrOfGringalet > 0)
+
+					if (random == Squishy_def && data.level[i].nbrOfGringalet > 0)
 					{
 
-						enemyToSpawn = new gringalet();
+						enemyToSpawn = new Weakling();
 						data.level[i].nbrOfGringalet--;
-						float2 SpawnPoint = ReturnPosfromChar('a', data.map);
 						enemyToSpawn->pos = SpawnPoint;
-						data.enemyVector.push_back(enemyToSpawn);
+						enemyToSpawn->roadChoice = rand() % 3;
 					}
-					else if (random == Healer && data.level[i].nbrOfHealer > 0)
+					else if (random == Healer_def && data.level[i].nbrOfHealer > 0)
 					{
-						enemyToSpawn = new soigneur();
+						enemyToSpawn = new Healer();
 						data.level[i].nbrOfHealer--;
-						float2 SpawnPoint = ReturnPosfromChar('a', data.map);
 						enemyToSpawn->pos = SpawnPoint;
-						data.enemyVector.push_back(enemyToSpawn);
+						enemyToSpawn->roadChoice = rand() % 3;
 					}
-					else if (random == Heavy && data.level[i].nbrOfHeavy > 0)
+					else if (random == Heavy_def && data.level[i].nbrOfHeavy > 0)
 					{
-						enemyToSpawn = new costaud();
+						enemyToSpawn = new Heavy();
 						data.level[i].nbrOfHeavy--;
-						float2 SpawnPoint = ReturnPosfromChar('a', data.map);
 						enemyToSpawn->pos = SpawnPoint;
-						data.enemyVector.push_back(enemyToSpawn);
+						enemyToSpawn->roadChoice = rand() % 3;
+						
 					}
+					data.enemyVector.push_back(enemyToSpawn);
 					data.level[i].timerBetweenSpawn = Calc::randomFloat(3.5, 7.5);
 				}
 
@@ -196,7 +179,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end();)
 	{
 		enemy* current = *it;
-		bool erase = false;
+	
 
 
 		if (current->currentHealth > current->maxHealt)
@@ -207,16 +190,17 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		// Erase if off Screen
 		if (isOffscreen(data, current->pos) || current->currentHealth <= 0)
 		{
-			erase = true;
+			current->erase = true;
 		}
 
-		current->UpdateEnemy(data, erase);
+		current->UpdateEnemy(data, current->erase);
 
-		if (erase && it != data.enemyVector.end())
+		
+		if (current->erase && it != data.enemyVector.end())
 		{
 			it = data.enemyVector.erase(it);
 		}
-		else if (erase && it == data.enemyVector.begin())
+		else if (current->erase && it == data.enemyVector.begin())
 		{
 			it = data.enemyVector.erase(it);
 		}
@@ -224,6 +208,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		{
 			it++;
 		}
+		
 
 	}
 

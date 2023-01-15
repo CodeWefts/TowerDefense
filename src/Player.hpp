@@ -23,16 +23,20 @@ public:
 	int typeTower;
 
 
-
-
-
-
 	void PlayerTile(GameData& gamedata);
 	void PlayerInput(GameData& gamedata);
 	void DragAndDrop(GameData& gamedata);
 
+
+
 	Player();
 	~Player();
+
+protected:
+
+
+
+	
 
 private:
 

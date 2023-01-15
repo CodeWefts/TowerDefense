@@ -12,6 +12,14 @@ using namespace std;
 
 
 
+enum PathNbr : int
+{
+	Path0 = 0,
+	Path1,
+	Path2
+};
+
+
 
 
 
@@ -20,7 +28,7 @@ class Map
 {
 public:
 
-	ImGuiIO* io;
+
 
 	float Tilesize;
 
@@ -38,7 +46,7 @@ public:
 	~Map();
 
 private:
-
+	ImGuiIO* io;
 };
 
 

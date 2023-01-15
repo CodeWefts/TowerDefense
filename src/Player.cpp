@@ -1,12 +1,13 @@
-#include "Player.hpp"
-#include"TowerGame.hpp"
-#include"Map.hpp"
+
+#include <vector>
+#include "player.hpp"
+#include "tower_game.hpp"
+#include "map.hpp"
 
 #include "classique.hpp"
 #include "explosive.hpp"
 #include "ralentissante.hpp"
 
-#include <vector>
 
 
 
@@ -17,25 +18,25 @@ void Player::PlayerTile(GameData& gamedata)
 {
 	ImGuiIO& io2 = ImGui::GetIO();
 
-	int MouseX = io2.MousePos.x;
-	int MouseY = io2.MousePos.y;
+	int MouseX = int(io2.MousePos.x);
+	int MouseY = int(io2.MousePos.y);
 
-	int TileSize = gamedata.map.Tilesize;
+	int TileSize = int(gamedata.map.Tilesize);
 
-	int TileMouseX = ReturnTileIndexX(MouseX, gamedata.map);
-	int TileMouseY = ReturnTileIndexX(MouseY, gamedata.map);
-
-
-	int TileMinX = ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).x;
-	int TileMinY = ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).y;
+	int TileMouseX = int(ReturnTileIndexX(MouseX, gamedata.map));
+	int TileMouseY = int(ReturnTileIndexX(MouseY, gamedata.map));
 
 
+	int TileMinX = int(ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).x);
+	int TileMinY = int(ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).y);
 
-	int TileMaxX = ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).x;
+
+
+	int TileMaxX = int(ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).x);
 
 	//float2 Tilemax = ReturntopLeft(TileMouseX, TileMouseY, gamedata.map);
 
-	int TileMaxY = ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).y;
+	int TileMaxY = int(ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).y);
 
 
 

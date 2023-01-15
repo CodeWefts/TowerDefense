@@ -1,7 +1,8 @@
-﻿#include"TowerGame.hpp"
-#include"calc.hpp"
-#include"soigneur.hpp"
-#include "costaud.hpp"
+﻿#include "tower_game.hpp"
+#include "calc.hpp"
+#include "Healer.hpp"
+#include "heavy.hpp"
+#include "weakling.hpp"
 
 
 using namespace std;
@@ -88,7 +89,7 @@ GameData::GameData()
 	this->timerLevel = TimerLevel;
 	this->timerWave = TimerWave;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < nbrOfLevel; i++)
 	{
 		level[i].nbrOfWave = 3 + (i * 2);
 		level[i].nbrOfGringalet = 10 + (i * 5);
@@ -207,14 +208,27 @@ void TowerGame::Debug()
 	// work
 	if (ImGui::IsKeyPressed(ImGuiKey_A, false))
 	{
-		enemy* enemy1 = new costaud();
+		enemy* enemy1 = new Healer();
 
 		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
-		enemy1->path = Path0;
+		enemy1->roadChoice = Path0;
 
 		gameData.enemyVector.push_back(enemy1);
 
 	}
+
+	if (ImGui::IsKeyPressed(ImGuiKey_Q, false))
+	{
+		enemy* enemy1 = new Weakling();
+
+		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
+		enemy1->roadChoice = Path0;
+
+		gameData.enemyVector.push_back(enemy1);
+
+	}
+
+
 	if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft, false))
 	{
 		if (ImGui::IsKeyDown(ImGuiKey_V))

@@ -1,7 +1,7 @@
 #pragma once
-#include<vector>
-#include"enemy.hpp"
-#include"Calcul.hpp"
+#include <vector>
+#include "enemy.hpp"
+#include "Calcul.hpp"
 
 
 

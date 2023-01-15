@@ -40,10 +40,10 @@
     <ClCompile Include="src\Vector2D.cpp">
       <Filter>src\Toolbox</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
+    <ClCompile Include="src\player.cpp">
       <Filter>src\Player</Filter>
     </ClCompile>
-    <ClCompile Include="src\Map.cpp">
+    <ClCompile Include="src\map.cpp">
       <Filter>src\Map</Filter>
     </ClCompile>
     <ClCompile Include="src\Tile.cpp">
@@ -55,13 +55,13 @@
     <ClCompile Include="src\enemy.cpp">
       <Filter>src\entity\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="src\soigneur.cpp">
+    <ClCompile Include="src\healer.cpp">
       <Filter>src\entity\enemy\soigneur</Filter>
     </ClCompile>
-    <ClCompile Include="src\gringalet.cpp">
+    <ClCompile Include="src\weakling.cpp">
       <Filter>src\entity\enemy\gringalet</Filter>
     </ClCompile>
-    <ClCompile Include="src\costaud.cpp">
+    <ClCompile Include="src\heavy.cpp">
       <Filter>src\entity\enemy\costaud</Filter>
     </ClCompile>
     <ClCompile Include="src\ralentissante.cpp">
@@ -79,13 +79,13 @@
     <ClCompile Include="src\app.cpp">
       <Filter>src\main</Filter>
     </ClCompile>
-    <ClCompile Include="src\EnemyManager.cpp">
+    <ClCompile Include="src\enemy_manager.cpp">
       <Filter>src\Update</Filter>
     </ClCompile>
-    <ClCompile Include="src\TowerGame.cpp">
+    <ClCompile Include="src\tower_game.cpp">
       <Filter>src\Update</Filter>
     </ClCompile>
-    <ClCompile Include="src\TowerRenderer.cpp">
+    <ClCompile Include="src\tower_renderer.cpp">
       <Filter>src\Update</Filter>
     </ClCompile>
     <ClCompile Include="src\imgui_utils.cpp">
@@ -111,7 +111,7 @@
     <ClInclude Include="src\Vector2D.hpp">
       <Filter>src\Toolbox</Filter>
     </ClInclude>
-    <ClInclude Include="src\Player.hpp">
+    <ClInclude Include="src\player.hpp">
       <Filter>src\Player</Filter>
     </ClInclude>
     <ClInclude Include="src\Tile.hpp">
@@ -123,16 +123,16 @@
     <ClInclude Include="src\enemy.hpp">
       <Filter>src\entity\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\soigneur.hpp">
+    <ClInclude Include="src\healer.hpp">
       <Filter>src\entity\enemy\soigneur</Filter>
     </ClInclude>
-    <ClInclude Include="src\gringalet.hpp">
+    <ClInclude Include="src\weakling.hpp">
       <Filter>src\entity\enemy\gringalet</Filter>
     </ClInclude>
-    <ClInclude Include="src\costaud.hpp">
+    <ClInclude Include="src\heavy.hpp">
       <Filter>src\entity\enemy\costaud</Filter>
     </ClInclude>
-    <ClInclude Include="src\Map.hpp">
+    <ClInclude Include="src\map.hpp">
       <Filter>src\Map</Filter>
     </ClInclude>
     <ClInclude Include="src\ralentissante.hpp">
@@ -147,13 +147,13 @@
     <ClInclude Include="src\app.hpp">
       <Filter>src\main</Filter>
     </ClInclude>
-    <ClInclude Include="src\EnemyManager.hpp">
+    <ClInclude Include="src\enemy_manager.hpp">
       <Filter>src\Update</Filter>
     </ClInclude>
-    <ClInclude Include="src\TowerGame.hpp">
+    <ClInclude Include="src\tower_game.hpp">
       <Filter>src\Update</Filter>
     </ClInclude>
-    <ClInclude Include="src\TowerRenderer.hpp">
+    <ClInclude Include="src\tower_renderer.hpp">
       <Filter>src\Update</Filter>
     </ClInclude>
     <ClInclude Include="src\imgui_utils.hpp">

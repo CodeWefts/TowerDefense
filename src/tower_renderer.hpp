@@ -1,5 +1,8 @@
 #pragma once
+#include<iostream>
+#include<string>
 #include "imgui_utils.hpp"
+
 
 struct GameData;
 

@@ -6,14 +6,17 @@
 struct GameData;
 
 
-class gringalet : public enemy
+class Weakling : public enemy
 {
 public:
 
+
+
+
 	 void UpdateEnemy(GameData& data,bool& erase) override;
 
-	gringalet();
-	~gringalet();
+	Weakling();
+	~Weakling();
 
 private:
 

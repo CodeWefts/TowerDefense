@@ -5,18 +5,19 @@
 
 struct GameData;
 
-class costaud : public enemy
+class Heavy : public enemy
 {
 public:
 	
 
+	int indexStaticDebugCostaud;
 
 
 	void UpdateEnemy(GameData& data,bool& erase) override;
 
 	
-	costaud();
-	~costaud();
+	Heavy();
+	~Heavy();
 
 private:
 

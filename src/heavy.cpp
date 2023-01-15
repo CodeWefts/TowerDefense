@@ -1,11 +1,12 @@
-#include"costaud.hpp"
-#include"TowerGame.hpp"
+#include"Heavy.hpp"
+#include"tower_game.hpp"
 #include"calc.hpp"
 
 
-costaud::costaud()
+Heavy::Heavy()
 {
-	this->name = "costaud";
+
+	this->name = "Heavy";
 	this->maxHealt = 400;
 	this->currentHealth = 400;
 	this->pos = { 0,0 };
@@ -14,13 +15,13 @@ costaud::costaud()
 
 }
 
-costaud::~costaud()
+Heavy::~Heavy()
 {
 
 }
 
 
-void costaud::UpdateEnemy(GameData& data,bool& erase)
+void Heavy::UpdateEnemy(GameData& data,bool& erase)
 {
 	pathFollow(data, erase);
 }

@@ -1,27 +1,29 @@
 
-#include"gringalet.hpp"
-#include"TowerGame.hpp"
+#include"weakling.hpp"
+#include"tower_game.hpp"
 #include"calc.hpp"
 #include"Calcul.hpp"
 #include"float2.hpp"
 
-gringalet::gringalet()
+
+
+Weakling::Weakling()
 {
-	this->name = "gringalet";
+	this->name = "Weakling";
 	this->currentHealth = 100;
 	this->damageToPlayer = 200;
 	this->maxHealt = 100;
 	this->pos = { 0,0 };
-	this->velocity = 130.f;
+	this->velocity = 90.f;
 
 }
 
-gringalet::~gringalet()
+Weakling::~Weakling()
 {
 }
 
 
-void gringalet::UpdateEnemy(GameData& data,bool& erase)
+void Weakling::UpdateEnemy(GameData& data,bool& erase)
 {
 	pathFollow(data, erase);
 

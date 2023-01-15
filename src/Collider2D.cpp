@@ -41,22 +41,18 @@ bool colbetween2AABBS(const Point2D& Amin, const Point2D& Amax, const Point2D& B
 
 }
 
-bool colPoint2dtoAABB2d(float2& min, float2& max, float2& P)
+bool colPoint2dtoAABB2d(const float2& min, const float2& max, const float2& P)
 {
     if
         (
-            (min.x < P.x && max.x > P.x)
+            (min.x <= P.x && max.x >= P.x)
             &&
-            (min.y < P.y && max.y > P.y)
+            (min.y <= P.y && max.y >= P.y)
             )
     {
         return true;
     }
-    else
-    {
-        return false;
-
-    }
+  
 
     return false;
 

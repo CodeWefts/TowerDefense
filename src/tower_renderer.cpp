@@ -1,10 +1,9 @@
 
 #include "Point2D.hpp"
-#include "TowerGame.hpp"
-#include "TowerRenderer.hpp"
-#include"Calcul.hpp"
-#include"float2.hpp"
-
+#include "tower_game.hpp"
+#include "tower_renderer.hpp"
+#include "Calcul.hpp"
+#include "float2.hpp"
 
 
 
@@ -180,19 +179,19 @@ void TowerRenderer::drawEnemies(GameData& data)
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureSoigneur;
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy + 15, ImVec2(0, 0), ImVec2(0.35, 0.25), IM_COL32(255, 255, 255, 255));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy + 15, ImVec2(0, 0), ImVec2(0.35f, 0.25f), IM_COL32(255, 255, 255, 255));
 		}
-		else if (currentEnemy->name == "costaud")
+		else if (currentEnemy->name == "Heavy")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureCostaud2;
 			data.dl->AddImage(currentEnemy->texture.id, enemy - 30, enemy += 30, ImVec2(0, 0), ImVec2(1, 1), IM_COL32(255, 255, 255, 255));
 		}
-		else if (currentEnemy->name == "gringalet")
+		else if (currentEnemy->name == "Weakling")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureGringalet;
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 30, enemy += 30, ImVec2(0, 0), ImVec2(0.35, 0.25), IM_COL32(255, 255, 255, 255));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 30, enemy += 30, ImVec2(0, 0), ImVec2(0.35f, 0.25f), IM_COL32(255, 255, 255, 255));
 		}
 
 
@@ -266,7 +265,16 @@ void TowerRenderer::DrawHud(GameData& data)
 
 	data.dl->AddImage(data.asset.PlayerHeart.id, float2(2.5, 2.5), float2(75, 75));
 
-	//data.dl->AddText(float2(10, 70), IM_COL32(255, 255, 255, 255), "sqdsqdqsdqsdsq", NULL);
+
+	
+
+	//Print Player Coins
+	string playerCoins = std::to_string(data.player.coins);
+	data.dl->AddText(float2(20, 100), IM_COL32(255, 255, 255, 255), playerCoins.c_str());
+	
+	string playerHeatl = std::to_string(data.player.health);
+	data.dl->AddText(float2(100, 100), IM_COL32(255, 255, 255, 255), playerHeatl.c_str());
+	
 
 }
 
