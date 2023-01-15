@@ -100,6 +100,16 @@ GameData::GameData()
 
 }
 
+GameData::~GameData()
+{
+	for ( auto it = enemyVector.begin();  it != enemyVector.end();  it++)
+	{
+		delete *it;
+	}
+
+}
+
+
 //this->font = io.Fonts->AddFontFromFileTTF("C:\Data\Isart\Projet\C++\2022_tower_gp2027_tower-debon\src\3X5_____.TTF", 16.f, NULL, io.Fonts->GetGlyphRangesDefault());
 //this->font = nullptr;
 
@@ -206,7 +216,7 @@ void TowerGame::Debug()
 
 
 	// work
-	if (ImGui::IsKeyPressed(ImGuiKey_A, false))
+	if (ImGui::IsKeyDown(ImGuiKey_A))
 	{
 		enemy* enemy1 = new Healer();
 

@@ -44,10 +44,17 @@ void Healer::Heal(GameData& data)
 	ImGui::Text("Healrate %f", healRate);
 	healRate -= data.deltatime;
 
+	
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
 	{
 
 		enemy* current = *it;
+		if (current->erase)
+		{
+			it++;
+			current = *it;
+		}
+			
 
 
 
@@ -56,8 +63,8 @@ void Healer::Heal(GameData& data)
 
 		// Not DIED
 
-
-		if (colPoint2dtoAABB2d(min, max, current->pos) && current->currentHealth <= maxHealt && healRate <= 0)
+		if (current->currentHealth <= maxHealt && healRate <= 0 && colPoint2dtoAABB2d(min, max, current->pos)
+			)
 		{
 			current->currentHealth += 10;
 			healRate = HealRate;

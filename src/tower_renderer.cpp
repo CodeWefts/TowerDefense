@@ -175,7 +175,7 @@ void TowerRenderer::drawEnemies(GameData& data)
 		float2 enemy = currentEnemy->pos;
 
 
-		if (currentEnemy->name == "soigneur")
+		if (currentEnemy->name == "Healer")
 		{
 			//std::cout << " x = " << currentEnemy->pos.x << "y = " << currentEnemy->pos.y << std::endl;
 			currentEnemy->texture = data.asset.textureSoigneur;

@@ -107,6 +107,7 @@ struct GameData
 	Level level[nbrOfLevel];
 
 	GameData();
+	~GameData();
 
 };
 
