@@ -58,7 +58,7 @@ void Player::PlayerTile(GameData& gamedata)
 void Player::PlayerInput(GameData& gamedata)
 {
 
-	if (ImGui::IsKeyPressed(ImGuiKey_N, false))
+	if (ImGui::IsKeyPressed(ImGuiKey_Tab, false))
 	{
 
 		gamedata.enableDebug = not gamedata.enableDebug;

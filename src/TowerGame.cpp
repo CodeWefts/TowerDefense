@@ -82,7 +82,8 @@ GameData::GameData()
 	this->deltatime = 0.f;
 	this->dl = nullptr;
 
-	currentWave = 0;
+	this->currentScene = Menu;
+	this->currentWave = 0;
 	this->currentLevel = 0;
 	this->timerLevel = TimerLevel;
 	this->timerWave = TimerWave;
@@ -112,6 +113,19 @@ void TowerGame::GameInit()
 
 void TowerGame::Debug()
 {
+
+
+	ImGui::Text("Time %f", gameData.deltatime);
+	ImGui::Text("vectorsise %d", gameData.enemyVector.size());
+	ImGui::Text(" Press V gameData.listOfRoad[0] = %d", gameData.listOfRoad[0].size());
+	ImGui::Text(" Press B gameData.listOfRoad[1] = %d", gameData.listOfRoad[1].size());
+	ImGui::Text(" Press N gameData.listOfRoad[2] = %d ", gameData.listOfRoad[2].size());
+
+	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
+	ImGui::Text("Wavetimer = %f ", gameData.timerWave);
+
+
+
 
 	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
 	{
@@ -253,31 +267,40 @@ void TowerGame::UpdateAndDraw()
 	gameData.deltatime = io.DeltaTime * gameData.acceleRateTime;
 	this->gameData.dl = ImGui::GetBackgroundDrawList();
 
+	if (gameData.currentScene == Menu)
+	{
+		renderer.DrawMenu(gameData);
+	}
+	else if (gameData.currentScene == Game)
+	{
+
+		gameData.map.CreateMap();
+		enemyManager.ManageEnemy(gameData);
+
+		renderer.RendererGame(gameData);
+
+		gameData.player.PlayerTile(gameData);
+		gameData.player.PlayerInput(gameData);
+
+		renderer.HudInventory(gameData);
+		//gameData.player.DragAndDrop(gameData);
+
+		Debug();
+	}
+	else if (gameData.currentScene == Option)
+	{
+
+	}
 
 
-	ImGui::Text("Time %f", gameData.deltatime);
-	ImGui::Text("vectorsise %d", gameData.enemyVector.size());
-	ImGui::Text(" Press V gameData.listOfRoad[0] = %d", gameData.listOfRoad[0].size());
-	ImGui::Text(" Press B gameData.listOfRoad[1] = %d", gameData.listOfRoad[1].size());
-	ImGui::Text(" Press N gameData.listOfRoad[2] = %d ", gameData.listOfRoad[2].size());
-
-	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
-	ImGui::Text("Wavetimer = %f ", gameData.timerWave);
 
 
 
-	gameData.map.CreateMap();
-	enemyManager.ManageEnemy(gameData);
 
-	renderer.RendererGame(gameData);
 
-	gameData.player.PlayerTile(gameData);
-	gameData.player.PlayerInput(gameData);
 
-	renderer.HudInventory(gameData);
-	//gameData.player.DragAndDrop(gameData);
 
-	Debug();
+
 
 
 }

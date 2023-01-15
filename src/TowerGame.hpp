@@ -58,7 +58,13 @@ struct Asset
 
 };
 
+enum Scene  : int
+{
+	Menu,
+	Option,
+	Game,
 
+};
 
 
 
@@ -76,6 +82,7 @@ struct GameData
 	int acceleRateTime;
 	float deltatime;
 
+	int currentScene;
 	int currentLevel;
 	int currentWave;
 	float timerWave;
@@ -108,7 +115,7 @@ class TowerGame
 public:
 
 
-
+	
 
 	GameData gameData;
 

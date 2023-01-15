@@ -305,22 +305,44 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 	}
 
 }
+void TowerRenderer::DrawMenu(GameData& data)
+{
+	if(ImGui::Begin("dqsdsq", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	{
+		bool game = false;
+		ImGui::Checkbox("Game", &game);
+		
+			if(game)
+			{
+				data.currentScene = Game;
+			}
 
+	}
+	ImGui::End();
+
+		
+	
+
+}
 
 void TowerRenderer::DrawCheckPoint(GameData& data)
 {
-	for (auto it = data.listOfRoad[0].begin(); it != data.listOfRoad[0].end(); it++)
+	if (data.enableDebug)
 	{
-		data.dl->AddCircle(*it, 15.f, IM_COL32(255, 0, 0, 255), 32, 2.f);
+		for (auto it = data.listOfRoad[0].begin(); it != data.listOfRoad[0].end(); it++)
+		{
+			data.dl->AddCircle(*it, 15.f, IM_COL32(255, 0, 0, 255), 32, 2.f);
+		}
+		for (auto it = data.listOfRoad[1].begin(); it != data.listOfRoad[1].end(); it++)
+		{
+			data.dl->AddCircle(*it, 15.f, IM_COL32(0, 255, 0, 255), 32, 2.f);
+		}
+		for (auto it = data.listOfRoad[2].begin(); it != data.listOfRoad[2].end(); it++)
+		{
+			data.dl->AddCircle(*it, 15.f, IM_COL32(0, 0, 255, 255), 32, 2.f);
+		}
 	}
-	for (auto it = data.listOfRoad[1].begin(); it != data.listOfRoad[1].end(); it++)
-	{
-		data.dl->AddCircle(*it, 15.f, IM_COL32(0, 255, 0, 255), 32, 2.f);
-	}
-	for (auto it = data.listOfRoad[2].begin(); it != data.listOfRoad[2].end(); it++)
-	{
-		data.dl->AddCircle(*it, 15.f, IM_COL32(0, 0, 255, 255), 32, 2.f);
-	}
+	
 }
 
 

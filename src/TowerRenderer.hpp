@@ -8,6 +8,12 @@ class TowerRenderer
 public:
 
 
+	//Menu
+	void DrawMenu(GameData& data);
+
+
+
+	// Game
 	void drawEnemies(GameData& data);
 
 	void drawMap(GameData& data);
