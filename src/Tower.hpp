@@ -1,40 +1,33 @@
-#include<iostream>
-#include"entity.hpp"
+#pragma once
+#include "imgui_utils.hpp"
+#include <iostream>
 
+struct GameData;
 
-class Tower : public entity
+enum TowerChoice : int
 {
-public:  
-	
-	
-	/*
+	CLASSIQUE,
+	RALENTISSANTE,
+	EXPLOSIVE,
+};
+
+class Tower
+{
+public:
+
 	std::string name;
-	
-	bool isSelected;
-	bool aimFirst;
-	bool aimClosest;
-	bool aimLast;
+	Texture texture;
 
-	bool isSell;
-	bool showInfo;
-
-	bool upgrade;
-
-
-	int range;
-	int damage;
+	int type;
 	int cost;
-	*/
+	bool placed;
 
-	// enemy target ;
+	int TileX, TileY;
+	int range;
 
 
-
-	
 	Tower();
 	~Tower();
-
-private:
-
+	//functions
 };
 

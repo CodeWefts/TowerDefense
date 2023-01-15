@@ -4,17 +4,17 @@
 
 #include"Calcul.hpp"
 
-bool colPoint2dtoSS2d(const Point2D& p ,const Point2D& C, float rC );
+bool colPoint2dtoSS2d(const Point2D& p, const Point2D& C, float rC);
 
-bool colSStoSS2d(const Point2D& C1, float rC1 ,const Point2D& C2, float rC2);
+bool colSStoSS2d(const Point2D& C1, float rC1, const Point2D& C2, float rC2);
 
-bool colPoint2dtoAABB2d (const  float& xmin , const  float& xmax, const  float& ymin , const  float& ymax , const Point2D& P );
+bool colPoint2dtoAABB2d(float2& min, float2& max, float2& P);
+
 
 bool colSStoAABB(float2& Amin, float2& Amax, float2& C, float& rC);
 
-bool colbetween2AABBS (const Point2D& Amin , const Point2D& Amax , const Point2D& Bmin , const Point2D& Bmax );
+bool colbetween2AABBS(const Point2D& Amin, const Point2D& Amax, const Point2D& Bmin, const Point2D& Bmax);
 
-bool colPoint2dtoAABB2d (const float& xmin , const float& xmax, const float& ymin , const float& ymax , const Point2D& P);
 
 
 

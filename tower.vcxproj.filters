@@ -82,6 +82,15 @@
     <ClCompile Include="src\EnemyManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ralentissante.cpp">
+      <Filter>src\entity\tower\ralentissante</Filter>
+    </ClCompile>
+    <ClCompile Include="src\explosive.cpp">
+      <Filter>src\entity\tower\explosive</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classique.cpp">
+      <Filter>src\entity\tower\classique</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.hpp">
@@ -144,6 +153,15 @@
     <ClInclude Include="src\Map.hpp">
       <Filter>src\Map</Filter>
     </ClInclude>
+    <ClInclude Include="src\ralentissante.hpp">
+      <Filter>src\entity\tower\ralentissante</Filter>
+    </ClInclude>
+    <ClInclude Include="src\explosive.hpp">
+      <Filter>src\entity\tower\explosive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classique.hpp">
+      <Filter>src\entity\tower\classique</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -202,6 +220,15 @@
     </Filter>
     <Filter Include="assets\hud\Font">
       <UniqueIdentifier>{06aa7244-347f-4cf8-bd76-b6099e94c3fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\explosive">
+      <UniqueIdentifier>{899f2ac3-42fa-433f-a070-3f93497a565e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\ralentissante">
+      <UniqueIdentifier>{39e459b8-3a82-4ed6-a008-a04ee3155963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\classique">
+      <UniqueIdentifier>{03881b5b-825c-47f8-a31e-93b582ac914b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
