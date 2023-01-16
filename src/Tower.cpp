@@ -1,4 +1,5 @@
-﻿
+﻿#include <math.h>
+
 #include "tower_game.hpp"
 #include"Tower.hpp"
 

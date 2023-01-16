@@ -27,6 +27,7 @@ void TowerGame::UpdateAndDraw()
 
 	if (gameData.currentScene == Menu)
 	{
+		gameData.time += io.DeltaTime;
 		renderer.DrawMenu(gameData);
 	}
 	else if (gameData.currentScene == Game)
@@ -35,16 +36,14 @@ void TowerGame::UpdateAndDraw()
 
 		gameData.map.CreateMap(gameData);
 		enemyManager.ManageEnemy(gameData);
-		towerManger.TargetEnemy(gameData);
+		towerManager.TargetEnemy(gameData);
 		
-
-
 		renderer.RendererGame(gameData);
 
-		
 		renderer.HudInventory(gameData);
-		
 		gameData.player.UpdatePlayer(gameData);
+		tower.TargetEnemy(gameData);
+
 
 		Debug(gameData);
 	}

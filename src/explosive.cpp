@@ -9,6 +9,9 @@ Explosive::Explosive()
 	this->TileY = 0;
 	this->cost = 50;
 	this->range = 2; // range per tile
+	this->damage = 10;
+	this->fireRate = 0.5f;
+
 }
 
 Explosive::~Explosive()

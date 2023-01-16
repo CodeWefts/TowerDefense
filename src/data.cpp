@@ -294,6 +294,7 @@ Asset::Asset()
 
 	//MENU : START GAME
 	textureAnimation = ImGuiUtils::LoadTexture("assets/menu/Animation.png");
+	textureMenuHUD = ImGuiUtils::LoadTexture("assets/menu/menuHUD.png");
 
 
 
@@ -313,27 +314,12 @@ GameData::GameData()
 	this->acceleRateTime = 1;
 	this->enableDebug = false;
 
-
-
 	this->deltatime = 0.f;
 	this->dl = nullptr;
 
 	this->currentScene = Menu;
 	this->currentWave = 0;
 	this->currentLevel = 0;
-
-
-
-	/*
-	for (int i = 0; i < nbrOfLevel; i++)
-	{
-		level[i].nbrOfWave = 3 + (i * 2);
-		level[i].nbrOfWeakling = 10 + (i * 5);
-		level[i].nbrOfHealer = 2 + (i * 2);
-		level[i].nbrOfHeavy = 3 + (i * 4);
-		level[i].timerBetweenSpawn = 0;
-	}
-	*/
 
 	for (int i = 0; i < nbrOfLevel; i++)
 	{

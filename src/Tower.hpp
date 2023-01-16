@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 #include "imgui_utils.hpp"
 #include "entity.hpp"
 

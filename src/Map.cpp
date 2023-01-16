@@ -6,18 +6,8 @@
 #include"enemy.hpp"
 
 
-
-
 #define mapWidth 18
 #define mapHeight 10
-
-
-
-
-
-
-
-
 
 
 
@@ -30,7 +20,6 @@ void MapClass::LoadMap(string& newMap)
 		{
 			int idx = ReturnIndexIncharMap(x, y, *this);
 
-			
 			if (Tiles.size() != mapHeight * mapWidth)
 			{
 				Tile tile;
@@ -40,7 +29,6 @@ void MapClass::LoadMap(string& newMap)
 			{
 				Tiles.at(idx).Texture_type = newMap[idx];
 			}
-			
 		}
 	}
 }
@@ -48,15 +36,6 @@ void MapClass::LoadMap(string& newMap)
 
 void MapClass::CreateMap(GameData& data)
 {
-
-
-	/*
-	* Width = mapWidth;
-	Height = mapHeight;
-
-	*/
-
-	
 
 	if(data.currentLevel == 0)
 	{
@@ -91,12 +70,6 @@ void MapClass::CreateMap(GameData& data)
 
 		LoadMap(mapLvl2);
 	}
-
-
-
-
-
-
 }
 
 
@@ -107,15 +80,11 @@ MapClass::MapClass()
 	this->Width = mapWidth;
 	Tilesize = 72.f;
 	origin = { 0,0 };
-	
-
 }
 
 MapClass::~MapClass()
 {
 }
-
-
 
 int ReturnTileIndexX(int x, MapClass& map)
 {
@@ -127,12 +96,10 @@ int ReturnTileIndexY(int y, MapClass& map)
 	return int(y / map.Tilesize);
 }
 
-
 int ReturnIndexIncharMap(int x, int y, MapClass& map)
 {
 	return x + y * map.Width;
 }
-
 
 float2 ReturnTileMax(int indexX, int indexY, MapClass& map)
 {
@@ -145,9 +112,6 @@ float2 ReturnTileMin(int indexX, int indexY, MapClass& map)
 	return { map.origin.x + (indexX * map.Tilesize),(indexY * map.Tilesize) };
 }
 
-
-
-
 float2 ReturnCenter(const float2& Max, const float2& Min)
 {
 	return { (Max + Min) };
@@ -159,8 +123,6 @@ float2 ReturnCenterTile(int indexX, int indexY, MapClass& map)
 
 }
 
-
-
 float2 ReturnPosfromChar(char c, MapClass& map)
 {
 	int idx = 0;
@@ -171,17 +133,10 @@ float2 ReturnPosfromChar(char c, MapClass& map)
 			// char
 			idx = ReturnIndexIncharMap(x, y, map);
 
-
 			if (map.map[idx] == c)
 			{
-				
-
 				return ReturnCenterTile(x, y, map);
 			}
-
-
-
-
 		}
 	}
 	return { 0,0 };

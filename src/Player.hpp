@@ -43,5 +43,3 @@ protected:
 private:
 
 };
-
-//void DrawTower(ImTextureID textureID, float Min, float Max);

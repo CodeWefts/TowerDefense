@@ -7,17 +7,6 @@
 #include "float2.hpp"
 
 
-
-
-
-
-
-
-
-
-
-
-
 void TowerRenderer::drawMap(GameData& data)
 {
 	static float tileSize = data.map.Tilesize;
@@ -299,14 +288,6 @@ void DrawRangeTurret(GameData& data)
 
 
 
-
-
-
-
-
-
-
-
 void TowerRenderer::DrawPlacedTurret(GameData& data)
 {
 	// TO-DO OPTIMISATION OF IF
@@ -344,22 +325,59 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 	DrawRangeTurret(data);
 
 }
+
+void TowerRenderer::DrawAnimation(GameData& data)
+{
+	ImU32 col = ImColor(255, 255, 255, data.transparence);
+
+	if (data.time >= data.transparenceTime)
+	{
+		col = ImColor(255, 255, 255, data.transparence);
+		data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax, ImVec2(0, 0), ImVec2(1, 1), col);
+
+		data.transparence += 1;
+		data.transparenceTime += 0.0005f;
+	}
+}
+
 void TowerRenderer::DrawMenu(GameData& data)
 {
-	if(ImGui::Begin("dqsdsq", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	ImGui::Text("Timer : %f ", data.time);
+	ImGui::Text("Transparency : %f ", data.transparence);
+	ImGui::Text("changeTimeTransparency : %f ", data.transparenceTime);
+
+
+	if (data.transparence < 255)
 	{
-		bool game = false;
-		ImGui::Checkbox("Game", &game);
-		
-			if(game)
-			{
-				data.currentScene = Game;
-			}
+		DrawAnimation(data);
+	}
+
+	else
+	{
+		data.dl->AddImage(data.asset.textureMenuHUD.id, { 230.5, 180 }, { 999.5, 700 });
+		data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax);
+
+		ImGui::Text("MIN : %f ", data.posAnimationMin.y);
+		ImGui::Text("MAX : %f ", data.posAnimationMax.y);
+
+		if (data.posAnimationMin.y > 50.f)
+		{
+			data.posAnimationMin.y -= 0.75f;
+			data.posAnimationMax.y -= 0.75f;
+		}
+
+
 
 	}
-	ImGui::End();
 
-		
+
+
+	bool game = false;
+	ImGui::Checkbox("Game", &game);
+	if (game)
+	{
+		data.currentScene = Game;
+	}
 	
 
 }

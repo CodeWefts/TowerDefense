@@ -1,8 +1,5 @@
 #pragma once
 
-
-
-
 struct GameData;
 
 class EnemyWave

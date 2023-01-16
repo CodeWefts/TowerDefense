@@ -51,7 +51,7 @@ struct Asset
 		//texture hud INVENTORY TOWER
 		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
 
-		textureAnimation;
+		textureAnimation, textureMenuHUD;
 
 
 
@@ -90,7 +90,13 @@ struct GameData
 	int currentWave;
 	float timerWave;
 	float timerLevel;
+		
+	float transparenceTime = 0.f;
+	float time = 0.f, timeMove = 2.f;
+	int transparence = 0;
 
+	ImVec2 posAnimationMin = { 56, 305 }; // y - 255 = 50
+	ImVec2 posAnimationMax = { 1296 - 56,720 - 305 }; // y + 255 =  720 - (305 + 256)
 
 	vector<float2> listOfRoad[NbrOfRoad];
 

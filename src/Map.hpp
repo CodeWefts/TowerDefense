@@ -6,15 +6,8 @@
 #include "imgui_utils.hpp"
 
 
-
-
-
 struct GameData;
 using namespace std;
-
-
-
-
 
 enum PathNbr : int
 {
@@ -23,30 +16,16 @@ enum PathNbr : int
 	Path2
 };
 
-
-
-
-
-
 class MapClass
 {
 public:
 
-
-
 	float Tilesize;
-
-
-
 
 	string map;
 
-
 	string mapLvl1;
 	string mapLvl2;
-
-	
-
 
 	int Height;
 	int Width;
@@ -63,17 +42,11 @@ private:
 };
 
 
-
-
-
 float2 ReturnTileMax(int indexX, int indexY, MapClass& map);
 float2 ReturnTileMin(int indexX, int indexY, MapClass& map);
 float2 ReturnPosfromChar(char c, MapClass& map);
 float2 ReturnCenter(const float2& Max, const float2& Min);
 float2 ReturnCenterTile(int indexX, int indexY, MapClass& map);
-
-
-
 
 
 int  ReturnTileIndexX(int x, MapClass& map);
