@@ -8,15 +8,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 void TowerRenderer::drawMap(GameData& data)
 {
 	static float tileSize = data.map.Tilesize;
@@ -156,9 +147,6 @@ void TowerRenderer::drawMap(GameData& data)
 
 }
 
-
-
-
 void TowerRenderer::drawEnemies(GameData& data)
 {
 	//ImDrawList* data.dl = ImGui::GetBackgroundDrawList();
@@ -204,8 +192,6 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 	}
 }
-
-
 
 void TowerInInventoryHUD(GameData& data)
 {
@@ -278,9 +264,22 @@ void TowerRenderer::DrawHud(GameData& data)
 
 }
 
+void DrawRangeTurret(GameData& data)
+{
+	for (std::vector<Tower*>::iterator it = data.towerVector.begin(); it != data.towerVector.end(); it++)
+	{
+		Tower* currentTower = *it;
+		//currentTower->TileX
+
+		ImVec2 centerTower = { (float)currentTower->TileX + 36,(float)currentTower->TileY + 36 };
+
+		data.dl->AddCircle(centerTower, (float)currentTower->range * 72 + 36, IM_COL32(0, 255, 255, 255));
+	}
+}
+
 void TowerRenderer::DrawPlacedTurret(GameData& data)
 {
-	ImDrawList* enemydrawlist = ImGui::GetBackgroundDrawList();
+	// TO-DO OPTIMISATION OF IF
 
 	for (std::vector<Tower*>::iterator it = data.towerVector.begin(); it != data.towerVector.end(); it++)
 	{
@@ -288,11 +287,9 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 
 		if (currentTower->type == 0)
 		{
-			//std::cout << "Tile X :: " << currentTower->TileX << std::endl;
-			//std::cout << "Tile Y :: " << currentTower->TileY << std::endl;
-
 			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
 			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
+			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
 			currentTower->texture = data.asset.textureTowerClassique;
 			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
 		}
@@ -300,6 +297,7 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 		{
 			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
 			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
+			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
 			currentTower->texture = data.asset.textureTowerExplosive;
 			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
 		}
@@ -307,29 +305,68 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 		{
 			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
 			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
+			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
 			currentTower->texture = data.asset.textureTowerRalentissante;
 			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
 		}
 	}
 
+	DrawRangeTurret(data);
+
 }
+
+void TowerRenderer::DrawAnimation(GameData& data)
+{
+	ImU32 col = ImColor(255, 255, 255, data.transparence);
+
+	if (data.time >= data.transparenceTime)
+	{
+		col = ImColor(255, 255, 255, data.transparence);
+		data.dl->AddImage(data.asset.textureAnimation.id,data.posAnimationMin, data.posAnimationMax, ImVec2(0,0), ImVec2(1,1), col);
+
+		data.transparence += 1;
+		data.transparenceTime += 0.0005f;
+	}
+}
+
 void TowerRenderer::DrawMenu(GameData& data)
 {
-	if(ImGui::Begin("dqsdsq", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+	ImGui::Text("Timer : %f ", data.time);
+	ImGui::Text("Transparency : %f ", data.transparence);
+	ImGui::Text("changeTimeTransparency : %f ", data.transparenceTime);
+	
+
+	if (data.transparence < 255)
 	{
-		bool game = false;
-		ImGui::Checkbox("Game", &game);
+		DrawAnimation(data);
+	}
+
+	else
+	{
+		data.dl->AddImage(data.asset.textureMenuHUD.id, { 230.5, 180 }, { 999.5, 700 });
+		data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax);
+
+		ImGui::Text("MIN : %f ", data.posAnimationMin.y);
+		ImGui::Text("MAX : %f ", data.posAnimationMax.y);
 		
-			if(game)
-			{
-				data.currentScene = Game;
-			}
+		if (data.posAnimationMin.y > 50.f)
+		{
+			data.posAnimationMin.y -= 0.75f;
+			data.posAnimationMax.y -= 0.75f;
+		}
+
+		
 
 	}
-	ImGui::End();
 
-		
-	
+
+
+	bool game = false;
+	ImGui::Checkbox("Game", &game);
+	if(game)
+	{
+		data.currentScene = Game;
+	}
 
 }
 

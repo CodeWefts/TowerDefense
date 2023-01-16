@@ -9,6 +9,8 @@ Classique::Classique()
 	this->TileY = 0;
 	this->cost = 25;
 	this->range = 1; // range per tile
+	this->damage = 10;
+	this->fireRate = .5f;
 }
 
 Classique::~Classique()

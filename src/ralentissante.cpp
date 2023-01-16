@@ -9,6 +9,8 @@ Ralentissante::Ralentissante()
 	this->TileY = 0;
 	this->cost = 150;
 	this->range = 2; // range per tile
+	this->damage = 20;
+	this->fireRate = .5f;
 }
 
 Ralentissante::~Ralentissante()

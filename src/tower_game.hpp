@@ -51,7 +51,7 @@ struct Asset
 		//texture hud INVENTORY TOWER
 		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
 
-		textureAnimation;
+		textureAnimation, textureMenuHUD;
 
 
 
@@ -69,11 +69,11 @@ enum Scene  : int
 };
 
 
-
-
-
 struct GameData
 {
+
+	ImGuiIO& io = ImGui::GetIO();
+	ImDrawList* dl;
 
 	bool addEnemy;
 	bool enableDebug;
@@ -90,6 +90,13 @@ struct GameData
 	float timerWave;
 	float timerLevel;
 
+	float transparenceTime=0.f;
+	float time = 0.f , timeMove = 2.f;
+	int transparence = 0;
+
+
+	ImVec2 posAnimationMin = { 56, 305 }; // y - 255 = 50
+	ImVec2 posAnimationMax = { 1296 - 56,720 - 305 }; // y + 255 =  720 - (305 + 256)
 
 	vector<float2> listOfRoad[NbrOfRoad];
 
@@ -101,8 +108,6 @@ struct GameData
 	MapClass map;
 	Player player;
 
-	ImGuiIO& io = ImGui::GetIO();
-	ImDrawList* dl;
 	//ImFont* font;
 
 	Level level[nbrOfLevel];
@@ -131,6 +136,7 @@ protected:
 
 	GameData gameData;
 
+	Tower tower;
 	EnemyManager enemyManager;
 	TowerRenderer renderer;
 

@@ -135,20 +135,21 @@
     <ClInclude Include="src\Vector2D.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\ennemies\costaud\costaud1.png" />
-    <Image Include="assets\ennemies\costaud\costaud10.png" />
-    <Image Include="assets\ennemies\costaud\costaud11.png" />
-    <Image Include="assets\ennemies\costaud\costaud12.png" />
-    <Image Include="assets\ennemies\costaud\costaud2.png" />
-    <Image Include="assets\ennemies\costaud\costaud3.png" />
-    <Image Include="assets\ennemies\costaud\costaud4.png" />
-    <Image Include="assets\ennemies\costaud\costaud5.png" />
-    <Image Include="assets\ennemies\costaud\costaud6.png" />
-    <Image Include="assets\ennemies\costaud\costaud7.png" />
-    <Image Include="assets\ennemies\costaud\costaud8.png" />
-    <Image Include="assets\ennemies\costaud\costaud9.png" />
-    <Image Include="assets\ennemies\gringalet.png" />
-    <Image Include="assets\ennemies\soigneur.png" />
+    <Image Include="assets\ennemy\costaud\costaud1 - Copie.png" />
+    <Image Include="assets\ennemy\costaud\costaud1.png" />
+    <Image Include="assets\ennemy\costaud\costaud10.png" />
+    <Image Include="assets\ennemy\costaud\costaud11.png" />
+    <Image Include="assets\ennemy\costaud\costaud12.png" />
+    <Image Include="assets\ennemy\costaud\costaud2.png" />
+    <Image Include="assets\ennemy\costaud\costaud3.png" />
+    <Image Include="assets\ennemy\costaud\costaud4.png" />
+    <Image Include="assets\ennemy\costaud\costaud5.png" />
+    <Image Include="assets\ennemy\costaud\costaud6.png" />
+    <Image Include="assets\ennemy\costaud\costaud7.png" />
+    <Image Include="assets\ennemy\costaud\costaud8.png" />
+    <Image Include="assets\ennemy\costaud\costaud9.png" />
+    <Image Include="assets\ennemy\gringalet.png" />
+    <Image Include="assets\ennemy\soigneur.png" />
     <Image Include="assets\hud\pixel-heart-png.png" />
     <Image Include="assets\hud\SideLeft.png" />
     <Image Include="assets\hud\SideRight.png" />
@@ -167,6 +168,8 @@
     <Image Include="assets\map\pathTopANDRight.png" />
     <Image Include="assets\map\pathTopLeft.png" />
     <Image Include="assets\map\pathTopRight.png" />
+    <Image Include="assets\menu\Animation.png" />
+    <Image Include="assets\menu\menuHUD.png" />
     <Image Include="assets\tower\tower.png" />
   </ItemGroup>
   <ItemGroup>

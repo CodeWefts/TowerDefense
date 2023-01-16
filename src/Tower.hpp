@@ -1,6 +1,8 @@
 #pragma once
-#include "imgui_utils.hpp"
 #include <iostream>
+
+#include "imgui_utils.hpp"
+#include "entity.hpp"
 
 struct GameData;
 
@@ -11,7 +13,7 @@ enum TowerChoice : int
 	EXPLOSIVE,
 };
 
-class Tower
+class Tower : public entity
 {
 public:
 
@@ -25,9 +27,16 @@ public:
 	int TileX, TileY;
 	int range;
 
+	int damage;
+	float fireRate;
+
+	float timer = 0;
 
 	Tower();
 	~Tower();
+
 	//functions
+	void TargetEnemy(GameData& data);
+
 };
 

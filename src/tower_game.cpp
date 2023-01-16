@@ -29,24 +29,24 @@ Asset::Asset()
 	texturePathTopRight = ImGuiUtils::LoadTexture("assets/map/pathTopRight.png");
 
 	//ENNEMY 1 : GRINGALET
-	textureGringalet = ImGuiUtils::LoadTexture("assets/ennemies/gringalet.png");
+	textureGringalet = ImGuiUtils::LoadTexture("assets/ennemy/gringalet.png");
 
 	//ENNEMY 2 : SOIGNEUR
-	textureSoigneur = ImGuiUtils::LoadTexture("assets/ennemies/soigneur.png");
+	textureSoigneur = ImGuiUtils::LoadTexture("assets/ennemy/soigneur.png");
 
 	//ENNEMY 3 : COSTAUD
-	textureCostaud1 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud1.png");
-	textureCostaud2 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud2.png");
-	textureCostaud3 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud3.png");
-	textureCostaud4 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud4.png");
-	textureCostaud5 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud5.png");
-	textureCostaud6 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud6.png");
-	textureCostaud7 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud7.png");
-	textureCostaud8 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud8.png");
-	textureCostaud9 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud9.png");
-	textureCostaud10 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud10.png");
-	textureCostaud11 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud11.png");
-	textureCostaud12 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud12.png");
+	textureCostaud1 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud1.png");
+	textureCostaud2 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud2.png");
+	textureCostaud3 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud3.png");
+	textureCostaud4 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud4.png");
+	textureCostaud5 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud5.png");
+	textureCostaud6 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud6.png");
+	textureCostaud7 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud7.png");
+	textureCostaud8 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud8.png");
+	textureCostaud9 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud9.png");
+	textureCostaud10 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud10.png");
+	textureCostaud11 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud11.png");
+	textureCostaud12 = ImGuiUtils::LoadTexture("assets/ennemy/costaud/costaud12.png");
 
 	//TOWER 1 : TOWER
 	textureTowerClassique = ImGuiUtils::LoadTexture("assets/tower/classique.png");
@@ -60,8 +60,7 @@ Asset::Asset()
 
 	//MENU : START GAME
 	textureAnimation = ImGuiUtils::LoadTexture("assets/menu/Animation.png");
-
-
+	textureMenuHUD = ImGuiUtils::LoadTexture("assets/menu/menuHUD.png");
 
 
 }
@@ -110,9 +109,6 @@ GameData::~GameData()
 }
 
 
-//this->font = io.Fonts->AddFontFromFileTTF("C:\Data\Isart\Projet\C++\2022_tower_gp2027_tower-debon\src\3X5_____.TTF", 16.f, NULL, io.Fonts->GetGlyphRangesDefault());
-//this->font = nullptr;
-
 
 
 void TowerGame::GameInit()
@@ -136,10 +132,6 @@ void TowerGame::Debug()
 	ImGui::Text("nbr of weakling = %d ", gameData.level->nbrOfWeakling);
 	ImGui::Text("nbr of Heavy %d ", gameData.level->nbrOfHeavy);
 	ImGui::Text("nbr of Healer %d ", gameData.level->nbrOfHealer);
-
-
-
-
 
 	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
 	{
@@ -171,9 +163,6 @@ void TowerGame::Debug()
 				int size = 0;
 				file >> size;
 
-				
-			
-			
 				for (int  k = 0; k < size; k++)
 				{
 					float2 ptr = { 0,0 };
@@ -182,12 +171,7 @@ void TowerGame::Debug()
 					file >> ptr.y;
 					gameData.listOfRoad[i].push_back(ptr);
 				}
-				
-
-				
-				
-				
-					
+		
 			}
 			file.close();
 		}
@@ -293,9 +277,13 @@ void TowerGame::UpdateAndDraw()
 	ImGuiIO& io = ImGui::GetIO();
 	gameData.deltatime = io.DeltaTime * gameData.acceleRateTime;
 	this->gameData.dl = ImGui::GetBackgroundDrawList();
+	
+	//ImGui::Text("Timer : %f ", gameData.deltatime);
 
 	if (gameData.currentScene == Menu)
 	{
+		gameData.time += io.DeltaTime;
+
 		renderer.DrawMenu(gameData);
 	}
 	else if (gameData.currentScene == Game)
@@ -310,7 +298,8 @@ void TowerGame::UpdateAndDraw()
 		gameData.player.PlayerInput(gameData);
 
 		renderer.HudInventory(gameData);
-		//gameData.player.DragAndDrop(gameData);
+		gameData.player.DragAndDrop(gameData);
+		tower.TargetEnemy(gameData);
 
 		Debug();
 	}

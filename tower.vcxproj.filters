@@ -197,9 +197,6 @@
     <Filter Include="assets\map">
       <UniqueIdentifier>{48a70928-ea77-4e9e-83fc-211ddf0a81b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="assets\ennemies">
-      <UniqueIdentifier>{f76e22c6-0810-46aa-8f3c-f3636b849843}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\entity\enemy\soigneur">
       <UniqueIdentifier>{760df93d-ef4d-4588-874d-91dbde4fb751}</UniqueIdentifier>
     </Filter>
@@ -208,9 +205,6 @@
     </Filter>
     <Filter Include="src\entity\enemy\costaud">
       <UniqueIdentifier>{45d1a5ce-8df9-4667-a2e4-e7faa5027dc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="assets\ennemies\costaud">
-      <UniqueIdentifier>{dca6fa54-cc80-447a-91f0-25b6d1696c00}</UniqueIdentifier>
     </Filter>
     <Filter Include="assets\tower">
       <UniqueIdentifier>{5c8d566c-4478-4c8a-a10f-5411244eb0e4}</UniqueIdentifier>
@@ -241,6 +235,21 @@
     </Filter>
     <Filter Include="src\checkpointData">
       <UniqueIdentifier>{333c4d69-c7c7-48e2-8395-4c0ecd2ec2a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\menu">
+      <UniqueIdentifier>{db02e2a7-8b51-4c06-a3ae-3be1eed17c38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\enemy">
+      <UniqueIdentifier>{fc02d661-91c6-4ec9-9b34-a759e6eb1834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\enemy\costaud">
+      <UniqueIdentifier>{e513a503-5292-4bb2-b002-ccd7fd7ca0b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\enemy\gringalet">
+      <UniqueIdentifier>{57d791da-2843-4369-b8c1-31df8b62cccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\enemy\soigneur">
+      <UniqueIdentifier>{3592aa4d-a8da-4aa0-8186-67f3268c3236}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -286,48 +295,6 @@
     <Image Include="assets\map\pathTopRight.png">
       <Filter>assets\map</Filter>
     </Image>
-    <Image Include="assets\ennemies\gringalet.png">
-      <Filter>assets\ennemies</Filter>
-    </Image>
-    <Image Include="assets\ennemies\soigneur.png">
-      <Filter>assets\ennemies</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud1.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud2.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud3.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud4.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud5.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud6.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud7.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud8.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud9.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud10.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud11.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
-    <Image Include="assets\ennemies\costaud\costaud12.png">
-      <Filter>assets\ennemies\costaud</Filter>
-    </Image>
     <Image Include="assets\tower\tower.png">
       <Filter>assets\tower</Filter>
     </Image>
@@ -342,6 +309,57 @@
     </Image>
     <Image Include="assets\hud\pixel-heart-png.png">
       <Filter>assets\hud</Filter>
+    </Image>
+    <Image Include="assets\menu\Animation.png">
+      <Filter>assets\menu</Filter>
+    </Image>
+    <Image Include="assets\menu\menuHUD.png">
+      <Filter>assets\menu</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud1 - Copie.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud1.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud2.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud3.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud4.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud5.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud6.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud7.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud8.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud9.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud10.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud11.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\costaud\costaud12.png">
+      <Filter>assets\enemy\costaud</Filter>
+    </Image>
+    <Image Include="assets\ennemy\gringalet.png">
+      <Filter>assets\enemy\gringalet</Filter>
+    </Image>
+    <Image Include="assets\ennemy\soigneur.png">
+      <Filter>assets\enemy\soigneur</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
