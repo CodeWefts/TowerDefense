@@ -34,14 +34,6 @@ void Healer::DrawDebug(ImDrawList& dl)
 
 void Healer::Heal(GameData& data)
 {
-	//ImDrawList* boxhealer = ImGui::GetBackgroundDrawList();
-
-
-	//boxhealer->AddRect( pos - HealBoxMax, pos + HealBoxMax, IM_COL32(0, 255, 0, 255));
-
-
-
-	ImGui::Text("Healrate %f", healRate);
 	healRate -= data.deltatime;
 
 	
@@ -49,15 +41,14 @@ void Healer::Heal(GameData& data)
 	{
 
 		enemy* current = *it;
-		if (current->erase)
+		/*
+		* if (current->erase)
 		{
 			it++;
 			current = *it;
 		}
-			
-
-
-
+		
+		*/
 		float2 min = this->pos - healBoxSize;
 		float2 max = this->pos + healBoxSize;
 

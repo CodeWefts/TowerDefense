@@ -12,7 +12,7 @@ struct GameData;
 
 struct Level
 {
-	int nbrOfGringalet;
+	int nbrOfWeakling;
 	int nbrOfHealer;
 	int nbrOfHeavy;
 
@@ -28,6 +28,7 @@ class EnemyManager
 public:
 
 
+	void SpawnEnemy(GameData& data, const int& index);
 	void ManageWave(GameData& data);
 	void MoveEnemyPath(GameData& data);
 	void ManageEnemy(GameData& data);

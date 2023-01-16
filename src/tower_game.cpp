@@ -92,7 +92,7 @@ GameData::GameData()
 	for (int i = 0; i < nbrOfLevel; i++)
 	{
 		level[i].nbrOfWave = 3 + (i * 2);
-		level[i].nbrOfGringalet = 10 + (i * 5);
+		level[i].nbrOfWeakling = 10 + (i * 5);
 		level[i].nbrOfHealer = 2 + (i * 2);
 		level[i].nbrOfHeavy = 3 + (i * 4);
 		level[i].timerBetweenSpawn = 0;
@@ -131,9 +131,12 @@ void TowerGame::Debug()
 	ImGui::Text(" Press V gameData.listOfRoad[0] = %d", gameData.listOfRoad[0].size());
 	ImGui::Text(" Press B gameData.listOfRoad[1] = %d", gameData.listOfRoad[1].size());
 	ImGui::Text(" Press N gameData.listOfRoad[2] = %d ", gameData.listOfRoad[2].size());
-
 	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
 	ImGui::Text("Wavetimer = %f ", gameData.timerWave);
+	ImGui::Text("nbr of weakling = %d ", gameData.level->nbrOfWeakling);
+	ImGui::Text("nbr of Heavy %d ", gameData.level->nbrOfHeavy);
+	ImGui::Text("nbr of Healer %d ", gameData.level->nbrOfHealer);
+
 
 
 
@@ -216,7 +219,7 @@ void TowerGame::Debug()
 
 
 	// work
-	if (ImGui::IsKeyDown(ImGuiKey_A))
+	if (ImGui::IsKeyPressed(ImGuiKey_A,false))
 	{
 		enemy* enemy1 = new Healer();
 

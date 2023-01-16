@@ -16,6 +16,7 @@
 #define TimerLevel 20.f
 #define TimerWave 15.f
 #define nbrOfLevel 5
+#define NbrOfRoad 3
 
 
 
@@ -90,14 +91,14 @@ struct GameData
 	float timerLevel;
 
 
-	vector<float2> listOfRoad[3];
+	vector<float2> listOfRoad[NbrOfRoad];
 
 
 	vector<Tower*> towerVector;
 	vector<enemy*> enemyVector;
 
 	Asset asset;
-	Map map;
+	MapClass map;
 	Player player;
 
 	ImGuiIO& io = ImGui::GetIO();

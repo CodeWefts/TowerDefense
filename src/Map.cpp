@@ -13,7 +13,7 @@
 
 
 
-void Map::CreateMap()
+void MapClass::CreateMap()
 {
 
 
@@ -108,7 +108,7 @@ void Map::CreateMap()
 }
 
 
-Map::Map()
+MapClass::MapClass()
 {
 	Tilesize = 72.f;
 	origin = { 0,0 };
@@ -126,36 +126,36 @@ Map::Map()
 		"                  ";
 }
 
-Map::~Map()
+MapClass::~MapClass()
 {
 }
 
 
 
-int ReturnTileIndexX(int x, Map& map)
+int ReturnTileIndexX(int x, MapClass& map)
 {
 	return (x / int(map.Tilesize) % map.Width);
 }
 
-int ReturnTileIndexY(int y, Map& map)
+int ReturnTileIndexY(int y, MapClass& map)
 {
 	return y / map.Tilesize;
 }
 
 
-int ReturnIndexIncharMap(int x, int y, Map& map)
+int ReturnIndexIncharMap(int x, int y, MapClass& map)
 {
 	return x + y * map.Width;
 }
 
 
-float2 ReturnTileMax(int indexX, int indexY, Map& map)
+float2 ReturnTileMax(int indexX, int indexY, MapClass& map)
 {
 
 	return  { (indexX * map.Tilesize) + map.Tilesize,(indexY * map.Tilesize) + map.Tilesize };
 };
 
-float2 ReturnTileMin(int indexX, int indexY, Map& map)
+float2 ReturnTileMin(int indexX, int indexY, MapClass& map)
 {
 	return { map.origin.x + (indexX * map.Tilesize),(indexY * map.Tilesize) };
 }
@@ -168,7 +168,7 @@ float2 ReturnCenter(const float2& Max, const float2& Min)
 	return { (Max + Min) };
 }
 
-float2 ReturnCenterTile(int indexX, int indexY, Map& map)
+float2 ReturnCenterTile(int indexX, int indexY, MapClass& map)
 {
 	return { ReturnTileMax(indexX,indexY,map).x - map.Tilesize / 2 , ReturnTileMax(indexX,indexY,map).y - map.Tilesize / 2 };
 
@@ -176,7 +176,7 @@ float2 ReturnCenterTile(int indexX, int indexY, Map& map)
 
 
 
-float2 ReturnPosfromChar(char c, Map& map)
+float2 ReturnPosfromChar(char c, MapClass& map)
 {
 	int idx = 0;
 	for (int y = 0; y < map.Height; ++y)

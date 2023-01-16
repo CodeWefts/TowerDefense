@@ -11,6 +11,10 @@
 #define Healer_def 1
 #define Heavy_def 2
 
+#define TimeBetweenSpawnMin 5.5f
+#define TimeBetweenSpawnMax 7.5f
+
+
 
 
 
@@ -29,6 +33,54 @@ bool isOffscreen(const GameData& data, const float2& pos)
 
 	return  false;
 }
+
+
+
+
+
+void EnemyManager::SpawnEnemy(GameData& data,const int& index)
+{
+
+	int random = rand() % TypeOfEnemy;
+	float2 SpawnPoint = ReturnPosfromChar('a', data.map);
+	int roadChoice = rand() % NbrOfRoad;
+
+
+	if (random == Squishy_def && data.level[index].nbrOfWeakling > 0)
+	{
+		enemy* currentEnemy;
+		currentEnemy = new Weakling();
+		data.level[index].nbrOfWeakling--;
+		currentEnemy->pos = SpawnPoint;
+		currentEnemy->roadChoice = roadChoice;
+		data.enemyVector.push_back(currentEnemy);
+
+
+	}
+	else if (random == Healer_def && data.level[index].nbrOfHealer > 0)
+	{
+		enemy* currentEnemy;
+		currentEnemy = new Healer();
+		data.level[index].nbrOfHealer--;
+		currentEnemy->pos = SpawnPoint;
+		currentEnemy->roadChoice = roadChoice;
+		data.enemyVector.push_back(currentEnemy);
+
+
+	}
+	else if (random == Heavy_def && data.level[index].nbrOfHeavy > 0)
+	{
+		enemy* currentEnemy;
+		currentEnemy = new Heavy();
+		data.level[index].nbrOfHeavy--;
+		currentEnemy->pos = SpawnPoint;
+		currentEnemy->roadChoice = roadChoice;
+		data.enemyVector.push_back(currentEnemy);
+
+	}
+}
+
+
 
 
 
@@ -100,79 +152,35 @@ void EnemyManager::ManageWave(GameData& data)
 	for (int i = 0; i < nbrOfLevel; i++)
 	{
 
-		
+		// if timer Between level is eual O
 		if (data.timerLevel <= 0)
 		{
 			data.timerWave -= data.deltatime;
+			// if timer curentwave level is eual O
 			if (data.currentWave <= 0 && data.currentWave != data.level[i].nbrOfWave)
 			{
-				int nbrofEnemy = data.level[i].nbrOfGringalet + data.level[i].nbrOfHealer + data.level[i].nbrOfHeavy;
+				int nbrofEnemy = data.level[i].nbrOfWeakling + data.level[i].nbrOfHealer + data.level[i].nbrOfHeavy;
 				data.level[i].timerBetweenSpawn -= data.deltatime;
 
 				if (nbrofEnemy >= 0 && data.level[i].timerBetweenSpawn <= 0)
 				{//  to do add enemyADD enemy
-					int random = rand() % TypeOfEnemy;
-					float2 SpawnPoint = ReturnPosfromChar('a', data.map);
+					//SpawnEnemy(data, i);
+					data.level[i].timerBetweenSpawn = Calc::randomFloat(TimeBetweenSpawnMin, TimeBetweenSpawnMax);
 					
-
-					if (random == Squishy_def && data.level[i].nbrOfGringalet > 0)
-					{
-						enemy* enemyWeakling;
-						enemyWeakling = new Weakling();
-						data.level[i].nbrOfGringalet--;
-						enemyWeakling->pos = SpawnPoint;
-						enemyWeakling->roadChoice = rand() % 3;
-						data.enemyVector.push_back(enemyWeakling);
-
-
-					}
-					else if (random == Healer_def && data.level[i].nbrOfHealer > 0)
-					{
-						enemy* enemyHealer;
-						enemyHealer = new Healer();
-						data.level[i].nbrOfHealer--;
-						enemyHealer->pos = SpawnPoint;
-						enemyHealer->roadChoice = rand() % 3;
-						data.enemyVector.push_back(enemyHealer);
-
-
-					}
-					else if (random == Heavy_def && data.level[i].nbrOfHeavy > 0)
-					{
-						enemy* enemyHeavy;
-						enemyHeavy = new Heavy();
-						data.level[i].nbrOfHeavy--;
-						enemyHeavy->pos = SpawnPoint;
-						enemyHeavy->roadChoice = rand() % 3;
-						data.enemyVector.push_back(enemyHeavy);
-						
-					}
-					
-					data.level[i].timerBetweenSpawn = Calc::randomFloat(3.5, 7.5);
 				}
-
-					
 				
-					
-				
-				
-				
-
 			}
 
-			if (data.level[i].nbrOfGringalet == 0 && data.level[i].nbrOfHealer == 0 && data.level[i].nbrOfHeavy == 0)
+			if (data.level[i].nbrOfWeakling == 0 && data.level[i].nbrOfHealer == 0 && data.level[i].nbrOfHeavy == 0)
 			{
+			
 				data.timerWave = TimerWave;
+				data.currentWave++;
 				data.timerLevel = TimerLevel;
 			}
 			
 		
 		}
-
-
-
-
-
 
 	}
 
@@ -191,14 +199,6 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end();)
 	{
 		enemy* current = *it;
-	
-
-		/*
-		if (current->currentHealth > current->maxHealt)
-		{
-			current->currentHealth = current->maxHealt;
-		}
-		*/
 		
 
 		// Erase if off Screen

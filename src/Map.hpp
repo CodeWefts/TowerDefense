@@ -24,7 +24,7 @@ enum PathNbr : int
 
 
 
-class Map
+class MapClass
 {
 public:
 
@@ -42,8 +42,8 @@ public:
 	vector<Tile> Tiles;
 
 	void CreateMap();
-	Map();
-	~Map();
+	MapClass();
+	~MapClass();
 
 private:
 	ImGuiIO* io;
@@ -53,17 +53,17 @@ private:
 
 
 
-float2 ReturnTileMax(int indexX, int indexY, Map& map);
-float2 ReturnTileMin(int indexX, int indexY, Map& map);
-float2 ReturnPosfromChar(char c, Map& map);
+float2 ReturnTileMax(int indexX, int indexY, MapClass& map);
+float2 ReturnTileMin(int indexX, int indexY, MapClass& map);
+float2 ReturnPosfromChar(char c, MapClass& map);
 float2 ReturnCenter(const float2& Max, const float2& Min);
-float2 ReturnCenterTile(int indexX, int indexY, Map& map);
+float2 ReturnCenterTile(int indexX, int indexY, MapClass& map);
 
 
 
 
 
-int  ReturnTileIndexX(int x, Map& map);
-int  ReturnTileIndexY(int y, Map& map);
-int  ReturnIndexIncharMap(int x, int y, Map& map);
+int  ReturnTileIndexX(int x, MapClass& map);
+int  ReturnTileIndexY(int y, MapClass& map);
+int  ReturnIndexIncharMap(int x, int y, MapClass& map);
 
