@@ -98,6 +98,7 @@
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\explosive.cpp" />
     <ClCompile Include="src\level.cpp" />
+    <ClCompile Include="src\particules.cpp" />
     <ClCompile Include="src\wave.cpp" />
     <ClCompile Include="src\weakling.cpp" />
     <ClCompile Include="src\imgui_utils.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="src\explosive.hpp" />
     <ClInclude Include="src\float2.hpp" />
     <ClInclude Include="src\level.hpp" />
+    <ClInclude Include="src\particules.hpp" />
     <ClInclude Include="src\wave.hpp" />
     <ClInclude Include="src\weakling.hpp" />
     <ClInclude Include="src\imgui_utils.hpp" />

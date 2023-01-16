@@ -41,17 +41,20 @@ bool isOffscreen(const GameData& data, const float2& pos)
 
 
 
-void EnemyManager::SpawnEnemy(GameData& data,const int& index)
+void EnemyManager::SpawnEnemy(GameData& data)
 {
 
 	int random = rand() % TypeOfEnemy;
-	float2 SpawnPoint = ReturnPosfromChar('a', data.map);
 	int roadChoice = rand() % NbrOfRoad;
+	std::cout << roadChoice << std::endl;
+	float2 SpawnPoint = data.listOfRoad[roadChoice].at(0);
+	
 
+	// To Do Create Fonction
 
 	if (random == Squishy_def)
 	{
-		enemy* currentEnemy;
+		Enemy* currentEnemy;
 		currentEnemy = new Weakling();
 		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy--;
 		currentEnemy->pos = SpawnPoint;
@@ -62,7 +65,7 @@ void EnemyManager::SpawnEnemy(GameData& data,const int& index)
 	}
 	else if (random == Healer_def)
 	{
-		enemy* currentEnemy;
+		Enemy* currentEnemy;
 		currentEnemy = new Healer();
 		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy--;
 		currentEnemy->pos = SpawnPoint;
@@ -73,7 +76,7 @@ void EnemyManager::SpawnEnemy(GameData& data,const int& index)
 	}
 	else if (random == Heavy_def)
 	{
-		enemy* currentEnemy;
+		Enemy* currentEnemy;
 		currentEnemy = new Heavy();
 		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy--;
 		currentEnemy->pos = SpawnPoint;
@@ -86,37 +89,6 @@ void EnemyManager::SpawnEnemy(GameData& data,const int& index)
 
 
 
-
-/*if (data.timerLevel <= 0)
-{
-	data.timerWave -= data.deltatime;
-	// if timer curentwave level is eual O
-	if (data.currentWave <= 0 && data.currentWave != data.levels.at(data.currentLevel).maxWave && enemyremain > 0)
-	{
-		int nbrofEnemy = data.level[i].nbrOfWeakling + data.level[i].nbrOfHealer + data.level[i].nbrOfHeavy;
-		data.level[i].timerBetweenSpawn -= data.deltatime;
-
-		if (nbrofEnemy >= 0 && data.level[i].timerBetweenSpawn <= 0)
-		{//  to do add enemyADD enemy
-			SpawnEnemy(data, i);
-			data.level[i].timerBetweenSpawn = Calc::randomFloat(TimeBetweenSpawnMin, TimeBetweenSpawnMax);
-
-		}
-
-	}
-
-	if (data.level[i].nbrOfWeakling == 0 && data.level[i].nbrOfHealer == 0 && data.level[i].nbrOfHeavy == 0)
-	{
-
-		data.timerWave = data.levels.at(data.currentLevel).timerBetweenWave;
-		data.currentWave++;
-		data.timerLevel = TimerLevel;
-	}
-
-
-
-*/
-// if timer Between level is eual O
 
 
 
@@ -141,7 +113,7 @@ void EnemyManager::ManageWave(GameData& data)
 			if(data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn <= 0)
 			{
 				// Spawn
-				SpawnEnemy(data, 0);
+				SpawnEnemy(data);
 				data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn = Calc::randomFloat(TimeBetweenSpawnMin, TimeBetweenSpawnMax);
 			}
 
@@ -187,7 +159,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 	
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end();)
 	{
-		enemy* current = *it;
+		Enemy* current = *it;
 		
 
 		// Erase if off Screen

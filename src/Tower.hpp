@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include "enemy.hpp"
 #include "imgui_utils.hpp"
 #include "entity.hpp"
 
@@ -13,12 +13,14 @@ enum TowerChoice : int
     EXPLOSIVE,
 };
 
-class Tower : public entity
+class Tower : public Entity
 {
 public:
 
     std::string name;
     Texture texture;
+
+    bool hasTarget;
 
     int type;
     int cost;
@@ -31,7 +33,7 @@ public:
   
     float fireRate;
     float timer = 0;
-    
+    Enemy* target;
 
 
 

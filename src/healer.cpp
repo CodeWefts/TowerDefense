@@ -40,7 +40,7 @@ void Healer::Heal(GameData& data)
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
 	{
 
-		enemy* current = *it;
+		Enemy* current = *it;
 		/*
 		* if (current->erase)
 		{

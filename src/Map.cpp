@@ -57,16 +57,33 @@ void MapClass::CreateMap(GameData& data)
 	{	
 		
 		mapLvl2  =
-		" pppppppppppppppp "
-		"  *________+      "
-		"  /cppppppd| ppp  "
-		"  /pt----!p|      "
-		"  /p|    /p|      "
-		"__jp|    /p|      "
-		"appb|    /pl______"
-		"----,    /eppppppf"
-		"         ;--------"
-		"                  ";
+		"                  "
+		"                  "
+		"       ppppppppppp"
+		"       p          "
+		"       p  ppppp   "
+		"       p  p   p   "
+		"  ppppppppp   p   "
+		"  p           p   "
+		"  p           p   "
+		"  p           p   ";
+
+		LoadMap(mapLvl2);
+	}
+	else if (data.currentLevel == 2)
+	{
+
+		mapLvl2 =
+			" pppppppppppppppp "
+			"  *________+      "
+			"  /cppppppd| ppp  "
+			"  /pt----!p|      "
+			"  /p|    /p|      "
+			"__jp|    /p|      "
+			"appb|    /pl______"
+			"----,    /eppppppf"
+			"         ;--------"
+			"                  ";
 
 		LoadMap(mapLvl2);
 	}

@@ -2,7 +2,7 @@
 
 #include "float2.hpp"
 
-class entity
+class Entity
 {
 public:
 
@@ -10,8 +10,8 @@ public:
 	float2 pos;
 	
 
-	entity();
-	~entity();
+	Entity();
+	~Entity();
 
 private:
 

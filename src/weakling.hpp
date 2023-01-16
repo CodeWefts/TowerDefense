@@ -6,7 +6,7 @@
 struct GameData;
 
 
-class Weakling : public enemy
+class Weakling : public Enemy
 {
 public:
 

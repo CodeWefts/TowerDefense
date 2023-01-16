@@ -13,7 +13,7 @@
 
 
 
-float2 enemy::ReturnCheckPoint(GameData& data, int& index)
+float2 Enemy::ReturnCheckPoint(GameData& data, int& index)
 {
 	for (auto it = data.listOfRoad[this->roadChoice].begin(); it != data.listOfRoad[this->roadChoice].end(); it++)
 	{
@@ -24,7 +24,7 @@ float2 enemy::ReturnCheckPoint(GameData& data, int& index)
 
 
 
-void  enemy::pathFollow(GameData& data, bool& erase)
+void  Enemy::pathFollow(GameData& data, bool& erase)
 {
 
 	float2 CheckpointPos = ReturnCheckPoint(data, this->destinationIndex);
@@ -52,13 +52,13 @@ void  enemy::pathFollow(GameData& data, bool& erase)
 
 
 
-void enemy::UpdateEnemy(GameData& data, bool& erase)
+void Enemy::UpdateEnemy(GameData& data, bool& erase)
 {
 
 
 }
 
-void enemy::Heal(GameData& data)
+void Enemy::Heal(GameData& data)
 {
 	// Heal function override in Healer.cpp
 }
@@ -67,12 +67,12 @@ void enemy::Heal(GameData& data)
 
 
 
-void  enemy::DrawDebug(ImDrawList& dl)
+void  Enemy::DrawDebug(ImDrawList& dl)
 {
 
 }
 
-void enemy::DrawSlider(ImDrawList& dl)
+void Enemy::DrawSlider(ImDrawList& dl)
 {
 
 
@@ -95,7 +95,7 @@ void enemy::DrawSlider(ImDrawList& dl)
 
 
 
-enemy::enemy()
+Enemy::Enemy()
 {
 	this->velocity = 0.f;
 	this->texture = {0};
@@ -104,14 +104,16 @@ enemy::enemy()
 	this->currentHealth = maxHealt;
 	this->erase = false;
 
-	this->destinationIndex = 0;
+
+	// Index 0 is for Spawn Point
+	this->destinationIndex = 1;
 
 	this->coinsToPlayer = 0;
 	this->healBoxSize = { HealBoxSize , HealBoxSize };
-	this->roadChoice = Path0;
+	this->roadChoice = 0;
 
 }
 
-enemy::~enemy()
+Enemy::~Enemy()
 {
 }

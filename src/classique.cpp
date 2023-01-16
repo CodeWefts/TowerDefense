@@ -13,7 +13,7 @@ Classique::Classique()
     this->fireRate = 0.5f;
 }
 
-Classique::~Classique()
+Classique::~Classique() 
 {
 
 }

@@ -1,12 +1,12 @@
 #include"entity.hpp"
 
 
-entity::entity()
+Entity::Entity()
 {
 	pos = { 0,0 };
 	
 }
 
-entity::~entity()
+Entity::~Entity()
 {
 }

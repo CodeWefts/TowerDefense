@@ -16,7 +16,7 @@ class EnemyManager
 public:
 
 
-	void SpawnEnemy(GameData& data, const int& index);
+	void SpawnEnemy(GameData& data);
 	void ManageWave(GameData& data);
 	void MoveEnemyPath(GameData& data);
 	void ManageEnemy(GameData& data);

@@ -103,6 +103,9 @@
     <ClCompile Include="src\audioEngine.cpp">
       <Filter>src\audio</Filter>
     </ClCompile>
+    <ClCompile Include="src\particules.cpp">
+      <Filter>src\Update</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Tower.hpp">
@@ -188,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="src\audioEngine.hpp">
       <Filter>src\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particules.hpp">
+      <Filter>src\Update</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

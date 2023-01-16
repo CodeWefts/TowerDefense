@@ -156,11 +156,11 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 
 
-	for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
+	for (std::vector<Enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
 	{
 
 
-		enemy* currentEnemy = *it;
+		Enemy* currentEnemy = *it;
 
 		float2 enemy = currentEnemy->pos;
 
@@ -388,15 +388,19 @@ void TowerRenderer::DrawCheckPoint(GameData& data)
 	{
 		for (auto it = data.listOfRoad[0].begin(); it != data.listOfRoad[0].end(); it++)
 		{
-			data.dl->AddCircle(*it, 15.f, IM_COL32(255, 0, 0, 255), 32, 2.f);
+			data.dl->AddCircle(*it, 15.f, IM_COL32(255, 0, 0, 255), 16, 2.f);
 		}
 		for (auto it = data.listOfRoad[1].begin(); it != data.listOfRoad[1].end(); it++)
 		{
-			data.dl->AddCircle(*it, 15.f, IM_COL32(0, 255, 0, 255), 32, 2.f);
+			data.dl->AddCircle(*it, 15.f, IM_COL32(0, 255, 0, 255), 16, 2.f);
 		}
 		for (auto it = data.listOfRoad[2].begin(); it != data.listOfRoad[2].end(); it++)
 		{
-			data.dl->AddCircle(*it, 15.f, IM_COL32(0, 0, 255, 255), 32, 2.f);
+			data.dl->AddCircle(*it, 15.f, IM_COL32(0, 0, 255, 255), 16, 2.f);
+		}
+		for (auto it = data.listOfRoad[3].begin(); it != data.listOfRoad[3].end(); it++)
+		{
+			data.dl->AddCircle(*it, 15.f, IM_COL32(255, 0, 255, 255), 16, 2.f);
 		}
 	}
 	

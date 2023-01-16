@@ -18,7 +18,7 @@
 #define TimerLevel 20.f
 #define TimerWave 15.f
 #define nbrOfLevel 5
-#define NbrOfRoad 3
+#define NbrOfRoad 4
 
 
 
@@ -102,7 +102,7 @@ struct GameData
 
 
 	vector<Tower*> towerVector;
-	vector<enemy*> enemyVector;
+	vector<Enemy*> enemyVector;
 
 	Asset asset;
 	MapClass map;

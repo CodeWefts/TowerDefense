@@ -11,7 +11,7 @@ struct GameData;
 
 
 
-class enemy : public entity
+class Enemy : public Entity
 {
 public:
 
@@ -42,8 +42,8 @@ public:
 	virtual void Heal(GameData& data);
 
 
-	enemy();
-	~enemy();
+	Enemy();
+	~Enemy();
 
 protected:
 	void pathFollow(GameData& data, bool& erase);

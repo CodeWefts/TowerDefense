@@ -5,7 +5,7 @@
 
 struct GameData;
 
-class Heavy : public enemy
+class Heavy : public Enemy
 {
 public:
 	

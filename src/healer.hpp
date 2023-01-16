@@ -6,7 +6,7 @@ struct GameData;
 
 #define HealRate 7.5f
 
-class Healer : public enemy
+class Healer : public Enemy
 {
 public:
 

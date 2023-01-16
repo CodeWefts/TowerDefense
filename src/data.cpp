@@ -20,7 +20,7 @@ void SaveAllPath(GameData& data)
 
 	if (file.is_open())
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < NbrOfRoad; i++)
 		{
 			file << data.listOfRoad[i].size() << std::endl;
 			for (auto it = data.listOfRoad[i].begin(); it != data.listOfRoad[i].end(); it++)
@@ -60,7 +60,7 @@ void LoadALLPath(GameData& data)
 		{
 
 
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < NbrOfRoad; i++)
 			{
 				int size = 0;
 				pathFile >> size;
@@ -102,6 +102,7 @@ void Debug(GameData& gameData)
 	ImGui::Text(" Press V gameData.listOfRoad[0] = %d", gameData.listOfRoad[0].size());
 	ImGui::Text(" Press B gameData.listOfRoad[1] = %d", gameData.listOfRoad[1].size());
 	ImGui::Text(" Press N gameData.listOfRoad[2] = %d ", gameData.listOfRoad[2].size());
+	ImGui::Text(" Press N gameData.listOfRoad[3] = %d ", gameData.listOfRoad[3].size());
 	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
 
 	ImGui::Text("WaveTimer = %f ", gameData.levels.at(gameData.currentLevel).timerBetweenWave);
@@ -126,7 +127,7 @@ void Debug(GameData& gameData)
 		*/
 		for (auto it = gameData.enemyVector.begin(); it != gameData.enemyVector.end(); it++)
 		{
-			enemy* current = *it;
+			Enemy* current = *it;
 			current->currentHealth -= 10;
 		}
 
@@ -170,9 +171,9 @@ void Debug(GameData& gameData)
 
 
 	// work
-	if (ImGui::IsKeyDown(ImGuiKey_A))
+	if (ImGui::IsKeyPressed(ImGuiKey_A,false))
 	{
-		enemy* enemy1 = new Healer();
+		Enemy* enemy1 = new Healer();
 
 		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
 		enemy1->roadChoice = Path0;
@@ -202,6 +203,11 @@ void Debug(GameData& gameData)
 		{
 			gameData.listOfRoad[2].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
 		}
+		if (ImGui::IsKeyDown(ImGuiKey_C))
+		{
+			gameData.listOfRoad[3].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+		}
+
 
 	}
 
@@ -223,6 +229,12 @@ void Debug(GameData& gameData)
 		ImGui::Text("  \n ");
 		ImGui::Text("ROAD 2");
 		for (auto it = gameData.listOfRoad[2].begin(); it != gameData.listOfRoad[2].end(); it++)
+		{
+			ImGui::Text("Road 3 x = %f , y = %f", it->x, it->y);
+		}
+		ImGui::Text("  \n ");
+		ImGui::Text("ROAD 3");
+		for (auto it = gameData.listOfRoad[3].begin(); it != gameData.listOfRoad[3].end(); it++)
 		{
 			ImGui::Text("Road 3 x = %f , y = %f", it->x, it->y);
 		}
