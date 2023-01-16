@@ -102,7 +102,7 @@ void Player::PlayerInput(GameData& gamedata)
 void Player::DragAndDrop(GameData& gamedata)
 {
 	ImGuiIO& io2 = ImGui::GetIO();
-	Texture textureID = { 0 };
+	Texture textureID;
 
 	//Coord MOUSE
 	float posMaxX = ImGui::GetMousePos().x + 72;
@@ -115,42 +115,39 @@ void Player::DragAndDrop(GameData& gamedata)
 	float clickX = io2.MouseClickedPos->x;
 	float clickY = io2.MouseClickedPos->y;
 
-	bool drag = ImGui::IsKeyDown(ImGuiKey_MouseLeft);
-
 	// DRAG
-	if (drag)
+	if (ImGui::IsKeyDown(ImGuiKey_MouseLeft))
 	{
 		if ((clickX > (7 * 72))
 			&& (clickX < (8 * 72))
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = 1;
+			typeTower = 0;
 			textureID = gamedata.asset.textureTowerClassique;
-			gamedata.dl->AddImage(textureID.id, posMin, posMax);
 		}
 
-		if ((clickX > (8 * 72))
+		else if ((clickX > (8 * 72))
 			&& (clickX < (9 * 72))
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = 2;
+			typeTower = 1;
 			textureID = gamedata.asset.textureTowerExplosive;
-			gamedata.dl->AddImage(textureID.id, posMin, posMax);
 
 		}
 
-		if ((clickX > (9 * 72))
+		else if ((clickX > (9 * 72))
 			&& (clickX < (10 * 72))
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = 3;
+			typeTower = 2;
 			textureID = gamedata.asset.textureTowerRalentissante;
-			gamedata.dl->AddImage(textureID.id, posMin, posMax);
+
 		}
 
+		//gamedata.dl->AddImage(textureID.id, posMin, posMax);
 	}
 
 
@@ -158,7 +155,7 @@ void Player::DragAndDrop(GameData& gamedata)
 	if (ImGui::IsKeyReleased(ImGuiKey_MouseLeft))
 	{
 
-		if (typeTower == 1)
+		if (typeTower == 0)
 		{
 			Tower* tower = new Classique();
 			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
@@ -166,7 +163,7 @@ void Player::DragAndDrop(GameData& gamedata)
 
 			gamedata.towerVector.push_back(tower);
 		}
-		else if (typeTower == 2)
+		else if (typeTower == 1)
 		{
 			Tower* tower = new Explosive();
 			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
@@ -174,20 +171,25 @@ void Player::DragAndDrop(GameData& gamedata)
 
 			gamedata.towerVector.push_back(tower);
 		}
-		else if (typeTower == 3)
+		else if (typeTower == 2)
 		{
 			Tower* tower = new Ralentissante();
 			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
 			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
 
 			gamedata.towerVector.push_back(tower);
-
 		}
-		typeTower = 0;
-
 	}
+
 }
 
+void Player::UpdatePlayer(GameData& gamedata)
+{
+	PlayerTile(gamedata);
+	PlayerInput(gamedata);
+	DragAndDrop(gamedata);
+
+}
 
 
 

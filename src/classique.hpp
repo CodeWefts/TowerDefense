@@ -11,6 +11,7 @@ class Classique : public Tower
 public:
 
 
+	
 
 	Classique();
 	~Classique();

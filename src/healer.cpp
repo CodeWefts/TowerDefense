@@ -16,7 +16,7 @@ Healer::Healer()
 	this->pos = { 0,0 };
 	this->velocity = 90.f;
 	this->healRate = HealRate;
-
+	this->coinsToPlayer = 300;
 }
 
 Healer::~Healer()

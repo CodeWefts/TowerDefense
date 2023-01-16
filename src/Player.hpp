@@ -23,6 +23,8 @@ public:
 	int typeTower;
 
 
+
+	void UpdatePlayer(GameData& gamedata);
 	void PlayerTile(GameData& gamedata);
 	void PlayerInput(GameData& gamedata);
 	void DragAndDrop(GameData& gamedata);

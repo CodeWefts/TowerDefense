@@ -1,7 +1,7 @@
 #include<random>
 #include "enemy.hpp"
 #include"calc.hpp"
-#include"tower_game.hpp"
+#include "data.hpp"
 
 
 
@@ -106,7 +106,7 @@ enemy::enemy()
 
 	this->destinationIndex = 0;
 
-
+	this->coinsToPlayer = 0;
 	this->healBoxSize = { HealBoxSize , HealBoxSize };
 	this->roadChoice = Path0;
 

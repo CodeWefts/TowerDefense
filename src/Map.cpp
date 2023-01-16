@@ -1,4 +1,5 @@
 #include<iostream>
+#include "data.hpp"
 #include"Map.hpp"
 #include"calc.hpp"
 #include "imgui_utils.hpp"
@@ -13,82 +14,15 @@
 
 
 
-void MapClass::CreateMap()
+
+
+
+
+
+
+
+void MapClass::LoadMap(string& newMap)
 {
-
-
-	Width = mapWidth;
-	Height = mapHeight;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*
-	* map =
-			 "                  "
-			 "a            b    "
-			 "   e   f          "
-			 "                  "
-			 "   d   g     c    "
-			 "                  "
-			 "                  "
-			 "       h     i    "
-			 "                  "
-			 "                  ";
-
-
-	*/
-
-
-
-
-
-
-	/*
-	*  map =
-			"                  "
-			"     b  e   f    a"
-			"                  "
-			"     c  d   g     "
-			"                  "
-			"                  "
-			"                  "
-			"                  "
-			"                  "
-			"                  ";
-	*/
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	for (int y = 0; y < mapHeight; ++y)
 	{
@@ -96,11 +30,69 @@ void MapClass::CreateMap()
 		{
 			int idx = ReturnIndexIncharMap(x, y, *this);
 
-			Tile tile;
-			tile.Texture_type = map[idx];
-			Tiles.push_back(tile);
+			
+			if (Tiles.size() != mapHeight * mapWidth)
+			{
+				Tile tile;
+				tile.Texture_type = newMap[idx];
+				Tiles.push_back(tile);
+			}else
+			{
+				Tiles.at(idx).Texture_type = newMap[idx];
+			}
+			
 		}
 	}
+}
+
+
+void MapClass::CreateMap(GameData& data)
+{
+
+
+	/*
+	* Width = mapWidth;
+	Height = mapHeight;
+
+	*/
+
+	
+
+	if(data.currentLevel == 0)
+	{
+		map =
+			"                  "
+			"  *________+      "
+			"  /cppppppd|      "
+			"  /pt----!p|      "
+			"  /p|    /p|      "
+			"__jp|    /p|      "
+			"appb|    /pl______"
+			"----,    /eppppppf"
+			"         ;--------"
+			"                  ";
+		LoadMap(map);
+	
+	}
+	else if (data.currentLevel == 1)
+	{	
+		
+		mapLvl2  =
+		" pppppppppppppppp "
+		"  *________+      "
+		"  /cppppppd| ppp  "
+		"  /pt----!p|      "
+		"  /p|    /p|      "
+		"__jp|    /p|      "
+		"appb|    /pl______"
+		"----,    /eppppppf"
+		"         ;--------"
+		"                  ";
+
+		LoadMap(mapLvl2);
+	}
+
+
 
 
 
@@ -110,20 +102,13 @@ void MapClass::CreateMap()
 
 MapClass::MapClass()
 {
+
+	this->Height = mapHeight;
+	this->Width = mapWidth;
 	Tilesize = 72.f;
 	origin = { 0,0 };
+	
 
-	map =
-		"                  "
-		"  *________+      "
-		"  /cppppppd|      "
-		"  /pt----!p|      "
-		"  /p|    /p|      "
-		"__jp|    /p|      "
-		"appb|    /pl______"
-		"----,    /eppppppf"
-		"         ;--------"
-		"                  ";
 }
 
 MapClass::~MapClass()
@@ -139,7 +124,7 @@ int ReturnTileIndexX(int x, MapClass& map)
 
 int ReturnTileIndexY(int y, MapClass& map)
 {
-	return y / map.Tilesize;
+	return int(y / map.Tilesize);
 }
 
 
@@ -189,8 +174,7 @@ float2 ReturnPosfromChar(char c, MapClass& map)
 
 			if (map.map[idx] == c)
 			{
-				//printf("idx = %d \n", idx);
-				//printf("map.idx = %c \n", map.map[idx]);
+				
 
 				return ReturnCenterTile(x, y, map);
 			}

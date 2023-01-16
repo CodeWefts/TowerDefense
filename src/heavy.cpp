@@ -12,7 +12,7 @@ Heavy::Heavy()
 	this->pos = { 0,0 };
 	this->velocity = 50.f;
 	this->damageToPlayer = 75;
-
+	this->coinsToPlayer = 600;
 }
 
 Heavy::~Heavy()

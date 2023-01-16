@@ -47,6 +47,7 @@ int main(int argc, char* argv[])
 
     App* app = new App();
 
+
     // Main loop
     while (!glfwWindowShouldClose(window))
     {

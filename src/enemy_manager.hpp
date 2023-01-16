@@ -10,18 +10,6 @@ struct GameData;
 
 
 
-struct Level
-{
-	int nbrOfWeakling;
-	int nbrOfHealer;
-	int nbrOfHeavy;
-
-	int nbrOfWave;
-
-	float timerBetweenSpawn;
-
-
-};
 
 class EnemyManager
 {

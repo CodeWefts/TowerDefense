@@ -6,6 +6,10 @@
 #include "imgui_utils.hpp"
 
 
+
+
+
+struct GameData;
 using namespace std;
 
 
@@ -35,18 +39,27 @@ public:
 
 
 
-	std::string map;
+	string map;
+
+
+	string mapLvl1;
+	string mapLvl2;
+
+	
+
+
 	int Height;
 	int Width;
 	float2 origin;
 	vector<Tile> Tiles;
 
-	void CreateMap();
+	void LoadMap(string& newMap);
+	void CreateMap(GameData& data);
 	MapClass();
 	~MapClass();
 
 private:
-	ImGuiIO* io;
+	
 };
 
 

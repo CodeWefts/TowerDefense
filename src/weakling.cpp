@@ -15,6 +15,7 @@ Weakling::Weakling()
 	this->maxHealt = 100;
 	this->pos = { 0,0 };
 	this->velocity = 90.f;
+	this->coinsToPlayer = 100;
 
 }
 

@@ -20,6 +20,7 @@ public:
 	int maxHealt;
 	int currentHealth;
 	int damageToPlayer;
+	int coinsToPlayer;
 
 	std::string name;
 	Texture texture;

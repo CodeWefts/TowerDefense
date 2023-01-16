@@ -10,10 +10,8 @@ class TowerRenderer
 {
 public:
 
-	
 
 	//Menu
-	void DrawAnimation(GameData& data);
 	void DrawMenu(GameData& data);
 
 
@@ -42,5 +40,5 @@ private:
 
 };
 
-void DrawRangeTurret(GameData& data);
+
 void TowerInInventoryHUD(GameData& data);
