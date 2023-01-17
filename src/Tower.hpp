@@ -38,8 +38,14 @@ public:
     
     float angle;
     float fireRate;
+<<<<<<< HEAD
     float timer = 0;
     Enemy* target;
+=======
+    float timer = 0.f;
+    
+
+>>>>>>> a18d7c8 (#4 closed)
 
 
     virtual void Shoot(GameData& data);

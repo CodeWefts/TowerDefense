@@ -146,6 +146,9 @@
     <ClInclude Include="src\Vector2D.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\end\background.png" />
+    <Image Include="assets\end\lose.png" />
+    <Image Include="assets\end\win.png" />
     <Image Include="assets\ennemies\costaud\costaud1.png" />
     <Image Include="assets\ennemies\costaud\costaud10.png" />
     <Image Include="assets\ennemies\costaud\costaud11.png" />
@@ -178,9 +181,19 @@
     <Image Include="assets\map\pathTopANDRight.png" />
     <Image Include="assets\map\pathTopLeft.png" />
     <Image Include="assets\map\pathTopRight.png" />
+<<<<<<< HEAD
     <Image Include="assets\tower\classique_base.png" />
     <Image Include="assets\tower\classique_canon.png" />
     <Image Include="assets\tower\Obelisk.png" />
+=======
+    <Image Include="assets\menu\Animation.png" />
+    <Image Include="assets\menu\background.png" />
+    <Image Include="assets\menu\levels.png" />
+    <Image Include="assets\menu\menu.png" />
+    <Image Include="assets\menu\menuHUD.png" />
+    <Image Include="assets\menu\menuPlay.png" />
+    <Image Include="assets\menu\settings.png" />
+>>>>>>> a18d7c8 (#4 closed)
     <Image Include="assets\tower\tower.png" />
   </ItemGroup>
   <ItemGroup>

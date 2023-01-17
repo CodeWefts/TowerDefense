@@ -29,7 +29,25 @@ void ManageAllTurret(GameData& data)
         {
             Enemy* currentEnemy = *it;
 
+<<<<<<< HEAD
             currentTower->TargetEnemy(data, *currentEnemy);
+=======
+            float diffX = currentTower->pos.x - currentEnemy->pos.x;
+            float diffY = currentTower->pos.y - currentEnemy->pos.y;
+
+            float module = sqrt(pow(diffX, 2) + pow(diffY, 2));
+
+            if (module <= (currentTower->range * (data.map.Tilesize + data.map.Tilesize / 2)))
+            {
+                if (currentTower->timer >= currentTower->fireRate)
+                {
+                    currentTower->timer = 0;
+                    currentEnemy->currentHealth -= currentTower->damage;
+                }
+
+
+            }
+>>>>>>> a18d7c8 (#4 closed)
         }
     }
 }

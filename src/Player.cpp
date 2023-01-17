@@ -162,27 +162,35 @@ void Player::DragAndDrop(GameData& gamedata)
 		if (typeTower == 1)
 		{
 			Tower* tower = new Classique();
-			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-
-			gamedata.towerVector.push_back(tower);
+			if (coins >= tower->cost)
+			{
+				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+				tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+				coins -= tower->cost;
+				gamedata.towerVector.push_back(tower);
+			}
 		}
 		else if (typeTower == 2)
 		{
 			Tower* tower = new Explosive();
-			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-
-			gamedata.towerVector.push_back(tower);
+			if (coins >= tower->cost)
+			{
+				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+				tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+				coins -= tower->cost;
+				gamedata.towerVector.push_back(tower);
+			}
 		}
 		else if (typeTower == 3)
 		{
 			Tower* tower = new Ralentissante();
-			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-
-			gamedata.towerVector.push_back(tower);
-
+			if (coins >= tower->cost)
+			{
+				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+				tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+				coins -= tower->cost;
+				gamedata.towerVector.push_back(tower);
+			}
 		}
 		typeTower = 0;
 
@@ -191,7 +199,7 @@ void Player::DragAndDrop(GameData& gamedata)
 
 void Player::UpdatePlayer(GameData& gamedata)
 {
-	PlayerTile(gamedata);
+	//PlayerTile(gamedata);
 	PlayerInput(gamedata);
 	DragAndDrop(gamedata);
 
@@ -201,7 +209,6 @@ void Player::UpdatePlayer(GameData& gamedata)
 
 Player::Player()
 {
-	this->coins = 0;
 	this->maxHealth = 5000;
 	this->health = this->maxHealth;
 

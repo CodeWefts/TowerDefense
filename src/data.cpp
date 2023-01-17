@@ -245,16 +245,6 @@ void Debug(GameData& gameData)
 
 }
 
-
-
-
-
-
-
-
-
-
-
 Asset::Asset()
 {
 	//Grass
@@ -314,8 +304,16 @@ Asset::Asset()
 	//MENU : START GAME
 	textureAnimation = ImGuiUtils::LoadTexture("assets/menu/Animation.png");
 	textureMenuHUD = ImGuiUtils::LoadTexture("assets/menu/menuHUD.png");
+	textureBackGround = ImGuiUtils::LoadTexture("assets/menu/background.png");
+	texturePlay = ImGuiUtils::LoadTexture("assets/menu/menuPlay.png");
+	textureSettings = ImGuiUtils::LoadTexture("assets/menu/settings.png");
+	textureLevels = ImGuiUtils::LoadTexture("assets/menu/levels.png");
 
+	//END
 
+	textureEndBackGround = ImGuiUtils::LoadTexture("assets/end/background.png");
+	textureEndLose = ImGuiUtils::LoadTexture("assets/end/lose.png");
+	textureEndWin = ImGuiUtils::LoadTexture("assets/end/win.png");
 
 
 }

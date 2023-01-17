@@ -27,6 +27,7 @@ void TowerGame::UpdateAndDraw()
 
 	if (gameData.currentScene == Menu)
 	{
+		gameData.dl->AddImage(gameData.asset.textureBackGround.id, { 0, 0 }, io.DisplaySize);
 		gameData.time += io.DeltaTime;
 		renderer.DrawMenu(gameData);
 		//AddHealingParticules(gameData, float2(500, 500));
@@ -57,7 +58,7 @@ void TowerGame::UpdateAndDraw()
 	}
 	else if (gameData.currentScene == GameOver)
 	{
-
+		renderer.DrawEnd(gameData);
 	}
 }
 

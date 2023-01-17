@@ -56,6 +56,7 @@ void MapClass::CreateMap(GameData& data)
 	else if (data.currentLevel == 1)
 	{	
 		
+<<<<<<< HEAD
 		mapLvl2  =
 		"                  "
 		"                  "
@@ -84,6 +85,19 @@ void MapClass::CreateMap(GameData& data)
 			"----,    /eppppppf"
 			"         ;--------"
 			"                  ";
+=======
+		mapLvl2 =
+			"                  "
+			"                  "
+			"       ppppppppppp"
+			"       p          "
+			"       p  ppppp   "
+			"       p  p   p   "
+			"  ppppppppp   p   "
+			"  p           p   "
+			"  p           p   "
+			"  p           p   ";
+>>>>>>> a18d7c8 (#4 closed)
 
 		LoadMap(mapLvl2);
 	}

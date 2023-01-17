@@ -24,7 +24,9 @@ public:
 
 	//Menu
 	void DrawAnimation(GameData& data);
+	void menuDisplay(GameData& data);
 	void DrawMenu(GameData& data);
+	void DrawEnd(GameData& data);
 
 	// Game
 	void drawEnemies(GameData& data);
@@ -33,7 +35,11 @@ public:
 	void HudInventory(GameData& data);
 	void DrawPlacedTurret(GameData& data);
 	void DrawHud(GameData& data);
+
+	
+
 	void DrawCheckPoint(GameData& data);
+
 
 	void RendererGame(GameData& data);
 
@@ -70,7 +76,6 @@ private:
 
 
 };
-
 
 void DrawRangeTurret(GameData& data);
 void TowerInInventoryHUD(GameData& data);
