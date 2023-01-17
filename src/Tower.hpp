@@ -20,6 +20,8 @@ public:
     std::string name;
     Texture texture;
 
+    Texture canonTexture;
+
     bool hasTarget;
 
     int type;
@@ -31,11 +33,12 @@ public:
 
     int damage;
   
+    float angle;
     float fireRate;
     float timer = 0;
     Enemy* target;
 
-
+    virtual void Shoot(GameData& data);
 
 
     Tower();

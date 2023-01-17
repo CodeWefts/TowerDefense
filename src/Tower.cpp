@@ -4,11 +4,17 @@
 #include"Tower.hpp"
 
 
-float getModule(float2 pos,  float2 postower)
+float getModule(const float2& pos,  const float2& postower)
 {
     float2 diff = postower - pos;
    
     return sqrtf(pow(diff.x, 2) + powf(diff.y, 2));
+}
+
+
+void Tower::Shoot(GameData& data)
+{
+
 }
 
 
@@ -24,13 +30,9 @@ void Tower::TargetEnemy(GameData& data)
         {
            
                 Enemy* currentEnemy = *it;
-                float diffX = currentTower->pos.x - currentEnemy->pos.x;
-                float diffY = currentTower->pos.y - currentEnemy->pos.y;
+               
 
-                float module = sqrt(pow(diffX, 2) + pow(diffY, 2));
-
-
-
+                float module = getModule(currentTower->pos, currentEnemy->pos);
                 if (module <= (currentTower->range * (data.map.Tilesize + data.map.Tilesize / 2)))
                 {
                     currentTower->timer += data.deltatime;
@@ -45,27 +47,16 @@ void Tower::TargetEnemy(GameData& data)
                 else
                 {
                     currentTower->hasTarget = false;
+                    currentTower->target = nullptr;
                 }
             
                 if (currentTower->timer >= currentTower->fireRate && currentTower->hasTarget)
                 {
-                    std::cout << currentTower->hasTarget << std::endl;
 
-                    currentTower->target->currentHealth -= currentTower->damage;
-                    currentTower->timer = 0;
-                    cout << " timer = " << currentTower->timer << std::endl;
-
+                    currentTower->Shoot(data);
 
                 }
-           
 
-
-            
-           
-
-
-            
-          
         }
     }
 
@@ -86,6 +77,7 @@ Tower::~Tower()
 
 Tower::Tower()
 {
+    float angle = 0;
     hasTarget = false;
 }
 

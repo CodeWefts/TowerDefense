@@ -382,6 +382,15 @@
     <Image Include="assets\hud\pixel-heart-png.png">
       <Filter>assets\hud</Filter>
     </Image>
+    <Image Include="assets\tower\classique_base.png">
+      <Filter>assets\tower</Filter>
+    </Image>
+    <Image Include="assets\tower\classique_canon.png">
+      <Filter>assets\tower</Filter>
+    </Image>
+    <Image Include="assets\tower\Obelisk.png">
+      <Filter>assets\tower</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\checkPointData\lvl1.txt">

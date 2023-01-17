@@ -4,7 +4,7 @@
 Explosive::Explosive()
 {
 	this->name = "Explosive";
-	this->type = 1;
+	this->type = 2;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;

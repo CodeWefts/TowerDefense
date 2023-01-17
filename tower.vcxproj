@@ -178,6 +178,9 @@
     <Image Include="assets\map\pathTopANDRight.png" />
     <Image Include="assets\map\pathTopLeft.png" />
     <Image Include="assets\map\pathTopRight.png" />
+    <Image Include="assets\tower\classique_base.png" />
+    <Image Include="assets\tower\classique_canon.png" />
+    <Image Include="assets\tower\Obelisk.png" />
     <Image Include="assets\tower\tower.png" />
   </ItemGroup>
   <ItemGroup>

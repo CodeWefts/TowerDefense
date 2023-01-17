@@ -296,6 +296,12 @@ Asset::Asset()
 
 	//TOWER 1 : TOWER
 	textureTowerClassique = ImGuiUtils::LoadTexture("assets/tower/classique.png");
+	textureTowerClassicalCanon = ImGuiUtils::LoadTexture("assets/tower/classique_canon.png");
+	textureTowerClassicalBase = ImGuiUtils::LoadTexture("assets/tower/classique_base.png");
+
+	//TOWER 2 : SLOWING
+	texureSlowing = ImGuiUtils::LoadTexture("assets/tower/Obelisk.png");
+
 
 	//INVENTORY HUD
 	textureTowerSideLeft = ImGuiUtils::LoadTexture("assets/hud/SideLeft.png");

@@ -129,7 +129,7 @@ float2 ReturnTileMin(int indexX, int indexY, MapClass& map)
 	return { map.origin.x + (indexX * map.Tilesize),(indexY * map.Tilesize) };
 }
 
-float2 ReturnCenter(const float2& Max, const float2& Min)
+float2 ReturnCenter( float2 Max,  float2 Min)
 {
 	return { (Max + Min) };
 }

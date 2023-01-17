@@ -2,6 +2,8 @@
 #include<iostream>
 #include<string>
 #include "imgui_utils.hpp"
+#include "ralentissante.hpp"
+
 
 
 struct GameData;
@@ -24,6 +26,15 @@ public:
 	void DrawCheckPoint(GameData& data);
 
 	void RendererGame(GameData& data);
+
+
+
+	void SlowingTower(GameData& data, Tower& Slowing);
+
+
+
+
+
 	TowerRenderer();
 	~TowerRenderer();
 

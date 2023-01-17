@@ -12,6 +12,9 @@ public:
 
 
 
+	void Shoot(GameData& data) override;
+
+
 	Ralentissante();
 	~Ralentissante();
 

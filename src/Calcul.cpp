@@ -110,14 +110,21 @@ float2 midfloat2(float2 p1, float2 p2)
 
 
 
-float2  Rotationfloat2(float2& P, const float2& R, float angle)
+float2  Rotationfloat2(float2 P, const float2 R, float angle)
 {
+     float2 tmprR = R;
+    float2 tmprP = P;
 
-
+    float2 p_R = { tmprP.x - R.x , tmprP.y - R.y };
 
     // Calcule de la rotation de parametre angle 
-    P.x = ((R.x * cosf(angle)) - (R.y * sinf(angle)));
-    P.y = ((R.x * sinf(angle)) + (R.y * cosf(angle)));
+    P.x = ((p_R.x * cosf(angle)) - (p_R.y * sinf(angle)));
+    P.y = ((p_R.x * sinf(angle)) + (p_R.y * cosf(angle)));
+
+    // translation pour annuler la premiere translation
+    P.x += tmprR.x;
+    P.y += tmprR.y;
+
 
 
 

@@ -5,6 +5,7 @@
 #include "tower_renderer.hpp"
 #include "Calcul.hpp"
 #include "float2.hpp"
+#include "calc.hpp"
 
 
 void TowerRenderer::drawMap(GameData& data)
@@ -296,28 +297,55 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 	{
 		Tower* currentTower = *it;
 
-		if (currentTower->type == 0)
-		{
-			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
-			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
-			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
-			currentTower->texture = data.asset.textureTowerClassique;
-			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
-		}
+		
+
 		if (currentTower->type == 1)
 		{
-			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
-			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
+			float2 tileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
+			float2 tileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };		 
 			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
-			currentTower->texture = data.asset.textureTowerExplosive;
-			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
+			currentTower->texture = data.asset.textureTowerClassicalBase;
+			currentTower->canonTexture = data.asset.textureTowerClassicalCanon;
+			data.dl->AddImage(currentTower->texture.id, tileMin, tileMax);
+			
+			// if turretHasTarget
+			if(currentTower->hasTarget)
+			{
+				float2 targetVector = currentTower->target->pos  - currentTower->pos  ;
+				// Fond angle between enemy and turret
+				currentTower->angle = -atan2f(targetVector.x, targetVector.y) ;
+				std::cout << currentTower->angle << std::endl;
+			}// initiate 4 point of the image of canon
+			float2 Point4[4] =
+			{
+			 tileMin,float2(tileMax.x,tileMin.y),tileMax , float2(tileMin.x,tileMax.y)
+			};
+			for (int i = 0; i < 4; i++)
+			{
+				// add point Rotation
+				Point4[i] = Rotationfloat2(Point4[i], currentTower->pos, currentTower->angle);	
+			}
+			data.dl->AddImageQuad(currentTower->canonTexture.id, Point4[3], Point4[2], Point4[1], Point4[0]);
+
+
 		}
 		if (currentTower->type == 2)
 		{
 			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
 			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
 			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
-			currentTower->texture = data.asset.textureTowerRalentissante;
+			currentTower->texture = data.asset.textureTowerExplosive;
+			currentTower->canonTexture= { 0 };
+			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
+		}
+		if (currentTower->type == 3)
+		{
+			ImVec2 TileMin = { (float)currentTower->TileX, (float)currentTower->TileY - 102 };
+			ImVec2 TileMax = { (float)currentTower->TileX + 72 , (float)currentTower->TileY + 72 };
+			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
+			currentTower->texture = data.asset.texureSlowing;
+			currentTower->canonTexture = { 0 };
+			SlowingTower(data, *currentTower);
 			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
 		}
 	}
@@ -405,6 +433,18 @@ void TowerRenderer::DrawCheckPoint(GameData& data)
 	}
 	
 }
+
+void TowerRenderer::SlowingTower(GameData& data, Tower& Slowing)
+{
+	if (Slowing.hasTarget)
+	{
+		data.dl->AddCircleFilled(float2(Slowing.pos.x, Slowing.pos.y - 100), 6.f, IM_COL32(50, 139, 255, 255), 3.f);
+
+		data.dl->AddLine(float2(Slowing.pos.x, Slowing.pos.y - 100), Slowing.target->pos,IM_COL32(50, 139, 255,255),3.f);
+	}
+	
+}
+
 
 
 

@@ -11,7 +11,8 @@ class Classique : public Tower
 public:
 
 
-	
+	void Shoot(GameData& data) override; 
+
 
 	Classique();
 	~Classique();

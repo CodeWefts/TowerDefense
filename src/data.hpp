@@ -45,8 +45,9 @@ struct Asset
 		textureSoigneur,
 
 		//texture tower TOWER
-		textureTowerClassique, textureTowerRalentissante, textureTowerExplosive,
-
+		textureTowerClassique, textureTowerRalentissante, textureTowerExplosive, textureTowerClassicalCanon, textureTowerClassicalBase,
+		// texture tower Slowing
+		texureSlowing,
 
 		//texture hud INVENTORY TOWER
 		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
