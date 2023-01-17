@@ -345,8 +345,9 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
 			currentTower->texture = data.asset.texureSlowing;
 			currentTower->canonTexture = { 0 };
-			SlowingTower(data, *currentTower);
+			
 			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
+			SlowingTower(data, *currentTower);
 		}
 	}
 
@@ -438,9 +439,10 @@ void TowerRenderer::SlowingTower(GameData& data, Tower& Slowing)
 {
 	if (Slowing.hasTarget)
 	{
-		data.dl->AddCircleFilled(float2(Slowing.pos.x, Slowing.pos.y - 100), 6.f, IM_COL32(50, 139, 255, 255), 3.f);
+		data.dl->AddCircleFilled(float2(Slowing.pos.x, Slowing.pos.y - 100), 6.f, IM_COL32(50, 139, 255, 255), 30 );
 
-		data.dl->AddLine(float2(Slowing.pos.x, Slowing.pos.y - 100), Slowing.target->pos,IM_COL32(50, 139, 255,255),3.f);
+		data.dl->AddLine(float2(Slowing.pos.x, Slowing.pos.y - 100), Slowing.target->pos, IM_COL32(50, 139, 255, 255), Slowing.beamValue);
+
 	}
 	
 }
@@ -456,6 +458,11 @@ void TowerRenderer::RendererGame(GameData& data)
 	DrawHud(data);
 	DrawCheckPoint(data);
 
+	/*
+	for (Particle& p : particles)
+		p.Draw();
+}
+	*/
 }
 
 

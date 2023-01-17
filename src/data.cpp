@@ -106,7 +106,7 @@ void Debug(GameData& gameData)
 	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
 
 	ImGui::Text("WaveTimer = %f ", gameData.levels.at(gameData.currentLevel).timerBetweenWave);
-	ImGui::Text("timerbetweenSpawn = %f ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).timerbetweenSpawn);
+	//ImGui::Text("timerbetweenSpawn = %f ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).timerbetweenSpawn);
 
 	ImGui::Text("CurrentLevel = %d ", gameData.currentLevel);
 	ImGui::Text("nbrOfLevel = %d ", gameData.levels.size());
@@ -114,7 +114,7 @@ void Debug(GameData& gameData)
 	ImGui::Text("CurrentWave %d", gameData.currentWave);
 
 
-	ImGui::Text("EnemyRemaining = %d ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).nbrOfEnemy);
+	//ImGui::Text("EnemyRemaining = %d ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).nbrOfEnemy);
 
 
 	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
@@ -184,8 +184,9 @@ void Debug(GameData& gameData)
 
 	if (ImGui::IsKeyPressed(ImGuiKey_Q, false))
 	{
-		gameData.currentLevel++;
-		gameData.changeLevel = true;
+		gameData.currentWave++;
+		//gameData.currentLevel++;
+		//gameData.changeLevel = true;
 	}
 
 

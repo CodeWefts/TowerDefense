@@ -5,6 +5,16 @@
 #include "ralentissante.hpp"
 
 
+/*
+
+struct Particle
+{
+	float2 pos;
+	// color velocity etc...
+	void Draw();
+};
+
+*/
 
 struct GameData;
 
@@ -31,8 +41,20 @@ public:
 
 	void SlowingTower(GameData& data, Tower& Slowing);
 
+	/*
+		void SpawnExplosionParticles(float2 pos)
+	{
+		for (int i = 0; i < 64; ++i)
+		{
+			float2 randPos;
+			float2 randVel;
+			float lifetime = 2.f;
+			particles.push_back(Particle(randPos, randVel, lifetime));
+		}
+	}
 
-
+	
+	*/
 
 
 	TowerRenderer();
@@ -41,7 +63,7 @@ public:
 
 protected:
 
-
+//	std::vector<Particle> particles;
 
 private:
 

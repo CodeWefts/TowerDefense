@@ -18,47 +18,53 @@ void Tower::Shoot(GameData& data)
 }
 
 
-void Tower::TargetEnemy(GameData& data)
+
+
+void ManageAllTurret(GameData& data) 
 {
     for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
     {
         Tower* currentTower = *op;
-       
-
-
         for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
         {
-           
-                Enemy* currentEnemy = *it;
-               
+            Enemy* currentEnemy = *it;
 
-                float module = getModule(currentTower->pos, currentEnemy->pos);
-                if (module <= (currentTower->range * (data.map.Tilesize + data.map.Tilesize / 2)))
-                {
-                    currentTower->timer += data.deltatime;
-                   
-                    if(currentTower->hasTarget == false)
-                    {
-                        currentTower->hasTarget = true;
-                        currentTower->target = currentEnemy;
+            currentTower->TargetEnemy(data, *currentEnemy);
+        }
+    }
+}
 
-                    }
-                }
-                else
-                {
-                    currentTower->hasTarget = false;
-                    currentTower->target = nullptr;
-                }
-            
-                if (currentTower->timer >= currentTower->fireRate && currentTower->hasTarget)
-                {
 
-                    currentTower->Shoot(data);
 
-                }
+void Tower::TargetEnemy(GameData& data, Enemy& enemy)
+{
+   
+
+    float module = getModule(enemy.pos, pos);
+    if (module <= (range * (data.map.Tilesize + data.map.Tilesize / 2)))
+     {
+        timer += data.deltatime;
+
+        if (hasTarget == false)
+        {
+            hasTarget = true;
+            target = &enemy;
 
         }
     }
+    else
+    {
+        hasTarget = false;
+        target = nullptr;
+    }
+
+    if (timer >= fireRate && hasTarget)
+    {
+
+        Shoot(data);
+
+    }
+
 
 }
 
@@ -77,7 +83,10 @@ Tower::~Tower()
 
 Tower::Tower()
 {
-    float angle = 0;
+    
+    beamValue = 5.f;
+
+    angle = 0;
     hasTarget = false;
 }
 

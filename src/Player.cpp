@@ -71,7 +71,7 @@ void Player::PlayerInput(GameData& gamedata)
 
 	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false) && gamedata.acceleRateTime < maxAcelerateTime)
 	{
-
+		
 		gamedata.acceleRateTime++;
 		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
 	}

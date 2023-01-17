@@ -40,13 +40,13 @@ void TowerGame::UpdateAndDraw()
 
 		gameData.map.CreateMap(gameData);
 		enemyManager.ManageEnemy(gameData);
-		towerManager.TargetEnemy(gameData);
+		ManageAllTurret(gameData);
 		
 		renderer.RendererGame(gameData);
 
 		renderer.HudInventory(gameData);
 		gameData.player.UpdatePlayer(gameData);
-		tower.TargetEnemy(gameData);
+		
 
 
 		Debug(gameData);

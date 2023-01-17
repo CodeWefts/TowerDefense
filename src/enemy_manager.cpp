@@ -13,8 +13,8 @@
 #define Healer_def 1
 #define Heavy_def 2
 
-#define TimeBetweenSpawnMin 5.5f
-#define TimeBetweenSpawnMax 7.5f
+#define TimeBetweenSpawnMin 0.5
+#define TimeBetweenSpawnMax 0.5
 #define TimerBetweenWaveMin 5.f
 #define TimerBetweenWaveMax 10.f
 
@@ -95,7 +95,7 @@ void EnemyManager::SpawnEnemy(GameData& data)
 void EnemyManager::ManageWave(GameData& data)
 {
 		
-	int enemyremain = data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy;
+	//int enemyremain = data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy;
 	
 	data.timerLevel -= data.deltatime;
 	
@@ -103,6 +103,36 @@ void EnemyManager::ManageWave(GameData& data)
 	if (data.timerLevel <= 0)
 	{
 		data.levels.at(data.currentLevel).timerBetweenWave -= data.deltatime;
+
+
+		if (data.currentWave == data.levels.at(data.currentLevel).maxWave - 1 )
+		{
+
+			data.timerLevel = TimerLevel;
+			
+			data.currentLevel++;
+			
+			// Load New path //
+			data.changeLevel = true;
+		}
+
+
+
+
+
+
+		else if (data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy <= 0 && data.enemyVector.empty() && data.currentWave < data.levels.at(data.currentLevel).maxWave)
+		{
+
+			data.currentWave++;
+			data.levels.at(data.currentLevel).timerBetweenWave = Calc::randomFloat(TimerBetweenWaveMin, TimerBetweenWaveMax);
+		}
+
+
+
+
+
+
 
 		// timer between Wave is equal 0 and There Still enemy
 		if (data.levels.at(data.currentLevel).timerBetweenWave <= 0 && data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy > 0)
@@ -119,22 +149,16 @@ void EnemyManager::ManageWave(GameData& data)
 
 
 			
-		}	// if there is no enemy remaing in the current wawe and no enemie in screen Wave pass
-		else if (data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy <= 0 && data.enemyVector.empty())
-		{
-			data.currentWave++;
-			data.levels.at(data.currentLevel).timerBetweenWave = Calc::randomFloat(TimerBetweenWaveMin, TimerBetweenWaveMax);
 		}
+		// if all the Wave of the level as been passed go next level
+	
+		// if there is no enemy remaing in the current wawe and no enemie in screen Wave pass
 
-	}// if all the Wave of the level as been passed go next level
-	else if (data.levels.at(data.currentLevel).currentWave == data.levels.at(data.currentLevel).maxWave)
-	{
-		data.timerLevel = TimerLevel;
-		data.currentLevel++;
-		// Load New path //
-		data.changeLevel = true;
 	}
-		
+
+
+	
+
 		
 		
 

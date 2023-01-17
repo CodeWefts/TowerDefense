@@ -10,8 +10,8 @@ class Ralentissante : public Tower
 
 public:
 
-
-
+	int baseDamage;
+	int beamBaseValue;
 	void Shoot(GameData& data) override;
 
 
