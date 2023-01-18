@@ -54,8 +54,7 @@ void Healer::Heal(GameData& data)
 
 		// Not DIED
 
-		if (current->currentHealth <= maxHealt && healRate <= 0 && colPoint2dtoAABB2d(min, max, current->pos)
-			)
+		if (current->currentHealth <= maxHealt && healRate <= 0 && colPoint2dtoAABB2d(min, max, current->pos))
 		{
 			current->currentHealth += 10;
 			healRate = HealRate;

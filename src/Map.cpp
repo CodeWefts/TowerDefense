@@ -4,6 +4,7 @@
 #include"calc.hpp"
 #include "imgui_utils.hpp"
 #include"enemy.hpp"
+#include "Collider2D.hpp"
 
 
 #define mapWidth 18
@@ -42,12 +43,12 @@ void MapClass::CreateMap(GameData& data)
 		map =
 			"                  "
 			"  *________+      "
-			"  /cppppppd|      "
+			"  /pppppppp|      "
 			"  /pt----!p|      "
 			"  /p|    /p|      "
 			"__jp|    /p|      "
-			"appb|    /pl______"
-			"----,    /eppppppf"
+			"pppp|    /pl______"
+			"----,    /pppppppp"	
 			"         ;--------"
 			"                  ";
 		LoadMap(map);
@@ -157,6 +158,31 @@ float2 ReturnPosfromChar(char c, MapClass& map)
 		}
 	}
 	return { 0,0 };
+}
+
+
+bool IsPlaceAble(GameData& data,const float2& pos)
+{
+
+
+	int indexX = ReturnTileIndexX(int(pos.x), data.map);
+	int indexY = ReturnTileIndexY(int(pos.y), data.map);
+
+
+	int index = ReturnIndexIncharMap(indexX, indexY, data.map);
+
+	if (data.map.map[index] != 'p')
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+
+
+	return -1;
 }
 
 

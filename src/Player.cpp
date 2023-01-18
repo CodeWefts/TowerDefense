@@ -1,6 +1,6 @@
 	
 #include <vector>
-
+#include "float2.hpp"
 #include "player.hpp"
 #include "tower_game.hpp"
 #include "map.hpp"
@@ -105,6 +105,7 @@ void Player::DragAndDrop(GameData& gamedata)
 	ImGuiIO& io2 = ImGui::GetIO();
 	Texture textureID = { 0 };
 
+
 	//Coord MOUSE
 	float posMaxX = ImGui::GetMousePos().x + 72;
 	float posMaxY = ImGui::GetMousePos().y + 72;
@@ -126,7 +127,7 @@ void Player::DragAndDrop(GameData& gamedata)
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = 1;
+			typeTower = CLASSIQUE;
 			textureID = gamedata.asset.textureTowerClassique;
 			gamedata.dl->AddImage(textureID.id, posMin, posMax);
 		}
@@ -136,7 +137,7 @@ void Player::DragAndDrop(GameData& gamedata)
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = 2;
+			typeTower = EXPLOSIVE;
 			textureID = gamedata.asset.textureTowerExplosive;
 			gamedata.dl->AddImage(textureID.id, posMin, posMax);
 
@@ -147,8 +148,8 @@ void Player::DragAndDrop(GameData& gamedata)
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = 3;
-			textureID = gamedata.asset.textureTowerRalentissante;
+			typeTower = RALENTISSANTE;
+			textureID = gamedata.asset.texureSlowing;
 			gamedata.dl->AddImage(textureID.id, posMin, posMax);
 		}
 
@@ -158,37 +159,41 @@ void Player::DragAndDrop(GameData& gamedata)
 	//PUSH BACK POINTER TOWER
 	if (ImGui::IsKeyReleased(ImGuiKey_MouseLeft))
 	{
-
-		if (typeTower == 1)
+		if (IsPlaceAble(gamedata, float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y)))
 		{
-			Tower* tower = new Classique();
-			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+			if (typeTower == 1)
+			{
+				Tower* tower = new Classique();
+				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+				tower->TileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
 
-			gamedata.towerVector.push_back(tower);
+				gamedata.towerVector.push_back(tower);
+			}
+			else if (typeTower == 2)
+			{
+				int tileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+				int tileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
+				Tower* tower = new Explosive(float2(tileX, tileY - 50));
+				tower->TileX = tileX;
+				tower->TileY = tileY;
+
+				gamedata.towerVector.push_back(tower);
+			}
+			else if (typeTower == 3)
+			{
+				Tower* tower = new Ralentissante();
+				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+				tower->TileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
+
+				gamedata.towerVector.push_back(tower);
+
+			}
+			typeTower = 0;
 		}
-		else if (typeTower == 2)
-		{
-			int tileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-			int tileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-			Tower* tower = new Explosive(float2(tileY, tileY - 50));
-			tower->TileX = tileX;
-			tower->TileY = tileY;
 
-			gamedata.towerVector.push_back(tower);
-		}
-		else if (typeTower == 3)
-		{
-			Tower* tower = new Ralentissante();
-			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-
-			gamedata.towerVector.push_back(tower);
-
-		}
-		typeTower = 0;
-
+			
 	}
+		
 }
 
 void Player::UpdatePlayer(GameData& gamedata)

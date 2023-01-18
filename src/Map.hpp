@@ -45,10 +45,10 @@ private:
 float2 ReturnTileMax(int indexX, int indexY, MapClass& map);
 float2 ReturnTileMin(int indexX, int indexY, MapClass& map);
 float2 ReturnPosfromChar(char c, MapClass& map);
-float2 ReturnCenter( float2 Max,  float2 Min);
+float2 ReturnCenter( float2 Max,  float2 Min);	
 float2 ReturnCenterTile(int indexX, int indexY, MapClass& map);
 
-
+bool IsPlaceAble(GameData& data, const float2& pos);
 int  ReturnTileIndexX(int x, MapClass& map);
 int  ReturnTileIndexY(int y, MapClass& map);
 int  ReturnIndexIncharMap(int x, int y, MapClass& map);

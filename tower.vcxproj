@@ -109,7 +109,7 @@
     <ClCompile Include="src\ralentissante.cpp" />
     <ClCompile Include="src\healer.cpp" />
     <ClCompile Include="src\Tile.cpp" />
-    <ClCompile Include="src\Tower.cpp" />
+    <ClCompile Include="src\tower.cpp" />
     <ClCompile Include="src\tower_game.cpp" />
     <ClCompile Include="src\tower_renderer.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
@@ -140,7 +140,7 @@
     <ClInclude Include="src\ralentissante.hpp" />
     <ClInclude Include="src\healer.hpp" />
     <ClInclude Include="src\Tile.hpp" />
-    <ClInclude Include="src\Tower.hpp" />
+    <ClInclude Include="src\tower.hpp" />
     <ClInclude Include="src\tower_game.hpp" />
     <ClInclude Include="src\tower_renderer.hpp" />
     <ClInclude Include="src\Vector2D.hpp" />

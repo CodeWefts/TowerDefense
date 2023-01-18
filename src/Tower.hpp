@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "enemy.hpp"
 #include "imgui_utils.hpp"
 #include "entity.hpp"
@@ -8,9 +9,9 @@ struct GameData;
 
 enum TowerChoice : int
 {
-    CLASSIQUE,
-    RALENTISSANTE,
+    CLASSIQUE = 1,
     EXPLOSIVE,
+    RALENTISSANTE,
 };
 
 class Tower : public Entity
@@ -27,7 +28,7 @@ public:
 
     bool hasTarget;
 
-    int type;
+    TowerChoice type;
     int cost;
     bool placed;
 
@@ -49,7 +50,7 @@ public:
     ~Tower();
 
     //functions
-    virtual void TargetEnemy(GameData& data, Enemy& enemy);
+    virtual void TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector);
 
 };
 

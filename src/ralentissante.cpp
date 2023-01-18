@@ -6,29 +6,33 @@
 
 void Ralentissante::Shoot(GameData& data)
 {
+	if (this->maxDamage > this->damage)
+	{
+		this->damage += (incrementDamage + data.deltatime);
+	}
 	
-	this->damage += (5 + data.deltatime);
-	/*
-	/std::cout << "has target  = " << this->hasTarget << std::endl;
-	std::cout <<"target  = " << &this->target << std::endl;
-	std::cout << " damage = " << this->damage << std::endl;
+	
+	
+	std::cout << "has target  = " << this->beamValue << std::endl;
+	//std::cout << " damage = " << this->damage << std::endl;
+	
+	if(this->target->velocity > this->maxDebuffVelocity)
+	{
+		this->target->velocity -= (10 + data.deltatime);
+	}
+	
+	if (beamValue < maxBeamValue)
+	{
+		this->beamValue += (2 + data.deltatime);
+	}
 
-	//this->target->velocity -= (10 + data.deltatime);
-	*/
-	this->beamValue += (2 + data.deltatime);
 	this->target->currentHealth -= this->damage;
 	this->timer = 0;
 }
 void Ralentissante::Reset(GameData& data)
 {
-	
-	if (hasTarget == false)
-	{
-			std::cout << "has target  = " << this->hasTarget << std::endl;
-			this->damage = baseDamage;
-			this->beamValue = beamBaseValue;
-
-	}
+	this->damage = baseDamage;
+	this->beamValue = beamBaseValue; 		
 	
 }
 
@@ -64,7 +68,7 @@ void Ralentissante::TowerEffectRender(GameData& data)
 Ralentissante::Ralentissante()
 {
 	this->name = "Ralentissante";
-	this->type = 3;
+	this->type = RALENTISSANTE;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 150;
@@ -72,6 +76,10 @@ Ralentissante::Ralentissante()
 	this->damage = 10;
 	this->fireRate = 1.f;
 	this->beamBaseValue = 5.f;
+	this->maxDebuffVelocity = 40.f;
+	this->maxBeamValue = 20.f;
+	this->incrementDamage = 10;
+	this->maxDamage = 300;
 
 }
 

@@ -7,7 +7,7 @@
 #include "tower_renderer.hpp"
 #include "enemy_manager.hpp"
 #include "player.hpp"
-#include "Tower.hpp"
+#include "tower.hpp"
 #include "level.hpp"
 #include "wave.hpp"
 #include "calc.hpp"
@@ -121,7 +121,7 @@ struct GameData
 
 };
 
-
+void ChangeLevel(GameData& data);
 void SaveAllPath(GameData& data);
 void LoadALLPath(GameData& data);
 void Debug(GameData& gameData);

@@ -27,6 +27,10 @@
 
 
 
+
+
+
+
 bool isOffscreen(const GameData& data, const float2& pos)
 {
 
@@ -114,7 +118,7 @@ void EnemyManager::ManageWave(GameData& data)
 		{
 
 			data.timerLevel = TimerLevel;
-			
+			ChangeLevel(data);
 			data.currentLevel++;
 			
 			// Load New path //
@@ -207,11 +211,31 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		{
 			data.player.coins += current->coinsToPlayer;
 			it = data.enemyVector.erase(it);
+			for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
+			{
+				Tower* tower = *op;
+				if (current == tower->target)
+				{
+					tower->hasTarget = false;
+					tower->target = nullptr;
+				}
+			}
 
 		}
 		else if (current->erase && it == data.enemyVector.begin())
 		{
 			data.player.coins += current->coinsToPlayer;
+
+			for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
+			{
+				Tower* tower = *op;
+				if (current == tower->target)
+				{
+					tower->hasTarget = false;
+					tower->target = nullptr;
+				}
+			}
+
 			it = data.enemyVector.erase(it);
 		}
 		else
@@ -233,7 +257,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 void EnemyManager::ManageEnemy(GameData& data)
 {
 	//TO DO ADD WAWE
-	//this->ManageWave(data);
+	this->ManageWave(data);
 	this->MoveEnemyPath(data);
 
 }

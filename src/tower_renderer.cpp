@@ -188,8 +188,11 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 		currentEnemy->DrawSlider(*data.dl);
 
-		if (data.enableDebug)
+		if (data.enableDebug) 
+		{
 			currentEnemy->DrawDebug(*(data.dl));
+		}
+			
 
 
 
@@ -201,11 +204,15 @@ void TowerRenderer::drawEnemies(GameData& data)
 void TowerInInventoryHUD(GameData& data)
 {
 
-	ImVec2 min = { 7 * 72 + 15, 9 * 72 + 13 };
-	ImVec2	max = { 8 * 72 - 10, 10 * 72 - 13 };
+	float2 min = { 7 * data.map.Tilesize + 15, 9 * data.map.Tilesize + 13 };
+	float2	max = { 8 * data.map.Tilesize - 10, 10 * data.map.Tilesize - 13 };
+	
 
+	data.dl->AddImage(data.asset.textureTowerClassique.id, min, max, float2(0, 0), float2(1, 1));
 
-	data.dl->AddImage(data.asset.textureTowerClassique.id, min, max, ImVec2(0, 0), ImVec2(1, 1));
+	data.dl->AddImage(data.asset.textureTowerExplosive.id,float2(min.x + data.map.Tilesize,min.y), float2(max.x + data.map.Tilesize, max.y), float2(0, 0), float2(1, 1));
+
+	data.dl->AddImage(data.asset.texureSlowing.id, float2(min.x + (data.map.Tilesize * 2), min.y), float2(max.x + (data.map.Tilesize * 2) , max.y), float2(0, 0), float2(1, 1));
 }
 void TowerRenderer::HudInventory(GameData& data)
 {
@@ -298,29 +305,26 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 		Tower* currentTower = *it;
 
 		
-
-		if (currentTower->type == 1)
-		{
-
-			currentTower->TowerEffectRender(data);
 		
-		
-			
-
-		}
-		if (currentTower->type == 2)
+		if (currentTower->type == CLASSIQUE)
 		{
-			
-			currentTower->TowerEffectRender(data);
-				
+			currentTower->TowerEffectRender(data);	
 		}
-		if (currentTower->type == 3)
+		if (currentTower->type == EXPLOSIVE)
+		{
+			currentTower->TowerEffectRender(data);		
+		}
+		if (currentTower->type == RALENTISSANTE)
 		{
 			currentTower->TowerEffectRender(data);
 		}
 	}
 
-	DrawRangeTurret(data);
+	if (data.enableDebug == true)
+	{
+		DrawRangeTurret(data);
+	}
+	
 
 }
 

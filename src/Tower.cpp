@@ -1,7 +1,7 @@
 ﻿#include <math.h>
 
 #include "tower_game.hpp"
-#include"Tower.hpp"
+#include"tower.hpp"
 
 
 
@@ -26,46 +26,84 @@ void Tower::Shoot(GameData& data)
 
 
 
-void Tower::TargetEnemy(GameData& data, Enemy& enemy)
-{
-   
-   // std::cout << hasTarget << std::endl;
-    float module = getModule(enemy.pos, pos);
-    if (module < (range * (data.map.Tilesize + data.map.Tilesize / 2)))
-    {
+ void Tower::TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector)
+ {
+     for (auto it = enemmyVector.begin(); it != enemmyVector.end(); it++)
+     {
+         Enemy* current = *it;
+         float module = getModule(current->pos, this->pos);
+         if (target != nullptr)
+         {
+             float moduleTargt = getModule(target->pos, this->pos);
+             timer += data.deltatime;
+
+             if (moduleTargt <= (range * (data.map.Tilesize + data.map.Tilesize / 2)))
+             {
+
+                 if (module < moduleTargt)
+                 {
+                     target = current;
+                     hasTarget = true;
+                 }
+                
+             }
+
+             // is target out of range 
+             else if (moduleTargt > (range * (data.map.Tilesize + data.map.Tilesize / 2)))
+             {
+                 //moduleTargt = 2000;
+                 hasTarget = false;
+                 target = nullptr;
+                 Reset(data);
+             }
+
+
+             if (timer >= fireRate && hasTarget)
+             {
+
+                 Shoot(data);
+
+
+             }
+
+
+         }
+         else // if Have no Taarget
+         {
+
+             if (module < (range * (data.map.Tilesize + data.map.Tilesize / 2)))
+             {
+                 timer += data.deltatime;
+                 target = current;
+                 hasTarget = true;
+
+                 if (timer >= fireRate)
+                 {
+                     Shoot(data);
+                 }
+
+             }
+             else
+             {
+                 target = nullptr;
+                 hasTarget = false;
+                 Reset(data);
+
+             }
+
+         }
+     }
+
+         
     
-        timer += data.deltatime;
-
-        if (hasTarget == false)
-        {
-            Reset(data);
-            hasTarget = true;
-            
-          
-
-        }
-        if (hasTarget)
-        {
-            target = &enemy;
-        }
-
-        if (timer >= fireRate && hasTarget)
-        {
-
-            Shoot(data);
-
-
-        }
-    }
-    else
-    {
-        hasTarget = false;
-         target = nullptr;
-    }
+     }
+    
+ 
+   
  
 
+   
 
-}
 void Tower::TowerEffectRender(GameData& data)
 {
     ImVec2 TileMin = { (float)TileX , (float)TileY };
@@ -82,16 +120,17 @@ void Tower::TowerEffectRender(GameData& data)
 
 void ManageAllTurret(GameData& data)
 {
+
     for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
     {
         Tower* currentTower = *op;
 
-        for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
+        if(!data.enemyVector.empty())
         {
-            Enemy* currentEnemy = *it;
-
-            currentTower->TargetEnemy(data, *currentEnemy);
+            currentTower->TargetEnemy(data, data.enemyVector);
         }
+        
+
     }
 }
 
@@ -107,7 +146,7 @@ Tower::~Tower()
 Tower::Tower()
 {
     
-
+    this->target = nullptr;
     angle = 0;
     hasTarget = false;
 }

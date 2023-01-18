@@ -4,6 +4,41 @@
 
 using namespace std;
 
+
+
+
+
+void ChangeLevel(GameData& data)
+{
+	for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
+	{
+		Tower* currentTower = *it;
+		currentTower->target = nullptr;
+		delete currentTower;
+		
+	}
+	data.towerVector.clear();
+	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
+	{
+		delete* it;
+	}
+	data.enemyVector.clear();
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void SaveAllPath(GameData& data) 
 {
 	 //Load Data 

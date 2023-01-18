@@ -46,6 +46,13 @@ void Explosive::Shoot(GameData& data)
 
 }
 
+void Explosive::Reset(GameData& data)
+{
+	this->firstMissile = this->basePosMissile;
+
+}
+
+
 
 
 void Explosive::TowerEffectRender(GameData& data)
@@ -91,7 +98,7 @@ void Explosive::TowerEffectRender(GameData& data)
 Explosive::Explosive()
 {
 	this->name = "Explosive";
-	this->type = 2;
+	this->type = EXPLOSIVE;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;
@@ -109,13 +116,13 @@ Explosive::Explosive()
 Explosive::Explosive(float2 missileStartPoint)
 {
 	this->name = "Explosive";
-	this->type = 2;
+	this->type = EXPLOSIVE;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;
 	this->range = 2; // range per tile
 	this->damage = 10;
-	this->fireRate = 0.5f;
+	this->fireRate = 2.f;
 	this->rayonOfMissile = 5.f;
 	this->basePosMissile = { missileStartPoint };
 	this->firstMissile = basePosMissile;

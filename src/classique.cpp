@@ -25,12 +25,11 @@ void Classique::TowerEffectRender(GameData& data)
 	data.dl->AddImage(texture.id, tileMin, tileMax);
 
 
-	if (hasTarget)
+	if (hasTarget == true)
 	{
 		float2 targetVector = target->pos - pos;
 		// Fond angle between enemy and turret
 		angle = -atan2f(targetVector.x, targetVector.y);
-		std::cout << angle << std::endl;
 	}
 	float2 Point4[4] =
 	{
@@ -61,7 +60,7 @@ void Classique::TowerEffectRender(GameData& data)
 Classique::Classique()
 {
     this->name = "Classique";
-    this->type = 1;
+    this->type = CLASSIQUE;
     this->TileX = 0;
     this->TileY = 0;
     this->cost = 25;

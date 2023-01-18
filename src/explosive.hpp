@@ -1,5 +1,5 @@
 #pragma once
-#include "Tower.hpp"
+#include "tower.hpp"
 #include <vector>
 #include "imgui_utils.hpp"
 
@@ -16,7 +16,8 @@ public:
 	
 	float rayonOfMissile;
 	
-	
+	void Reset(GameData& data);
+
 	float2 firstMissile;
 	float2 basePosMissile;
 	float velocityMissile;

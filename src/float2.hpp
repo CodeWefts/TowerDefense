@@ -57,7 +57,10 @@ public:
     }
     */
 
-    
+    virtual float2 operator+( int b) 
+    { 
+        return { this->x + b, this->y + b };
+    }
   
 
     virtual float2 operator/(const float2& float2_2) 
@@ -124,6 +127,7 @@ public:
 
     }
 
+    /*
     virtual float2 operator+(const float& value)
     {
         float2 newFloat2;
@@ -135,6 +139,7 @@ public:
         return newFloat2;
 
     }
+    */
 
     virtual float2 operator-(const float& value)
     {
