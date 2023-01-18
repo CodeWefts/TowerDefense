@@ -34,15 +34,6 @@
     <ClCompile Include="src\Collider2D.cpp">
       <Filter>src\Toolbox</Filter>
     </ClCompile>
-    <ClCompile Include="src\Point2D.cpp">
-      <Filter>src\Toolbox</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Vector2D.cpp">
-      <Filter>src\Toolbox</Filter>
-    </ClCompile>
-    <ClCompile Include="src\player.cpp">
-      <Filter>src\Player</Filter>
-    </ClCompile>
     <ClCompile Include="src\map.cpp">
       <Filter>src\Map</Filter>
     </ClCompile>
@@ -56,13 +47,13 @@
       <Filter>src\entity\enemy</Filter>
     </ClCompile>
     <ClCompile Include="src\healer.cpp">
-      <Filter>src\entity\enemy\soigneur</Filter>
+      <Filter>src\entity\enemy\healer</Filter>
     </ClCompile>
     <ClCompile Include="src\weakling.cpp">
-      <Filter>src\entity\enemy\gringalet</Filter>
+      <Filter>src\entity\enemy\weakling</Filter>
     </ClCompile>
     <ClCompile Include="src\heavy.cpp">
-      <Filter>src\entity\enemy\costaud</Filter>
+      <Filter>src\entity\enemy\heavy</Filter>
     </ClCompile>
     <ClCompile Include="src\ralentissante.cpp">
       <Filter>src\entity\tower\ralentissante</Filter>
@@ -82,26 +73,35 @@
     <ClCompile Include="src\tower_game.cpp">
       <Filter>src\Update</Filter>
     </ClCompile>
-    <ClCompile Include="src\tower_renderer.cpp">
-      <Filter>src\Update</Filter>
-    </ClCompile>
     <ClCompile Include="src\imgui_utils.cpp">
       <Filter>src\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\level.cpp">
-      <Filter>src\Update</Filter>
-    </ClCompile>
-    <ClCompile Include="src\wave.cpp">
-      <Filter>src\Update</Filter>
-    </ClCompile>
-    <ClCompile Include="src\data.cpp">
-      <Filter>src\Update</Filter>
     </ClCompile>
     <ClCompile Include="src\enemy_manager.cpp">
       <Filter>src\entity\enemy</Filter>
     </ClCompile>
     <ClCompile Include="src\audioEngine.cpp">
       <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tower_renderer.cpp">
+      <Filter>src\Update\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data.cpp">
+      <Filter>src\Update\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>src\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\level.cpp">
+      <Filter>src\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wave.cpp">
+      <Filter>src\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer_player.cpp">
+      <Filter>src\Update\Renderer\Renderer_player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer_entity.cpp">
+      <Filter>src\Update\Renderer\Render_entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,15 +117,6 @@
     <ClInclude Include="src\float2.hpp">
       <Filter>src\Toolbox</Filter>
     </ClInclude>
-    <ClInclude Include="src\Point2D.hpp">
-      <Filter>src\Toolbox</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Vector2D.hpp">
-      <Filter>src\Toolbox</Filter>
-    </ClInclude>
-    <ClInclude Include="src\player.hpp">
-      <Filter>src\Player</Filter>
-    </ClInclude>
     <ClInclude Include="src\Tile.hpp">
       <Filter>src\Map\Tiles</Filter>
     </ClInclude>
@@ -136,13 +127,13 @@
       <Filter>src\entity\enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\healer.hpp">
-      <Filter>src\entity\enemy\soigneur</Filter>
+      <Filter>src\entity\enemy\healer</Filter>
     </ClInclude>
     <ClInclude Include="src\weakling.hpp">
-      <Filter>src\entity\enemy\gringalet</Filter>
+      <Filter>src\entity\enemy\weakling</Filter>
     </ClInclude>
     <ClInclude Include="src\heavy.hpp">
-      <Filter>src\entity\enemy\costaud</Filter>
+      <Filter>src\entity\enemy\heavy</Filter>
     </ClInclude>
     <ClInclude Include="src\map.hpp">
       <Filter>src\Map</Filter>
@@ -162,23 +153,11 @@
     <ClInclude Include="src\tower_game.hpp">
       <Filter>src\Update</Filter>
     </ClInclude>
-    <ClInclude Include="src\tower_renderer.hpp">
-      <Filter>src\Update</Filter>
-    </ClInclude>
     <ClInclude Include="src\imgui_utils.hpp">
       <Filter>src\imgui</Filter>
     </ClInclude>
     <ClInclude Include="src\calc.hpp">
       <Filter>src\Toolbox</Filter>
-    </ClInclude>
-    <ClInclude Include="src\level.hpp">
-      <Filter>src\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="src\wave.hpp">
-      <Filter>src\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="src\data.hpp">
-      <Filter>src\Update</Filter>
     </ClInclude>
     <ClInclude Include="src\enemy_manager.hpp">
       <Filter>src\entity\enemy</Filter>
@@ -188,6 +167,27 @@
     </ClInclude>
     <ClInclude Include="src\audioEngine.hpp">
       <Filter>src\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tower_renderer.hpp">
+      <Filter>src\Update\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\data.hpp">
+      <Filter>src\Update\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player.hpp">
+      <Filter>src\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\level.hpp">
+      <Filter>src\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wave.hpp">
+      <Filter>src\Level\Wave</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer_player.hpp">
+      <Filter>src\Update\Renderer\Renderer_player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer_entity.hpp">
+      <Filter>src\Update\Renderer\Render_entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -226,15 +226,6 @@
     </Filter>
     <Filter Include="assets\ennemies">
       <UniqueIdentifier>{f76e22c6-0810-46aa-8f3c-f3636b849843}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entity\enemy\soigneur">
-      <UniqueIdentifier>{760df93d-ef4d-4588-874d-91dbde4fb751}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entity\enemy\gringalet">
-      <UniqueIdentifier>{392e9c5a-954f-4f04-aa4e-06f593468a2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entity\enemy\costaud">
-      <UniqueIdentifier>{45d1a5ce-8df9-4667-a2e4-e7faa5027dc5}</UniqueIdentifier>
     </Filter>
     <Filter Include="assets\ennemies\costaud">
       <UniqueIdentifier>{dca6fa54-cc80-447a-91f0-25b6d1696c00}</UniqueIdentifier>
@@ -280,6 +271,33 @@
     </Filter>
     <Filter Include="assets\end">
       <UniqueIdentifier>{e90596ba-6043-41e2-aa3b-0d118776e6b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\enemy\healer">
+      <UniqueIdentifier>{760df93d-ef4d-4588-874d-91dbde4fb751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\enemy\weakling">
+      <UniqueIdentifier>{392e9c5a-954f-4f04-aa4e-06f593468a2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\enemy\heavy">
+      <UniqueIdentifier>{45d1a5ce-8df9-4667-a2e4-e7faa5027dc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Update\Renderer">
+      <UniqueIdentifier>{11be36b9-b0fd-4112-bc65-3b39824a90b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Update\Data">
+      <UniqueIdentifier>{4bc9f83a-3f01-4631-b9d6-1e2a7dd1a1a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Level">
+      <UniqueIdentifier>{7f88381d-863a-422d-82d4-b2b4502140dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Level\Wave">
+      <UniqueIdentifier>{9c8f2bd8-4d74-4891-9810-98a0189a0619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Update\Renderer\Renderer_player">
+      <UniqueIdentifier>{b186418a-c711-4916-82e3-401a047c5fe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Update\Renderer\Render_entity">
+      <UniqueIdentifier>{cf526842-e01a-4f59-97ba-dc2d6218568d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

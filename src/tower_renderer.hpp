@@ -4,6 +4,9 @@
 #include "imgui_utils.hpp"
 #include "ralentissante.hpp"
 #include "explosive.hpp"
+#include "renderer_player.hpp"
+#include "renderer_entity.hpp"
+
 
 
 struct GameData;
@@ -12,6 +15,12 @@ class TowerRenderer
 {
 public:
 
+
+	RendererPlayer rendererPlayer;
+	
+
+	RendererEntity renderEntity;
+
 	//Menu
 	void DrawAnimation(GameData& data);
 	void menuDisplay(GameData& data);
@@ -19,18 +28,17 @@ public:
 	void DrawEnd(GameData& data);
 
 	// Game
-	void drawEnemies(GameData& data);
 
+	
 	void drawMap(GameData& data);
-	void HudInventory(GameData& data);
-	void DrawPlacedTurret(GameData& data);
-	void DrawHud(GameData& data);
+
+
+	// Draw Player Hud
 	void DrawCheckPoint(GameData& data);
 
+	// Main Loop for Rendering
 	void RendererGame(GameData& data);
-
-	void ExplosiveTower(GameData& data, Explosive& explosive);
-	void SlowingTower(GameData& data, Tower& slowing);
+	
 
 	TowerRenderer();
 	~TowerRenderer();

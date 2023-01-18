@@ -147,7 +147,9 @@ Tower::Tower()
 {
 
     this->target = nullptr;
-    angle = 0;
-    hasTarget = false;
+    this->angle = 0;
+    this->hasTarget = false;
+    this->timer = 0.f;
+
 }
 

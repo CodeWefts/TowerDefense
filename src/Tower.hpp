@@ -39,7 +39,7 @@ public:
 
     float angle;
     float fireRate;
-    float timer = 0;
+    float timer;
     Enemy* target;
 
     virtual void TowerEffectRender(GameData& data);

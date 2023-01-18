@@ -1,9 +1,9 @@
 #include <vector>
-#include "Point2D.hpp"
 #include "data.hpp"
 #include "tower_renderer.hpp"
 #include "Calcul.hpp"
 #include "float2.hpp"
+
 
 
 void TowerRenderer::drawMap(GameData& data)
@@ -145,277 +145,8 @@ void TowerRenderer::drawMap(GameData& data)
 
 }
 
-void TowerRenderer::drawEnemies(GameData& data)
-{
-	for (std::vector<Enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
-	{
-		Enemy* currentEnemy = *it;
-		float2 enemy = currentEnemy->pos;
-
-		if (currentEnemy->name == "Healer")
-		{
-			currentEnemy->texture = data.asset.textureSoigneur;
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy + 15, ImVec2(0, 0), ImVec2(0.35f, 0.25f), IM_COL32(255, 255, 255, 255));
-		}
-
-		else if (currentEnemy->name == "Heavy")
-		{
-
-			currentEnemy->texture = data.asset.textureNightBorne;
-			if (currentEnemy->timeMove <= 0)
-			{
-				currentEnemy->animationMinX = currentEnemy->animationMaxX;
-				currentEnemy->animationMaxX += 0.043f;
-				currentEnemy->timeMove = 0.15f;
-			}
-			else if (currentEnemy->animationMaxX < currentEnemy->vecMaxX)
-			{
-				currentEnemy->timeMove -= data.deltatime;
-			}
-			else if (currentEnemy->animationMaxX >= currentEnemy->vecMaxX)
-			{
-				currentEnemy->animationMinX = 0.f;
-				currentEnemy->animationMaxX = 0.043f;
-			}
-
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 140, enemy += 60, ImVec2(currentEnemy->animationMinX, 0.2), ImVec2(currentEnemy->animationMaxX, 0.4), IM_COL32(255, 255, 255, 255));
-		}
-
-		else if (currentEnemy->name == "Weakling")
-		{
-			currentEnemy->texture = data.asset.textureCanineWhite;
-			ImGui::Text("MaxX  : %f ", currentEnemy->animationMaxX);
-			ImGui::Text("MaxY  : %f ", currentEnemy->animationMaxY);
-			ImGui::Text("MinX  : %f ", currentEnemy->animationMinX);
-			ImGui::Text("MinY  : %f ", currentEnemy->animationMinY);
-			ImVec2 point[4] =
-			{
-				{ enemy.x - 24 , enemy.y - 16 },
-				{ enemy.x + 24 , enemy.y - 16 },
-				{ enemy.x + 24 , enemy.y + 16 },
-				{ enemy.x - 24 , enemy.y + 16 }
-			};
-
-			if (currentEnemy->timeMove <= 0)
-			{
-				currentEnemy->animationMinX = currentEnemy->animationMaxX;
-				currentEnemy->animationMaxX += 0.25f;
-
-				currentEnemy->timeMove = 0.15f;
-			}
-
-			else if (currentEnemy->animationMaxX >= 0.5f && currentEnemy->animationMaxY >= 1.f)
-			{
-				currentEnemy->animationMinX = 0.f;
-				currentEnemy->animationMaxX = 0.25f;
-
-				currentEnemy->animationMinY = 0.f;
-				currentEnemy->animationMaxY = 0.5f;
-			}
-
-			else if (currentEnemy->animationMaxX <= currentEnemy->vecMaxX && currentEnemy->animationMaxY <= 1)
-			{
-				currentEnemy->timeMove -= data.deltatime;
-			}
-
-			else if (currentEnemy->animationMaxX >= currentEnemy->vecMaxX && currentEnemy->animationMaxY >= 0.5)
-			{
-				currentEnemy->animationMinY = currentEnemy->animationMaxY;
-				currentEnemy->animationMaxY += 0.5f;
-
-				currentEnemy->animationMinX = 0.f;
-				currentEnemy->animationMaxX = 0.25f;
-			}
-
-			
 
 
-			data.dl->AddImageQuad(currentEnemy->texture.id, point[0], point[1], point[2], point[3], 
-									ImVec2(currentEnemy->animationMaxX , currentEnemy->animationMinY), 
-									ImVec2(currentEnemy->animationMinX , currentEnemy->animationMinY), 
-									ImVec2(currentEnemy->animationMinX , currentEnemy->animationMaxY),
-									ImVec2(currentEnemy->animationMaxX , currentEnemy->animationMaxY));
-		}
-
-		currentEnemy->DrawSlider(*data.dl);
-
-		if (data.enableDebug)
-			currentEnemy->DrawDebug(*(data.dl));
-	}
-}
-
-
-
-void TowerInInventoryHUD(GameData& data)
-{
-	
-	ImVec2 min = { 
-		7 * data.map.Tilesize + 15,
-		9 * data.map.Tilesize + 13 
-	}, max = { 
-		8 * data.map.Tilesize - 10, 
-		10 * data.map.Tilesize - 13 
-	};
-
-	ImGui::Text("Mouse X %f", data.io.MousePos.x);
-	ImGui::Text("Mouse Y %f", data.io.MousePos.y);
-
-	ImGui::Text("Min X %f", min.x);
-	ImGui::Text("Min Y %f", max.y);
-
-
-	data.dl->AddImage(data.asset.textureTowerClassique.id, min, max, float2(0, 0), float2(1, 1));
-
-	data.dl->AddImage(data.asset.textureTowerExplosive.id, float2(min.x + data.map.Tilesize, min.y), float2(max.x + data.map.Tilesize, max.y), float2(0, 0), float2(1, 1));
-
-	data.dl->AddImage(data.asset.texureSlowing.id, float2(min.x + (data.map.Tilesize * 2), min.y), float2(max.x + (data.map.Tilesize * 2), max.y), float2(0, 0), float2(1, 1));
-
-	if (data.io.MousePos.x >= min.x - 15 && data.io.MousePos.x <= max.x + 10 &&
-		data.io.MousePos.y >= min.y - 13 && data.io.MousePos.y <= max.y + 13
-		)
-	{
-		data.dl->AddImage(data.asset.textureMenuHUD.id, { data.io.MousePos.x, data.io.MousePos.y - 200 }, { data.io.MousePos.x + 250, data.io.MousePos.y });
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 180 }, ImColor(255, 255, 255, 255), "Name : Classique");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 160 }, ImColor(255, 255, 255, 255), "Cost : 25");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 140 }, ImColor(255, 255, 255, 255), "Range : 1");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 120 }, ImColor(255, 255, 255, 255), "Damage : 10");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 100 }, ImColor(255, 255, 255, 255), "FireRate : 0.5");
-	}
-	if (data.io.MousePos.x >= min.x + 72 - 15 && data.io.MousePos.x <= max.x + 72 + 10 &&
-		data.io.MousePos.y >= min.y - 13 && data.io.MousePos.y <= max.y + 13
-		)
-	{
-		data.dl->AddImage(data.asset.textureMenuHUD.id, { data.io.MousePos.x, data.io.MousePos.y - 200 }, { data.io.MousePos.x + 250, data.io.MousePos.y });
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 180 }, ImColor(255, 255, 255, 255), "Name : Explosive");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 160 }, ImColor(255, 255, 255, 255), "Cost : 50");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 140 }, ImColor(255, 255, 255, 255), "Range : 2");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 120 }, ImColor(255, 255, 255, 255), "Damage : 10");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 100 }, ImColor(255, 255, 255, 255), "FireRate : 0.5");
-	}
-	if (data.io.MousePos.x >= min.x + 72 * 2 - 15 && data.io.MousePos.x <= max.x + 72 * 2 + 10 &&
-		data.io.MousePos.y >= min.y - 13 && data.io.MousePos.y <= max.y + 13
-		)
-	{
-		data.dl->AddImage(data.asset.textureMenuHUD.id, { data.io.MousePos.x, data.io.MousePos.y - 200 }, { data.io.MousePos.x + 250, data.io.MousePos.y });
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 180 }, ImColor(255, 255, 255, 255), "Name : Ralentissante");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 160 }, ImColor(255, 255, 255, 255), "Cost : 150");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 140 }, ImColor(255, 255, 255, 255), "Range : 2");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 120 }, ImColor(255, 255, 255, 255), "Damage : 10");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 100 }, ImColor(255, 255, 255, 255), "FireRate : 0.5");
-	}
-
-}
-void TowerRenderer::HudInventory(GameData& data)
-{
-	// BRUT 
-	int minX = 6;
-	int maxX = 7;
-
-	int minY = 9;
-	int maxY = 10;
-	for (int i = 0; i <= 5; i++)
-	{
-		if (i == 0)
-			data.dl->AddImage(data.asset.textureTowerSideLeft.id, { minX * data.map.Tilesize, minY * data.map.Tilesize }, { maxX * data.map.Tilesize, maxY * data.map.Tilesize });
-
-		else if (i >= 1 && i <= 4)
-			data.dl->AddImage(data.asset.textureTowerCase.id, { minX * data.map.Tilesize, minY * data.map.Tilesize }, { maxX * data.map.Tilesize, maxY * data.map.Tilesize });
-
-		else
-			data.dl->AddImage(data.asset.textureTowerSideRight.id, { minX * data.map.Tilesize, minY * data.map.Tilesize }, { maxX * data.map.Tilesize, maxY * data.map.Tilesize });
-		minX++;
-		maxX++;
-	}
-
-	TowerInInventoryHUD(data);
-
-}
-
-void TowerRenderer::DrawHud(GameData& data)
-{
-	if (ImGui::IsKeyPressed(ImGuiKey_Y, false))
-	{
-		data.player.health -= 100;
-	}
-
-	float maxlenght = 520;
-	float returnHealPercent = (float(data.player.health) / data.player.maxHealth);
-	float currentLenght = maxlenght * returnHealPercent;
-
-	ImColor color = ColorByHealth(returnHealPercent, 0.35f, 0.75f);
-
-	data.dl->AddRectFilled(float2(20, 20), float2(currentLenght, 60), color, 5.f, 0);
-	if (data.player.health >= 0)
-	{
-		data.dl->AddRect(float2(20, 20), float2(520, 60), IM_COL32(255, 255, 255, 255), 5.f, 0, 4.f);
-	}
-
-	data.dl->AddImage(data.asset.PlayerHeart.id, float2(2.5, 2.5), float2(75, 75));
-
-
-	
-
-	//Print Player Coins
-	string playerCoins = std::to_string(data.player.coins);
-
-	data.dl->AddImage(data.asset.textureButton.id, float2(data.map.Tilesize/2, data.map.Tilesize), float2(data.map.Tilesize*4, data.map.Tilesize * 2));
-	data.dl->AddImage(data.asset.textureCoin.id, float2(0, data.map.Tilesize), float2(data.map.Tilesize, data.map.Tilesize*2));
-	data.dl->AddText(float2(data.map.Tilesize, data.map.Tilesize + data.map.Tilesize/3), IM_COL32(255, 255, 255, 255), playerCoins.c_str());
-	
-	string playerHeatl = std::to_string(data.player.health);
-	data.dl->AddText(float2(100, data.map.Tilesize/2), IM_COL32(255, 255, 255, 255), playerHeatl.c_str());
-	
-
-}
-
-
-void DrawRangeTurret(GameData& data)
-{
-	for (std::vector<Tower*>::iterator it = data.towerVector.begin(); it != data.towerVector.end(); it++)
-	{
-		Tower* currentTower = *it;
-		//currentTower->TileX
-
-		ImVec2 centerTower = { (float)currentTower->TileX + 36,(float)currentTower->TileY + 36 };
-
-		data.dl->AddCircle(centerTower, (float)currentTower->range * 72 + 36, IM_COL32(0, 255, 255, 255));
-	}
-}
-
-void TowerRenderer::DrawPlacedTurret(GameData& data)
-{
-	// TO-DO OPTIMISATION OF IF
-
-
-	for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
-	{
-		Tower* currentTower = *it;
-
-
-
-		if (currentTower->type == CLASSIQUE)
-		{
-			currentTower->TowerEffectRender(data);
-		}
-		if (currentTower->type == EXPLOSIVE)
-		{
-			currentTower->TowerEffectRender(data);
-		}
-		if (currentTower->type == RALENTISSANTE)
-		{
-			currentTower->TowerEffectRender(data);
-		}
-	}
-
-	if (data.enableDebug == true)
-	{
-		DrawRangeTurret(data);
-	}
-
-
-	DrawRangeTurret(data);
-
-}
 
 void TowerRenderer::menuDisplay(GameData& data)
 {
@@ -587,28 +318,18 @@ void TowerRenderer::DrawCheckPoint(GameData& data)
 
 
 
-void TowerRenderer::SlowingTower(GameData& data, Tower& slowing)
-{
 
 
-}
-
-
-void TowerRenderer::ExplosiveTower(GameData& data, Explosive& explosive)
-{
-
-}
 
 
 
 void TowerRenderer::RendererGame(GameData& data)
 {
 	drawMap(data);
-	drawEnemies(data);
-	DrawPlacedTurret(data);
-	HudInventory(data);
+	renderEntity.RendererEntitys(data);
 	data.player.UpdatePlayer(data);//data.player.PlayerTile(data);
-	DrawHud(data);
+	rendererPlayer.DrawPlayer(data);
+
 	DrawCheckPoint(data);
 	DrawEnd(data);
 

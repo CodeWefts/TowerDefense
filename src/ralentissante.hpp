@@ -25,13 +25,15 @@ public:
 
 	int maxDamage;
 
-	void Shoot(GameData& data) override;
 	void TowerEffectRender(GameData& data) override;
-
-	void Reset(GameData& data) override;
 
 	Ralentissante();
 	~Ralentissante();
 
+protected:
+	void Shoot(GameData& data) override;
+	
+
+	void Reset(GameData& data) override;
 
 };

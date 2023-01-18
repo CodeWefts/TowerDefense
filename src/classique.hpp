@@ -15,11 +15,13 @@ public:
 
 	void TowerEffectRender(GameData& data) override;
 
-	void Shoot(GameData& data) override;
 
 
 	Classique();
 	~Classique();
 
+protected:
+
+	void Shoot(GameData& data) override;
 
 };

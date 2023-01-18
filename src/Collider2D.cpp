@@ -1,10 +1,10 @@
-#include"Collider2D.hpp"
+#include "Collider2D.hpp"
+#include "float2.hpp"
 
 
 
 
-
-bool colPoint2dtoSS2d(const float2& p, const float2& C, float rC)
+bool ColPoint2dtoSS2d(const float2& p, const float2& C, float rC)
 {
 
     if ((pow(p.x - C.x, 2) + pow(p.y - C.y, 2)) < pow(rC, 2))
@@ -15,7 +15,7 @@ bool colPoint2dtoSS2d(const float2& p, const float2& C, float rC)
     return false;
 }
 
-bool colSStoSS2d(const float2& C1, float rC1, const float2& C2, float rC2)
+bool ColSStoSS2d(const float2& C1, float rC1, const float2& C2, float rC2)
 {
     if ((pow(C1.x - C2.x, 2) + pow(C1.y - C2.y, 2)) < (pow(rC1, 2) + pow(rC2, 2)))
     {
@@ -59,7 +59,7 @@ bool colPoint2dtoAABB2d(const float2& min, const float2& max, const float2& P)
 }
 
 
-float minimum(float a, float b)
+float Minimum(float a, float b)
 {
     if (a < b)
         return a;
@@ -70,7 +70,7 @@ float minimum(float a, float b)
 }
 
 /* Return the Max value between 2 float*/
-float maximum(float a, float b)
+float Maximum(float a, float b)
 {
     if (a > b)
         return a;
@@ -88,8 +88,8 @@ bool colSStoAABB(float2& Amin, float2& Amax, float2& C, float& rC)
 
     float2 P;
 
-    P.x = maximum(Amin.x, minimum(C.x, Amax.x));
-    P.y = maximum(Amin.x, minimum(C.y, Amax.y));
+    P.x = Maximum(Amin.x, Minimum(C.x, Amax.x));
+    P.y = Maximum(Amin.x, Minimum(C.y, Amax.y));
 
 
     if (powf((P.x - C.x), 2) + powf((P.y - C.y), 2) < sqrtf(rC))

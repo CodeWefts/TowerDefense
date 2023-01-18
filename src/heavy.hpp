@@ -10,7 +10,6 @@ class Heavy : public Enemy
 public:
 	
 
-	int indexStaticDebugCostaud;
 
 	
 

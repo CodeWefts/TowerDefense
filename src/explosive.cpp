@@ -14,13 +14,13 @@ void Explosive::Shoot(GameData& data)
 	//std::cout << vector.x << " , " << vector.y << std::endl;
 	firstMissile -= normaliseVector(vector) * velocityMissile * data.deltatime;
 
-	if (colSStoSS2d(firstMissile, rayonOfMissile, target->pos, rayonOfMissile))
+	if (ColSStoSS2d(firstMissile, rayonOfMissile, target->pos, rayonOfMissile))
 	{
 		for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
 		{
 			Enemy* current = *it;
 
-			if (colSStoSS2d(firstMissile, rayonOfExplosion, current->pos, rayonOfMissile))
+			if (ColSStoSS2d(firstMissile, rayonOfExplosion, current->pos, rayonOfMissile))
 			{
 				explosion = true;
 				std::cout << damage << std::endl;
