@@ -7,7 +7,7 @@
 #include "tower_renderer.hpp"
 #include "enemy_manager.hpp"
 #include "player.hpp"
-#include "tower.hpp"
+#include "Tower.hpp"
 #include "level.hpp"
 #include "wave.hpp"
 #include "calc.hpp"
@@ -15,8 +15,8 @@
 
 #define EndOfVector '$'
 
-#define TimerLevel 2.f
-#define TimerWave 15.f
+#define TimerLevel 0.f
+#define TimerWave 5.f
 #define nbrOfLevel 5
 #define NbrOfRoad 4
 
@@ -32,28 +32,33 @@ struct Asset
 		texturePathLeft, texturePathRight, texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight,
 
 		//texture ennemy COSTAUD
-		textureCostaud1, textureCostaud2, textureCostaud3, textureCostaud4, textureCostaud5, textureCostaud6, textureCostaud7, textureCostaud8, textureCostaud9,
-		textureCostaud10, textureCostaud11, textureCostaud12,
+		textureNightBorne,
 
 		textureTower,
 
 		PlayerHeart,
 		//texture ennemy GRINGALET
-		textureGringalet,
+		textureCanineWhite,
 
 		//texture ennemy SOIGNEUR
 		textureSoigneur,
 
 		//texture tower TOWER
-		textureTowerClassique, textureTowerRalentissante, textureTowerExplosive, textureTowerClassicalCanon, textureTowerClassicalBase,
+		textureTowerClassique, textureTowerRalentissante, textureTowerExplosive, textureTowerClassicalBase, textureTowerClassicalCanon,
+
 		// texture tower Slowing
 		texureSlowing,
 
-		//texture hud INVENTORY TOWER
+		//texture hud || INVENTORY TOWER
 		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
 
-		textureAnimation, textureMenuHUD;
+		textureAnimation, textureMenuHUD, textureBackGround, texturePlay, textureLevels, textureSettings,
 
+		textureCoin, textureButton,
+
+		//texture Game's END
+		textureEndBackGround, textureEndWin, textureEndOkButton, textureEndLose ;
+		
 
 
 	Asset();
@@ -65,13 +70,11 @@ enum Scene : int
 {
 	Menu,
 	Option,
+	Levels,
 	Game,
 	GameOver
 
 };
-
-
-
 
 
 struct GameData
@@ -93,14 +96,16 @@ struct GameData
 	float timerLevel;
 		
 	float transparenceTime = 0.f;
-	float time = 0.f, timeMove = 2.f;
+	float time = 0.f;
 	int transparence = 0;
 
 	ImVec2 posAnimationMin = { 56, 305 }; // y - 255 = 50
 	ImVec2 posAnimationMax = { 1296 - 56,720 - 305 }; // y + 255 =  720 - (305 + 256)
 
-	vector<float2> listOfRoad[NbrOfRoad];
+	ImVec2 minEnd = { 476.5,171 };
+	ImVec2 maxEnd = { 819.5, 549 };
 
+	vector<float2> listOfRoad[NbrOfRoad];
 
 	vector<Tower*> towerVector;
 	vector<Enemy*> enemyVector;

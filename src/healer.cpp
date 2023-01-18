@@ -16,11 +16,15 @@ Healer::Healer()
 	this->pos = { 0,0 };
 	this->velocity = 90.f;
 	this->healRate = HealRate;
-	this->coinsToPlayer = 300;
+	this->coinsToPlayer = 20;
+	this->healValue = 30;
+	Enemy* allyIsInRange = nullptr;
+
 }
 
 Healer::~Healer()
 {
+	delete allyIsInRange;
 }
 
 
@@ -41,33 +45,40 @@ void Healer::Heal(GameData& data)
 	{
 
 		Enemy* current = *it;
-		/*
-		* if (current->erase)
-		{
-			it++;
-			current = *it;
-		}
-		
-		*/
 		float2 min = this->pos - healBoxSize;
 		float2 max = this->pos + healBoxSize;
 
-		// Not DIED
 
-		if (current->currentHealth <= maxHealt && healRate <= 0 && colPoint2dtoAABB2d(min, max, current->pos))
+		if(allyIsInRange != nullptr)
 		{
-			current->currentHealth += 10;
+			if(colPoint2dtoAABB2d(min, max, current->pos))
+			{
+				current = allyIsInRange;
+			}
+			else
+			{
+				allyIsInRange = nullptr;
+
+			}
+		}
+		else if (current != this &&  current->currentHealth + 40 <= maxHealt && healRate <= 0 && colPoint2dtoAABB2d(min, max, current->pos))
+		{
+			if(current->currentHealth + healValue >= maxHealt)
+			{
+				current->currentHealth += maxHealt - current->currentHealth;
+				
+			}
+			else
+			{
+				current->currentHealth += healValue;
+			}
+			
 			healRate = HealRate;
 		}
-
-
-
-
 
 	}
 
 }
-
 
 
 void Healer::UpdateEnemy(GameData& data, bool& erase)

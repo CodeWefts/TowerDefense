@@ -15,7 +15,17 @@ Weakling::Weakling()
 	this->maxHealt = 100;
 	this->pos = { 0,0 };
 	this->velocity = 90.f;
-	this->coinsToPlayer = 100;
+	this->coinsToPlayer = 10;
+
+	this->animationMinX = 0.f;
+	this->animationMinY = 0.f;
+	this->animationMaxX = 0.25f;
+	this->animationMaxY = 0.5f;
+
+	this->vecMaxX = 1;
+	this->vecMaxY = 1;
+
+	this->timeMove = 0.15f;
 
 }
 

@@ -13,20 +13,16 @@
 #define Healer_def 1
 #define Heavy_def 2
 
-#define TimeBetweenSpawnMin 0.5
-#define TimeBetweenSpawnMax 0.5
+//#define TimeBetweenSpawnMin 5.5f
+//#define TimeBetweenSpawnMax 7.5f
+
+
+#define TimeBetweenSpawnMin 0.5f
+#define TimeBetweenSpawnMax 1.5f
+
+
 #define TimerBetweenWaveMin 5.f
 #define TimerBetweenWaveMax 10.f
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -52,7 +48,7 @@ void EnemyManager::SpawnEnemy(GameData& data)
 	int roadChoice = rand() % NbrOfRoad;
 	std::cout << roadChoice << std::endl;
 	float2 SpawnPoint = data.listOfRoad[roadChoice].at(0);
-	
+
 
 	// To Do Create Fonction
 
@@ -92,35 +88,31 @@ void EnemyManager::SpawnEnemy(GameData& data)
 
 
 
-
-
-
-
 void EnemyManager::ManageWave(GameData& data)
 {
-		
-	//int enemyremain = data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy;
-	
-	data.timerLevel -= data.deltatime;
-	
 
 
 
-
-
-	
 	if (data.timerLevel <= 0)
 	{
 		data.levels.at(data.currentLevel).timerBetweenWave -= data.deltatime;
 
 
-		if (data.currentWave == data.levels.at(data.currentLevel).maxWave - 1 )
+		if (data.currentWave == data.levels.at(data.currentLevel).maxWave - 1)
 		{
 
 			data.timerLevel = TimerLevel;
 			ChangeLevel(data);
-			data.currentLevel++;
-			
+			if (data.currentLevel == nbrOfLevel && data.currentWave == data.levels[data.currentLevel].maxWave - 1)
+			{
+				data.currentScene = Menu;
+			}
+			else
+			{
+				data.currentLevel++;
+			}
+
+
 			// Load New path //
 			data.currentWave = 0;
 			data.changeLevel = true;
@@ -152,7 +144,7 @@ void EnemyManager::ManageWave(GameData& data)
 			data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn -= data.deltatime;
 
 			// Timer between 2 spawn
-			if(data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn <= 0)
+			if (data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn <= 0)
 			{
 				// Spawn
 				SpawnEnemy(data);
@@ -160,29 +152,11 @@ void EnemyManager::ManageWave(GameData& data)
 			}
 
 
-			
+
 		}
 
 
 	}
-
-
-	
-
-		
-		
-
-	
-	
-
-
-
-	
-
-
-
-
-
 }
 
 
@@ -225,7 +199,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		else if (current->erase && it == data.enemyVector.begin())
 		{
 			data.player.coins += current->coinsToPlayer;
-
+			it = data.enemyVector.erase(it);
 			for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
 			{
 				Tower* tower = *op;
@@ -235,8 +209,6 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 					tower->target = nullptr;
 				}
 			}
-
-			it = data.enemyVector.erase(it);
 		}
 		else
 		{
@@ -257,7 +229,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 void EnemyManager::ManageEnemy(GameData& data)
 {
 	//TO DO ADD WAWE
-	this->ManageWave(data);
+	//this->ManageWave(data);
 	this->MoveEnemyPath(data);
 
 }

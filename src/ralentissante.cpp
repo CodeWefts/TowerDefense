@@ -10,17 +10,12 @@ void Ralentissante::Shoot(GameData& data)
 	{
 		this->damage += (incrementDamage + data.deltatime);
 	}
-	
-	
-	
-	std::cout << "has target  = " << this->beamValue << std::endl;
-	//std::cout << " damage = " << this->damage << std::endl;
-	
-	if(this->target->velocity > this->maxDebuffVelocity)
+
+	if (this->target->velocity > this->maxDebuffVelocity)
 	{
 		this->target->velocity -= (10 + data.deltatime);
 	}
-	
+
 	if (beamValue < maxBeamValue)
 	{
 		this->beamValue += (2 + data.deltatime);
@@ -32,8 +27,8 @@ void Ralentissante::Shoot(GameData& data)
 void Ralentissante::Reset(GameData& data)
 {
 	this->damage = baseDamage;
-	this->beamValue = beamBaseValue; 		
-	
+	this->beamValue = beamBaseValue;
+
 }
 
 
@@ -46,8 +41,8 @@ void Ralentissante::TowerEffectRender(GameData& data)
 	texture = data.asset.texureSlowing;
 	canonTexture = { 0 };
 	data.dl->AddImage(texture.id, TileMin, TileMax);
-	
-	
+
+
 	if (hasTarget)
 	{
 		data.dl->AddCircleFilled(float2(pos.x, pos.y - 100), 6.f, IM_COL32(50, 139, 255, 255), 30);

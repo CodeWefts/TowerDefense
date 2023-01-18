@@ -26,7 +26,8 @@ void MapClass::LoadMap(string& newMap)
 				Tile tile;
 				tile.Texture_type = newMap[idx];
 				Tiles.push_back(tile);
-			}else
+			}
+			else
 			{
 				Tiles.at(idx).Texture_type = newMap[idx];
 			}
@@ -38,7 +39,7 @@ void MapClass::LoadMap(string& newMap)
 void MapClass::CreateMap(GameData& data)
 {
 
-	if(data.currentLevel == 0)
+	if (data.currentLevel == 0)
 	{
 		map =
 			"                  "
@@ -48,26 +49,26 @@ void MapClass::CreateMap(GameData& data)
 			"  /p|    /p|      "
 			"__jp|    /p|      "
 			"pppp|    /pl______"
-			"----,    /pppppppp"	
+			"----,    /pppppppp"
 			"         ;--------"
 			"                  ";
 		LoadMap(map);
-	
+
 	}
 	else if (data.currentLevel == 1)
-	{	
-		
-		mapLvl2  =
-		"                  "
-		"                  "
-		"       ppppppppppp"
-		"       p          "
-		"       p  ppppp   "
-		"       p  p   p   "
-		"  ppppppppp   p   "
-		"  p           p   "
-		"  p           p   "
-		"  p           p   ";
+	{
+
+		mapLvl2 =
+			"                  "
+			"       __________ "
+			"       ppppppppppp"
+			"      /p          "
+			"      /p  ppppp   "
+			" _____/p  p  |p|  "
+			" |ppppppppp  |p|  "
+			" |p;-------  |p|  "
+			" |p          |p|  "
+			" |p          |p|  ";
 
 		LoadMap(mapLvl2);
 	}
@@ -130,7 +131,7 @@ float2 ReturnTileMin(int indexX, int indexY, MapClass& map)
 	return { map.origin.x + (indexX * map.Tilesize),(indexY * map.Tilesize) };
 }
 
-float2 ReturnCenter( float2 Max,  float2 Min)
+float2 ReturnCenter(float2 Max, float2 Min)
 {
 	return { (Max + Min) };
 }
@@ -161,7 +162,7 @@ float2 ReturnPosfromChar(char c, MapClass& map)
 }
 
 
-bool IsPlaceAble(GameData& data,const float2& pos)
+bool IsPlaceAble(GameData& data, const float2& pos)
 {
 
 

@@ -10,7 +10,8 @@ class Healer : public Enemy
 {
 public:
 
-
+	Enemy* allyIsInRange;
+	int healValue;
 
 	void Heal(GameData& data) override;
 	void UpdateEnemy(GameData& Data, bool& erase) override;

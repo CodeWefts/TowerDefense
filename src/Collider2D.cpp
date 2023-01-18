@@ -52,7 +52,7 @@ bool colPoint2dtoAABB2d(const float2& min, const float2& max, const float2& P)
     {
         return true;
     }
-  
+
 
     return false;
 

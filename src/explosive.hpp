@@ -13,9 +13,11 @@ class Explosive : public Tower
 
 
 public:
-	
+
+	bool hit;
+
 	float rayonOfMissile;
-	
+
 	void Reset(GameData& data);
 
 	float2 firstMissile;
@@ -25,7 +27,9 @@ public:
 	bool explosion;
 	float rayonOfExplosion;
 
-	 void TowerEffectRender(GameData& data) override;
+
+
+	void TowerEffectRender(GameData& data) override;
 
 	void Shoot(GameData& data) override;
 	Explosive();

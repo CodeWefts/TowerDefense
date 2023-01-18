@@ -1,8 +1,12 @@
 #include <string>
 #include "data.hpp"
 #include "healer.hpp"
+#include "weakling.hpp"
 
 using namespace std;
+
+
+
 
 
 
@@ -15,7 +19,7 @@ void ChangeLevel(GameData& data)
 		Tower* currentTower = *it;
 		currentTower->target = nullptr;
 		delete currentTower;
-		
+
 	}
 	data.towerVector.clear();
 	for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
@@ -23,25 +27,16 @@ void ChangeLevel(GameData& data)
 		delete* it;
 	}
 	data.enemyVector.clear();
-	
+
 }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-void SaveAllPath(GameData& data) 
+void SaveAllPath(GameData& data)
 {
-	 //Load Data 
+	//Load Data 
 	ofstream file;
 	std::string pathFileString = "src/checkPointData/lvl0.txt";
 	//pathFileString += std::to_string(data.currentLevel);
@@ -51,7 +46,7 @@ void SaveAllPath(GameData& data)
 
 	file.open(pathFileString, std::ios::out);  // write
 
-	
+
 
 	if (file.is_open())
 	{
@@ -63,7 +58,7 @@ void SaveAllPath(GameData& data)
 				file << it->x << std::endl;
 				file << it->y << std::endl;
 			}
-			
+
 		}
 		file.close();
 	}
@@ -75,10 +70,10 @@ void SaveAllPath(GameData& data)
 
 void LoadALLPath(GameData& data)
 {
-	
+
 	if (data.changeLevel)
 	{
-		
+
 		ifstream pathFile;
 		std::string pathFileString = "src/checkPointData/lvl0.txt";
 		//pathFileString += std::to_string(data.currentLevel);
@@ -109,7 +104,7 @@ void LoadALLPath(GameData& data)
 					pathFile >> ptr.x;
 
 					pathFile >> ptr.y;
-					
+
 					data.listOfRoad[i].push_back(ptr);
 				}
 
@@ -125,9 +120,6 @@ void LoadALLPath(GameData& data)
 
 
 
-
-
-
 void Debug(GameData& gameData)
 {
 
@@ -137,11 +129,10 @@ void Debug(GameData& gameData)
 	ImGui::Text(" Press V gameData.listOfRoad[0] = %d", gameData.listOfRoad[0].size());
 	ImGui::Text(" Press B gameData.listOfRoad[1] = %d", gameData.listOfRoad[1].size());
 	ImGui::Text(" Press N gameData.listOfRoad[2] = %d ", gameData.listOfRoad[2].size());
-	ImGui::Text(" Press N gameData.listOfRoad[3] = %d ", gameData.listOfRoad[3].size());
 	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
 
 	ImGui::Text("WaveTimer = %f ", gameData.levels.at(gameData.currentLevel).timerBetweenWave);
-	//ImGui::Text("timerbetweenSpawn = %f ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).timerbetweenSpawn);
+	ImGui::Text("timerbetweenSpawn = %f ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).timerbetweenSpawn);
 
 	ImGui::Text("CurrentLevel = %d ", gameData.currentLevel);
 	ImGui::Text("nbrOfLevel = %d ", gameData.levels.size());
@@ -149,7 +140,7 @@ void Debug(GameData& gameData)
 	ImGui::Text("CurrentWave %d", gameData.currentWave);
 
 
-	//ImGui::Text("EnemyRemaining = %d ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).nbrOfEnemy);
+	ImGui::Text("EnemyRemaining = %d ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).nbrOfEnemy);
 
 
 	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
@@ -206,9 +197,20 @@ void Debug(GameData& gameData)
 
 
 	// work
-	if (ImGui::IsKeyPressed(ImGuiKey_A,false))
+	if (ImGui::IsKeyPressed(ImGuiKey_A, false))
 	{
 		Enemy* enemy1 = new Healer();
+
+		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
+		enemy1->roadChoice = Path0;
+
+		gameData.enemyVector.push_back(enemy1);
+
+	}
+
+	if (ImGui::IsKeyPressed(ImGuiKey_I, false))
+	{
+		Enemy* enemy1 = new Weakling();
 
 		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
 		enemy1->roadChoice = Path0;
@@ -280,16 +282,6 @@ void Debug(GameData& gameData)
 
 }
 
-
-
-
-
-
-
-
-
-
-
 Asset::Asset()
 {
 	//Grass
@@ -311,24 +303,13 @@ Asset::Asset()
 	texturePathTopRight = ImGuiUtils::LoadTexture("assets/map/pathTopRight.png");
 
 	//ENNEMY 1 : GRINGALET
-	textureGringalet = ImGuiUtils::LoadTexture("assets/ennemies/gringalet.png");
+	textureCanineWhite = ImGuiUtils::LoadTexture("assets/enemy/canineWhite.png");
 
 	//ENNEMY 2 : SOIGNEUR
-	textureSoigneur = ImGuiUtils::LoadTexture("assets/ennemies/soigneur.png");
+	textureSoigneur = ImGuiUtils::LoadTexture("assets/enemy/soigneur.png");
 
 	//ENNEMY 3 : COSTAUD
-	textureCostaud1 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud1.png");
-	textureCostaud2 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud2.png");
-	textureCostaud3 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud3.png");
-	textureCostaud4 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud4.png");
-	textureCostaud5 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud5.png");
-	textureCostaud6 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud6.png");
-	textureCostaud7 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud7.png");
-	textureCostaud8 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud8.png");
-	textureCostaud9 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud9.png");
-	textureCostaud10 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud10.png");
-	textureCostaud11 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud11.png");
-	textureCostaud12 = ImGuiUtils::LoadTexture("assets/ennemies/costaud/costaud12.png");
+	textureNightBorne = ImGuiUtils::LoadTexture("assets/enemy/NightBorne.png");
 
 	//TOWER 1 : TOWER
 	textureTowerClassique = ImGuiUtils::LoadTexture("assets/tower/classique.png");
@@ -338,19 +319,29 @@ Asset::Asset()
 	//TOWER 2 : SLOWING
 	texureSlowing = ImGuiUtils::LoadTexture("assets/tower/Obelisk.png");
 
-
 	//INVENTORY HUD
 	textureTowerSideLeft = ImGuiUtils::LoadTexture("assets/hud/SideLeft.png");
 	textureTowerSideRight = ImGuiUtils::LoadTexture("assets/hud/SideRight.png");
 	textureTowerCase = ImGuiUtils::LoadTexture("assets/hud/TowerCase.png");
 	PlayerHeart = ImGuiUtils::LoadTexture("assets/hud/pixel-heart-png.png");
+	textureCoin = ImGuiUtils::LoadTexture("assets/level/coin.png");
+	textureButton = ImGuiUtils::LoadTexture("assets/menu/button.png");
 
 
 	//MENU : START GAME
 	textureAnimation = ImGuiUtils::LoadTexture("assets/menu/Animation.png");
 	textureMenuHUD = ImGuiUtils::LoadTexture("assets/menu/menuHUD.png");
+	textureBackGround = ImGuiUtils::LoadTexture("assets/menu/background.png");
+	texturePlay = ImGuiUtils::LoadTexture("assets/menu/menuPlay.png");
+	textureSettings = ImGuiUtils::LoadTexture("assets/menu/settings.png");
+	textureLevels = ImGuiUtils::LoadTexture("assets/menu/levels.png");
 
+	//END
 
+	textureEndBackGround = ImGuiUtils::LoadTexture("assets/end/background.png");
+	textureEndLose = ImGuiUtils::LoadTexture("assets/end/lose.png");
+	textureEndWin = ImGuiUtils::LoadTexture("assets/end/win.png");
+	textureEndOkButton = ImGuiUtils::LoadTexture("assets/end/okButton.png");
 
 
 }
@@ -385,7 +376,6 @@ GameData::GameData()
 
 		for (int j = 0; j < newlevel.maxWave; j++)
 		{
-			
 			newlevel.waves[j].maxEnemy = 10 + (10 * j);
 			newlevel.waves[j].nbrOfEnemy = newlevel.waves[j].maxEnemy;
 			newlevel.waves[j].timerbetweenSpawn = Calc::randomFloat(5.5f, 7.5f);

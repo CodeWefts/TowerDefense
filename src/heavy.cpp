@@ -1,5 +1,5 @@
 #include"Heavy.hpp"
-#include"tower_game.hpp"
+#include "data.hpp"
 #include"calc.hpp"
 
 
@@ -12,7 +12,17 @@ Heavy::Heavy()
 	this->pos = { 0,0 };
 	this->velocity = 50.f;
 	this->damageToPlayer = 75;
-	this->coinsToPlayer = 600;
+	this->coinsToPlayer = 60;
+
+	this->animationMinX = 0;
+	this->animationMinY = 0.2;
+	this->animationMaxX = 0.043;
+	this->animationMaxY = 0.4;
+
+	this->vecMaxX = 0.043 * 4;
+	this->vecMaxY = 0.4;
+
+	this->timeMove = 0.15f;
 }
 
 Heavy::~Heavy()

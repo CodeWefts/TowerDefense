@@ -112,7 +112,7 @@ float2 midfloat2(float2 p1, float2 p2)
 
 float2  Rotationfloat2(float2 P, const float2 R, float angle)
 {
-     float2 tmprR = R;
+    float2 tmprR = R;
     float2 tmprP = P;
 
     float2 p_R = { tmprP.x - R.x , tmprP.y - R.y };

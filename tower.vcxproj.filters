@@ -25,7 +25,7 @@
     <ClCompile Include="externals\src\stb_image.cpp">
       <Filter>externals</Filter>
     </ClCompile>
-    <ClCompile Include="src\tower.cpp">
+    <ClCompile Include="src\Tower.cpp">
       <Filter>src\entity\tower</Filter>
     </ClCompile>
     <ClCompile Include="src\Calcul.cpp">
@@ -103,12 +103,9 @@
     <ClCompile Include="src\audioEngine.cpp">
       <Filter>src\audio</Filter>
     </ClCompile>
-    <ClCompile Include="src\particules.cpp">
-      <Filter>src\Update</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\tower.hpp">
+    <ClInclude Include="src\Tower.hpp">
       <Filter>src\entity\tower</Filter>
     </ClInclude>
     <ClInclude Include="src\Calcul.hpp">
@@ -125,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="src\Vector2D.hpp">
       <Filter>src\Toolbox</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player.hpp">
+      <Filter>src\Player</Filter>
     </ClInclude>
     <ClInclude Include="src\Tile.hpp">
       <Filter>src\Map\Tiles</Filter>
@@ -188,12 +188,6 @@
     </ClInclude>
     <ClInclude Include="src\audioEngine.hpp">
       <Filter>src\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="src\particules.hpp">
-      <Filter>src\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="src\player.hpp">
-      <Filter>src\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +274,12 @@
     </Filter>
     <Filter Include="src\audio">
       <UniqueIdentifier>{894d2cc5-6a92-4b68-8bf8-74d17221b502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\menu">
+      <UniqueIdentifier>{9b750b07-abf7-483f-93e6-ba43cc3a13d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\end">
+      <UniqueIdentifier>{e90596ba-6043-41e2-aa3b-0d118776e6b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -382,14 +382,38 @@
     <Image Include="assets\hud\pixel-heart-png.png">
       <Filter>assets\hud</Filter>
     </Image>
-    <Image Include="assets\tower\classique_base.png">
-      <Filter>assets\tower</Filter>
+    <Image Include="assets\menu\menuPlay.png">
+      <Filter>assets\menu</Filter>
     </Image>
-    <Image Include="assets\tower\classique_canon.png">
-      <Filter>assets\tower</Filter>
+    <Image Include="assets\menu\settings.png">
+      <Filter>assets\menu</Filter>
     </Image>
-    <Image Include="assets\tower\Obelisk.png">
-      <Filter>assets\tower</Filter>
+    <Image Include="assets\menu\menuHUD.png">
+      <Filter>assets\menu</Filter>
+    </Image>
+    <Image Include="assets\menu\menu.png">
+      <Filter>assets\menu</Filter>
+    </Image>
+    <Image Include="assets\menu\levels.png">
+      <Filter>assets\menu</Filter>
+    </Image>
+    <Image Include="assets\menu\background.png">
+      <Filter>assets\menu</Filter>
+    </Image>
+    <Image Include="assets\menu\Animation.png">
+      <Filter>assets\menu</Filter>
+    </Image>
+    <Image Include="assets\end\background.png">
+      <Filter>assets\end</Filter>
+    </Image>
+    <Image Include="assets\end\lose.png">
+      <Filter>assets\end</Filter>
+    </Image>
+    <Image Include="assets\end\win.png">
+      <Filter>assets\end</Filter>
+    </Image>
+    <Image Include="assets\end\okButton.png">
+      <Filter>assets\end</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

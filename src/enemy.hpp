@@ -3,7 +3,6 @@
 #include "entity.hpp"
 #include "imgui_utils.hpp"
 
-
 struct GameData;
 
 
@@ -30,6 +29,16 @@ public:
 
 	int destinationIndex;
 	int roadChoice;
+
+	float animationMinX;
+	float animationMinY;
+	float animationMaxX;
+	float animationMaxY;
+
+	float vecMaxX;
+	float vecMaxY;
+
+	float timeMove;
 
 	float2 healBoxSize;
 

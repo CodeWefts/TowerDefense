@@ -3,7 +3,6 @@
 #include "Healer.hpp"
 #include "heavy.hpp"
 #include "weakling.hpp"
-#include "particules.hpp"
 
 
 
@@ -13,13 +12,17 @@ using namespace std;
 
 void TowerGame::GameInit()
 {
+	srand(unsigned int(time(NULL)));
 
 }
 float2* points = new float2(450, 450);
 
+
+
 void TowerGame::UpdateAndDraw()
 {
 	srand(unsigned int(time(NULL)));
+
 
 	gameData.dl = ImGui::GetBackgroundDrawList();
 	ImGuiIO& io = ImGui::GetIO();
@@ -27,12 +30,9 @@ void TowerGame::UpdateAndDraw()
 
 	if (gameData.currentScene == Menu)
 	{
+		gameData.dl->AddImage(gameData.asset.textureBackGround.id, { 0, 0 }, io.DisplaySize);
 		gameData.time += io.DeltaTime;
 		renderer.DrawMenu(gameData);
-		//AddHealingParticules(gameData, float2(500, 500));
-
-
-
 	}
 	else if (gameData.currentScene == Game)
 	{
@@ -41,12 +41,9 @@ void TowerGame::UpdateAndDraw()
 		gameData.map.CreateMap(gameData);
 		enemyManager.ManageEnemy(gameData);
 		ManageAllTurret(gameData);
+
 		
 		renderer.RendererGame(gameData);
-
-		renderer.HudInventory(gameData);
-		gameData.player.UpdatePlayer(gameData);
-		
 
 
 		Debug(gameData);
@@ -57,7 +54,7 @@ void TowerGame::UpdateAndDraw()
 	}
 	else if (gameData.currentScene == GameOver)
 	{
-
+		renderer.DrawEnd(gameData);
 	}
 }
 

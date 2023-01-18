@@ -28,7 +28,7 @@ public:
 	void Shoot(GameData& data) override;
 	void TowerEffectRender(GameData& data) override;
 
-	 void Reset(GameData& data) override;
+	void Reset(GameData& data) override;
 
 	Ralentissante();
 	~Ralentissante();

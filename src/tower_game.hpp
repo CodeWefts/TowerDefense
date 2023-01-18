@@ -10,7 +10,7 @@
 #include "tower_renderer.hpp"
 #include "enemy_manager.hpp"
 #include "player.hpp"
-#include "tower.hpp"
+#include "Tower.hpp"
 #include "level.hpp"
 #include "wave.hpp"
 

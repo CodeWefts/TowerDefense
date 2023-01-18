@@ -1,6 +1,6 @@
-	
+
 #include <vector>
-#include "float2.hpp"
+
 #include "player.hpp"
 #include "tower_game.hpp"
 #include "map.hpp"
@@ -71,7 +71,7 @@ void Player::PlayerInput(GameData& gamedata)
 
 	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false) && gamedata.acceleRateTime < maxAcelerateTime)
 	{
-		
+
 		gamedata.acceleRateTime++;
 		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
 	}
@@ -98,6 +98,7 @@ void Player::PlayerInput(GameData& gamedata)
 	}
 
 }
+
 
 
 void Player::DragAndDrop(GameData& gamedata)
@@ -191,11 +192,10 @@ void Player::DragAndDrop(GameData& gamedata)
 			typeTower = 0;
 		}
 
-			
-	}
-		
-}
 
+	}
+
+}
 void Player::UpdatePlayer(GameData& gamedata)
 {
 	PlayerTile(gamedata);
@@ -208,7 +208,8 @@ void Player::UpdatePlayer(GameData& gamedata)
 
 Player::Player()
 {
-	this->coins = 0;
+
+
 	this->maxHealth = 5000;
 	this->health = this->maxHealth;
 

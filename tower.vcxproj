@@ -98,7 +98,6 @@
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\explosive.cpp" />
     <ClCompile Include="src\level.cpp" />
-    <ClCompile Include="src\particules.cpp" />
     <ClCompile Include="src\wave.cpp" />
     <ClCompile Include="src\weakling.cpp" />
     <ClCompile Include="src\imgui_utils.cpp" />
@@ -109,7 +108,7 @@
     <ClCompile Include="src\ralentissante.cpp" />
     <ClCompile Include="src\healer.cpp" />
     <ClCompile Include="src\Tile.cpp" />
-    <ClCompile Include="src\tower.cpp" />
+    <ClCompile Include="src\Tower.cpp" />
     <ClCompile Include="src\tower_game.cpp" />
     <ClCompile Include="src\tower_renderer.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
@@ -130,7 +129,6 @@
     <ClInclude Include="src\explosive.hpp" />
     <ClInclude Include="src\float2.hpp" />
     <ClInclude Include="src\level.hpp" />
-    <ClInclude Include="src\particules.hpp" />
     <ClInclude Include="src\wave.hpp" />
     <ClInclude Include="src\weakling.hpp" />
     <ClInclude Include="src\imgui_utils.hpp" />
@@ -140,12 +138,16 @@
     <ClInclude Include="src\ralentissante.hpp" />
     <ClInclude Include="src\healer.hpp" />
     <ClInclude Include="src\Tile.hpp" />
-    <ClInclude Include="src\tower.hpp" />
+    <ClInclude Include="src\Tower.hpp" />
     <ClInclude Include="src\tower_game.hpp" />
     <ClInclude Include="src\tower_renderer.hpp" />
     <ClInclude Include="src\Vector2D.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\end\background.png" />
+    <Image Include="assets\end\lose.png" />
+    <Image Include="assets\end\okButton.png" />
+    <Image Include="assets\end\win.png" />
     <Image Include="assets\ennemies\costaud\costaud1.png" />
     <Image Include="assets\ennemies\costaud\costaud10.png" />
     <Image Include="assets\ennemies\costaud\costaud11.png" />
@@ -178,9 +180,13 @@
     <Image Include="assets\map\pathTopANDRight.png" />
     <Image Include="assets\map\pathTopLeft.png" />
     <Image Include="assets\map\pathTopRight.png" />
-    <Image Include="assets\tower\classique_base.png" />
-    <Image Include="assets\tower\classique_canon.png" />
-    <Image Include="assets\tower\Obelisk.png" />
+    <Image Include="assets\menu\Animation.png" />
+    <Image Include="assets\menu\background.png" />
+    <Image Include="assets\menu\levels.png" />
+    <Image Include="assets\menu\menu.png" />
+    <Image Include="assets\menu\menuHUD.png" />
+    <Image Include="assets\menu\menuPlay.png" />
+    <Image Include="assets\menu\settings.png" />
     <Image Include="assets\tower\tower.png" />
   </ItemGroup>
   <ItemGroup>

@@ -19,11 +19,11 @@ class Tower : public Entity
 public:
 
 
-   
+
 
     std::string name;
     Texture texture;
-  
+
     Texture canonTexture;
 
     bool hasTarget;
@@ -36,7 +36,7 @@ public:
     int range;
 
     int damage;
-    
+
     float angle;
     float fireRate;
     float timer = 0;

@@ -12,6 +12,8 @@ public:
 
 	int indexStaticDebugCostaud;
 
+	
+
 
 	void UpdateEnemy(GameData& data,bool& erase) override;
 
