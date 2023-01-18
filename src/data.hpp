@@ -15,7 +15,7 @@
 
 #define EndOfVector '$'
 
-#define TimerLevel 20.f
+#define TimerLevel 2.f
 #define TimerWave 15.f
 #define nbrOfLevel 5
 #define NbrOfRoad 4
@@ -52,11 +52,7 @@ struct Asset
 		//texture hud INVENTORY TOWER
 		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
 
-		textureAnimation, textureMenuHUD, textureBackGround, texturePlay, textureLevels, textureSettings,
-
-		//texture Game's END
-		textureEndBackGround, textureEndWin, textureEndLose ;
-		
+		textureAnimation, textureMenuHUD;
 
 
 
@@ -102,10 +98,6 @@ struct GameData
 
 	ImVec2 posAnimationMin = { 56, 305 }; // y - 255 = 50
 	ImVec2 posAnimationMax = { 1296 - 56,720 - 305 }; // y + 255 =  720 - (305 + 256)
-
-	ImVec2 minEnd = { 476.5,171 };
-	ImVec2 maxEnd = { 819.5, 549 };
-
 
 	vector<float2> listOfRoad[NbrOfRoad];
 

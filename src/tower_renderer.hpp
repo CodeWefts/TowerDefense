@@ -3,6 +3,7 @@
 #include<string>
 #include "imgui_utils.hpp"
 #include "ralentissante.hpp"
+#include "explosive.hpp"
 
 
 /*
@@ -24,9 +25,7 @@ public:
 
 	//Menu
 	void DrawAnimation(GameData& data);
-	void menuDisplay(GameData& data);
 	void DrawMenu(GameData& data);
-	void DrawEnd(GameData& data);
 
 	// Game
 	void drawEnemies(GameData& data);
@@ -35,17 +34,12 @@ public:
 	void HudInventory(GameData& data);
 	void DrawPlacedTurret(GameData& data);
 	void DrawHud(GameData& data);
-
-	
-
 	void DrawCheckPoint(GameData& data);
-
 
 	void RendererGame(GameData& data);
 
-
-
-	void SlowingTower(GameData& data, Tower& Slowing);
+	void ExplosiveTower(GameData& data, Explosive& explosive);
+	void SlowingTower(GameData& data, Tower& slowing);
 
 	/*
 		void SpawnExplosionParticles(float2 pos)
@@ -76,6 +70,7 @@ private:
 
 
 };
+
 
 void DrawRangeTurret(GameData& data);
 void TowerInInventoryHUD(GameData& data);

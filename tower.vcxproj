@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{70cbca5e-67dd-4ec3-8e80-871b03d6fafb}</ProjectGuid>
+    <RootNamespace>tower</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>externals/include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>externals/libs/x86_64-w64-vc2022</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>externals/include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>externals/libs/x86_64-w64-vc2022</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="externals\src\imgui.cpp" />
+    <ClCompile Include="externals\src\imgui_demo.cpp" />
+    <ClCompile Include="externals\src\imgui_draw.cpp" />
+    <ClCompile Include="externals\src\imgui_impl_glfw.cpp" />
+    <ClCompile Include="externals\src\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="externals\src\imgui_tables.cpp" />
+    <ClCompile Include="externals\src\imgui_widgets.cpp" />
+    <ClCompile Include="externals\src\stb_image.cpp" />
+    <ClCompile Include="src\app.cpp" />
+    <ClCompile Include="src\audioEngine.cpp" />
+    <ClCompile Include="src\Calcul.cpp" />
+    <ClCompile Include="src\classique.cpp" />
+    <ClCompile Include="src\Collider2D.cpp" />
+    <ClCompile Include="src\data.cpp" />
+    <ClCompile Include="src\heavy.cpp" />
+    <ClCompile Include="src\enemy.cpp" />
+    <ClCompile Include="src\enemy_manager.cpp" />
+    <ClCompile Include="src\entity.cpp" />
+    <ClCompile Include="src\explosive.cpp" />
+    <ClCompile Include="src\level.cpp" />
+    <ClCompile Include="src\particules.cpp" />
+    <ClCompile Include="src\wave.cpp" />
+    <ClCompile Include="src\weakling.cpp" />
+    <ClCompile Include="src\imgui_utils.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\map.cpp" />
+    <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\Point2D.cpp" />
+    <ClCompile Include="src\ralentissante.cpp" />
+    <ClCompile Include="src\healer.cpp" />
+    <ClCompile Include="src\Tile.cpp" />
+    <ClCompile Include="src\Tower.cpp" />
+    <ClCompile Include="src\tower_game.cpp" />
+    <ClCompile Include="src\tower_renderer.cpp" />
+    <ClCompile Include="src\Vector2D.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="externals\include\miniaudio.h" />
+    <ClInclude Include="src\app.hpp" />
+    <ClInclude Include="src\audioEngine.hpp" />
+    <ClInclude Include="src\calc.hpp" />
+    <ClInclude Include="src\Calcul.hpp" />
+    <ClInclude Include="src\classique.hpp" />
+    <ClInclude Include="src\Collider2D.hpp" />
+    <ClInclude Include="src\data.hpp" />
+    <ClInclude Include="src\heavy.hpp" />
+    <ClInclude Include="src\enemy.hpp" />
+    <ClInclude Include="src\enemy_manager.hpp" />
+    <ClInclude Include="src\entity.hpp" />
+    <ClInclude Include="src\explosive.hpp" />
+    <ClInclude Include="src\float2.hpp" />
+    <ClInclude Include="src\level.hpp" />
+    <ClInclude Include="src\particules.hpp" />
+    <ClInclude Include="src\wave.hpp" />
+    <ClInclude Include="src\weakling.hpp" />
+    <ClInclude Include="src\imgui_utils.hpp" />
+    <ClInclude Include="src\map.hpp" />
+    <ClInclude Include="src\player.hpp" />
+    <ClInclude Include="src\Point2D.hpp" />
+    <ClInclude Include="src\ralentissante.hpp" />
+    <ClInclude Include="src\healer.hpp" />
+    <ClInclude Include="src\Tile.hpp" />
+    <ClInclude Include="src\Tower.hpp" />
+    <ClInclude Include="src\tower_game.hpp" />
+    <ClInclude Include="src\tower_renderer.hpp" />
+    <ClInclude Include="src\Vector2D.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\ennemies\costaud\costaud1.png" />
+    <Image Include="assets\ennemies\costaud\costaud10.png" />
+    <Image Include="assets\ennemies\costaud\costaud11.png" />
+    <Image Include="assets\ennemies\costaud\costaud12.png" />
+    <Image Include="assets\ennemies\costaud\costaud2.png" />
+    <Image Include="assets\ennemies\costaud\costaud3.png" />
+    <Image Include="assets\ennemies\costaud\costaud4.png" />
+    <Image Include="assets\ennemies\costaud\costaud5.png" />
+    <Image Include="assets\ennemies\costaud\costaud6.png" />
+    <Image Include="assets\ennemies\costaud\costaud7.png" />
+    <Image Include="assets\ennemies\costaud\costaud8.png" />
+    <Image Include="assets\ennemies\costaud\costaud9.png" />
+    <Image Include="assets\ennemies\gringalet.png" />
+    <Image Include="assets\ennemies\soigneur.png" />
+    <Image Include="assets\hud\pixel-heart-png.png" />
+    <Image Include="assets\hud\SideLeft.png" />
+    <Image Include="assets\hud\SideRight.png" />
+    <Image Include="assets\hud\TowerCase.png" />
+    <Image Include="assets\map\dirt.png" />
+    <Image Include="assets\map\grass.png" />
+    <Image Include="assets\map\pathBottom.png" />
+    <Image Include="assets\map\pathBottomANDLeft.png" />
+    <Image Include="assets\map\pathBottomANDRight.png" />
+    <Image Include="assets\map\pathBottomLeft.png" />
+    <Image Include="assets\map\pathBottomRight.png" />
+    <Image Include="assets\map\pathLeft.png" />
+    <Image Include="assets\map\pathRight.png" />
+    <Image Include="assets\map\pathTop.png" />
+    <Image Include="assets\map\pathTopANDLeft.png" />
+    <Image Include="assets\map\pathTopANDRight.png" />
+    <Image Include="assets\map\pathTopLeft.png" />
+    <Image Include="assets\map\pathTopRight.png" />
+    <Image Include="assets\tower\classique_base.png" />
+    <Image Include="assets\tower\classique_canon.png" />
+    <Image Include="assets\tower\Obelisk.png" />
+    <Image Include="assets\tower\tower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\checkPointData\lvl1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\hud\Font.ttf" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

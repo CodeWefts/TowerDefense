@@ -147,9 +147,11 @@ void TowerRenderer::drawMap(GameData& data)
 
 }
 
+
+
+
 void TowerRenderer::drawEnemies(GameData& data)
 {
-<<<<<<< HEAD
 	//ImDrawList* data.dl = ImGui::GetBackgroundDrawList();
 
 
@@ -161,12 +163,8 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 		Enemy* currentEnemy = *it;
 
-=======
-	for (std::vector<enemy*>::iterator it = data.enemyVector.begin(); it != data.enemyVector.end(); ++it)
-	{
-		enemy* currentEnemy = *it;
->>>>>>> a18d7c8 (#4 closed)
 		float2 enemy = currentEnemy->pos;
+
 
 		if (currentEnemy->name == "Healer")
 		{
@@ -192,6 +190,9 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 		if (data.enableDebug)
 			currentEnemy->DrawDebug(*(data.dl));
+
+
+
 	}
 }
 
@@ -199,64 +200,16 @@ void TowerRenderer::drawEnemies(GameData& data)
 
 void TowerInInventoryHUD(GameData& data)
 {
-	
-	ImVec2 min = { 
-		7 * data.map.Tilesize + 15,
-		9 * data.map.Tilesize + 13 
-	}, max = { 
-		8 * data.map.Tilesize - 10, 
-		10 * data.map.Tilesize - 13 
-	};
 
-	ImGui::Text("Mouse X %f", data.io.MousePos.x);
-	ImGui::Text("Mouse Y %f", data.io.MousePos.y);
+	ImVec2 min = { 7 * 72 + 15, 9 * 72 + 13 };
+	ImVec2	max = { 8 * 72 - 10, 10 * 72 - 13 };
 
-	ImGui::Text("Min X %f", min.x);
-	ImGui::Text("Min Y %f", max.y);
 
 	data.dl->AddImage(data.asset.textureTowerClassique.id, min, max, ImVec2(0, 0), ImVec2(1, 1));
-
-	data.dl->AddImage(data.asset.textureTowerExplosive.id, {min.x + 72 , min.y}, { max.x + 72 , max.y }, ImVec2(0, 0), ImVec2(1, 1));
-
-	data.dl->AddImage(data.asset.textureTowerRalentissante.id, { min.x + 72*2 , min.y }, { max.x + 72*2 , max.y }, ImVec2(0, 0), ImVec2(1, 1));
-
-	if (data.io.MousePos.x >= min.x - 15 && data.io.MousePos.x <= max.x + 10 &&
-		data.io.MousePos.y >= min.y - 13 && data.io.MousePos.y <= max.y + 13
-		)
-	{
-		data.dl->AddImage(data.asset.textureMenuHUD.id, { data.io.MousePos.x, data.io.MousePos.y - 200 }, { data.io.MousePos.x + 250, data.io.MousePos.y });
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 180 }, ImColor(255, 255, 255, 255), "Name : Classique");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 160 }, ImColor(255, 255, 255, 255), "Cost : 25");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 140 }, ImColor(255, 255, 255, 255), "Range : 1");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 120 }, ImColor(255, 255, 255, 255), "Damage : 10");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 100 }, ImColor(255, 255, 255, 255), "FireRate : 0.5");
-	}
-	if (data.io.MousePos.x >= min.x + 72 - 15 && data.io.MousePos.x <= max.x + 72 + 10 &&
-		data.io.MousePos.y >= min.y - 13 && data.io.MousePos.y <= max.y + 13
-		)
-	{
-		data.dl->AddImage(data.asset.textureMenuHUD.id, { data.io.MousePos.x, data.io.MousePos.y - 200 }, { data.io.MousePos.x + 250, data.io.MousePos.y });
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 180 }, ImColor(255, 255, 255, 255), "Name : Explosive");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 160 }, ImColor(255, 255, 255, 255), "Cost : 50");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 140 }, ImColor(255, 255, 255, 255), "Range : 2");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 120 }, ImColor(255, 255, 255, 255), "Damage : 10");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 100 }, ImColor(255, 255, 255, 255), "FireRate : 0.5");
-	}
-	if (data.io.MousePos.x >= min.x + 72 * 2 - 15 && data.io.MousePos.x <= max.x + 72 * 2 + 10 &&
-		data.io.MousePos.y >= min.y - 13 && data.io.MousePos.y <= max.y + 13
-		)
-	{
-		data.dl->AddImage(data.asset.textureMenuHUD.id, { data.io.MousePos.x, data.io.MousePos.y - 200 }, { data.io.MousePos.x + 250, data.io.MousePos.y });
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 180 }, ImColor(255, 255, 255, 255), "Name : Ralentissante");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 160 }, ImColor(255, 255, 255, 255), "Cost : 150");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 140 }, ImColor(255, 255, 255, 255), "Range : 2");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 120 }, ImColor(255, 255, 255, 255), "Damage : 10");
-		data.dl->AddText({ data.io.MousePos.x + 20, data.io.MousePos.y - 100 }, ImColor(255, 255, 255, 255), "FireRate : 0.5");
-	}
-
 }
 void TowerRenderer::HudInventory(GameData& data)
 {
+
 	// BRUT 
 	int minX = 6;
 	int maxX = 7;
@@ -273,6 +226,7 @@ void TowerRenderer::HudInventory(GameData& data)
 
 		else
 			data.dl->AddImage(data.asset.textureTowerSideRight.id, { minX * data.map.Tilesize, minY * data.map.Tilesize }, { maxX * data.map.Tilesize, maxY * data.map.Tilesize });
+
 		minX++;
 		maxX++;
 	}
@@ -316,6 +270,10 @@ void TowerRenderer::DrawHud(GameData& data)
 }
 
 
+
+
+
+
 void DrawRangeTurret(GameData& data)
 {
 	for (std::vector<Tower*>::iterator it = data.towerVector.begin(); it != data.towerVector.end(); it++)
@@ -339,70 +297,26 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 	{
 		Tower* currentTower = *it;
 
-<<<<<<< HEAD
 		
 
 		if (currentTower->type == 1)
-=======
-		if (currentTower->type == 1)
 		{
-			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
-			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
-			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
-			currentTower->texture = data.asset.textureTowerClassique;
-			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
+
+			currentTower->TowerEffectRender(data);
+		
+		
 			
+
 		}
 		if (currentTower->type == 2)
->>>>>>> a18d7c8 (#4 closed)
 		{
-			float2 tileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
-			float2 tileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };		 
-			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
-			currentTower->texture = data.asset.textureTowerClassicalBase;
-			currentTower->canonTexture = data.asset.textureTowerClassicalCanon;
-			data.dl->AddImage(currentTower->texture.id, tileMin, tileMax);
 			
-			// if turretHasTarget
-			if(currentTower->hasTarget)
-			{
-				float2 targetVector = currentTower->target->pos  - currentTower->pos  ;
-				// Fond angle between enemy and turret
-				currentTower->angle = -atan2f(targetVector.x, targetVector.y) ;
-				std::cout << currentTower->angle << std::endl;
-			}// initiate 4 point of the image of canon
-			float2 Point4[4] =
-			{
-			 tileMin,float2(tileMax.x,tileMin.y),tileMax , float2(tileMin.x,tileMax.y)
-			};
-			for (int i = 0; i < 4; i++)
-			{
-				// add point Rotation
-				Point4[i] = Rotationfloat2(Point4[i], currentTower->pos, currentTower->angle);	
-			}
-			data.dl->AddImageQuad(currentTower->canonTexture.id, Point4[3], Point4[2], Point4[1], Point4[0]);
-
-
+			currentTower->TowerEffectRender(data);
+				
 		}
 		if (currentTower->type == 3)
 		{
-			ImVec2 TileMin = { (float)currentTower->TileX , (float)currentTower->TileY };
-			ImVec2 TileMax = { (float)currentTower->TileX + 72, (float)currentTower->TileY + 72 };
-			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
-			currentTower->texture = data.asset.textureTowerExplosive;
-			currentTower->canonTexture= { 0 };
-			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
-		}
-		if (currentTower->type == 3)
-		{
-			ImVec2 TileMin = { (float)currentTower->TileX, (float)currentTower->TileY - 102 };
-			ImVec2 TileMax = { (float)currentTower->TileX + 72 , (float)currentTower->TileY + 72 };
-			currentTower->pos = { (float)currentTower->TileX + data.map.Tilesize / 2, (float)currentTower->TileY + data.map.Tilesize / 2 };
-			currentTower->texture = data.asset.texureSlowing;
-			currentTower->canonTexture = { 0 };
-			
-			data.dl->AddImage(currentTower->texture.id, TileMin, TileMax);
-			SlowingTower(data, *currentTower);
+			currentTower->TowerEffectRender(data);
 		}
 	}
 
@@ -410,71 +324,13 @@ void TowerRenderer::DrawPlacedTurret(GameData& data)
 
 }
 
-void TowerRenderer::menuDisplay(GameData& data)
-{
-	data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax, ImVec2(0, 0), ImVec2(1, 1), ImColor(0, 0, 0, 255));
-
-	ImGui::Text("MIN : %f ", data.posAnimationMin.y);
-	ImGui::Text("MAX : %f ", data.posAnimationMax.y);
-
-	if (data.posAnimationMin.y > 50.f)
-	{
-		data.posAnimationMin.y -= 0.75f;
-		data.posAnimationMax.y -= 0.75f;
-	}
-	else
-	{
-		data.dl->AddImage(data.asset.textureMenuHUD.id, { 230.5, 180 }, { 999.5, 700 });
-
-		data.dl->AddImage(data.asset.texturePlay.id, { 480, 250 }, { 751, 350 });
-		data.dl->AddImage(data.asset.textureLevels.id, { 480, 370 }, { 751, 470 });
-		data.dl->AddImage(data.asset.textureSettings.id, { 480, 490 }, { 751, 590 });
-
-		if (data.io.MousePos.x <= 751 && data.io.MousePos.x >= 480 &&
-			data.io.MousePos.y <= 350 && data.io.MousePos.y >= 250
-			)
-		{
-			data.dl->AddImage(data.asset.texturePlay.id, { 475, 245 }, { 756, 355 });
-			if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
-			{
-				data.currentScene = Game;
-			}
-
-		}
-
-		if (data.io.MousePos.x <= 751 && data.io.MousePos.x >= 480 &&
-			data.io.MousePos.y <= 470 && data.io.MousePos.y >= 370
-			)
-		{
-			data.dl->AddImage(data.asset.textureLevels.id, { 475, 365 }, { 756, 475 });
-			if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
-			{
-			}
-
-		}
-
-		if (data.io.MousePos.x <= 751 && data.io.MousePos.x >= 480 &&
-			data.io.MousePos.y <= 590 && data.io.MousePos.y >= 490
-			)
-		{
-			data.dl->AddImage(data.asset.textureSettings.id, { 475, 485 }, { 756, 595 });
-			if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
-			{
-			}
-
-		}
-	}
-
-}
-
 void TowerRenderer::DrawAnimation(GameData& data)
 {
-	ImU32 col = ImColor(0, 0, 0, data.transparence);
-
+	ImU32 col = ImColor(255, 255, 255, data.transparence);
 
 	if (data.time >= data.transparenceTime)
 	{
-		col = ImColor(0, 0, 0, data.transparence);
+		col = ImColor(255, 255, 255, data.transparence);
 		data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax, ImVec2(0, 0), ImVec2(1, 1), col);
 
 		data.transparence += 1;
@@ -496,45 +352,31 @@ void TowerRenderer::DrawMenu(GameData& data)
 
 	else
 	{
-		menuDisplay(data);
+		data.dl->AddImage(data.asset.textureMenuHUD.id, { 230.5, 180 }, { 999.5, 700 });
+		data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax);
 
-	}
-}
+		ImGui::Text("MIN : %f ", data.posAnimationMin.y);
+		ImGui::Text("MAX : %f ", data.posAnimationMax.y);
 
-
-void TowerRenderer::DrawEnd(GameData& data)
-{
-
-	//data.dl->AddImage(data.asset.textureEndBackGround.id, {0,0}, data.io.DisplaySize);
-	if (data.player.health <= 0)
-	{
-		data.acceleRateTime = 0;
-		if (data.minEnd.x >= 406)
+		if (data.posAnimationMin.y > 50.f)
 		{
-			data.minEnd.x -= 0.7f;
-			data.minEnd.y -= 0.7f;
-			data.maxEnd.x += 0.7f;
-			data.maxEnd.y += 0.7f;
-
-			//data.dl->AddImage(data.asset.textureEndLose.id, data.minEnd, data.maxEnd);
+			data.posAnimationMin.y -= 0.75f;
+			data.posAnimationMax.y -= 0.75f;
 		}
-		data.dl->AddImage(data.asset.textureEndLose.id, data.minEnd, data.maxEnd);
+
+
+
 	}
 
-	if (data.changeLevel)
+
+
+	bool game = false;
+	ImGui::Checkbox("Game", &game);
+	if (game)
 	{
-		data.acceleRateTime = 0;
-		if (data.minEnd.x >= 406)
-		{
-			data.minEnd.x -= 0.7f;
-			data.minEnd.y -= 0.7f;
-			data.maxEnd.x += 0.7f;
-			data.maxEnd.y += 0.7f;
-
-			//data.dl->AddImage(data.asset.textureEndLose.id, data.minEnd, data.maxEnd);
-		}
-		data.dl->AddImage(data.asset.textureEndWin.id, data.minEnd, data.maxEnd);
+		data.currentScene = Game;
 	}
+	
 
 }
 
@@ -562,15 +404,13 @@ void TowerRenderer::DrawCheckPoint(GameData& data)
 	
 }
 
-void TowerRenderer::SlowingTower(GameData& data, Tower& Slowing)
+void TowerRenderer::SlowingTower(GameData& data, Tower& slowing)
 {
-	if (Slowing.hasTarget)
-	{
-		data.dl->AddCircleFilled(float2(Slowing.pos.x, Slowing.pos.y - 100), 6.f, IM_COL32(50, 139, 255, 255), 30 );
 
-		data.dl->AddLine(float2(Slowing.pos.x, Slowing.pos.y - 100), Slowing.target->pos, IM_COL32(50, 139, 255, 255), Slowing.beamValue);
-
-	}
+	
+}
+void TowerRenderer::ExplosiveTower(GameData& data, Explosive& explosive)
+{
 	
 }
 
@@ -583,12 +423,8 @@ void TowerRenderer::RendererGame(GameData& data)
 	drawMap(data);
 	drawEnemies(data);
 	DrawPlacedTurret(data);
-	data.player.PlayerTile(data);
 	DrawHud(data);
 	DrawCheckPoint(data);
-	DrawEnd(data);
-
-
 
 	/*
 	for (Particle& p : particles)

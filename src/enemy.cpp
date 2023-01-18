@@ -86,7 +86,7 @@ void Enemy::DrawSlider(ImDrawList& dl)
 	ImColor color = ColorByHealth((float(this->currentHealth) / this->maxHealt), 0.35f, 0.75f);
 
 	//dl.AddRect(float2(pos.x - maxlenght / 2, pos.y - 25), float2(pos.x + maxlenght / 2, pos.y - 20), color, 0, 0, 8.f);
-	if (this->currentHealth > 0)
+	if (this->currentHealth >= 0)
 	{
 		dl.AddRectFilled(float2(posx, pos.y - 25), float2(posx + currentLenght, pos.y - 20), color, 0, 5);
 	}

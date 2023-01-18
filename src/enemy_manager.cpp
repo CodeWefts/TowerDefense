@@ -99,6 +99,11 @@ void EnemyManager::ManageWave(GameData& data)
 	
 	data.timerLevel -= data.deltatime;
 	
+
+
+
+
+
 	
 	if (data.timerLevel <= 0)
 	{
@@ -113,12 +118,15 @@ void EnemyManager::ManageWave(GameData& data)
 			data.currentLevel++;
 			
 			// Load New path //
+			data.currentWave = 0;
 			data.changeLevel = true;
 		}
 
 
 
+		// if all the Wave of the level as been passed go next level
 
+// if there is no enemy remaing in the current wawe and no enemie in screen Wave pass
 
 
 		else if (data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy <= 0 && data.enemyVector.empty() && data.currentWave < data.levels.at(data.currentLevel).maxWave)
@@ -150,9 +158,7 @@ void EnemyManager::ManageWave(GameData& data)
 
 			
 		}
-		// if all the Wave of the level as been passed go next level
-	
-		// if there is no enemy remaing in the current wawe and no enemie in screen Wave pass
+
 
 	}
 
@@ -227,7 +233,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 void EnemyManager::ManageEnemy(GameData& data)
 {
 	//TO DO ADD WAWE
-	this->ManageWave(data);
+	//this->ManageWave(data);
 	this->MoveEnemyPath(data);
 
 }

@@ -162,35 +162,29 @@ void Player::DragAndDrop(GameData& gamedata)
 		if (typeTower == 1)
 		{
 			Tower* tower = new Classique();
-			if (coins >= tower->cost)
-			{
-				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-				tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-				coins -= tower->cost;
-				gamedata.towerVector.push_back(tower);
-			}
+			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+
+			gamedata.towerVector.push_back(tower);
 		}
 		else if (typeTower == 2)
 		{
-			Tower* tower = new Explosive();
-			if (coins >= tower->cost)
-			{
-				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-				tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-				coins -= tower->cost;
-				gamedata.towerVector.push_back(tower);
-			}
+			int tileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+			int tileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+			Tower* tower = new Explosive(float2(tileY, tileY - 50));
+			tower->TileX = tileX;
+			tower->TileY = tileY;
+
+			gamedata.towerVector.push_back(tower);
 		}
 		else if (typeTower == 3)
 		{
 			Tower* tower = new Ralentissante();
-			if (coins >= tower->cost)
-			{
-				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-				tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
-				coins -= tower->cost;
-				gamedata.towerVector.push_back(tower);
-			}
+			tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
+			tower->TileY = ReturnTileIndexX((int)posMin.y, gamedata.map) * 72;
+
+			gamedata.towerVector.push_back(tower);
+
 		}
 		typeTower = 0;
 
@@ -199,7 +193,7 @@ void Player::DragAndDrop(GameData& gamedata)
 
 void Player::UpdatePlayer(GameData& gamedata)
 {
-	//PlayerTile(gamedata);
+	PlayerTile(gamedata);
 	PlayerInput(gamedata);
 	DragAndDrop(gamedata);
 
@@ -209,6 +203,7 @@ void Player::UpdatePlayer(GameData& gamedata)
 
 Player::Player()
 {
+	this->coins = 0;
 	this->maxHealth = 5000;
 	this->health = this->maxHealth;
 

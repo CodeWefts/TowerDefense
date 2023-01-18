@@ -4,7 +4,7 @@
 
 
 
-bool colPoint2dtoSS2d(const Point2D& p, const Point2D& C, float rC)
+bool colPoint2dtoSS2d(const float2& p, const float2& C, float rC)
 {
 
     if ((pow(p.x - C.x, 2) + pow(p.y - C.y, 2)) < pow(rC, 2))
@@ -15,7 +15,7 @@ bool colPoint2dtoSS2d(const Point2D& p, const Point2D& C, float rC)
     return false;
 }
 
-bool colSStoSS2d(Point2D C1, float rC1, Point2D C2, float rC2)
+bool colSStoSS2d(const float2& C1, float rC1, const float2& C2, float rC2)
 {
     if ((pow(C1.x - C2.x, 2) + pow(C1.y - C2.y, 2)) < (pow(rC1, 2) + pow(rC2, 2)))
     {
@@ -27,7 +27,7 @@ bool colSStoSS2d(Point2D C1, float rC1, Point2D C2, float rC2)
 
 
 
-bool colbetween2AABBS(const Point2D& Amin, const Point2D& Amax, const Point2D& Bmin, const Point2D& Bmax)
+bool colbetween2AABBS(const float2& Amin, const float2& Amax, const float2& Bmin, const float2& Bmax)
 {
 
     if
@@ -106,10 +106,10 @@ bool colSStoAABB(float2& Amin, float2& Amax, float2& C, float& rC)
 
 
 
-float getMinimumForNormal(Point2D* point, const Vector2D& normal, int nbrpoint)
+float getMinimumForNormal(float2* point, const float2& normal, int nbrpoint)
 {
     // Return Minimum for a normal
-    Point2D Origine = { 0,0 };
+    float2 Origine = { 0,0 };
     float* dotproduct = new float[nbrpoint];
     float min = dotproductvector2(getVectorFromPoint2d(Origine, point[0]), normal);
 
@@ -126,10 +126,10 @@ float getMinimumForNormal(Point2D* point, const Vector2D& normal, int nbrpoint)
 
 }
 
-float getMaximumForNormal(Point2D* point, const Vector2D& normal, int nbrpoint)
+float getMaximumForNormal(float2* point, const float2& normal, int nbrpoint)
 {
     // Return Minimum for a normal
-    Point2D Origine = { 0,0 };
+    float2 Origine = { 0,0 };
     float* dotproduct = new float[nbrpoint];
     float max = dotproductvector2(getVectorFromPoint2d(Origine, point[0]), normal);;
 
@@ -148,17 +148,17 @@ float getMaximumForNormal(Point2D* point, const Vector2D& normal, int nbrpoint)
 
 
 // Work For concav Polygone
-bool theoremeSAT(Point2D* figureA, int nbrA, Point2D* figureB, int nbrB)
+bool theoremeSAT(float2* figureA, int nbrA, float2* figureB, int nbrB)
 {
 
-    Vector2D* figureVectorA = new Vector2D[nbrA];
-    Vector2D* figureVectorB = new Vector2D[nbrB];
-    Vector2D* figureVectorNormalA = new Vector2D[nbrA];
-    Vector2D* figureVectorNormalB = new Vector2D[nbrB];
+    float2* figureVectorA = new float2[nbrA];
+    float2* figureVectorB = new float2[nbrB];
+    float2* figureVectorNormalA = new float2[nbrA];
+    float2* figureVectorNormalB = new float2[nbrB];
 
 
-    Vector2D* figureVectorA2 = new Vector2D[nbrA];
-    Vector2D* figureVectorB2 = new Vector2D[nbrB];
+    float2* figureVectorA2 = new float2[nbrA];
+    float2* figureVectorB2 = new float2[nbrB];
 
     float Amin = 0;
     float Amax = 0;
