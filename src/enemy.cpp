@@ -5,7 +5,6 @@
 
 
 
-#define HealBoxSize 40
 
 
 
@@ -107,7 +106,6 @@ Enemy::Enemy()
 	this->destinationIndex = 1;
 
 	this->coinsToPlayer = 0;
-	this->healBoxSize = { HealBoxSize , HealBoxSize };
 	this->roadChoice = Path0;
 
 }

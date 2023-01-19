@@ -18,39 +18,45 @@ class Tower : public Entity
 {
 public:
 
-
+    int currentLevel;
+    int maxLevel;
 
 
     std::string name;
-    Texture texture;
-
-    Texture canonTexture;
-
-    bool hasTarget;
-
     TowerChoice type;
-    int cost;
+    Texture texture;
+    Texture canonTexture;
+   
+
+   
+
+   
+ 
     bool placed;
 
     int TileX, TileY;
+    
+   
     int range;
 
-    int damage;
-
-    float angle;
-    float fireRate;
-    float timer;
+    bool hasTarget;
     Enemy* target;
 
     virtual void TowerEffectRender(GameData& data);
-    virtual void Shoot(GameData& data);
     virtual void Reset(GameData& data);
-
+    virtual void TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector);
+    virtual void Shoot(GameData& data);
+    virtual void Upgrade(GameData& data);
     Tower();
+
     ~Tower();
 
-    //functions
-    virtual void TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector);
+protected:
+    int cost;
+    int damage;
+    float angle;
+    float fireRate;
+    float timer;
 
 };
 

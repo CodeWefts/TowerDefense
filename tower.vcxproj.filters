@@ -299,6 +299,12 @@
     <Filter Include="src\Update\Renderer\Render_entity">
       <UniqueIdentifier>{cf526842-e01a-4f59-97ba-dc2d6218568d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\entity\particuls">
+      <UniqueIdentifier>{cc7646ae-dff1-4d13-99a4-20a2cca7dbb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\sound">
+      <UniqueIdentifier>{10232ff9-6cd7-4750-bee5-373c5228c1f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\map\dirt.png">
@@ -443,5 +449,10 @@
     <Font Include="assets\hud\Font.ttf">
       <Filter>assets\hud\Font</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\sound\ClassicalSound.wav">
+      <Filter>assets\sound</Filter>
+    </Media>
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@
 
 
 
-void TowerRenderer::drawMap(GameData& data)
+void TowerRenderer::DrawMap(GameData& data)
 {
 	static float tileSize = data.map.Tilesize;
 
@@ -148,7 +148,7 @@ void TowerRenderer::drawMap(GameData& data)
 
 
 
-void TowerRenderer::menuDisplay(GameData& data)
+void TowerRenderer::MenuDisplay(GameData& data)
 {
 	data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax, ImVec2(0, 0), ImVec2(1, 1), ImColor(0, 0, 0, 255));
 
@@ -232,7 +232,7 @@ void TowerRenderer::DrawMenu(GameData& data)
 
 	else
 	{
-		menuDisplay(data);
+		MenuDisplay(data);
 
 	}
 }
@@ -325,7 +325,7 @@ void TowerRenderer::DrawCheckPoint(GameData& data)
 
 void TowerRenderer::RendererGame(GameData& data)
 {
-	drawMap(data);
+	DrawMap(data);
 	renderEntity.RendererEntitys(data);
 	data.player.UpdatePlayer(data);//data.player.PlayerTile(data);
 	rendererPlayer.DrawPlayer(data);

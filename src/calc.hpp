@@ -12,6 +12,7 @@ static inline float2 operator*(float2 a, float2 b) { return { a.x * b.x, a.y * b
 static inline float2 operator*(float2 a, float b) { return { a.x * b, a.y * b }; }
 static inline float2 operator/(float2 a, float2 b) { return { a.x / b.x, a.y / b.y }; }
 static inline float2 operator/(float2 a, float b) { return { a.x / b, a.y / b }; }
+static inline float2 operator-(float2 a ) { return { -a.x,-a.y }; }
 
 /*
 * static inline float2& operator+=(float2& a, float2 b) { return {a.x = a.x + b.x ,a.y = a.y + b.y};

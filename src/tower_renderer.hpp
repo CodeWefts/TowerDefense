@@ -17,20 +17,17 @@ public:
 
 
 	RendererPlayer rendererPlayer;
-	
-
 	RendererEntity renderEntity;
 
 	//Menu
 	void DrawAnimation(GameData& data);
-	void menuDisplay(GameData& data);
+	void MenuDisplay(GameData& data);
 	void DrawMenu(GameData& data);
 	void DrawEnd(GameData& data);
 
-	// Game
 
 	
-	void drawMap(GameData& data);
+	void DrawMap(GameData& data);
 
 
 	// Draw Player Hud

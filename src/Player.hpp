@@ -4,12 +4,14 @@
 struct GameData;
 
 
+
+
 class Player
 {
 public:
 
 	// player stats
-	int coins = 100;
+	int coins;
 	int score;
 	int wave;
 	int health;

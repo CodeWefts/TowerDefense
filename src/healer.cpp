@@ -18,6 +18,8 @@ Healer::Healer()
 	this->healRate = HealRate;
 	this->coinsToPlayer = 20;
 	this->healValue = 30;
+	this->healBoxSize = { HealBoxSize , HealBoxSize };
+
 	Enemy* allyIsInRange = nullptr;
 
 }

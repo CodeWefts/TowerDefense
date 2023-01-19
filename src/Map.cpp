@@ -169,10 +169,35 @@ bool IsPlaceAble(GameData& data, const float2& pos)
 	int indexX = ReturnTileIndexX(int(pos.x), data.map);
 	int indexY = ReturnTileIndexY(int(pos.y), data.map);
 
+	int PlacedTileX = indexX * 72; 
+	int PlacedTileY = indexY * 72;
+
+
+
 
 	int index = ReturnIndexIncharMap(indexX, indexY, data.map);
+	bool IsThereTower = false;
 
-	if (data.map.map[index] != 'p')
+
+
+	// Looking for there is alrealy a Tower
+	for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
+	{
+		Tower* currentTower = *it;
+
+		std::cout << currentTower->TileX <<" , " << currentTower->TileY << std::endl;
+		
+		if (currentTower->TileX == PlacedTileX && currentTower->TileY == PlacedTileY)
+		{
+			IsThereTower =  true;
+		}
+		
+		
+	
+	}
+
+
+	if (data.map.map[index] != 'p' && !IsThereTower)
 	{
 		return true;
 	}

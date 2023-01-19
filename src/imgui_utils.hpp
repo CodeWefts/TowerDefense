@@ -2,6 +2,15 @@
 
 #include <imgui.h>
 
+
+
+#define Blue  IM_COL32(0, 0, 255, 255)
+#define Red  IM_COL32(255, 0, 0, 255)
+#define Green  IM_COL32(0, 255, 0, 255)
+
+
+
+
 struct Texture
 {
     ImTextureID id;

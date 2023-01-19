@@ -155,8 +155,8 @@ void RendererEntity::DrawPlacedTurret(GameData& data)
 
 void RendererEntity::RendererEntitys(GameData& data)
 {
-	DrawPlacedTurret(data);
 	drawEnemies(data);
+	DrawPlacedTurret(data);
 }
 
 

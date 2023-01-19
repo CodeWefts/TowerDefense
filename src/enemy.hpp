@@ -40,7 +40,6 @@ public:
 
 	float timeMove;
 
-	float2 healBoxSize;
 
 	float2 ReturnCheckPoint(GameData& data, int& checkPoint);
 

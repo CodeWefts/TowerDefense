@@ -6,6 +6,7 @@
 struct GameData;
 
 
+
 class Classique : public Tower
 {
 
@@ -14,6 +15,7 @@ public:
 
 
 	void TowerEffectRender(GameData& data) override;
+	void Upgrade(GameData& data) override;
 
 
 

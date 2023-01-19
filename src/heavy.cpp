@@ -7,8 +7,8 @@ Heavy::Heavy()
 {
 
 	this->name = "Heavy";
-	this->maxHealt = 400;
-	this->currentHealth = 400;
+	this->maxHealt = 200;
+	this->currentHealth = maxHealt;
 	this->pos = { 0,0 };
 	this->velocity = 50.f;
 	this->damageToPlayer = 75;

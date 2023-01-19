@@ -2,15 +2,28 @@
 #include "tower_game.hpp"
 
 
+void Classique::Upgrade(GameData& data)
+{
+	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
+	{
+		this->currentLevel++;
+		data.player.coins -= this->cost * this->currentLevel++;
+		this->damage *= 1.5;
+		this->range *= 1.5;
+	}
 
+
+}
 
 
 
 void Classique::Shoot(GameData& data)
 {
-
+	ma_engine_play_sound(&data.engine, "assets/sound/ClassicalSound.wav", NULL);
 	this->target->currentHealth -= this->damage;
 	this->timer = 0;
+
+	
 
 }
 
@@ -64,8 +77,8 @@ Classique::Classique()
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 25;
-	this->range = 1;// range per tile
-	this->damage = 30;
+	this->range = 2.5;// range per tile
+	this->damage = 10;
 	this->fireRate = 0.5f;
 	this->angle = 0;
 }

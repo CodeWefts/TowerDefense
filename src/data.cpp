@@ -3,6 +3,7 @@
 #include "healer.hpp"
 #include "weakling.hpp"
 
+
 using namespace std;
 
 
@@ -120,38 +121,38 @@ void LoadALLPath(GameData& data)
 
 
 
-void Debug(GameData& gameData)
+void Debug(GameData& data)
 {
 
 
-	ImGui::Text("Time %f", gameData.deltatime);
-	ImGui::Text("vectorsise %d", gameData.enemyVector.size());
-	ImGui::Text(" Press V gameData.listOfRoad[0] = %d", gameData.listOfRoad[0].size());
-	ImGui::Text(" Press B gameData.listOfRoad[1] = %d", gameData.listOfRoad[1].size());
-	ImGui::Text(" Press N gameData.listOfRoad[2] = %d ", gameData.listOfRoad[2].size());
-	ImGui::Text("TimerLevel = %f ", gameData.timerLevel);
+	ImGui::Text("Time %f", data.deltatime);
+	ImGui::Text("vectorsise %d", data.enemyVector.size());
+	ImGui::Text(" Press V data.listOfRoad[0] = %d", data.listOfRoad[0].size());
+	ImGui::Text(" Press B data.listOfRoad[1] = %d", data.listOfRoad[1].size());
+	ImGui::Text(" Press N data.listOfRoad[2] = %d ", data.listOfRoad[2].size());
+	ImGui::Text("TimerLevel = %f ", data.timerLevel);
 
-	ImGui::Text("WaveTimer = %f ", gameData.levels.at(gameData.currentLevel).timerBetweenWave);
-	ImGui::Text("timerbetweenSpawn = %f ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).timerbetweenSpawn);
+	ImGui::Text("WaveTimer = %f ", data.levels.at(data.currentLevel).timerBetweenWave);
+	ImGui::Text("timerbetweenSpawn = %f ", data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn);
 
-	ImGui::Text("CurrentLevel = %d ", gameData.currentLevel);
-	ImGui::Text("nbrOfLevel = %d ", gameData.levels.size());
-	ImGui::Text("MaxWave = %d ", gameData.levels.at(gameData.currentLevel).maxWave);
-	ImGui::Text("CurrentWave %d", gameData.currentWave);
+	ImGui::Text("CurrentLevel = %d ", data.currentLevel);
+	ImGui::Text("nbrOfLevel = %d ", data.levels.size());
+	ImGui::Text("MaxWave = %d ", data.levels.at(data.currentLevel).maxWave);
+	ImGui::Text("CurrentWave %d", data.currentWave);
 
 
-	ImGui::Text("EnemyRemaining = %d ", gameData.levels.at(gameData.currentLevel).waves.at(gameData.currentWave).nbrOfEnemy);
+	ImGui::Text("EnemyRemaining = %d ", data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy);
 
 
 	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
 	{
 		/*
-		for (int i = 0; i < gameData.map.map.size(); i++)
+		for (int i = 0; i < data.map.map.size(); i++)
 		{
-			gameData.map.map.pop_back();
+			data.map.map.pop_back();
 		}
 		*/
-		for (auto it = gameData.enemyVector.begin(); it != gameData.enemyVector.end(); it++)
+		for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
 		{
 			Enemy* current = *it;
 			current->currentHealth -= 10;
@@ -160,7 +161,7 @@ void Debug(GameData& gameData)
 	}
 	if (ImGui::IsKeyPressed(ImGuiKey_E, false))
 	{
-		//PlaySound(gameData.asset.SoundTest);
+		//PlaySound(data.asset.SoundTest);
 
 		ifstream file;
 		file.open("src/checkPointData/lvl1.txt", std::ios::in);  // write
@@ -182,7 +183,7 @@ void Debug(GameData& gameData)
 					file >> ptr.x;
 
 					file >> ptr.y;
-					gameData.listOfRoad[i].push_back(ptr);
+					data.listOfRoad[i].push_back(ptr);
 				}
 
 			}
@@ -192,7 +193,7 @@ void Debug(GameData& gameData)
 
 	if (ImGui::IsKeyPressed(ImGuiKey_Z, false))
 	{
-		SaveAllPath(gameData);
+		SaveAllPath(data);
 	}
 
 
@@ -201,10 +202,10 @@ void Debug(GameData& gameData)
 	{
 		Enemy* enemy1 = new Healer();
 
-		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
+		enemy1->pos = ReturnCenterTile(0, 6, data.map);
 		enemy1->roadChoice = Path0;
 
-		gameData.enemyVector.push_back(enemy1);
+		data.enemyVector.push_back(enemy1);
 
 	}
 
@@ -212,18 +213,17 @@ void Debug(GameData& gameData)
 	{
 		Enemy* enemy1 = new Weakling();
 
-		enemy1->pos = ReturnCenterTile(0, 6, gameData.map);
+		enemy1->pos = ReturnCenterTile(0, 6, data.map);
 		enemy1->roadChoice = Path0;
 
-		gameData.enemyVector.push_back(enemy1);
+		data.enemyVector.push_back(enemy1);
 
 	}
 
 	if (ImGui::IsKeyPressed(ImGuiKey_Q, false))
 	{
-		gameData.currentWave++;
-		//gameData.currentLevel++;
-		//gameData.changeLevel = true;
+		data.timerLevel = 0;
+		data.currentWave++;
 	}
 
 
@@ -231,19 +231,19 @@ void Debug(GameData& gameData)
 	{
 		if (ImGui::IsKeyDown(ImGuiKey_V))
 		{
-			gameData.listOfRoad[0].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+			data.listOfRoad[0].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
 		}
 		if (ImGui::IsKeyDown(ImGuiKey_B))
 		{
-			gameData.listOfRoad[1].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+			data.listOfRoad[1].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
 		}
 		if (ImGui::IsKeyDown(ImGuiKey_N))
 		{
-			gameData.listOfRoad[2].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+			data.listOfRoad[2].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
 		}
 		if (ImGui::IsKeyDown(ImGuiKey_C))
 		{
-			gameData.listOfRoad[3].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
+			data.listOfRoad[3].push_back(float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y));
 		}
 
 
@@ -252,7 +252,7 @@ void Debug(GameData& gameData)
 	if (ImGui::Begin("CheckPoint", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
 	{
 		ImGui::Text("ROAD 0");
-		for (auto it = gameData.listOfRoad[0].begin(); it != gameData.listOfRoad[0].end(); it++)
+		for (auto it = data.listOfRoad[0].begin(); it != data.listOfRoad[0].end(); it++)
 		{
 			ImGui::Text(" Road 1 x = %f , y = %f ", it->x, it->y);
 
@@ -260,19 +260,19 @@ void Debug(GameData& gameData)
 		}
 		ImGui::Text("  \n ");
 		ImGui::Text("ROAD 1");
-		for (auto it = gameData.listOfRoad[1].begin(); it != gameData.listOfRoad[1].end(); it++)
+		for (auto it = data.listOfRoad[1].begin(); it != data.listOfRoad[1].end(); it++)
 		{
 			ImGui::Text(" Road 2 x = %f , y =  %f ", it->x, it->y);
 		}
 		ImGui::Text("  \n ");
 		ImGui::Text("ROAD 2");
-		for (auto it = gameData.listOfRoad[2].begin(); it != gameData.listOfRoad[2].end(); it++)
+		for (auto it = data.listOfRoad[2].begin(); it != data.listOfRoad[2].end(); it++)
 		{
 			ImGui::Text("Road 3 x = %f , y = %f", it->x, it->y);
 		}
 		ImGui::Text("  \n ");
 		ImGui::Text("ROAD 3");
-		for (auto it = gameData.listOfRoad[3].begin(); it != gameData.listOfRoad[3].end(); it++)
+		for (auto it = data.listOfRoad[3].begin(); it != data.listOfRoad[3].end(); it++)
 		{
 			ImGui::Text("Road 3 x = %f , y = %f", it->x, it->y);
 		}
@@ -319,6 +319,9 @@ Asset::Asset()
 	//TOWER 2 : SLOWING
 	texureSlowing = ImGuiUtils::LoadTexture("assets/tower/Obelisk.png");
 
+	// TOWER 3 : EXPLOSIVE
+	textureTowerExplosive = ImGuiUtils::LoadTexture("assets/tower/explosive.png");
+
 	//INVENTORY HUD
 	textureTowerSideLeft = ImGuiUtils::LoadTexture("assets/hud/SideLeft.png");
 	textureTowerSideRight = ImGuiUtils::LoadTexture("assets/hud/SideRight.png");
@@ -344,11 +347,14 @@ Asset::Asset()
 	textureEndOkButton = ImGuiUtils::LoadTexture("assets/end/okButton.png");
 
 
+
+
 }
 
 
 GameData::GameData()
 {
+
 	this->acceleRateTime = 0;
 	this->acceleRateTimeBuffer = 0;
 
@@ -366,6 +372,7 @@ GameData::GameData()
 	this->currentWave = 0;
 	this->currentLevel = 0;
 
+	// for each level
 	for (int i = 0; i < nbrOfLevel; i++)
 	{
 		Level newlevel;
@@ -373,12 +380,12 @@ GameData::GameData()
 		newlevel.nbrOfRoad = NbrOfRoad;
 		newlevel.waves.resize(newlevel.maxWave);
 
-
+		// for each wawe of each level we adding a different nbr of enemys
 		for (int j = 0; j < newlevel.maxWave; j++)
 		{
-			newlevel.waves[j].maxEnemy = 10 + (10 * j);
+			newlevel.waves[j].maxEnemy = 3 + (5 * j);
 			newlevel.waves[j].nbrOfEnemy = newlevel.waves[j].maxEnemy;
-			newlevel.waves[j].timerbetweenSpawn = Calc::randomFloat(5.5f, 7.5f);
+			newlevel.waves[j].timerbetweenSpawn = Calc::randomFloat(1.f, 3.f);
 
 		}
 
@@ -391,13 +398,32 @@ GameData::GameData()
 
 	font = ImGui::GetIO().Fonts->AddFontFromFileTTF("assets/hud/Font.ttf", 20);
 
+	result = ma_engine_init(NULL,&engine);
+
+		
+
 }
 
 GameData::~GameData()
 {
+	
+	for (auto it = towerVector.begin(); it != towerVector.end(); it++)
+	{
+		Tower* currentTower = *it;
+		currentTower->target = nullptr;
+		delete currentTower;
+
+	}
+	towerVector.clear();
 	for (auto it = enemyVector.begin(); it != enemyVector.end(); it++)
 	{
 		delete* it;
 	}
+	enemyVector.clear();
+
+	ma_engine_uninit(&engine);
+
+
+
 
 }

@@ -9,7 +9,11 @@
 
 
 
-#define Squishy_def 0
+#define WeaklingCost_def 1
+#define HealerCost_def 2
+#define HeavyCost_def 3
+
+#define Weakling_def 0
 #define Healer_def 1
 #define Heavy_def 2
 
@@ -18,7 +22,7 @@
 
 
 #define TimeBetweenSpawnMin 0.5f
-#define TimeBetweenSpawnMax 1.5f
+#define TimeBetweenSpawnMax 2.f
 
 
 #define TimerBetweenWaveMin 5.f
@@ -40,6 +44,20 @@ bool isOffscreen(const GameData& data, const float2& pos)
 
 
 
+void turretUntargetEnemy(GameData& data,Enemy* current)
+{
+	for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
+	{
+		Tower* tower = *op;
+		if (current == tower->target)
+		{
+			tower->hasTarget = false;
+			tower->target = nullptr;
+		}
+	}
+}
+
+
 
 void EnemyManager::SpawnEnemy(GameData& data)
 {
@@ -52,11 +70,11 @@ void EnemyManager::SpawnEnemy(GameData& data)
 
 	// To Do Create Fonction
 
-	if (random == Squishy_def)
+	if (random == Weakling_def)
 	{
 		Enemy* currentEnemy;
 		currentEnemy = new Weakling();
-		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy--;
+		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy -= WeaklingCost_def;
 		currentEnemy->pos = SpawnPoint;
 		currentEnemy->roadChoice = roadChoice;
 		data.enemyVector.push_back(currentEnemy);
@@ -67,7 +85,7 @@ void EnemyManager::SpawnEnemy(GameData& data)
 	{
 		Enemy* currentEnemy;
 		currentEnemy = new Healer();
-		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy--;
+		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy -= HealerCost_def;
 		currentEnemy->pos = SpawnPoint;
 		currentEnemy->roadChoice = roadChoice;
 		data.enemyVector.push_back(currentEnemy);
@@ -78,7 +96,7 @@ void EnemyManager::SpawnEnemy(GameData& data)
 	{
 		Enemy* currentEnemy;
 		currentEnemy = new Heavy();
-		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy--;
+		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy -= HeavyCost_def;
 		currentEnemy->pos = SpawnPoint;
 		currentEnemy->roadChoice = roadChoice;
 		data.enemyVector.push_back(currentEnemy);
@@ -185,30 +203,16 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 		{
 			data.player.coins += current->coinsToPlayer;
 			it = data.enemyVector.erase(it);
-			for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
-			{
-				Tower* tower = *op;
-				if (current == tower->target)
-				{
-					tower->hasTarget = false;
-					tower->target = nullptr;
-				}
-			}
+			turretUntargetEnemy(data, current);
+		
 
 		}
 		else if (current->erase && it == data.enemyVector.begin())
 		{
 			data.player.coins += current->coinsToPlayer;
 			it = data.enemyVector.erase(it);
-			for (auto op = data.towerVector.begin(); op != data.towerVector.end(); op++)
-			{
-				Tower* tower = *op;
-				if (current == tower->target)
-				{
-					tower->hasTarget = false;
-					tower->target = nullptr;
-				}
-			}
+			turretUntargetEnemy(data, current);
+			
 		}
 		else
 		{
@@ -229,7 +233,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 void EnemyManager::ManageEnemy(GameData& data)
 {
 	//TO DO ADD WAWE
-	//this->ManageWave(data);
+	this->ManageWave(data);
 	this->MoveEnemyPath(data);
 
 }

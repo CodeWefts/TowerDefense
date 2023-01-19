@@ -5,44 +5,131 @@
 #include "Collider2D.hpp"
 
 
+
+
+
+
+
+
+void Explosive::Upgrade(GameData& data)
+{
+
+	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
+	{
+		//Projectile Update
+		this->currentLevel++;
+		this->projectile.radiusOfExplosion += currentLevel * this->projectile.radiusOfExplosion;
+		this->damage *= 2;
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+Projectile::Projectile(float2 missileStartPoint)
+{
+	this->pos = missileStartPoint;
+	this->radiusImpact = 5.f;
+	this->velocityProjectile = 40.f;
+	this->radiusOfExplosion = 50.f;
+	this->explosionTimer = DEFexplosionTimer;
+	this->explosion = false;
+}
+Projectile::Projectile()
+{
+	this->pos = {0,0};
+	this->radiusImpact = 5.f;
+	this->velocityProjectile = 40.f;
+	this->radiusOfExplosion = 50.f;
+	this->explosionTimer = DEFexplosionTimer;
+	this->explosion = false;
+
+}
+
+Projectile::~Projectile()
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
 void Explosive::Shoot(GameData& data)
 {
 
 
 
-	float2 vector = firstMissile - target->pos;
-	//std::cout << vector.x << " , " << vector.y << std::endl;
-	firstMissile -= normaliseVector(vector) * velocityMissile * data.deltatime;
 
-	if (ColSStoSS2d(firstMissile, rayonOfMissile, target->pos, rayonOfMissile))
+
+
+
+
+	if (target == nullptr)
 	{
-		for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
+		Reset(data);
+	}
+		
+	if(projectile.explosion == false)
+	{
+		float2 vector = projectile.pos - target->pos;
+		projectile.pos -= normaliseVector(vector) * projectile.velocityProjectile * data.deltatime;
+
+		if (ColSStoSS2d(projectile.pos, projectile.radiusImpact, target->pos, projectile.radiusImpact))
 		{
-			Enemy* current = *it;
+			projectile.explosion = true;
 
-			if (ColSStoSS2d(firstMissile, rayonOfExplosion, current->pos, rayonOfMissile))
+
+
+			for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
 			{
-				explosion = true;
-				std::cout << damage << std::endl;
-				current->currentHealth -= damage;
-				Reset(data);
+				Enemy* current = *it;
 
+				if (ColSStoSS2d(projectile.pos, projectile.radiusOfExplosion, current->pos, projectile.radiusImpact))
+				{
+					current->currentHealth -= damage;
+				}
 
 			}
 
 		}
-
 	}
+	
+	
+	
+	
+	
+
+	
 }
 
 void Explosive::Reset(GameData& data)
 {
-	this->firstMissile = this->basePosMissile;
+		
+	projectile.explosionTimer = DEFexplosionTimer;
+	projectile.explosion = false;
+	projectile.pos = basePosProjetile;
 	timer = 0;
 
-	/*std::cout << "base = " << basePosMissile.x << " , " << basePosMissile.y << std::endl;
-	std::cout << "base = " << firstMissile.x << " , " << firstMissile.y << std::endl;
-	*/
+	
 }
 
 
@@ -51,28 +138,38 @@ void Explosive::Reset(GameData& data)
 void Explosive::TowerEffectRender(GameData& data)
 {
 
-	ImVec2 TileMin = { (float)TileX, (float)TileY };
-	ImVec2 TileMax = { (float)TileX + 72 , (float)TileY + 72 };
+	float2 TileMin = { (float)TileX, (float)TileY };
+	float2 TileMax = { (float)TileX + 72 , (float)TileY + 72 };
 	pos = { (float)TileX + data.map.Tilesize / 2, (float)TileY + data.map.Tilesize / 2 };
-	texture = data.asset.texureSlowing;
-	canonTexture = { 0 };
-	data.dl->AddImage(texture.id, TileMin, TileMax);
+	texture = data.asset.textureTowerExplosive;
+	
+	
+	data.dl->AddImage(texture.id, TileMin, TileMax, float2(0,0), float2(0.1, 1));
 
 	if (hasTarget)
 	{
-		data.dl->AddCircleFilled(firstMissile, rayonOfMissile, IM_COL32(242, 62, 7, 255), 64);
+		data.dl->AddCircleFilled(projectile.pos, projectile.radiusImpact, IM_COL32(242, 62, 7, 255), 64);
 
-		if (explosion)
+		if (projectile.explosion && projectile.explosionTimer > 0)
 		{
-
-
-			float2 explosionPos = firstMissile;
-			data.dl->AddCircleFilled(explosionPos, rayonOfExplosion, IM_COL32(242, 62, 7, 255), 64);
-			explosion = false;
-
-
+			
+			float2 explosionPos = projectile.pos;
+			data.dl->AddCircleFilled(explosionPos, projectile.radiusOfExplosion, IM_COL32(242, 62, 7, 255), 64);
+			projectile.explosionTimer -= data.deltatime;
+			std::cout << "Explosion timer = " << projectile.explosionTimer << std::endl;
+			
+	
+			
+			
+			
 		}
-		std::cout << explosion << std::endl;
+		else if (projectile.explosionTimer <= 0)
+		{
+			
+			Reset(data);
+			
+		}
+			
 	}
 
 
@@ -96,38 +193,31 @@ Explosive::Explosive()
 	this->TileY = 0;
 	this->cost = 50;
 	this->range = 2; // range per tile
-	this->damage = 10;
+	this->damage = 50;
 	this->fireRate = 0.5f;
-	this->rayonOfMissile = 5.f;
-	this->firstMissile = { 0 ,0 };
-	this->velocityMissile = 50.f;
-	this->rayonOfExplosion = 50.f;
-	this->explosion = false;
+	
+	canonTexture = { 0 };
+
+	//projectile = Projectile(projectile.);
 	//this->missile = nullptr;
 
 }
 Explosive::Explosive(float2 missileStartPoint)
 {
-	this->hit = false;
 	this->name = "Explosive";
 	this->type = EXPLOSIVE;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;
 	this->range = 2; // range per tile
-	this->damage = 10;
+	this->damage = 50;
 	this->fireRate = 2.f;
-	this->rayonOfMissile = 5.f;
-	this->basePosMissile = { missileStartPoint };
-	this->firstMissile = basePosMissile;
-	this->velocityMissile = 100.f;
-	rayonOfExplosion = 50.f;
-	explosion = false;
-
+	basePosProjetile = missileStartPoint;
+	projectile = Projectile(missileStartPoint);
 }
 
 
 Explosive::~Explosive()
 {
-
+	//projectileVector.clear();
 }

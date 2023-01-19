@@ -174,7 +174,7 @@ void Player::DragAndDrop(GameData& gamedata)
 			{
 				int tileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
 				int tileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
-				Tower* tower = new Explosive(float2(tileX, tileY - 50));
+				Tower* tower = new Explosive(float2(tileX + gamedata.map.Tilesize /2, tileY - 50));
 				tower->TileX = tileX;
 				tower->TileY = tileY;
 

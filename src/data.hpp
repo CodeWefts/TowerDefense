@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
 #include<fstream>
+
 #include "imgui_utils.hpp"
 
 #include "map.hpp"
@@ -11,6 +12,11 @@
 #include "level.hpp"
 #include "wave.hpp"
 #include "calc.hpp"
+
+#include <miniaudio.h>
+#include "audioEngine.hpp"
+
+
 
 
 #define EndOfVector '$'
@@ -34,7 +40,7 @@ struct Asset
 		//texture ennemy COSTAUD
 		textureNightBorne,
 
-		textureTower,
+		
 
 		PlayerHeart,
 		//texture ennemy GRINGALET
@@ -44,10 +50,13 @@ struct Asset
 		textureSoigneur,
 
 		//texture tower TOWER
-		textureTowerClassique, textureTowerRalentissante, textureTowerExplosive, textureTowerClassicalBase, textureTowerClassicalCanon,
+		textureTowerClassique, textureTowerClassicalBase, textureTowerClassicalCanon,
 
 		// texture tower Slowing
 		texureSlowing,
+
+		// texture tower Explosive
+		textureTowerExplosive,
 
 		//texture hud || INVENTORY TOWER
 		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
@@ -116,10 +125,12 @@ struct GameData
 
 	ImGuiIO& io = ImGui::GetIO();
 	ImDrawList* dl;
-
 	ImFont* font;
 
 	vector<Level> levels;
+	
+	ma_result result;
+	ma_engine engine;
 
 	GameData();
 	~GameData();
@@ -129,5 +140,5 @@ struct GameData
 void ChangeLevel(GameData& data);
 void SaveAllPath(GameData& data);
 void LoadALLPath(GameData& data);
-void Debug(GameData& gameData);
+void Debug(GameData& data);
 

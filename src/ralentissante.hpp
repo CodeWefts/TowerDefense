@@ -13,19 +13,12 @@ class Ralentissante : public Tower
 public:
 
 
-	float maxBeamValue;
-	float maxDebuffVelocity;
-	float beamValue;
+	
 
-	int baseDamage;
-	int beamBaseValue;
 
-	int incrementDamage;
-	int incrementeBeamValue;
-
-	int maxDamage;
-
+	void Upgrade(GameData& data) override;
 	void TowerEffectRender(GameData& data) override;
+
 
 	Ralentissante();
 	~Ralentissante();
@@ -36,4 +29,21 @@ protected:
 
 	void Reset(GameData& data) override;
 
+
+private:
+
+	int maxDebuffVelocity;
+	int slowingValue;
+
+
+	int maxBeamValue;
+	int beamValue;
+
+	int baseDamage;
+	int beamBaseValue;
+
+	int incrementDamage;
+	int incrementeBeamValue;
+
+	int maxDamage;
 };

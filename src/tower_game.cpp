@@ -6,6 +6,7 @@
 
 
 
+
 using namespace std;
 
 
@@ -15,53 +16,52 @@ void TowerGame::GameInit()
 	srand(unsigned int(time(NULL)));
 
 }
-float2* points = new float2(450, 450);
-
 
 
 void TowerGame::UpdateAndDraw()
 {
-	srand(unsigned int(time(NULL)));
 
 
-	gameData.dl = ImGui::GetBackgroundDrawList();
+	data.dl = ImGui::GetBackgroundDrawList();
 	ImGuiIO& io = ImGui::GetIO();
-	gameData.deltatime = io.DeltaTime * gameData.acceleRateTime;
+	data.deltatime = io.DeltaTime * data.acceleRateTime;
+	data.currentScene = Game;
 
-	if (gameData.currentScene == Menu)
+	if (data.currentScene == Menu)
 	{
-		gameData.dl->AddImage(gameData.asset.textureBackGround.id, { 0, 0 }, io.DisplaySize);
-		gameData.time += io.DeltaTime;
-		renderer.DrawMenu(gameData);
+		data.dl->AddImage(data.asset.textureBackGround.id, { 0, 0 }, io.DisplaySize);
+		data.time += io.DeltaTime;
+		renderer.DrawMenu(data);
 	}
-	else if (gameData.currentScene == Game)
+	else if (data.currentScene == Game)
 	{
-		LoadALLPath(gameData);
-
-		gameData.map.CreateMap(gameData);
-		enemyManager.ManageEnemy(gameData);
-		ManageAllTurret(gameData);
+		LoadALLPath(data);
+		
+		data.map.CreateMap(data);
+		enemyManager.ManageEnemy(data);
+		ManageAllTurret(data);	
 
 		
-		renderer.RendererGame(gameData);
+		renderer.RendererGame(data);
+		
 
 
-		Debug(gameData);
+		Debug(data);
 	}
-	else if (gameData.currentScene == Option)
+	else if (data.currentScene == Option)
 	{
 
 	}
-	else if (gameData.currentScene == GameOver)
+	else if (data.currentScene == GameOver)
 	{
-		renderer.DrawEnd(gameData);
+		renderer.DrawEnd(data);
 	}
 }
 
 
 TowerGame::TowerGame()
 {
-	this->gameData.dl = nullptr;
+	this->data.dl = nullptr;
 
 }
 TowerGame::~TowerGame()

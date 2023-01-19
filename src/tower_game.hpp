@@ -28,14 +28,11 @@ public:
 	~TowerGame();
 protected:
 
-	GameData gameData;
+	GameData data;
 
 	Tower tower;
 	EnemyManager enemyManager;
 	TowerRenderer renderer;
-
-	Tower towerManager;
-
 
 	
 private:

@@ -23,6 +23,18 @@ void Tower::Reset(GameData& data)
 }
 
 
+void Tower::Upgrade(GameData& data)
+{
+    data.player.coins -= this->cost * 1.6f;
+    this->damage *= 2;
+    this->fireRate /= 1.2f;
+    this->range += 20;
+   
+
+}
+
+
+
 
 
 
@@ -34,27 +46,25 @@ void Tower::TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector)
         float module = getModule(current->pos, this->pos);
         if (target != nullptr)
         {
-            float moduleTargt = getModule(target->pos, this->pos);
+            float moduleTarget = getModule(target->pos, this->pos);
             timer += data.deltatime;
 
-            if (moduleTargt <= (range * (data.map.Tilesize + data.map.Tilesize / 2)))
+            if (moduleTarget <= (range * (data.map.Tilesize + data.map.Tilesize / 2)))
             {
 
-                if (module < moduleTargt)
+                if (module < moduleTarget)
                 {
                     target = current;
                     hasTarget = true;
                 }
 
             }
-
-            // is target out of range 
-            else if (moduleTargt > (range * (data.map.Tilesize + data.map.Tilesize / 2)))
+            else // is target out of range 
             {
 
+                Reset(data);
                 hasTarget = false;
                 target = nullptr;
-                Reset(data);
             }
 
 
@@ -145,7 +155,8 @@ Tower::~Tower()
 
 Tower::Tower()
 {
-
+    currentLevel = 1;
+    maxLevel = 3;
     this->target = nullptr;
     this->angle = 0;
     this->hasTarget = false;
