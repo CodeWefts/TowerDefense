@@ -1,11 +1,11 @@
-#include "ralentissante.hpp"
+#include "SlowingTurret.hpp"
 #include "tower_game.hpp"
 
 
 
 
 
-void Ralentissante::Upgrade(GameData& data)
+void SlowingTower::Upgrade(GameData& data)
 {
 	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
 	{
@@ -24,21 +24,22 @@ void Ralentissante::Upgrade(GameData& data)
 
 
 
-void Ralentissante::Shoot(GameData& data)
+void SlowingTower::Shoot(GameData& data)
 {
-	//ma_engine_play_sound(&data.engine, "assets/sound/slowing.mp3", NULL);;
 
-
+	// while damage is below max damage increase damge every second
 	if (this->maxDamage > this->damage)
 	{
 		this->damage += (incrementDamage + data.deltatime);
 	}
 
+	// while target velocity is below max debuff velocity slow them every second
 	if (this->target->velocity > this->maxDebuffVelocity)
 	{
 		this->target->velocity -= float(slowingValue + data.deltatime);
 	}
 
+	// increase beamValue
 	if (beamValue < maxBeamValue)
 	{
 		this->beamValue += (2 + data.deltatime);
@@ -48,8 +49,8 @@ void Ralentissante::Shoot(GameData& data)
 	this->timer = 0;
 }
 
-
-void Ralentissante::Reset(GameData& data)
+//Reset values if has no target 
+void SlowingTower::Reset(GameData& data)
 {
 	this->damage = baseDamage;
 	this->beamValue = beamBaseValue;
@@ -57,7 +58,9 @@ void Ralentissante::Reset(GameData& data)
 }
 
 
-void Ralentissante::TowerEffectRender(GameData& data)
+
+// Renderer Effect For Slowing One
+void SlowingTower::TowerEffectRender(GameData& data)
 {
 
 	ImVec2 TileMin = { (float)TileX, (float)TileY - 102 };
@@ -85,14 +88,14 @@ void Ralentissante::TowerEffectRender(GameData& data)
 
 
 
-Ralentissante::Ralentissante()
+SlowingTower::SlowingTower()
 {
-	this->name = "Ralentissante";
-	this->type = RALENTISSANTE;
+	this->name = "SlowingTurret";
+	this->type = SLOWINGTURRET;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 150;
-	this->range = 2; // range per tile
+	this->range = 2; 
 	this->damage = 10;
 	this->fireRate = 1.25f;
 	this->beamBaseValue = 5.f;
@@ -105,7 +108,7 @@ Ralentissante::Ralentissante()
 
 }
 
-Ralentissante::~Ralentissante()
+SlowingTower::~SlowingTower()
 {
-
+	delete target;
 }

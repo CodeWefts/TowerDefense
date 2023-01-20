@@ -9,11 +9,11 @@
 Weakling::Weakling()
 {
 	this->type = WEAKLING;
-	this->currentHealth = 100;
+	this->currentHealth = 300;
 	this->damageToPlayer = 200;
 	this->maxHealt = 100;
 	this->pos = { 0,0 };
-	this->velocity = 90.f;
+	this->velocity = 150.f;
 	this->coinsToPlayer = 10;
 
 	this->animationMinX = 0.f;

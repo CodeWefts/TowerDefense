@@ -8,6 +8,7 @@
 
 #define mapWidth 18
 #define mapHeight 10
+#define TileSize 72.f
 
 
 
@@ -113,7 +114,7 @@ MapClass::MapClass()
 
 	this->Height = mapHeight;
 	this->Width = mapWidth;
-	Tilesize = 72.f;
+	Tilesize = TileSize;
 	origin = { 0,0 };
 }
 
@@ -188,8 +189,8 @@ bool IsPlaceAble(GameData& data, const float2& pos)
 
 
 
-		int PlacedTileX = indexX * 72;
-		int PlacedTileY = indexY * 72;
+		int PlacedTileX = indexX * TileSize;
+		int PlacedTileY = indexY * TileSize;
 		bool IsThereTower = false;
 
 

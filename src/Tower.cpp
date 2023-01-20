@@ -127,7 +127,7 @@ void Tower::TowerEffectRender(GameData& data)
 
 
 
-
+// T
 void ManageAllTurret(GameData& data)
 {
 
@@ -150,7 +150,7 @@ void ManageAllTurret(GameData& data)
 
 Tower::~Tower()
 {
-
+    delete target;
 }
 
 Tower::Tower()
@@ -178,6 +178,8 @@ Tower::Tower()
     this->animationMaxY = 0;
     this->moveTime = 0;
     this->range = 0;
+
+
 
 
 }

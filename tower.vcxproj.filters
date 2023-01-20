@@ -47,16 +47,16 @@
       <Filter>src\entity\enemy\weakling</Filter>
     </ClCompile>
     <ClCompile Include="src\heavy.cpp">
-      <Filter>src\entity\enemy\healer\heavy</Filter>
+      <Filter>src\entity\enemy\heavy</Filter>
     </ClCompile>
-    <ClCompile Include="src\ralentissante.cpp">
-      <Filter>src\entity\tower\ralentissante</Filter>
+    <ClCompile Include="src\SlowingTurret.cpp">
+      <Filter>src\entity\tower\slowing</Filter>
     </ClCompile>
-    <ClCompile Include="src\explosive.cpp">
-      <Filter>src\entity\tower\explosive</Filter>
+    <ClCompile Include="src\explosif.cpp">
+      <Filter>src\entity\tower\explosif</Filter>
     </ClCompile>
-    <ClCompile Include="src\classique.cpp">
-      <Filter>src\entity\tower\classique</Filter>
+    <ClCompile Include="src\classical.cpp">
+      <Filter>src\entity\tower\classical</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src\main</Filter>
@@ -124,19 +124,19 @@
       <Filter>src\entity\enemy\weakling</Filter>
     </ClInclude>
     <ClInclude Include="src\heavy.hpp">
-      <Filter>src\entity\enemy\healer\heavy</Filter>
+      <Filter>src\entity\enemy\heavy</Filter>
     </ClInclude>
     <ClInclude Include="src\map.hpp">
       <Filter>src\Map</Filter>
     </ClInclude>
-    <ClInclude Include="src\ralentissante.hpp">
-      <Filter>src\entity\tower\ralentissante</Filter>
+    <ClInclude Include="src\SlowingTurret.hpp">
+      <Filter>src\entity\tower\slowing</Filter>
     </ClInclude>
-    <ClInclude Include="src\explosive.hpp">
-      <Filter>src\entity\tower\explosive</Filter>
+    <ClInclude Include="src\explosif.hpp">
+      <Filter>src\entity\tower\explosif</Filter>
     </ClInclude>
-    <ClInclude Include="src\classique.hpp">
-      <Filter>src\entity\tower\classique</Filter>
+    <ClInclude Include="src\classical.hpp">
+      <Filter>src\entity\tower\classical</Filter>
     </ClInclude>
     <ClInclude Include="src\app.hpp">
       <Filter>src\main</Filter>
@@ -230,15 +230,6 @@
     <Filter Include="assets\hud\Font">
       <UniqueIdentifier>{06aa7244-347f-4cf8-bd76-b6099e94c3fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\entity\tower\explosive">
-      <UniqueIdentifier>{899f2ac3-42fa-433f-a070-3f93497a565e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entity\tower\ralentissante">
-      <UniqueIdentifier>{39e459b8-3a82-4ed6-a008-a04ee3155963}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entity\tower\classique">
-      <UniqueIdentifier>{03881b5b-825c-47f8-a31e-93b582ac914b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\main">
       <UniqueIdentifier>{5eb1cc9f-3d72-4769-9b6b-d021ce0cb5b8}</UniqueIdentifier>
     </Filter>
@@ -269,6 +260,9 @@
     <Filter Include="src\entity\enemy\weakling">
       <UniqueIdentifier>{392e9c5a-954f-4f04-aa4e-06f593468a2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\entity\enemy\heavy">
+      <UniqueIdentifier>{45d1a5ce-8df9-4667-a2e4-e7faa5027dc5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Update\Renderer">
       <UniqueIdentifier>{11be36b9-b0fd-4112-bc65-3b39824a90b4}</UniqueIdentifier>
     </Filter>
@@ -290,13 +284,14 @@
     <Filter Include="assets\sound">
       <UniqueIdentifier>{10232ff9-6cd7-4750-bee5-373c5228c1f5}</UniqueIdentifier>
     </Filter>
-<<<<<<< HEAD
-    <Filter Include="src\entity\enemy\healer\heavy">
-      <UniqueIdentifier>{45d1a5ce-8df9-4667-a2e4-e7faa5027dc5}</UniqueIdentifier>
-=======
-    <Filter Include="assets\level">
-      <UniqueIdentifier>{58cf4d55-dcd9-4ef8-9524-92a162d127fc}</UniqueIdentifier>
->>>>>>> f86ce46 (ok)
+    <Filter Include="src\entity\tower\explosif">
+      <UniqueIdentifier>{899f2ac3-42fa-433f-a070-3f93497a565e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\slowing">
+      <UniqueIdentifier>{39e459b8-3a82-4ed6-a008-a04ee3155963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\tower\classical">
+      <UniqueIdentifier>{03881b5b-825c-47f8-a31e-93b582ac914b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -2,15 +2,11 @@
 #include "data.hpp"
 #include "tower_renderer.hpp"
 #include "calc.hpp"
-#include "float2.hpp"
 
 
 
 void TowerRenderer::DrawMap(GameData& data)
 {
-	static float tileSize = data.map.Tilesize;
-
-	ImGui::SliderFloat("tileSize", &data.map.Tilesize, 0.f, 100.f);
 
 	float originX = 0.f;
 	// Build tilemap from string
@@ -118,11 +114,6 @@ void TowerRenderer::DrawMap(GameData& data)
 			data.dl->AddImage(data.asset.texturePathBottomRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 
-
-		case 'k':
-			//chateaux
-			break;
-
 		case 'g':
 			//data.dl->AddImage(data.asset.textureSoigneur.id, topLeft, topRight, ImVec2(0, 0), ImVec2(0.35, 0.25));
 			break;
@@ -141,8 +132,6 @@ void TowerRenderer::DrawMap(GameData& data)
 			data.dl->AddImage(data.asset.textureTowerCase.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 
-
-
 		}
 
 		if (data.enableDebug)
@@ -153,6 +142,7 @@ void TowerRenderer::DrawMap(GameData& data)
 
 
 	}
+	
 
 }
 
@@ -162,9 +152,6 @@ void TowerRenderer::DrawMap(GameData& data)
 void TowerRenderer::MenuDisplay(GameData& data)
 {
 	data.dl->AddImage(data.asset.textureAnimation.id, data.posAnimationMin, data.posAnimationMax, ImVec2(0, 0), ImVec2(1, 1), ImColor(0, 0, 0, 255));
-
-	ImGui::Text("MIN : %f ", data.posAnimationMin.y);
-	ImGui::Text("MAX : %f ", data.posAnimationMax.y);
 
 	if (data.posAnimationMin.y > 50.f)
 	{
@@ -255,9 +242,6 @@ void TowerRenderer::DrawAnimation(GameData& data)
 
 void TowerRenderer::DrawMenu(GameData& data)
 {
-	ImGui::Text("Timer : %f ", data.time);
-	ImGui::Text("Transparency : %f ", data.transparence);
-	ImGui::Text("changeTimeTransparency : %f ", data.transparenceTime);
 
 
 	if (data.transparence < 255)
@@ -275,7 +259,6 @@ void TowerRenderer::DrawMenu(GameData& data)
 void TowerRenderer::DrawEnd(GameData& data)
 {
 
-	//data.dl->AddImage(data.asset.textureEndBackGround.id, {0,0}, data.io.DisplaySize);
 	if (data.player.health <= 0)
 	{
 		data.acceleRateTime = 0;
@@ -287,16 +270,13 @@ void TowerRenderer::DrawEnd(GameData& data)
 			data.maxEnd.y++;
 
 		}
-		//ImVec2 minOk = { data.minEnd.x + 137  , data.minEnd.y + 297 };
-		//ImVec2 maxOk = { minOk.x + 70, minOk.y + 50};
+
 		data.dl->AddImage(data.asset.textureEndLose.id, data.minEnd, data.maxEnd);
-		//data.dl->AddImage(data.asset.textureEndOkButton.id, {minOk.x , minOk.y }, { maxOk.x, maxOk.y });
 
 		if (data.io.MousePos.x <= 207 && data.io.MousePos.x >= 137 &&
 			data.io.MousePos.y <= 342 && data.io.MousePos.y >= 297
 			)
 		{
-			//data.dl->AddImage(data.asset.textureEndOkButton.id, { data.minOk.x - 20, data.minOk.y - 20 }, { data.maxOk.x + 20, data.maxOk.y + 20 });
 
 			if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
 			{
@@ -316,7 +296,6 @@ void TowerRenderer::DrawEnd(GameData& data)
 			data.maxEnd.x += 0.7f;
 			data.maxEnd.y += 0.7f;
 
-			//data.dl->AddImage(data.asset.textureEndLose.id, data.minEnd, data.maxEnd);
 		}
 		data.dl->AddImage(data.asset.textureEndWin.id, data.minEnd, data.maxEnd);
 	}
@@ -373,6 +352,8 @@ void TowerRenderer::DrawLevelsMap(GameData& data)
 		{
 			data.currentLevel = 0;
 			data.currentScene = Game;
+			data.changeLevel = true;
+			ChangeLevel(data);
 		}
 		if (minX >= 400 && minX <= 503 &&
 			minY >= 500 && minY <= 598)
@@ -380,27 +361,56 @@ void TowerRenderer::DrawLevelsMap(GameData& data)
 			
 			data.currentLevel = 1;		
 			data.currentScene = Game;
-
-			
+			data.changeLevel = true;
+			ChangeLevel(data);	
 		}
 		if (minX >= 700 && minX <= 803 &&
 			minY >= 100 && minY <= 198)
 		{
 			data.currentLevel = 2;
 			data.currentScene = Game;
-			
+			data.changeLevel = true;
+			ChangeLevel(data);	
 		}
 		if (minX >= 1100 && minX <= 1203 &&
 			minY >= 300 && minY <= 398)
 		{
 			data.currentScene = Game;
 			data.currentLevel = 3;
+			data.changeLevel = true;
+			ChangeLevel(data);
 		}
 	}
 
+	data.player.ShowOption(data);
+
 }
 
+void drawCastle(GameData& data)
+{
+	
 
+	if (data.currentLevel == 0)
+	{
+		data.dl->AddImage(data.asset.textureCastle.id, { 17 * data.map.Tilesize  , 5 * data.map.Tilesize }, { 18 * data.map.Tilesize + data.map.Tilesize , 6 * data.map.Tilesize + data.map.Tilesize }, ImVec2(0, 0), ImVec2(1, 1));
+
+	}
+	if (data.currentLevel == 1)
+	{
+		data.dl->AddImage(data.asset.textureCastle.id, { 17 * data.map.Tilesize ,  1 * data.map.Tilesize }, { 18 * data.map.Tilesize + data.map.Tilesize ,  1 * data.map.Tilesize + data.map.Tilesize }, ImVec2(0, 0), ImVec2(1, 1));
+
+	}
+	if (data.currentLevel == 2)
+	{
+		data.dl->AddImage(data.asset.textureCastle.id, { 17 * data.map.Tilesize ,  3 * data.map.Tilesize }, { 18 * data.map.Tilesize + data.map.Tilesize ,  3 * data.map.Tilesize + data.map.Tilesize }, ImVec2(0, 0), ImVec2(1, 1));
+
+	}
+	if (data.currentLevel == 3)
+	{
+		data.dl->AddImage(data.asset.textureCastle.id, { 0 ,  2 * data.map.Tilesize }, { data.map.Tilesize ,  2 * data.map.Tilesize + data.map.Tilesize }, ImVec2(0, 0), ImVec2(1, 1));
+
+	}
+}
 
 
 
@@ -410,11 +420,14 @@ void TowerRenderer::RendererGame(GameData& data)
 {
 	DrawMap(data);
 	renderEntity.RendererEntitys(data);
-	data.player.UpdatePlayer(data);//data.player.PlayerTile(data);
+	data.player.UpdatePlayer(data);
 	rendererPlayer.DrawPlayer(data);
 
 	DrawCheckPoint(data);
 	DrawEnd(data);
+	drawCastle(data);
+
+	
 
 
 

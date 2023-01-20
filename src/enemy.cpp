@@ -11,7 +11,7 @@
 
 
 
-
+// Return The Position of the Next Checkpoint
 float2 Enemy::ReturnCheckPoint(GameData& data, int& index)
 {
 	for (auto it = data.listOfRoad[this->roadChoice].begin(); it != data.listOfRoad[this->roadChoice].end(); it++)
@@ -31,8 +31,6 @@ void  Enemy::pathFollow(GameData& data, bool& erase)
 	float2 Vector = this->pos - CheckpointPos;
 
 	this->pos -= normaliseVector(Vector) * data.deltatime * this->velocity;
-
-
 
 	if (this->pos > CheckpointPos - IsIncenter && this->pos < CheckpointPos + IsIncenter)
 	{
@@ -73,14 +71,15 @@ void  Enemy::DrawDebug(ImDrawList& dl)
 
 void Enemy::DrawSlider(ImDrawList& dl)
 {
-
-
-
 	int Height = 25;
 	float posx = pos.x - 25;
 	float maxlenght = 50;
 	float currentLenght = maxlenght * (float(this->currentHealth) / this->maxHealt);
 
+	if (currentLenght > maxlenght)
+	{
+		currentLenght = maxlenght;
+	}
 
 	ImColor color = ColorByHealth((float(this->currentHealth) / this->maxHealt), 0.35f, 0.75f);
 

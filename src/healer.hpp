@@ -4,7 +4,7 @@
 
 struct GameData;
 
-#define HealRate 7.5f
+#define HealRate 5.f
 #define HealBoxSize 40
 
 

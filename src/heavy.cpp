@@ -7,7 +7,7 @@ Heavy::Heavy()
 {
 
 	this->type = HEAVY;
-	this->maxHealt = 200;
+	this->maxHealt = 900;
 	this->currentHealth = maxHealt;
 	this->pos = { 0,0 };
 	this->velocity = 50.f;

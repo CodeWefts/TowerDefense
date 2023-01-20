@@ -1,9 +1,9 @@
-#include "classique.hpp"
+#include "classical.hpp"
 #include "tower_game.hpp"
 #include "calc.hpp"
 
 
-void Classique::Upgrade(GameData& data)
+void Classical::Upgrade(GameData& data)
 {
 	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
 	{
@@ -18,7 +18,7 @@ void Classique::Upgrade(GameData& data)
 
 
 
-void Classique::Shoot(GameData& data)
+void Classical::Shoot(GameData& data)
 {
 	ma_engine_play_sound(&data.engine, "assets/sound/ClassicalSound.wav", NULL);;
 	this->target->currentHealth -= int(this->damage);
@@ -28,7 +28,7 @@ void Classique::Shoot(GameData& data)
 
 }
 
-void Classique::TowerEffectRender(GameData& data)
+void Classical::TowerEffectRender(GameData& data)
 {
 
 	float2 tileMin = { (float)TileX , (float)TileY };
@@ -37,7 +37,6 @@ void Classique::TowerEffectRender(GameData& data)
 	texture = data.asset.textureTowerClassicalBase;
 	canonTexture = data.asset.textureTowerClassicalCanon;
 	data.dl->AddImage(texture.id, tileMin, tileMax);
-
 
 	if (hasTarget == true)
 	{
@@ -71,20 +70,20 @@ void Classique::TowerEffectRender(GameData& data)
 
 
 
-Classique::Classique()
+Classical::Classical()
 {
-	this->name = "Classique";
-	this->type = CLASSIQUE;
+	this->name = "Classical";
+	this->type = CLASSICAL;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 25;
-	this->range = 2.5;// range per tile
+	this->range = 2.5;
 	this->damage = 10;
 	this->fireRate = 0.5f;
 	this->angle = 0;
 }
 
-Classique::~Classique()
+Classical::~Classical()
 {
-
+	delete target;
 }

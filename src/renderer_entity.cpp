@@ -44,10 +44,6 @@ void RendererEntity::drawEnemies(GameData& data)
 		else if (currentEnemy->type == WEAKLING)
 		{
 			currentEnemy->texture = data.asset.textureCanineWhite;
-			ImGui::Text("MaxX  : %f ", currentEnemy->animationMaxX);
-			ImGui::Text("MaxY  : %f ", currentEnemy->animationMaxY);
-			ImGui::Text("MinX  : %f ", currentEnemy->animationMinX);
-			ImGui::Text("MinY  : %f ", currentEnemy->animationMinY);
 			ImVec2 point[4] =
 			{
 				{ enemy.x - 24 , enemy.y - 16 },
@@ -112,7 +108,6 @@ void DrawRangeTurret(GameData& data)
 	for (std::vector<Tower*>::iterator it = data.towerVector.begin(); it != data.towerVector.end(); it++)
 	{
 		Tower* currentTower = *it;
-		//currentTower->TileX
 
 		ImVec2 centerTower = { (float)currentTower->TileX + 36,(float)currentTower->TileY + 36 };
 
@@ -122,7 +117,6 @@ void DrawRangeTurret(GameData& data)
 
 void RendererEntity::DrawPlacedTurret(GameData& data)
 {
-	// TO-DO OPTIMISATION OF IF
 
 
 	for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
@@ -131,15 +125,15 @@ void RendererEntity::DrawPlacedTurret(GameData& data)
 
 
 
-		if (currentTower->type == CLASSIQUE)
+		if (currentTower->type == CLASSICAL)
 		{
 			currentTower->TowerEffectRender(data);
 		}
-		if (currentTower->type == EXPLOSIVE)
+		if (currentTower->type == EXPLOSIF)
 		{
 			currentTower->TowerEffectRender(data);
 		}
-		if (currentTower->type == RALENTISSANTE)
+		if (currentTower->type == SLOWINGTURRET)
 		{
 			currentTower->TowerEffectRender(data);
 		}

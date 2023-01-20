@@ -6,103 +6,95 @@
 #include "Tower.hpp"
 #include "map.hpp"
 
-#include "classique.hpp"
-#include "explosive.hpp"
-#include "ralentissante.hpp"
+#include "classical.hpp"
+#include "explosif.hpp"
+#include "SlowingTurret.hpp"
 
 
 
 
-#define maxAcelerateTime 4
 
 
-void Player::PlayerTile(GameData& gamedata)
+
+void Player::PlayerTile(GameData& data)
 {
 	ImGuiIO& io2 = ImGui::GetIO();
 
 	int MouseX = int(io2.MousePos.x);
 	int MouseY = int(io2.MousePos.y);
 
-	int TileSize = int(gamedata.map.Tilesize);
+	int TileSize = int(data.map.Tilesize);
 
-	int TileMouseX = int(ReturnTileIndexX(MouseX, gamedata.map));
-	int TileMouseY = int(ReturnTileIndexX(MouseY, gamedata.map));
-
-
-	int TileMinX = int(ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).x);
-	int TileMinY = int(ReturnTileMin(TileMouseX, TileMouseY, gamedata.map).y);
+	int TileMouseX = int(ReturnTileIndexX(MouseX, data.map));
+	int TileMouseY = int(ReturnTileIndexX(MouseY, data.map));
 
 
-
-	int TileMaxX = int(ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).x);
-
-	//float2 Tilemax = ReturntopLeft(TileMouseX, TileMouseY, gamedata.map);
-
-	int TileMaxY = int(ReturnTileMax(TileMouseX, TileMouseY, gamedata.map).y);
+	int TileMinX = int(ReturnTileMin(TileMouseX, TileMouseY, data.map).x);
+	int TileMinY = int(ReturnTileMin(TileMouseX, TileMouseY, data.map).y);
 
 
 
-	ImGui::Text("Coord Mouse X : %d ", MouseX);
-	ImGui::Text("Coord Mouse Y : %d ", MouseY);
+	int TileMaxX = int(ReturnTileMax(TileMouseX, TileMouseY, data.map).x);
+	int TileMaxY = int(ReturnTileMax(TileMouseX, TileMouseY, data.map).y);
 
-	ImGui::Text("Tile Mouse X : %d ", TileMouseX);
-	ImGui::Text("Tile Mouse Y : %d ", TileMouseY);
 
-	ImGui::Text("Tile min {X ; Y} : {%d ; %d} ", TileMinX, TileMinY);
+	if (data.enableDebug)
+	{
+		ImGui::Text("Coord Mouse X : %d ", MouseX);
+		ImGui::Text("Coord Mouse Y : %d ", MouseY);
 
-	ImGui::Text("Tile max {X ; Y} :  {%d ; %d} ", TileMaxX, TileMaxY);
+		ImGui::Text("Tile Mouse X : %d ", TileMouseX);
+		ImGui::Text("Tile Mouse Y : %d ", TileMouseY);
+
+		ImGui::Text("Tile min {X ; Y} : {%d ; %d} ", TileMinX, TileMinY);
+
+		ImGui::Text("Tile max {X ; Y} :  {%d ; %d} ", TileMaxX, TileMaxY);
+	}
+		
 
 	ImVec2 TileX = { (float)TileMinX,  (float)TileMinY };
 	ImVec2 TileY = { (float)TileMaxX,  (float)TileMaxY };
 
-	gamedata.dl->AddRect(TileX, TileY, IM_COL32(255, 255, 0, 255), 0);
+	data.dl->AddRect(TileX, TileY, IM_COL32(255, 255, 0, 255), 0);
 }
 
-void Player::PlayerInput(GameData& gamedata)
+void Player::PlayerInput(GameData& data)
 {
 
 	if (ImGui::IsKeyPressed(ImGuiKey_Tab, false))
 	{
 
-		gamedata.enableDebug = not gamedata.enableDebug;
-
-
-		std::cout << gamedata.enableDebug << std::endl;
+		data.enableDebug = not data.enableDebug;
 	}
 
-	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false) && gamedata.acceleRateTime < maxAcelerateTime)
+	if (ImGui::IsKeyPressed(ImGuiKey_RightArrow, false) && data.acceleRateTime < maxAcelerateTime)
 	{
 
-		gamedata.acceleRateTime++;
-		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
+		data.acceleRateTime++;
 	}
-	if (ImGui::IsKeyPressed(ImGuiKey_LeftArrow, false) && gamedata.acceleRateTime > 0)
+	if (ImGui::IsKeyPressed(ImGuiKey_LeftArrow, false) && data.acceleRateTime > 0)
 	{
-		gamedata.acceleRateTime--;
-		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
+		data.acceleRateTime--;
 	}
 
 
-	if (ImGui::IsKeyPressed(ImGuiKey_DownArrow, false) && !gamedata.playerStopTime)
+	if (ImGui::IsKeyPressed(ImGuiKey_DownArrow, false) && !data.playerStopTime)
 	{
-		gamedata.acceleRateTimeBuffer = gamedata.acceleRateTime;
-		std::cout << "Buffer = " << gamedata.acceleRateTime << std::endl;
-		gamedata.acceleRateTime = 0;
-		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
-		gamedata.playerStopTime = !gamedata.playerStopTime;
+		data.acceleRateTimeBuffer = data.acceleRateTime;
+		data.acceleRateTime = 0;
+		data.playerStopTime = !data.playerStopTime;
 	}
-	else if (ImGui::IsKeyPressed(ImGuiKey_DownArrow, false) && gamedata.playerStopTime)
+	else if (ImGui::IsKeyPressed(ImGuiKey_DownArrow, false) && data.playerStopTime)
 	{
-		gamedata.acceleRateTime = gamedata.acceleRateTimeBuffer;
-		std::cout << "acceleRateTime = " << gamedata.acceleRateTime << std::endl;
-		gamedata.playerStopTime = !gamedata.playerStopTime;
+		data.acceleRateTime = data.acceleRateTimeBuffer;
+		data.playerStopTime = !data.playerStopTime;
 	}
 
 }
 
 
 
-void Player::DragAndDrop(GameData& gamedata)
+void Player::DragAndDrop(GameData& data)
 {
 	ImGuiIO& io2 = ImGui::GetIO();
 	Texture textureID = { 0 };
@@ -112,7 +104,7 @@ void Player::DragAndDrop(GameData& gamedata)
 	float posMaxX = ImGui::GetMousePos().x;
 	float posMaxY = ImGui::GetMousePos().y;
 
-	ImVec2 posMin = { ImGui::GetMousePos().x - 36,  ImGui::GetMousePos().y - 36};
+	ImVec2 posMin = { ImGui::GetMousePos().x - 36,  ImGui::GetMousePos().y - 36 };
 	ImVec2 posMax = { posMaxX + 36 , posMaxY + 36 };
 
 	//coord CLICK
@@ -129,9 +121,9 @@ void Player::DragAndDrop(GameData& gamedata)
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = CLASSIQUE;
-			textureID = gamedata.asset.textureTowerClassique;
-			gamedata.dl->AddImage(textureID.id, posMin, posMax);
+			typeTower = CLASSICAL;
+			textureID = data.asset.textureTowerClassique;
+			data.dl->AddImage(textureID.id, posMin, posMax);
 		}
 
 		if ((clickX > (8 * 72))
@@ -139,10 +131,10 @@ void Player::DragAndDrop(GameData& gamedata)
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = EXPLOSIVE;
-			textureID = gamedata.asset.textureTowerExplosive;
-			//gamedata.dl->AddImage(textureID.id, posMin, posMax);
-			gamedata.dl->AddImage(textureID.id, posMin , posMax , ImVec2(0,0),ImVec2(1100.f/11.f/1100.f , 1));
+			typeTower = EXPLOSIF;
+			textureID = data.asset.textureTowerExplosive;
+			//data.dl->AddImage(textureID.id, posMin, posMax);
+			data.dl->AddImage(textureID.id, posMin, posMax, ImVec2(0, 0), ImVec2(1100.f / 11.f / 1100.f, 1));
 
 		}
 
@@ -151,9 +143,9 @@ void Player::DragAndDrop(GameData& gamedata)
 			&& (clickY > (9 * 72))
 			&& (clickY < (10 * 72)))
 		{
-			typeTower = RALENTISSANTE;
-			textureID = gamedata.asset.texureSlowing;
-			gamedata.dl->AddImage(textureID.id, posMin, posMax);
+			typeTower = SLOWINGTURRET;
+			textureID = data.asset.texureSlowing;
+			data.dl->AddImage(textureID.id, posMin, posMax);
 		}
 
 	}
@@ -161,46 +153,46 @@ void Player::DragAndDrop(GameData& gamedata)
 	//PUSH BACK POINTER TOWER
 	if (ImGui::IsKeyReleased(ImGuiKey_MouseLeft))
 	{
-		if (IsPlaceAble(gamedata, float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y)))
+		if (IsPlaceAble(data, float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y)))
 		{
-			if (typeTower == CLASSIQUE)
+			if (typeTower == CLASSICAL)
 			{
-				Tower* tower = new Classique();
+				Tower* tower = new Classical();
 
 				if (coins >= tower->cost)
 				{
-					tower->TileX = ReturnTileIndexX((int)posMin.x + 36, gamedata.map) * 72;
-					tower->TileY = ReturnTileIndexX((int)posMin.y + 36, gamedata.map) * 72;
+					tower->TileX = ReturnTileIndexX((int)posMin.x + 36, data.map) * 72;
+					tower->TileY = ReturnTileIndexX((int)posMin.y + 36, data.map) * 72;
 
-					gamedata.towerVector.push_back(tower);
+					data.towerVector.push_back(tower);
 					coins -= int(tower->cost);
 				}
 			}
-			else if (typeTower == EXPLOSIVE)
+			else if (typeTower == EXPLOSIF)
 			{
-				int tileX = ReturnTileIndexX((int)posMin.x + 36, gamedata.map) * 72;
-				int tileY = ReturnTileIndexX((int)posMin.y + 36, gamedata.map) * 72;
-				Tower* tower = new Explosive(float2(tileX + gamedata.map.Tilesize / 2, float(tileY - 50)));
+				int tileX = ReturnTileIndexX((int)posMin.x + 36, data.map) * 72;
+				int tileY = ReturnTileIndexX((int)posMin.y + 36, data.map) * 72;
+				Tower* tower = new Explosif(float2(tileX + data.map.Tilesize / 2, float(tileY - 50)));
 
 				if (coins >= tower->cost)
 				{
 					tower->TileX = tileX;
 					tower->TileY = tileY;
 
-					gamedata.towerVector.push_back(tower);
+					data.towerVector.push_back(tower);
 					coins -= int(tower->cost);
 				}
 			}
-			else if (typeTower == RALENTISSANTE)
+			else if (typeTower == SLOWINGTURRET)
 			{
-				Tower* tower = new Ralentissante();
+				Tower* tower = new SlowingTower();
 
 				if (coins >= tower->cost)
 				{
-					tower->TileX = ReturnTileIndexX((int)posMin.x + 36, gamedata.map) * 72;
-					tower->TileY = ReturnTileIndexX((int)posMin.y + 36, gamedata.map) * 72;
+					tower->TileX = ReturnTileIndexX((int)posMin.x + 36, data.map) * 72;
+					tower->TileY = ReturnTileIndexX((int)posMin.y + 36, data.map) * 72;
 
-					gamedata.towerVector.push_back(tower);
+					data.towerVector.push_back(tower);
 					coins -= int(tower->cost);
 				}
 			}
@@ -245,7 +237,8 @@ void Player::ShowTurretInfo(GameData& data)
 
 	float clickX = io2.MouseClickedPos->x;
 	float clickY = io2.MouseClickedPos->y;
-	ImVec2 click = { clickX, clickY };
+
+	
 
 	for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
 	{
@@ -253,13 +246,12 @@ void Player::ShowTurretInfo(GameData& data)
 		if (clickX >= currentTower->pos.x - data.map.Tilesize / 2 && clickX <= currentTower->pos.x + data.map.Tilesize / 2 &&
 			clickY >= currentTower->pos.y - data.map.Tilesize / 2 && clickY <= currentTower->pos.y + data.map.Tilesize / 2)
 		{
-
+			data.showUpgrade = true;
 			DrawTurretInfo(data, currentTower->pos.x, currentTower->pos.y, currentTower);
-
 		}
 
 		else if (clickX >= currentTower->pos.x + 25 && clickX <= currentTower->pos.x + 225 &&
-			clickY >= currentTower->pos.y - 80 && clickY <= currentTower->pos.y - 20)
+			clickY >= currentTower->pos.y - 80 && clickY <= currentTower->pos.y - 20 && data.showUpgrade)
 		{
 			currentTower->Upgrade(data);
 		}
@@ -270,68 +262,58 @@ void Player::ShowTurretInfo(GameData& data)
 
 void Player::ShowOption(GameData& data)
 {
-	float minX = data.io.MousePos.x;
-	float minY = data.io.MousePos.y;
+
+	ImGuiIO& io2 = ImGui::GetIO();
+
+	float clickX = io2.MouseClickedPos->x;
+	float clickY = io2.MouseClickedPos->y;
 
 	data.dl->AddImage(data.asset.textureOption.id, { 1224 , 648 }, { 1296 , 720 });
 
-	if(ImGui::IsKeyDown(ImGuiKey_MouseLeft))
+	if (clickX >= 1224 && clickX <= 1296 && clickY >= 648 && clickY <= 720)
 	{
+		data.showOption = true;
 
-		if (minX >= 1224 && minX <= 1296 &&
-			minY >= 648 && minY <= 720)
+		data.dl->AddImage(data.asset.textureMenuHUD.id, { 230.5, 180 }, { 999.5, 600 });
+
+		data.dl->AddImage(data.asset.textureMenuButton.id, { 480, 250 }, { 751, 350 });
+		data.dl->AddImage(data.asset.textureLevels.id, { 480, 370 }, { 751, 470 });
+		data.dl->AddImage(data.asset.textureSettings.id, { 480, 490 }, { 751, 590 });
+	}
+
+	else if (clickX <= 751 && clickX >= 480 && clickY <= 350 && clickY >= 250 && data.showOption)
+	{
+		if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
 		{
-			data.dl->AddImage(data.asset.textureMenuHUD.id, { 230.5, 180 }, { 999.5, 600 });
-
-			data.dl->AddImage(data.asset.texturePlay.id, { 480, 250 }, { 751, 350 });
-			data.dl->AddImage(data.asset.textureLevels.id, { 480, 370 }, { 751, 470 });
-			data.dl->AddImage(data.asset.textureSettings.id, { 480, 490 }, { 751, 590 });
-
-			if (minX <= 751 && minX >= 480 &&
-				minY <= 350 && minY >= 250
-				)
-			{
-				data.dl->AddImage(data.asset.textureMenuButton.id, { 475, 245 }, { 756, 355 });
-				if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
-				{
-					data.currentScene = Menu;
-				}
-			}
-
-			if (minX <= 751 && minX >= 480 &&
-				minY <= 470 && minY >= 370
-				)
-			{
-				data.dl->AddImage(data.asset.textureLevels.id, { 475, 365 }, { 756, 475 });
-				if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
-				{
-					data.currentScene = Levels;
-				}
-			}
-
-			if (minX <= 751 && minX >= 480 &&
-				minY <= 590 && minY >= 490
-				)
-			{
-				data.dl->AddImage(data.asset.textureSettings.id, { 475, 485 }, { 756, 595 });
-				if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
-				{
-				}
-
-			}
-
+			data.currentScene = Menu;
 		}
+	}
+
+	else if (clickX <= 751 && clickX >= 480 && clickY <= 470 && clickY >= 370 && data.showOption)
+	{
+		if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+		{
+			data.currentScene = Levels;
+		}
+	}
+
+	else if (clickX <= 751 && clickX >= 480 && clickY <= 590 && clickY >= 490 && data.showOption)
+	{
+		if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+		{
+		}
+
 	}
 }
 
 
-void Player::UpdatePlayer(GameData& gamedata)
+void Player::UpdatePlayer(GameData& data)
 {
-	PlayerTile(gamedata);
-	PlayerInput(gamedata);
-	DragAndDrop(gamedata);
-	ShowTurretInfo(gamedata);
-	ShowOption(gamedata);
+	PlayerTile(data);
+	PlayerInput(data);
+	DragAndDrop(data);
+	ShowTurretInfo(data);
+	ShowOption(data);
 
 
 }
@@ -343,7 +325,6 @@ Player::Player()
 	this->maxHealth = 5000;
 	this->health = this->maxHealth;
 
-	this->power = 0;
 	this->typeTower = 0;
 
 	this->score = 0;

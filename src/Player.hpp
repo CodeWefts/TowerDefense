@@ -6,31 +6,30 @@ struct GameData;
 
 
 
-
+#define maxAcelerateTime 4
 class Player
 {
+
+private:
+	// tower
+	int typeTower;
 public:
 
 	// player stats
-	int coins = 9000000;
+	int coins = 100;
 	int score;
 	int wave;
 	int health;
 	int maxHealth;
 
-
-	// power
-	int power;
-
-	// tower
-	int typeTower;
+	
 
 
 
-	void UpdatePlayer(GameData& gamedata);
-	void PlayerTile(GameData& gamedata);
-	void PlayerInput(GameData& gamedata);
-	void DragAndDrop(GameData& gamedata);
+	void UpdatePlayer(GameData& data);
+	void PlayerTile(GameData& data);
+	void PlayerInput(GameData& data);
+	void DragAndDrop(GameData& data);
 
 	void DrawTurretInfo(GameData& data, float x, float y, Tower* currentTower);
 	void ShowTurretInfo(GameData& data);

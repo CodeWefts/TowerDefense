@@ -1,4 +1,4 @@
-#include "explosive.hpp"
+#include "explosif.hpp"
 #include "tower_game.hpp"
 #include "calc.hpp"
 
@@ -9,19 +9,15 @@
 
 
 
-void Explosive::Upgrade(GameData& data)
+//Projectile Update
+void Explosif::Upgrade(GameData& data)
 {
 
 	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
 	{
-
-		//Projectile Update
 		this->currentLevel++;
 		this->projectile.radiusOfExplosion += 5;
 		this->damage *= 2;
-		this->upgrade = false;
-		
-		
 	}
 
 
@@ -65,7 +61,7 @@ Projectile::~Projectile()
 
 
 
-void Explosive::Shoot(GameData& data)
+void Explosif::Shoot(GameData& data)
 {
 
 
@@ -113,7 +109,7 @@ void Explosive::Shoot(GameData& data)
 	
 }
 
-void Explosive::Reset(GameData& data)
+void Explosif::Reset(GameData& data)
 {
 		
 	projectile.explosionTimer = DEFexplosionTimer;
@@ -127,7 +123,7 @@ void Explosive::Reset(GameData& data)
 
 
 
-void Explosive::TowerEffectRender(GameData& data)
+void Explosif::TowerEffectRender(GameData& data)
 {
 
 	float2 TileMin = { (float)TileX, (float)TileY };
@@ -192,10 +188,10 @@ void Explosive::TowerEffectRender(GameData& data)
 
 
 
-Explosive::Explosive()
+Explosif::Explosif()
 {
-	this->name = "Explosive";
-	this->type = EXPLOSIVE;
+	this->name = "Explosif";
+	this->type = EXPLOSIF;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;
@@ -210,10 +206,10 @@ Explosive::Explosive()
 	this->animationMaxX = 1100.f / 11.f / 1100.f;
 	this->animationMaxY = 1.f;
 }
-Explosive::Explosive(float2 missileStartPoint)
+Explosif::Explosif(float2 missileStartPoint)
 {
-	this->name = "Explosive";
-	this->type = EXPLOSIVE;
+	this->name = "Explosif";
+	this->type = EXPLOSIF;
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;
@@ -233,6 +229,7 @@ Explosive::Explosive(float2 missileStartPoint)
 }
 
 
-Explosive::~Explosive()
+Explosif::~Explosif()
 {
+	delete target;
 }

@@ -30,7 +30,7 @@ struct Projectile
 	
 };
 
-class Explosive : public Tower
+class Explosif : public Tower
 {
 
 
@@ -43,9 +43,9 @@ public:
 	void Upgrade(GameData& data) override;
 	void TowerEffectRender(GameData& data) override;
 
-	Explosive();
-	Explosive(float2 missileStartPoint);
-	~Explosive();
+	Explosif();
+	Explosif(float2 missileStartPoint);
+	~Explosif();
 
 protected : 
 	void Shoot(GameData& data) override;

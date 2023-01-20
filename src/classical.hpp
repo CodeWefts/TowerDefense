@@ -7,7 +7,7 @@ struct GameData;
 
 
 
-class Classique : public Tower
+class Classical : public Tower
 {
 
 
@@ -19,8 +19,8 @@ public:
 
 
 
-	Classique();
-	~Classique();
+	Classical();
+	~Classical();
 
 protected:
 

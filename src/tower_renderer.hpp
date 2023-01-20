@@ -2,8 +2,8 @@
 #include<iostream>
 #include<string>
 #include "imgui_utils.hpp"
-#include "ralentissante.hpp"
-#include "explosive.hpp"
+#include "SlowingTurret.hpp"
+#include "explosif.hpp"
 #include "renderer_player.hpp"
 #include "renderer_entity.hpp"
 

@@ -17,13 +17,8 @@
 #define Healer_def 1
 #define Heavy_def 2
 
-//#define TimeBetweenSpawnMin 5.5f
-//#define TimeBetweenSpawnMax 7.5f
-
-
 #define TimeBetweenSpawnMin 0.5f
 #define TimeBetweenSpawnMax 2.f
-
 
 #define TimerBetweenWaveMin 2.f
 #define TimerBetweenWaveMax 4.f
@@ -58,17 +53,15 @@ void turretUntargetEnemy(GameData& data,Enemy* current)
 }
 
 
-
+// Spawn Random Enemy and withdraw them cost to the number of enemy in current wawe
 void EnemyManager::SpawnEnemy(GameData& data)
 {
 
 	int random = rand() % TypeOfEnemy;
 	int roadChoice = rand() % NbrOfRoad;
-	std::cout << roadChoice << std::endl;
 	float2 SpawnPoint = data.listOfRoad[roadChoice].at(0);
 
 
-	// To Do Create Fonction
 
 	if (random == Weakling_def)
 	{
@@ -111,7 +104,9 @@ void EnemyManager::SpawnEnemy(GameData& data)
 
 void EnemyManager::ManageWave(GameData& data)
 {
-	// off set level
+
+
+
 	if (data.currentLevel == nbrOfLevel - 1  && data.currentWave == data.levels[data.currentLevel].maxWave)
 	{
 		data.currentLevel = 0;
@@ -127,9 +122,8 @@ void EnemyManager::ManageWave(GameData& data)
 	}
 
 
-
-
 	data.timerLevel -= data.deltatime;
+
 	if (data.timerLevel <= 0 && data.currentLevel != nbrOfLevel)
 	{
 		data.levels.at(data.currentLevel).timerBetweenWave -= data.deltatime;
@@ -180,6 +174,7 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 			current->erase = true;
 		}
 
+		// Update Enemy Position
 		current->UpdateEnemy(data, current->erase);
 
 		
@@ -218,7 +213,6 @@ void EnemyManager::MoveEnemyPath(GameData& data)
 
 void EnemyManager::ManageEnemy(GameData& data)
 {
-	//TO DO ADD WAWE
 	this->ManageWave(data);
 	this->MoveEnemyPath(data);
 

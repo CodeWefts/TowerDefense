@@ -35,7 +35,7 @@ struct Asset
 
 	Texture textureDirt, textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
 		texturePathLeft, texturePathRight, texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight, texturePathAroundUp,
-		texturePathAroundDown, texturePathUpANDDown, texturePathLeftANDRight,
+		texturePathAroundDown, texturePathUpANDDown, texturePathLeftANDRight, textureCastle,
 
 		//texture ennemy COSTAUD
 		textureNightBorne,
@@ -58,10 +58,8 @@ struct Asset
 
 		//texture hud || INVENTORY TOWER
 		textureTowerSideLeft, textureTowerSideRight, textureTowerCase, textureUpgradeButton,
-
 		textureAnimation, textureMenuHUD, textureBackGround, texturePlay, textureLevels, textureSettings,
-
-		textureCoin, textureButton, textureOption, textureMenuButton,
+		textureCoin, textureButton, textureOption, textureMenuButton, texturePauseButton, textureUpTime, textureSlowTime,
 
 		//texture Levels
 		textureMap, textureLevelNotFinish,
@@ -72,6 +70,7 @@ struct Asset
 
 
 	Asset();
+	~Asset();
 
 
 };
@@ -104,6 +103,10 @@ struct GameData
 	int currentWave;
 	float timerWave;
 	float timerLevel;
+
+	bool showUpgrade = false;
+	bool showOption = false;
+
 		
 	float transparenceTime = 0.f;
 	float time = 0.f;

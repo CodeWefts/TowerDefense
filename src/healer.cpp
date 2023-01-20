@@ -8,14 +8,14 @@
 Healer::Healer()
 {
 	this->type = HEALER;
-	this->maxHealt = 200;
+	this->maxHealt = 400;
 	this->damageToPlayer = 100;
 	this->currentHealth = this->maxHealt;
 	this->pos = { 0,0 };
 	this->velocity = 90.f;
 	this->healRate = HealRate;
 	this->coinsToPlayer = 20;
-	this->healValue = 30;
+	this->healValue = 100;
 	this->healBoxSize = { HealBoxSize , HealBoxSize };
 
 	Enemy* allyIsInRange = nullptr;

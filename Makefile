@@ -14,7 +14,6 @@ OBJS+=
 ## Platform specific configuration
 TARGET?=$(shell $(CXX) -dumpmachine)
 LDFLAGS=-Lexternals/libs/$(TARGET)
-ifeq ($(TARGET),x86_64-pc-cygwin)
 externals/src/imgui_impl_opengl3.o: CXXFLAGS+=-D_WIN32
 $(APP): LDLIBS+=-lglfw3 -lgdi32 -lstdc++ -lopengl32
 else ifeq ($(TARGET),x86_64-w64-mingw32)
@@ -22,6 +21,7 @@ $(APP): LDLIBS+=-lglfw3 -lgdi32 -lstdc++ -lopengl32
 else
 $(APP): LDLIBS+=-lglfw3 -lpthread -ldl -lm -lstdc++ -lGL
 endif
+ifeq ($(TARGET),x86_64-pc-cygwin)
 
 # External objects
 EXT_OBJS=imgui.o imgui_demo.o imgui_draw.o imgui_tables.o imgui_widgets.o imgui_impl_glfw.o imgui_impl_opengl3.o

@@ -9,9 +9,9 @@ struct GameData;
 
 enum TowerChoice : int
 {
-    CLASSIQUE = 1,
-    EXPLOSIVE,
-    RALENTISSANTE,
+    CLASSICAL = 1,
+    EXPLOSIF,
+    SLOWINGTURRET,
     NULLTOWER = 255,
 };
 
@@ -21,9 +21,8 @@ public:
 
     int currentLevel;
     int maxLevel;
+    std::string name;
 
-
-    std::string name;   
     TowerChoice type;
     Texture texture;
     Texture canonTexture;
@@ -40,9 +39,6 @@ public:
     float animationMaxY = 1.f;
 
     float moveTime;
-   
-
-    bool upgrade = false;
  
 
     int TileX, TileY;

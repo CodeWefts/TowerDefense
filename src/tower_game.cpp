@@ -50,7 +50,7 @@ void TowerGame::UpdateAndDraw()
 		
 		renderer.RendererGame(data);
 		
-
+		if(data.enableDebug)
 		Debug(data);
 		
 	}

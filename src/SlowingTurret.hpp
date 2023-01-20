@@ -6,7 +6,7 @@
 struct GameData;
 
 
-class Ralentissante : public Tower
+class SlowingTower : public Tower
 {
 
 
@@ -20,8 +20,8 @@ public:
 	void TowerEffectRender(GameData& data) override;
 
 
-	Ralentissante();
-	~Ralentissante();
+	SlowingTower();
+	~SlowingTower();
 
 protected:
 	void Shoot(GameData& data) override;
