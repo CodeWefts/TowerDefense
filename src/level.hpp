@@ -18,7 +18,6 @@ public:
 
 	int maxWave;
 	int nbrOfWave;
-	int currentWave;
 	int nbrOfRoad;	
 
 	float timerBetweenWave;

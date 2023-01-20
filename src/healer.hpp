@@ -21,11 +21,11 @@ public:
 	~Healer();
 
 protected:
-	float2 healBoxSize;
 
 	int healValue;
-	Enemy* allyIsInRange;
 	float healRate;
+	float2 healBoxSize;
+	Enemy* allyIsInRange;
 	void Heal(GameData& data) override;
 
 private:

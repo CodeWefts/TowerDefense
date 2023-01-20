@@ -8,7 +8,13 @@ struct GameData;
 
 #define IsIncenter 4.0
 
+enum EnemyType : int
+{
+	WEAKLING = 1,
+	HEALER,
+	HEAVY
 
+};
 
 
 class Enemy : public Entity
@@ -22,7 +28,6 @@ public:
 	int damageToPlayer;
 	int coinsToPlayer;
 
-	std::string name;
 	Texture texture;
 	float velocity;
 
@@ -39,7 +44,7 @@ public:
 	float vecMaxY;
 
 	float timeMove;
-
+	EnemyType type;
 
 	float2 ReturnCheckPoint(GameData& data, int& checkPoint);
 

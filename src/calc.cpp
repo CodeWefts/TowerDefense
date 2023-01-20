@@ -26,6 +26,14 @@ float2  Rotationfloat2(float2& P, const float2& R, const float& angle)
 }
 
 
+float getModule(const float2& pos, const float2& postower)
+{
+    float2 diff = postower - pos;
+
+    return sqrtf(pow(diff.x, 2.f) + powf(diff.y, 2.f));
+}
+
+
 float2 normaliseVector(float2& Vector)
 {
     float normedVector = toNormVector(Vector);

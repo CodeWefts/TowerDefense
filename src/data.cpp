@@ -2,6 +2,7 @@
 #include "data.hpp"
 #include "healer.hpp"
 #include "weakling.hpp"
+#include "wave.hpp"
 
 
 using namespace std;
@@ -133,7 +134,7 @@ void Debug(GameData& data)
 	ImGui::Text("TimerLevel = %f ", data.timerLevel);
 
 	ImGui::Text("WaveTimer = %f ", data.levels.at(data.currentLevel).timerBetweenWave);
-	ImGui::Text("timerbetweenSpawn = %f ", data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn);
+	//ImGui::Text("timerbetweenSpawn = %f ", data.levels.at(data.currentLevel).waves.at(data.currentWave).timerbetweenSpawn);
 
 	ImGui::Text("CurrentLevel = %d ", data.currentLevel);
 	ImGui::Text("nbrOfLevel = %d ", data.levels.size());
@@ -141,17 +142,23 @@ void Debug(GameData& data)
 	ImGui::Text("CurrentWave %d", data.currentWave);
 
 
-	ImGui::Text("EnemyRemaining = %d ", data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy);
+	/*
+	for (Level l : data.levels)
+	{
+		if(l == )
+	}
 
+	*/
+
+	/*
+	*/
+	ImGui::Text("EnemyRemaining = %d ", data.levels[data.currentLevel].maxWave);
+
+	//ImGui::Text("EnemyRemaining = %d ", data.levels[data.currentLevel].waves
 
 	if (ImGui::IsKeyPressed(ImGuiKey_S, false))
 	{
-		/*
-		for (int i = 0; i < data.map.map.size(); i++)
-		{
-			data.map.map.pop_back();
-		}
-		*/
+		
 		for (auto it = data.enemyVector.begin(); it != data.enemyVector.end(); it++)
 		{
 			Enemy* current = *it;
@@ -220,11 +227,17 @@ void Debug(GameData& data)
 
 	}
 
-	if (ImGui::IsKeyPressed(ImGuiKey_Q, false))
+
+ if (ImGui::IsKeyPressed(ImGuiKey_Q, false))
 	{
 		data.timerLevel = 0;
 		data.currentWave++;
 	}
+	else if ((ImGui::IsKeyPressed(ImGuiKey_Q, false) && data.currentWave != data.levels[data.currentLevel].maxWave))
+	{
+		data.currentLevel++;
+	}
+
 
 
 	if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft, false))
@@ -378,19 +391,22 @@ GameData::GameData()
 	this->currentLevel = 0;
 
 	// for each level
-	for (int i = 0; i < nbrOfLevel; i++)
+	for (int i = 0 ; i < nbrOfLevel; i++)
 	{
 		Level newlevel;
 		newlevel.maxWave = 3 + (2 * i);
+		//newlevel.maxWave = 6;
 		newlevel.nbrOfRoad = NbrOfRoad;
-		newlevel.waves.resize(newlevel.maxWave);
-
 		// for each wawe of each level we adding a different nbr of enemys
-		for (int j = 0; j < newlevel.maxWave; j++)
+
+
+		for (int j = 0 ; j < newlevel.maxWave; j++)
 		{
-			newlevel.waves[j].maxEnemy = 3 + (5 * j);
-			newlevel.waves[j].nbrOfEnemy = newlevel.waves[j].maxEnemy;
-			newlevel.waves[j].timerbetweenSpawn = Calc::randomFloat(1.f, 3.f);
+			EnemyWave wave;
+			wave.maxEnemy = 3 + (5 * j);
+			wave.nbrOfEnemy = wave.maxEnemy;
+			wave.timerbetweenSpawn = Calc::randomFloat(1.f, 3.f);
+			newlevel.waves.push_back(wave);
 
 		}
 

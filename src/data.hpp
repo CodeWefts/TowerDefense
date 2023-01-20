@@ -22,7 +22,7 @@
 
 #define TimerLevel 7.f
 #define TimerWave 5.f
-#define nbrOfLevel 5
+#define nbrOfLevel 4
 #define NbrOfRoad 4
 
 

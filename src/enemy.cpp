@@ -106,7 +106,20 @@ Enemy::Enemy()
 	this->destinationIndex = 1;
 
 	this->coinsToPlayer = 0;
-	this->roadChoice = Path0;
+	this->roadChoice = 0;
+
+
+	this->animationMinX = 0;
+	this->animationMinY = 0;
+	this->animationMaxX = 0;
+	this->animationMaxY = 0;
+
+	this->vecMaxX = 0;
+
+	this->vecMaxY = 0;
+
+	this->timeMove = 0;
+;
 
 }
 

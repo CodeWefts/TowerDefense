@@ -32,18 +32,18 @@ protected:
 
 private:
 
-	int maxDebuffVelocity;
-	int slowingValue;
+	double maxDebuffVelocity;
+	double slowingValue;
 
 
-	int maxBeamValue;
-	int beamValue;
+	double maxBeamValue;
+	double beamValue;
 
-	int baseDamage;
-	int beamBaseValue;
+	double baseDamage;
+	double beamBaseValue;
 
-	int incrementDamage;
-	int incrementeBeamValue;
+	double incrementDamage;
+	double incrementeBeamValue;
 
-	int maxDamage;
+	double maxDamage;
 };

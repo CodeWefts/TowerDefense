@@ -163,7 +163,7 @@ void Player::DragAndDrop(GameData& gamedata)
 	{
 		if (IsPlaceAble(gamedata, float2(ImGui::GetMousePos().x, ImGui::GetMousePos().y)))
 		{
-			if (typeTower == 1)
+			if (typeTower == CLASSIQUE)
 			{
 				Tower* tower = new Classique();
 
@@ -172,17 +172,17 @@ void Player::DragAndDrop(GameData& gamedata)
 
 				gamedata.towerVector.push_back(tower);
 			}
-			else if (typeTower == 2)
+			else if (typeTower == EXPLOSIVE)
 			{
 				int tileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
 				int tileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
-				Tower* tower = new Explosive(float2(tileX + gamedata.map.Tilesize /2, tileY - 50));
+				Tower* tower = new Explosive(float2(tileX + gamedata.map.Tilesize / 2, float(tileY - 50)));
 				tower->TileX = tileX;
 				tower->TileY = tileY;
 
 				gamedata.towerVector.push_back(tower);
 			}
-			else if (typeTower == 3)
+			else if (typeTower == RALENTISSANTE)
 			{
 				Tower* tower = new Ralentissante();
 				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
@@ -248,7 +248,7 @@ void Player::ShowTurretInfo(GameData& data)
 		else if (clickX >= currentTower->pos.x + 25 && clickX <= currentTower->pos.x + 225 &&
 			clickY >= currentTower->pos.y - 80 && clickY <= currentTower->pos.y - 20)
 		{
-			currentTower->upgrade = true;
+			currentTower->Upgrade(data);
 		}
 
 	}

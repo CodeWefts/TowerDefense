@@ -18,3 +18,4 @@ Level::Level(const int& nbrWave, const int& nbrOfRoad)
 	this->nbrOfRoad = nbrOfRoad;
 	
 }
+	

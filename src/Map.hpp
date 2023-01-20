@@ -26,6 +26,9 @@ public:
 
 	string mapLvl1;
 	string mapLvl2;
+	string mapLvl3;
+	string mapLvl4;
+
 
 	int Height;
 	int Width;

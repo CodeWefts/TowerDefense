@@ -12,7 +12,7 @@ class Player
 public:
 
 	// player stats
-	int coins = 100;
+	int coins = 9000000;
 	int score;
 	int wave;
 	int health;

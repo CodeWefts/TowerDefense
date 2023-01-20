@@ -111,54 +111,36 @@ void EnemyManager::SpawnEnemy(GameData& data)
 
 void EnemyManager::ManageWave(GameData& data)
 {
+	// off set level
+	if (data.currentLevel == nbrOfLevel - 1  && data.currentWave == data.levels[data.currentLevel].maxWave)
+	{
+		data.currentLevel = 0;
+		data.currentWave = 0;
+		data.currentScene = Menu;
+	}
+	else if(data.currentWave == data.levels[data.currentLevel].maxWave)
+	{
+		data.currentLevel++;
+		data.currentWave = 0;
+		data.changeLevel = true;
+		ChangeLevel(data);
+	}
+
+
 
 
 	data.timerLevel -= data.deltatime;
-	if (data.timerLevel <= 0)
+	if (data.timerLevel <= 0 && data.currentLevel != nbrOfLevel)
 	{
 		data.levels.at(data.currentLevel).timerBetweenWave -= data.deltatime;
 
 
-		if (data.currentWave == data.levels.at(data.currentLevel).maxWave - 1)
-		{
-
-			data.timerLevel = TimerLevel;
-			ChangeLevel(data);
-			if (data.currentLevel == nbrOfLevel && data.currentWave == data.levels[data.currentLevel].maxWave - 1)
-			{
-				data.currentScene = Menu;
-			}
-			else
-			{
-				data.currentLevel++;
-			}
-
-
-			// Load New path //
-			data.currentWave = 0;
-			data.changeLevel = true;
-			
-		}
-
-
-
-		// if all the Wave of the level as been passed go next level
-
-// if there is no enemy remaing in the current wawe and no enemie in screen Wave pass
-
-
-		else if (data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy <= 0 && data.enemyVector.empty() && data.currentWave < data.levels.at(data.currentLevel).maxWave)
+		if (data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy <= 0 && data.enemyVector.empty() && data.currentWave < data.levels.at(data.currentLevel).maxWave)
 		{
 
 			data.currentWave++;
 			data.levels.at(data.currentLevel).timerBetweenWave = Calc::randomFloat(TimerBetweenWaveMin, TimerBetweenWaveMax);
 		}
-
-
-
-
-
-
 
 		// timer between Wave is equal 0 and There Still enemy
 		if (data.levels.at(data.currentLevel).timerBetweenWave <= 0 && data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy > 0)

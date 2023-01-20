@@ -14,21 +14,15 @@ void Explosive::Upgrade(GameData& data)
 
 	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
 	{
+
 		//Projectile Update
 		this->currentLevel++;
-		this->projectile.radiusOfExplosion += currentLevel * this->projectile.radiusOfExplosion;
+		this->projectile.radiusOfExplosion += 5;
 		this->damage *= 2;
+		this->upgrade = false;
 		
 		
 	}
-
-
-
-
-
-
-
-
 
 
 }
@@ -40,7 +34,7 @@ Projectile::Projectile(float2 missileStartPoint)
 {
 	this->pos = missileStartPoint;
 	this->radiusImpact = 5.f;
-	this->velocityProjectile = 40.f;
+	this->velocityProjectile = 140.f;
 	this->radiusOfExplosion = 50.f;
 	this->explosionTimer = DEFexplosionTimer;
 	this->explosion = false;
@@ -49,7 +43,7 @@ Projectile::Projectile()
 {
 	this->pos = {0,0};
 	this->radiusImpact = 5.f;
-	this->velocityProjectile = 40.f;
+	this->velocityProjectile = 140.f;
 	this->radiusOfExplosion = 50.f;
 	this->explosionTimer = DEFexplosionTimer;
 	this->explosion = false;
@@ -142,7 +136,7 @@ void Explosive::TowerEffectRender(GameData& data)
 	texture = data.asset.textureTowerExplosive;
 	
 	
-	data.dl->AddImage(texture.id, TileMin, TileMax, float2(0,0), float2(0.1, 1));
+	data.dl->AddImage(texture.id, TileMin, TileMax, float2(0.f,0.f), float2(0.1f, 1.f));
 
 	if (hasTarget)
 	{
@@ -190,14 +184,13 @@ Explosive::Explosive()
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;
-	this->range = 2; // range per tile
+	this->range = 2; 
 	this->damage = 50;
 	this->fireRate = 0.5f;
 	
 	canonTexture = { 0 };
 
-	//projectile = Projectile(projectile.);
-	//this->missile = nullptr;
+
 
 }
 Explosive::Explosive(float2 missileStartPoint)
@@ -207,7 +200,7 @@ Explosive::Explosive(float2 missileStartPoint)
 	this->TileX = 0;
 	this->TileY = 0;
 	this->cost = 50;
-	this->range = 2; // range per tile
+	this->range = 2; 
 	this->damage = 50;
 	this->fireRate = 2.f;
 	basePosProjetile = missileStartPoint;
@@ -217,5 +210,4 @@ Explosive::Explosive(float2 missileStartPoint)
 
 Explosive::~Explosive()
 {
-	//projectileVector.clear();
 }

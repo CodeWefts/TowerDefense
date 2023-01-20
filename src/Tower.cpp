@@ -2,15 +2,11 @@
 
 #include "tower_game.hpp"
 #include"tower.hpp"
+#include "calc.hpp"
 
 
 
-float getModule(const float2& pos, const float2& postower)
-{
-    float2 diff = postower - pos;
 
-    return sqrtf(pow(diff.x, 2) + powf(diff.y, 2));
-}
 
 
 void Tower::Shoot(GameData& data)
@@ -40,18 +36,25 @@ void Tower::Upgrade(GameData& data)
 
 void Tower::TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector)
 {
+
+
+
     for (auto it = enemmyVector.begin(); it != enemmyVector.end(); it++)
     {
         Enemy* current = *it;
+        // Calculate module for all enemies
         float module = getModule(current->pos, this->pos);
+        
+        // If Tower Has Target
         if (target != nullptr)
         {
+            // We calculate the distance between turret and his target  
             float moduleTarget = getModule(target->pos, this->pos);
             timer += data.deltatime;
 
             if (moduleTarget <= (range * (data.map.Tilesize + data.map.Tilesize / 2)))
             {
-
+                // If the current enemy is closer than the current Target current  become the target 
                 if (module < moduleTarget)
                 {
                     target = current;
@@ -67,18 +70,15 @@ void Tower::TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector)
                 target = nullptr;
             }
 
-
+            
             if (timer >= fireRate && hasTarget)
             {
-
                 Shoot(data);
-
-
             }
 
 
         }
-        else // if Have no Taarget
+        else // if Have no Target
         {
 
             if (module < (range * (data.map.Tilesize + data.map.Tilesize / 2)))
@@ -161,6 +161,7 @@ Tower::Tower()
     this->angle = 0;
     this->hasTarget = false;
     this->timer = 0.f;
+ 
 
 }
 

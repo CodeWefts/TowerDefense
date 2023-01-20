@@ -8,7 +8,7 @@
 
 Weakling::Weakling()
 {
-	this->name = "Weakling";
+	this->type = WEAKLING;
 	this->currentHealth = 100;
 	this->damageToPlayer = 200;
 	this->maxHealt = 100;
@@ -25,7 +25,7 @@ Weakling::Weakling()
 	this->vecMaxY = 1;
 
 	this->timeMove = 0.15f;
-
+	
 }
 
 Weakling::~Weakling()

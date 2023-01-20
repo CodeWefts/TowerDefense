@@ -7,7 +7,7 @@
 
 Healer::Healer()
 {
-	this->name = "Healer";
+	this->type = HEALER;
 	this->maxHealt = 200;
 	this->damageToPlayer = 100;
 	this->currentHealth = this->maxHealt;

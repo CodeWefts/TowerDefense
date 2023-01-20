@@ -34,6 +34,7 @@ void TowerGame::UpdateAndDraw()
 	}
 	else if (data.currentScene == Game)
 	{
+		
 		LoadALLPath(data);
 		
 		data.map.CreateMap(data);
@@ -44,8 +45,8 @@ void TowerGame::UpdateAndDraw()
 		renderer.RendererGame(data);
 		
 
-
 		Debug(data);
+		
 	}
 	else if (data.currentScene == Option)
 	{

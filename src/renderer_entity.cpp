@@ -12,13 +12,13 @@ void RendererEntity::drawEnemies(GameData& data)
 		Enemy* currentEnemy = *it;
 		float2 enemy = currentEnemy->pos;
 
-		if (currentEnemy->name == "Healer")
+		if (currentEnemy->type == HEALER)
 		{
 			currentEnemy->texture = data.asset.textureSoigneur;
 			data.dl->AddImage(currentEnemy->texture.id, enemy - 15, enemy + 15, ImVec2(0, 0), ImVec2(0.35f, 0.25f), IM_COL32(255, 255, 255, 255));
 		}
 
-		else if (currentEnemy->name == "Heavy")
+		else if (currentEnemy->type == HEAVY)
 		{
 
 			currentEnemy->texture = data.asset.textureNightBorne;
@@ -38,10 +38,10 @@ void RendererEntity::drawEnemies(GameData& data)
 				currentEnemy->animationMaxX = 0.043f;
 			}
 
-			data.dl->AddImage(currentEnemy->texture.id, enemy - 140, enemy += 60, ImVec2(currentEnemy->animationMinX, 0.2), ImVec2(currentEnemy->animationMaxX, 0.4), IM_COL32(255, 255, 255, 255));
+			data.dl->AddImage(currentEnemy->texture.id, enemy - 140, enemy += 60, float2(currentEnemy->animationMinX, 0.2f), float2(currentEnemy->animationMaxX, 0.4f), IM_COL32(255, 255, 255, 255));
 		}
 
-		else if (currentEnemy->name == "Weakling")
+		else if (currentEnemy->type == WEAKLING)
 		{
 			currentEnemy->texture = data.asset.textureCanineWhite;
 			ImGui::Text("MaxX  : %f ", currentEnemy->animationMaxX);

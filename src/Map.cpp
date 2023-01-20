@@ -37,7 +37,6 @@ void MapClass::LoadMap(string& newMap)
 
 void MapClass::CreateMap(GameData& data)
 {
-
 	if (data.currentLevel == 0)
 	{
 		map =
@@ -57,36 +56,53 @@ void MapClass::CreateMap(GameData& data)
 	else if (data.currentLevel == 1)
 	{
 
-		mapLvl2 =
+		mapLvl1 =
 			"                  "
-			"       __________ "
-			"       ppppppppppp"
-			"      /p          "
-			"      /p  ppppp   "
-			" _____/p  p  |p|  "
-			" |ppppppppp  |p|  "
-			" |p;-------  |p|  "
-			" |p          |p|  "
-			" |p          |p|  ";
+			"      *___________"
+			"      /ppppppppppp"
+			"      /pt-=====---"
+			"      /p|/ppppp|  "
+			" *____jpljpt-!p|  "
+			" /ppppppppp| /p|  "
+			" /pt-------, /p|  "
+			" /p|         /p|  "
+			" /p|         /p|  ";
+
+		LoadMap(mapLvl1);
+	}
+	else if (data.currentLevel == 2)
+	{
+
+		mapLvl2 =
+			" *_____+          "
+			" /ppppp|          "
+			" /pt-!p|          "
+			" /pl_jpl__________"
+			" /pppppppppppppppp"
+			" ;---!p=====------"
+			"     /pppppp|     "
+			"   *__=---/p|     "
+			"___jpppl__jp|     "
+			"ppppp#pppppp|     "
+			"----- ------,     ";
 
 		LoadMap(mapLvl2);
 	}
 	else if (data.currentLevel == 2)
 	{
 
-		mapLvl2 =
-			" pppppppppppppppp "
-			"  *________+      "
-			"  /cppppppd| ppp  "
-			"  /pt----!p|      "
-			"  /p|    /p|      "
-			"__jp|    /p|      "
-			"appb|    /pl______"
-			"----,    /eppppppf"
-			"         ;--------"
-			"                  ";
-
-		LoadMap(mapLvl2);
+		mapLvl3 =
+			"________+         "
+			"pppppppp|     *___"
+			"---====pl___+ /ppp"
+			"  /ppppppppp| /p|-"
+			"  /pt-!pt-!p| /p| "
+			"  /pl_jp| /p| /p| "
+			"  /ppppp| /p| /p| "
+			"  ;-----, /pl_jp| "
+			"          /ppppp| "
+			"          ;-----, ";
+		LoadMap(mapLvl3);
 	}
 }
 
@@ -207,7 +223,7 @@ bool IsPlaceAble(GameData& data, const float2& pos)
 
 
 
-	return -1;
+	return false;
 }
 
 

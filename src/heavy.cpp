@@ -6,7 +6,7 @@
 Heavy::Heavy()
 {
 
-	this->name = "Heavy";
+	this->type = HEAVY;
 	this->maxHealt = 200;
 	this->currentHealth = maxHealt;
 	this->pos = { 0,0 };
@@ -14,13 +14,13 @@ Heavy::Heavy()
 	this->damageToPlayer = 75;
 	this->coinsToPlayer = 60;
 
-	this->animationMinX = 0;
-	this->animationMinY = 0.2;
-	this->animationMaxX = 0.043;
-	this->animationMaxY = 0.4;
+	this->animationMinX = 0.f;
+	this->animationMinY = 0.2f;
+	this->animationMaxX = 0.043f;
+	this->animationMaxY = 0.4f;
 
-	this->vecMaxX = 0.043 * 4;
-	this->vecMaxY = 0.4;
+	this->vecMaxX = float(0.043 * 4);
+	this->vecMaxY = 0.4f;
 
 	this->timeMove = 0.15f;
 }
