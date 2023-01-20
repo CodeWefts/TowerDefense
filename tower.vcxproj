@@ -141,10 +141,6 @@
     <ClInclude Include="src\tower_renderer.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\end\background.png" />
-    <Image Include="assets\end\lose.png" />
-    <Image Include="assets\end\okButton.png" />
-    <Image Include="assets\end\win.png" />
     <Image Include="assets\ennemies\costaud\costaud1.png" />
     <Image Include="assets\ennemies\costaud\costaud10.png" />
     <Image Include="assets\ennemies\costaud\costaud11.png" />

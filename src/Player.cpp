@@ -3,6 +3,7 @@
 
 #include "player.hpp"
 #include "tower_game.hpp"
+#include "Tower.hpp"
 #include "map.hpp"
 
 #include "classique.hpp"
@@ -165,6 +166,7 @@ void Player::DragAndDrop(GameData& gamedata)
 			if (typeTower == 1)
 			{
 				Tower* tower = new Classique();
+
 				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
 				tower->TileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
 
@@ -196,11 +198,69 @@ void Player::DragAndDrop(GameData& gamedata)
 	}
 
 }
+
+void Player::DrawTurretInfo(GameData& data, float x, float y, Tower* currentTower)
+{
+	ImGuiIO& io2 = ImGui::GetIO();
+	float clickX = io2.MouseClickedPos->x;
+	float clickY = io2.MouseClickedPos->y;
+
+	data.dl->AddImage(data.asset.textureMenuHUD.id, { x, y - 200 }, { x + 250, y });
+
+	string towerName = currentTower->name;
+	string towerCost = std::to_string(currentTower->cost);
+	string towerRange = std::to_string(currentTower->range);
+	string towerDamage = std::to_string(currentTower->damage);
+	string towerFireRate = std::to_string(currentTower->fireRate);
+
+	data.dl->AddText({ x + 20, y - 180 }, ImColor(255, 255, 255, 255), towerName.c_str());
+	data.dl->AddText({ x + 20, y - 160 }, ImColor(255, 255, 255, 255), towerCost.c_str());
+	data.dl->AddText({ x + 20, y - 140 }, ImColor(255, 255, 255, 255), towerRange.c_str());
+	data.dl->AddText({ x + 20, y - 120 }, ImColor(255, 255, 255, 255), towerDamage.c_str());
+	data.dl->AddText({ x + 20, y - 100 }, ImColor(255, 255, 255, 255), towerFireRate.c_str());
+
+	data.dl->AddImage(data.asset.textureUpgradeButton.id, { x + 25, y - 80 }, { x + 225, y - 20 });
+
+}
+
+
+void Player::ShowTurretInfo(GameData& data)
+{
+	ImGuiIO& io2 = ImGui::GetIO();
+
+	ImVec2 max, min;
+
+	float clickX = io2.MouseClickedPos->x;
+	float clickY = io2.MouseClickedPos->y;
+	ImVec2 click = { clickX, clickY };
+
+	for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
+	{
+		Tower* currentTower = *it;
+		if (clickX >= currentTower->pos.x - data.map.Tilesize / 2 && clickX <= currentTower->pos.x + data.map.Tilesize / 2 &&
+			clickY >= currentTower->pos.y - data.map.Tilesize / 2 && clickY <= currentTower->pos.y + data.map.Tilesize / 2)
+		{
+
+			DrawTurretInfo(data, currentTower->pos.x, currentTower->pos.y, currentTower);
+
+		}
+
+		else if (clickX >= currentTower->pos.x + 25 && clickX <= currentTower->pos.x + 225 &&
+			clickY >= currentTower->pos.y - 80 && clickY <= currentTower->pos.y - 20)
+		{
+			currentTower->upgrade = true;
+		}
+
+	}
+}
+
 void Player::UpdatePlayer(GameData& gamedata)
 {
 	PlayerTile(gamedata);
 	PlayerInput(gamedata);
 	DragAndDrop(gamedata);
+	ShowTurretInfo(gamedata);
+
 
 }
 
@@ -208,8 +268,6 @@ void Player::UpdatePlayer(GameData& gamedata)
 
 Player::Player()
 {
-
-
 	this->maxHealth = 5000;
 	this->health = this->maxHealth;
 

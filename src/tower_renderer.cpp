@@ -201,11 +201,34 @@ void TowerRenderer::MenuDisplay(GameData& data)
 		}
 	}
 
+		if (data.io.MousePos.x <= 751 && data.io.MousePos.x >= 480 &&
+			data.io.MousePos.y <= 470 && data.io.MousePos.y >= 370
+			)
+		{
+			data.dl->AddImage(data.asset.textureLevels.id, { 475, 365 }, { 756, 475 });
+			if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+			{
+			}
+
+		}
+
+		if (data.io.MousePos.x <= 751 && data.io.MousePos.x >= 480 &&
+			data.io.MousePos.y <= 590 && data.io.MousePos.y >= 490
+			)
+		{
+			data.dl->AddImage(data.asset.textureSettings.id, { 475, 485 }, { 756, 595 });
+			if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+			{
+			}
+
+		}
+
 }
 
 void TowerRenderer::DrawAnimation(GameData& data)
 {
 	ImU32 col = ImColor(0, 0, 0, data.transparence);
+
 
 
 	if (data.time >= data.transparenceTime)
@@ -236,7 +259,6 @@ void TowerRenderer::DrawMenu(GameData& data)
 
 	}
 }
-
 
 void TowerRenderer::DrawEnd(GameData& data)
 {
@@ -313,12 +335,6 @@ void TowerRenderer::DrawCheckPoint(GameData& data)
 	}
 
 }
-
-
-
-
-
-
 
 
 

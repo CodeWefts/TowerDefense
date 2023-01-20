@@ -27,10 +27,14 @@ public:
     Texture texture;
     Texture canonTexture;
    
-
+    int cost;
+    int damage;
+    float angle;
+    float fireRate;
+    float timer;
    
 
-   
+    bool upgrade = false;
  
 
     int TileX, TileY;
@@ -49,14 +53,6 @@ public:
     Tower();
 
     ~Tower();
-
-protected:
-    int cost;
-    int damage;
-    float angle;
-    float fireRate;
-    float timer;
-
 };
 
 
