@@ -25,12 +25,16 @@ What we learn
 ------------
 
 - We learn is this project how useful is class in c++ In on vector of Enemys we can store our of type of enemies and have different function in them using override and virtual.
-- We learn how to animate our sprite.
+ - We learn how to animate our sprite.
 
 
 
 
 Asset Credits
 -------------
-- Sprites Explosive and Slowing : https://creativekind.itch.io/obelisk
-- Font: https://www.dafont.com/fr/3x5.font
+- Sprites Slowing : https://creativekind.itch.io/obelisk
+- Font : https://www.dafont.com/fr/3x5.font
+- Heavy : https://creativekind.itch.io/nightborne-warrior
+- Explosive : https://creativekind.itch.io/gif-bloodmoon-tower-free
+- End game : https://www.freepik.com/free-vector/game-ui-interface-boards-with-win-lose_21267383.htm
+- Menu UI : https://www.freepik.com/free-vector/wooden-gold-buttons-ui-game_12760665.htm
