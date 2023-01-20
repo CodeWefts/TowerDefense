@@ -59,7 +59,7 @@ struct Asset
 		textureTowerExplosive,
 
 		//texture hud || INVENTORY TOWER
-		textureTowerSideLeft, textureTowerSideRight, textureTowerCase,
+		textureTowerSideLeft, textureTowerSideRight, textureTowerCase, textureUpgradeButton,
 
 		textureAnimation, textureMenuHUD, textureBackGround, texturePlay, textureLevels, textureSettings,
 

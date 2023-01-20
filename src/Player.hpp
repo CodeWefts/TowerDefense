@@ -1,5 +1,6 @@
 #pragma once
 #include "imgui_utils.hpp"
+#include "Tower.hpp"
 
 struct GameData;
 
@@ -11,7 +12,7 @@ class Player
 public:
 
 	// player stats
-	int coins;
+	int coins = 100;
 	int score;
 	int wave;
 	int health;
@@ -30,6 +31,9 @@ public:
 	void PlayerTile(GameData& gamedata);
 	void PlayerInput(GameData& gamedata);
 	void DragAndDrop(GameData& gamedata);
+
+	void DrawTurretInfo(GameData& data, float x, float y, Tower* currentTower);
+	void ShowTurretInfo(GameData& data);
 
 
 

@@ -329,6 +329,7 @@ Asset::Asset()
 	PlayerHeart = ImGuiUtils::LoadTexture("assets/hud/pixel-heart-png.png");
 	textureCoin = ImGuiUtils::LoadTexture("assets/level/coin.png");
 	textureButton = ImGuiUtils::LoadTexture("assets/menu/button.png");
+	textureUpgradeButton = ImGuiUtils::LoadTexture("assets/hud/button.png");
 
 
 	//MENU : START GAME
@@ -346,7 +347,11 @@ Asset::Asset()
 	textureEndWin = ImGuiUtils::LoadTexture("assets/end/win.png");
 	textureEndOkButton = ImGuiUtils::LoadTexture("assets/end/okButton.png");
 
+	//END
 
+	textureEndBackGround = ImGuiUtils::LoadTexture("assets/end/background.png");
+	textureEndLose = ImGuiUtils::LoadTexture("assets/end/lose.png");
+	textureEndWin = ImGuiUtils::LoadTexture("assets/end/win.png");
 
 
 }
