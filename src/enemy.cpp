@@ -84,7 +84,6 @@ void Enemy::DrawSlider(ImDrawList& dl)
 
 	ImColor color = ColorByHealth((float(this->currentHealth) / this->maxHealt), 0.35f, 0.75f);
 
-	//dl.AddRect(float2(pos.x - maxlenght / 2, pos.y - 25), float2(pos.x + maxlenght / 2, pos.y - 20), color, 0, 0, 8.f);
 	if (this->currentHealth > 0)
 	{
 		dl.AddRectFilled(float2(posx, pos.y - 25), float2(posx + currentLenght, pos.y - 20), color, 0, 5);
@@ -102,7 +101,7 @@ Enemy::Enemy()
 	this->maxHealt = 100;
 	this->currentHealth = maxHealt;
 	this->erase = false;
-
+	this->type = NULLENEMY;
 	this->destinationIndex = 1;
 
 	this->coinsToPlayer = 0;

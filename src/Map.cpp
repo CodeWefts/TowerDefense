@@ -56,7 +56,7 @@ void MapClass::CreateMap(GameData& data)
 	else if (data.currentLevel == 1)
 	{
 
-		mapLvl1 =
+		map  =
 			"                  "
 			"      *___________"
 			"      /ppppppppppp"
@@ -68,12 +68,12 @@ void MapClass::CreateMap(GameData& data)
 			" /p|         /p|  "
 			" /p|         /p|  ";
 
-		LoadMap(mapLvl1);
+		LoadMap(map);
 	}
 	else if (data.currentLevel == 2)
 	{
 
-		mapLvl2 =
+		map  =
 			" *_____+          "
 			" /ppppp|          "
 			" /pt-!p|          "
@@ -86,23 +86,24 @@ void MapClass::CreateMap(GameData& data)
 			"ppppp#pppppp|     "
 			"----- ------,     ";
 
-		LoadMap(mapLvl2);
+		LoadMap(map);
 	}
-	else if (data.currentLevel == 2)
-	{
+	else if (data.currentLevel == 3)
+	{ 
 
-		mapLvl3 =
-			"________+         "
-			"pppppppp|     *___"
-			"---====pl___+ /ppp"
-			"  /ppppppppp| /p|-"
+		map =
+			"                  "
+			"              *___"
+			"____________+ /ppp"
+			"pppppppppppp| /p|-"
 			"  /pt-!pt-!p| /p| "
 			"  /pl_jp| /p| /p| "
 			"  /ppppp| /p| /p| "
-			"  ;-----, /pl_jp| "
-			"          /ppppp| "
-			"          ;-----, ";
-		LoadMap(mapLvl3);
+			"  ;-!pt-, /pl_jp| "
+			"    /p|   /ppppp| "
+			"    /p|   ;-----, ";
+		LoadMap(map);
+
 	}
 }
 
@@ -179,51 +180,44 @@ float2 ReturnPosfromChar(char c, MapClass& map)
 
 bool IsPlaceAble(GameData& data, const float2& pos)
 {
-
-
-	int indexX = ReturnTileIndexX(int(pos.x), data.map);
-	int indexY = ReturnTileIndexY(int(pos.y), data.map);
-
-	int PlacedTileX = indexX * 72; 
-	int PlacedTileY = indexY * 72;
-
-
-
-
-	int index = ReturnIndexIncharMap(indexX, indexY, data.map);
-	bool IsThereTower = false;
-
-
-
-	// Looking for there is alrealy a Tower
-	for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
+	if(data.map.map.size() == 181 || true)
 	{
-		Tower* currentTower = *it;
+		int indexX = ReturnTileIndexX(int(pos.x), data.map);
+		int indexY = ReturnTileIndexY(int(pos.y), data.map);
+		int index = ReturnIndexIncharMap(indexX, indexY, data.map);
 
-		std::cout << currentTower->TileX <<" , " << currentTower->TileY << std::endl;
-		
-		if (currentTower->TileX == PlacedTileX && currentTower->TileY == PlacedTileY)
+
+
+		int PlacedTileX = indexX * 72;
+		int PlacedTileY = indexY * 72;
+		bool IsThereTower = false;
+
+
+
+		// Looking for there is alrealy a Tower
+		for (auto it = data.towerVector.begin(); it != data.towerVector.end(); it++)
 		{
-			IsThereTower =  true;
+			Tower* currentTower = *it;		
+			if (currentTower->TileX == PlacedTileX && currentTower->TileY == PlacedTileY)
+			{
+				IsThereTower =  true;
+			}
 		}
-		
-		
-	
-	}
 
 
-	if (data.map.map[index] != 'p' && !IsThereTower)
-	{
-		return true;
-	}
-	else
-	{
+		if(data.map.map[index] != 'p' && !IsThereTower)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+
+
 		return false;
 	}
-
-
-
-	return false;
 }
 
 

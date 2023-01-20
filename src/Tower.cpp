@@ -21,7 +21,7 @@ void Tower::Reset(GameData& data)
 
 void Tower::Upgrade(GameData& data)
 {
-    data.player.coins -= this->cost * 1.6f;
+    data.player.coins -= int(this->cost * currentLevel++);
     this->damage *= 2;
     this->fireRate /= 1.2f;
     this->range += 20;
@@ -116,8 +116,8 @@ void Tower::TargetEnemy(GameData& data, std::vector<Enemy*>& enemmyVector)
 
 void Tower::TowerEffectRender(GameData& data)
 {
-    ImVec2 TileMin = { (float)TileX , (float)TileY };
-    ImVec2 TileMax = { (float)TileX + 72, (float)TileY + 72 };
+    float2 TileMin = { (float)TileX , (float)TileY };
+    float2 TileMax = { (float)TileX + 72, (float)TileY + 72 };
     pos = { (float)TileX + data.map.Tilesize / 2, (float)TileY + data.map.Tilesize / 2 };
     texture = data.asset.textureTowerExplosive;
     canonTexture = { 0 };
@@ -155,13 +155,30 @@ Tower::~Tower()
 
 Tower::Tower()
 {
-    currentLevel = 1;
-    maxLevel = 3;
+    this->currentLevel = 1;
+    this->maxLevel = 3;
     this->target = nullptr;
+    this->cost = 0;
     this->angle = 0;
     this->hasTarget = false;
     this->timer = 0.f;
+    this->damage = 0;
+    this->fireRate = 0;
+    texture = { 0 };
+    canonTexture = { 0 };
+
+     TileX = 0;
+     TileY = 0; 
  
+
+    this->type = NULLTOWER;
+    this->animationMinX = 0;
+    this->animationMinY = 0;
+    this->animationMaxX = 0;
+    this->animationMaxY = 0;
+    this->moveTime = 0;
+    this->range = 0;
+
 
 }
 

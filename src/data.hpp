@@ -34,12 +34,11 @@ struct Asset
 
 
 	Texture textureDirt, textureGrass, texturePathBottom, texturePathBottomANDLeft, texturePathBottomANDRight, texturePathBottomLeft, texturePathBottomRight,
-		texturePathLeft, texturePathRight, texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight,
+		texturePathLeft, texturePathRight, texturePathTop, texturePathTopANDLeft, texturePathTopANDRight, texturePathTopLeft, texturePathTopRight, texturePathAroundUp,
+		texturePathAroundDown, texturePathUpANDDown, texturePathLeftANDRight,
 
 		//texture ennemy COSTAUD
 		textureNightBorne,
-
-		
 
 		PlayerHeart,
 		//texture ennemy GRINGALET
@@ -62,7 +61,10 @@ struct Asset
 
 		textureAnimation, textureMenuHUD, textureBackGround, texturePlay, textureLevels, textureSettings,
 
-		textureCoin, textureButton,
+		textureCoin, textureButton, textureOption, textureMenuButton,
+
+		//texture Levels
+		textureMap, textureLevelNotFinish,
 
 		//texture Game's END
 		textureEndBackGround, textureEndWin, textureEndOkButton, textureEndLose ;

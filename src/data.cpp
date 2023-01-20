@@ -29,7 +29,7 @@ void ChangeLevel(GameData& data)
 		delete* it;
 	}
 	data.enemyVector.clear();
-
+	data.map.CreateMap(data);	
 }
 
 
@@ -41,8 +41,6 @@ void SaveAllPath(GameData& data)
 	//Load Data 
 	ofstream file;
 	std::string pathFileString = "src/checkPointData/lvl0.txt";
-	//pathFileString += std::to_string(data.currentLevel);
-	//pathFileString += ".txt";
 
 	pathFileString.replace(22, 22, std::to_string(data.currentLevel) + ".txt");
 
@@ -78,10 +76,6 @@ void LoadALLPath(GameData& data)
 
 		ifstream pathFile;
 		std::string pathFileString = "src/checkPointData/lvl0.txt";
-		//pathFileString += std::to_string(data.currentLevel);
-		//pathFileString += ".txt";
-
-
 		pathFileString.replace(22, 22, std::to_string(data.currentLevel) + ".txt");
 		cout << pathFileString << std::endl;
 
@@ -314,6 +308,10 @@ Asset::Asset()
 	texturePathTopANDRight = ImGuiUtils::LoadTexture("assets/map/pathTopANDRight.png");
 	texturePathTopLeft = ImGuiUtils::LoadTexture("assets/map/pathTopLeft.png");
 	texturePathTopRight = ImGuiUtils::LoadTexture("assets/map/pathTopRight.png");
+	texturePathAroundUp = ImGuiUtils::LoadTexture("assets/map/pathAroundUp.png");
+	texturePathAroundDown = ImGuiUtils::LoadTexture("assets/map/pathAroundDown.png");
+	texturePathUpANDDown = ImGuiUtils::LoadTexture("assets/map/pathUpANDDown.png");
+	texturePathLeftANDRight = ImGuiUtils::LoadTexture("assets/map/pathLeftANDRight.png");
 
 	//ENNEMY 1 : GRINGALET
 	textureCanineWhite = ImGuiUtils::LoadTexture("assets/enemy/canineWhite.png");
@@ -343,6 +341,9 @@ Asset::Asset()
 	textureCoin = ImGuiUtils::LoadTexture("assets/level/coin.png");
 	textureButton = ImGuiUtils::LoadTexture("assets/menu/button.png");
 	textureUpgradeButton = ImGuiUtils::LoadTexture("assets/hud/button.png");
+	textureOption = ImGuiUtils::LoadTexture("assets/hud/option.png");
+	textureMenuButton = ImGuiUtils::LoadTexture("assets/menu/menuButton.png");
+	 
 
 
 	//MENU : START GAME
@@ -353,18 +354,16 @@ Asset::Asset()
 	textureSettings = ImGuiUtils::LoadTexture("assets/menu/settings.png");
 	textureLevels = ImGuiUtils::LoadTexture("assets/menu/levels.png");
 
+	//LEVELS
+	textureMap = ImGuiUtils::LoadTexture("assets/level/background.png");
+	textureLevelNotFinish = ImGuiUtils::LoadTexture("assets/level/levelNotFinish.png");
+
 	//END
 
 	textureEndBackGround = ImGuiUtils::LoadTexture("assets/end/background.png");
 	textureEndLose = ImGuiUtils::LoadTexture("assets/end/lose.png");
 	textureEndWin = ImGuiUtils::LoadTexture("assets/end/win.png");
 	textureEndOkButton = ImGuiUtils::LoadTexture("assets/end/okButton.png");
-
-	//END
-
-	textureEndBackGround = ImGuiUtils::LoadTexture("assets/end/background.png");
-	textureEndLose = ImGuiUtils::LoadTexture("assets/end/lose.png");
-	textureEndWin = ImGuiUtils::LoadTexture("assets/end/win.png");
 
 
 }
@@ -403,7 +402,7 @@ GameData::GameData()
 		for (int j = 0 ; j < newlevel.maxWave; j++)
 		{
 			EnemyWave wave;
-			wave.maxEnemy = 3 + (5 * j);
+			wave.maxEnemy = 3 + ((7 * j) * i) + (5 * j);
 			wave.nbrOfEnemy = wave.maxEnemy;
 			wave.timerbetweenSpawn = Calc::randomFloat(1.f, 3.f);
 			newlevel.waves.push_back(wave);

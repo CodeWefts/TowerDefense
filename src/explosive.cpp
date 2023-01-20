@@ -97,7 +97,7 @@ void Explosive::Shoot(GameData& data)
 
 				if (ColSStoSS2d(projectile.pos, projectile.radiusOfExplosion, current->pos, projectile.radiusImpact))
 				{
-					current->currentHealth -= damage;
+					current->currentHealth -= int(damage);
 				}
 
 			}
@@ -136,7 +136,29 @@ void Explosive::TowerEffectRender(GameData& data)
 	texture = data.asset.textureTowerExplosive;
 	
 	
-	data.dl->AddImage(texture.id, TileMin, TileMax, float2(0.f,0.f), float2(0.1f, 1.f));
+	data.dl->AddImage(texture.id, {TileMin.x - 10 ,TileMin.y - 30}, {TileMax.x + 10 , TileMax.y}, float2(animationMinX, 0.f), float2(animationMaxX, 1.f));
+
+
+	if (moveTime <= 0)
+	{
+		animationMinX = animationMaxX;
+		animationMaxX += 1100.f / 11.f / 1100.f;
+		moveTime = 0.1f;
+	}
+
+	else if (animationMaxX >= 1.f)
+	{
+		animationMinX = 0.f;
+		animationMaxX = 1100.f / 11.f / 1100.f;
+	}
+	else if (animationMaxX < 1.f)
+	{
+		moveTime -= data.deltatime;
+
+	}
+
+
+
 
 	if (hasTarget)
 	{
@@ -144,24 +166,17 @@ void Explosive::TowerEffectRender(GameData& data)
 
 		if (projectile.explosion && projectile.explosionTimer > 0)
 		{
-			
 			float2 explosionPos = projectile.pos;
 			data.dl->AddCircleFilled(explosionPos, projectile.radiusOfExplosion, IM_COL32(242, 62, 7, 255), 64);
 			projectile.explosionTimer -= data.deltatime;
 			std::cout << "Explosion timer = " << projectile.explosionTimer << std::endl;
-			
-	
-			
-			
-			
 		}
 		else if (projectile.explosionTimer <= 0)
 		{
 			
 			Reset(data);
 			
-		}
-			
+		}	
 	}
 
 
@@ -190,8 +205,10 @@ Explosive::Explosive()
 	
 	canonTexture = { 0 };
 
-
-
+	this->animationMinX = 0.f;
+	this->animationMinY = 0.f;
+	this->animationMaxX = 1100.f / 11.f / 1100.f;
+	this->animationMaxY = 1.f;
 }
 Explosive::Explosive(float2 missileStartPoint)
 {
@@ -205,6 +222,14 @@ Explosive::Explosive(float2 missileStartPoint)
 	this->fireRate = 2.f;
 	basePosProjetile = missileStartPoint;
 	projectile = Projectile(missileStartPoint);
+
+	this->animationMinX = 0.f;
+	this->animationMinY = 0.f;
+	this->animationMaxX = 1100.f / 11.f / 1100.f;
+	this->animationMaxY = 1.f;
+
+	this->moveTime = 0.1f;
+
 }
 
 

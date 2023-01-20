@@ -9,7 +9,7 @@ void Ralentissante::Upgrade(GameData& data)
 {
 	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
 	{
-		data.player.coins -= this->cost * this->currentLevel++;
+		data.player.coins -= int(this->cost * this->currentLevel++);
 		this->currentLevel++;
 		this->fireRate /= 1, 25;
 		this->baseDamage *= 1.3;
@@ -36,7 +36,7 @@ void Ralentissante::Shoot(GameData& data)
 
 	if (this->target->velocity > this->maxDebuffVelocity)
 	{
-		this->target->velocity -= (slowingValue + data.deltatime);
+		this->target->velocity -= float(slowingValue + data.deltatime);
 	}
 
 	if (beamValue < maxBeamValue)
@@ -44,7 +44,7 @@ void Ralentissante::Shoot(GameData& data)
 		this->beamValue += (2 + data.deltatime);
 	}
 
-	this->target->currentHealth -= this->damage;
+	this->target->currentHealth -= int(this->damage);
 	this->timer = 0;
 }
 

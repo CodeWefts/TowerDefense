@@ -109,11 +109,11 @@ void Player::DragAndDrop(GameData& gamedata)
 
 
 	//Coord MOUSE
-	float posMaxX = ImGui::GetMousePos().x + 72;
-	float posMaxY = ImGui::GetMousePos().y + 72;
+	float posMaxX = ImGui::GetMousePos().x;
+	float posMaxY = ImGui::GetMousePos().y;
 
-	ImVec2 posMin = ImGui::GetMousePos();
-	ImVec2 posMax = { posMaxX , posMaxY };
+	ImVec2 posMin = { ImGui::GetMousePos().x - 36,  ImGui::GetMousePos().y - 36};
+	ImVec2 posMax = { posMaxX + 36 , posMaxY + 36 };
 
 	//coord CLICK
 	float clickX = io2.MouseClickedPos->x;
@@ -141,7 +141,8 @@ void Player::DragAndDrop(GameData& gamedata)
 		{
 			typeTower = EXPLOSIVE;
 			textureID = gamedata.asset.textureTowerExplosive;
-			gamedata.dl->AddImage(textureID.id, posMin, posMax);
+			//gamedata.dl->AddImage(textureID.id, posMin, posMax);
+			gamedata.dl->AddImage(textureID.id, posMin , posMax , ImVec2(0,0),ImVec2(1100.f/11.f/1100.f , 1));
 
 		}
 
@@ -157,7 +158,6 @@ void Player::DragAndDrop(GameData& gamedata)
 
 	}
 
-
 	//PUSH BACK POINTER TOWER
 	if (ImGui::IsKeyReleased(ImGuiKey_MouseLeft))
 	{
@@ -167,29 +167,42 @@ void Player::DragAndDrop(GameData& gamedata)
 			{
 				Tower* tower = new Classique();
 
-				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-				tower->TileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
+				if (coins >= tower->cost)
+				{
+					tower->TileX = ReturnTileIndexX((int)posMin.x + 36, gamedata.map) * 72;
+					tower->TileY = ReturnTileIndexX((int)posMin.y + 36, gamedata.map) * 72;
 
-				gamedata.towerVector.push_back(tower);
+					gamedata.towerVector.push_back(tower);
+					coins -= int(tower->cost);
+				}
 			}
 			else if (typeTower == EXPLOSIVE)
 			{
-				int tileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-				int tileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
+				int tileX = ReturnTileIndexX((int)posMin.x + 36, gamedata.map) * 72;
+				int tileY = ReturnTileIndexX((int)posMin.y + 36, gamedata.map) * 72;
 				Tower* tower = new Explosive(float2(tileX + gamedata.map.Tilesize / 2, float(tileY - 50)));
-				tower->TileX = tileX;
-				tower->TileY = tileY;
 
-				gamedata.towerVector.push_back(tower);
+				if (coins >= tower->cost)
+				{
+					tower->TileX = tileX;
+					tower->TileY = tileY;
+
+					gamedata.towerVector.push_back(tower);
+					coins -= int(tower->cost);
+				}
 			}
 			else if (typeTower == RALENTISSANTE)
 			{
 				Tower* tower = new Ralentissante();
-				tower->TileX = ReturnTileIndexX((int)posMin.x, gamedata.map) * 72;
-				tower->TileY = ReturnTileIndexY((int)posMin.y, gamedata.map) * 72;
 
-				gamedata.towerVector.push_back(tower);
+				if (coins >= tower->cost)
+				{
+					tower->TileX = ReturnTileIndexX((int)posMin.x + 36, gamedata.map) * 72;
+					tower->TileY = ReturnTileIndexX((int)posMin.y + 36, gamedata.map) * 72;
 
+					gamedata.towerVector.push_back(tower);
+					coins -= int(tower->cost);
+				}
 			}
 			typeTower = 0;
 		}
@@ -254,12 +267,71 @@ void Player::ShowTurretInfo(GameData& data)
 	}
 }
 
+
+void Player::ShowOption(GameData& data)
+{
+	float minX = data.io.MousePos.x;
+	float minY = data.io.MousePos.y;
+
+	data.dl->AddImage(data.asset.textureOption.id, { 1224 , 648 }, { 1296 , 720 });
+
+	if(ImGui::IsKeyDown(ImGuiKey_MouseLeft))
+	{
+
+		if (minX >= 1224 && minX <= 1296 &&
+			minY >= 648 && minY <= 720)
+		{
+			data.dl->AddImage(data.asset.textureMenuHUD.id, { 230.5, 180 }, { 999.5, 600 });
+
+			data.dl->AddImage(data.asset.texturePlay.id, { 480, 250 }, { 751, 350 });
+			data.dl->AddImage(data.asset.textureLevels.id, { 480, 370 }, { 751, 470 });
+			data.dl->AddImage(data.asset.textureSettings.id, { 480, 490 }, { 751, 590 });
+
+			if (minX <= 751 && minX >= 480 &&
+				minY <= 350 && minY >= 250
+				)
+			{
+				data.dl->AddImage(data.asset.textureMenuButton.id, { 475, 245 }, { 756, 355 });
+				if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+				{
+					data.currentScene = Menu;
+				}
+			}
+
+			if (minX <= 751 && minX >= 480 &&
+				minY <= 470 && minY >= 370
+				)
+			{
+				data.dl->AddImage(data.asset.textureLevels.id, { 475, 365 }, { 756, 475 });
+				if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+				{
+					data.currentScene = Levels;
+				}
+			}
+
+			if (minX <= 751 && minX >= 480 &&
+				minY <= 590 && minY >= 490
+				)
+			{
+				data.dl->AddImage(data.asset.textureSettings.id, { 475, 485 }, { 756, 595 });
+				if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+				{
+				}
+
+			}
+
+		}
+	}
+}
+
+
 void Player::UpdatePlayer(GameData& gamedata)
 {
 	PlayerTile(gamedata);
 	PlayerInput(gamedata);
 	DragAndDrop(gamedata);
 	ShowTurretInfo(gamedata);
+	ShowOption(gamedata);
 
 
 }

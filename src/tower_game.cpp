@@ -32,6 +32,12 @@ void TowerGame::UpdateAndDraw()
 		data.time += io.DeltaTime;
 		renderer.DrawMenu(data);
 	}
+	else if (data.currentScene == Levels)
+	{
+		data.map.CreateMap(data);
+		renderer.DrawLevelsMap(data);
+
+	}
 	else if (data.currentScene == Game)
 	{
 		

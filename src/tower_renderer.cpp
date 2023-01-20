@@ -59,8 +59,19 @@ void TowerRenderer::DrawMap(GameData& data)
 			data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 
-		case 'f':
-			//data.dl->AddImage(data.asset.textureDirt.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+		case 'u':
+			data.dl->AddImage(data.asset.texturePathAroundDown.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+		case 'n':
+			data.dl->AddImage(data.asset.texturePathAroundUp.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+
+		case '=':
+			data.dl->AddImage(data.asset.texturePathUpANDDown.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
+			break;
+		case '#':
+			data.dl->AddImage(data.asset.texturePathLeftANDRight.id, topLeft, topRight, ImVec2(0, 0), ImVec2(1, 1));
 			break;
 
 
@@ -186,6 +197,7 @@ void TowerRenderer::MenuDisplay(GameData& data)
 			data.dl->AddImage(data.asset.textureLevels.id, { 475, 365 }, { 756, 475 });
 			if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
 			{
+				data.currentScene = Levels;
 			}
 		}
 
@@ -335,6 +347,61 @@ void TowerRenderer::DrawCheckPoint(GameData& data)
 	}
 
 }
+
+void TowerRenderer::DrawLevelsMap(GameData& data)
+{
+	float minX = data.io.MousePos.x;
+	float minY = data.io.MousePos.y;
+
+	data.dl->AddImage(data.asset.textureMap.id, { 0,0 }, data.io.DisplaySize);
+	data.dl->AddImage(data.asset.textureLevelNotFinish.id, { 100 ,20 }, { 203, 118 });
+	data.dl->AddText({ 151.5,69 }, IM_COL32(255, 255, 255, 255), "1");
+
+	data.dl->AddImage(data.asset.textureLevelNotFinish.id, { 400 ,500 }, { 503, 598 });
+	data.dl->AddText({ 451.5,549 }, IM_COL32(255, 255, 255, 255), "2");
+
+	data.dl->AddImage(data.asset.textureLevelNotFinish.id, { 700 ,100 }, { 803, 198 });
+	data.dl->AddText({ 751.5,149 }, IM_COL32(255, 255, 255, 255), "3");
+
+	data.dl->AddImage(data.asset.textureLevelNotFinish.id, { 1100 ,300 }, { 1203, 398 });
+	data.dl->AddText({ 1151.5,349 }, IM_COL32(255, 255, 255, 255), "4");
+
+	if (ImGui::IsKeyPressed(ImGuiKey_MouseLeft))
+	{
+		if (minX >= 100 && minX <= 203 &&
+			minY >= 20 && minY <= 118)
+		{
+			data.currentLevel = 0;
+			data.currentScene = Game;
+		}
+		if (minX >= 400 && minX <= 503 &&
+			minY >= 500 && minY <= 598)
+		{
+			
+			data.currentLevel = 1;		
+			data.currentScene = Game;
+
+			
+		}
+		if (minX >= 700 && minX <= 803 &&
+			minY >= 100 && minY <= 198)
+		{
+			data.currentLevel = 2;
+			data.currentScene = Game;
+			
+		}
+		if (minX >= 1100 && minX <= 1203 &&
+			minY >= 300 && minY <= 398)
+		{
+			data.currentScene = Game;
+			data.currentLevel = 3;
+		}
+	}
+
+}
+
+
+
 
 
 

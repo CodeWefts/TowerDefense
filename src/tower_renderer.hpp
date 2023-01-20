@@ -25,9 +25,9 @@ public:
 	void DrawMenu(GameData& data);
 	void DrawEnd(GameData& data);
 
-
-	
 	void DrawMap(GameData& data);
+
+	void DrawLevelsMap(GameData& data);
 
 
 	// Draw Player Hud

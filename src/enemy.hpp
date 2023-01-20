@@ -12,7 +12,8 @@ enum EnemyType : int
 {
 	WEAKLING = 1,
 	HEALER,
-	HEAVY
+	HEAVY,
+	NULLENEMY = 255
 
 };
 

@@ -8,7 +8,7 @@ void Classique::Upgrade(GameData& data)
 	if (data.player.coins >= this->cost * (currentLevel + 1) && this->currentLevel < this->maxLevel)
 	{
 		this->currentLevel++;
-		data.player.coins -= this->cost * this->currentLevel++;
+		data.player.coins -= int(this->cost * this->currentLevel++);
 		this->damage *= int(1.5);
 		this->range *= int(1.5);
 	}
@@ -21,7 +21,7 @@ void Classique::Upgrade(GameData& data)
 void Classique::Shoot(GameData& data)
 {
 	ma_engine_play_sound(&data.engine, "assets/sound/ClassicalSound.wav", NULL);;
-	this->target->currentHealth -= this->damage;
+	this->target->currentHealth -= int(this->damage);
 	this->timer = 0;
 
 	

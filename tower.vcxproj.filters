@@ -290,8 +290,13 @@
     <Filter Include="assets\sound">
       <UniqueIdentifier>{10232ff9-6cd7-4750-bee5-373c5228c1f5}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
     <Filter Include="src\entity\enemy\healer\heavy">
       <UniqueIdentifier>{45d1a5ce-8df9-4667-a2e4-e7faa5027dc5}</UniqueIdentifier>
+=======
+    <Filter Include="assets\level">
+      <UniqueIdentifier>{58cf4d55-dcd9-4ef8-9524-92a162d127fc}</UniqueIdentifier>
+>>>>>>> f86ce46 (ok)
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -35,6 +35,8 @@ public:
 	void DrawTurretInfo(GameData& data, float x, float y, Tower* currentTower);
 	void ShowTurretInfo(GameData& data);
 
+	void ShowOption(GameData& data);
+
 
 
 	Player();

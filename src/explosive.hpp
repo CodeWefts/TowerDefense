@@ -23,6 +23,7 @@ struct Projectile
 	float velocityProjectile;
 	float explosionTimer;
 
+
 	Projectile(float2 missileStartPoint);
 	Projectile();
 	~Projectile();
@@ -37,6 +38,7 @@ public:
 
 	float2 basePosProjetile;
 	Projectile projectile;
+
 	
 	void Upgrade(GameData& data) override;
 	void TowerEffectRender(GameData& data) override;
