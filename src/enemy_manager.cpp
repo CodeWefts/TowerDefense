@@ -1,11 +1,11 @@
 #include "enemy_manager.hpp"
 #include "data.hpp"
 #include "calc.hpp"
-#include "Calcul.hpp"
 #include "map.hpp"
 #include "heavy.hpp"
 #include "weakling.hpp"
 #include "healer.hpp"
+#include"calc.hpp"
 
 
 
@@ -25,8 +25,8 @@
 #define TimeBetweenSpawnMax 2.f
 
 
-#define TimerBetweenWaveMin 5.f
-#define TimerBetweenWaveMax 10.f
+#define TimerBetweenWaveMin 2.f
+#define TimerBetweenWaveMax 4.f
 
 
 
@@ -77,6 +77,7 @@ void EnemyManager::SpawnEnemy(GameData& data)
 		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy -= WeaklingCost_def;
 		currentEnemy->pos = SpawnPoint;
 		currentEnemy->roadChoice = roadChoice;
+		ma_engine_play_sound(&data.engine, "assets/sound/weaklingSpawn.mp3", NULL);
 		data.enemyVector.push_back(currentEnemy);
 
 
@@ -88,6 +89,7 @@ void EnemyManager::SpawnEnemy(GameData& data)
 		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy -= HealerCost_def;
 		currentEnemy->pos = SpawnPoint;
 		currentEnemy->roadChoice = roadChoice;
+		ma_engine_play_sound(&data.engine, "assets/sound/healer.mp3", NULL);
 		data.enemyVector.push_back(currentEnemy);
 
 
@@ -99,6 +101,7 @@ void EnemyManager::SpawnEnemy(GameData& data)
 		data.levels.at(data.currentLevel).waves.at(data.currentWave).nbrOfEnemy -= HeavyCost_def;
 		currentEnemy->pos = SpawnPoint;
 		currentEnemy->roadChoice = roadChoice;
+		ma_engine_play_sound(&data.engine, "assets/sound/heavy.mp3", NULL);
 		data.enemyVector.push_back(currentEnemy);
 
 	}
@@ -110,7 +113,7 @@ void EnemyManager::ManageWave(GameData& data)
 {
 
 
-
+	data.timerLevel -= data.deltatime;
 	if (data.timerLevel <= 0)
 	{
 		data.levels.at(data.currentLevel).timerBetweenWave -= data.deltatime;
@@ -134,6 +137,7 @@ void EnemyManager::ManageWave(GameData& data)
 			// Load New path //
 			data.currentWave = 0;
 			data.changeLevel = true;
+			
 		}
 
 

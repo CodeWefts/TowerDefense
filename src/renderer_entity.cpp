@@ -1,6 +1,5 @@
 #include "renderer_entity.hpp"
 #include "data.hpp"
-#include "float2.hpp"
 #include "calc.hpp"
 
 

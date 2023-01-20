@@ -1,9 +1,8 @@
 
-#include"weakling.hpp"
-#include"tower_game.hpp"
-#include"calc.hpp"
-#include"Calcul.hpp"
-#include"float2.hpp"
+#include "weakling.hpp"
+#include "tower_game.hpp"
+#include "calc.hpp"
+#include "float2.hpp"
 
 
 

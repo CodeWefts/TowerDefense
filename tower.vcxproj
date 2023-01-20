@@ -88,9 +88,8 @@
     <ClCompile Include="externals\src\stb_image.cpp" />
     <ClCompile Include="src\app.cpp" />
     <ClCompile Include="src\audioEngine.cpp" />
-    <ClCompile Include="src\Calcul.cpp" />
+    <ClCompile Include="src\calc.cpp" />
     <ClCompile Include="src\classique.cpp" />
-    <ClCompile Include="src\Collider2D.cpp" />
     <ClCompile Include="src\data.cpp" />
     <ClCompile Include="src\heavy.cpp" />
     <ClCompile Include="src\enemy.cpp" />
@@ -118,9 +117,7 @@
     <ClInclude Include="src\app.hpp" />
     <ClInclude Include="src\audioEngine.hpp" />
     <ClInclude Include="src\calc.hpp" />
-    <ClInclude Include="src\Calcul.hpp" />
     <ClInclude Include="src\classique.hpp" />
-    <ClInclude Include="src\Collider2D.hpp" />
     <ClInclude Include="src\data.hpp" />
     <ClInclude Include="src\heavy.hpp" />
     <ClInclude Include="src\enemy.hpp" />
@@ -197,6 +194,10 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\sound\ClassicalSound.wav" />
+    <Media Include="assets\sound\healer.mp3" />
+    <Media Include="assets\sound\heavy.mp3" />
+    <Media Include="assets\sound\slowing.mp3" />
+    <Media Include="assets\sound\weaklingSpawn.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

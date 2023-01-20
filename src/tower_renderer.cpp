@@ -1,7 +1,7 @@
 #include <vector>
 #include "data.hpp"
 #include "tower_renderer.hpp"
-#include "Calcul.hpp"
+#include "calc.hpp"
 #include "float2.hpp"
 
 
@@ -274,7 +274,7 @@ void TowerRenderer::DrawEnd(GameData& data)
 
 	if (data.changeLevel)
 	{
-		data.acceleRateTime = 0;
+		data.acceleRateTime = 1;
 		if (data.minEnd.x >= 406)
 		{
 			data.minEnd.x -= 0.7f;

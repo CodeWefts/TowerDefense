@@ -28,12 +28,6 @@
     <ClCompile Include="src\Tower.cpp">
       <Filter>src\entity\tower</Filter>
     </ClCompile>
-    <ClCompile Include="src\Calcul.cpp">
-      <Filter>src\Toolbox</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Collider2D.cpp">
-      <Filter>src\Toolbox</Filter>
-    </ClCompile>
     <ClCompile Include="src\map.cpp">
       <Filter>src\Map</Filter>
     </ClCompile>
@@ -103,16 +97,13 @@
     <ClCompile Include="src\renderer_entity.cpp">
       <Filter>src\Update\Renderer\Render_entity</Filter>
     </ClCompile>
+    <ClCompile Include="src\calc.cpp">
+      <Filter>src\Toolbox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Tower.hpp">
       <Filter>src\entity\tower</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Calcul.hpp">
-      <Filter>src\Toolbox</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Collider2D.hpp">
-      <Filter>src\Toolbox</Filter>
     </ClInclude>
     <ClInclude Include="src\float2.hpp">
       <Filter>src\Toolbox</Filter>
@@ -452,6 +443,18 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="assets\sound\ClassicalSound.wav">
+      <Filter>assets\sound</Filter>
+    </Media>
+    <Media Include="assets\sound\slowing.mp3">
+      <Filter>assets\sound</Filter>
+    </Media>
+    <Media Include="assets\sound\weaklingSpawn.mp3">
+      <Filter>assets\sound</Filter>
+    </Media>
+    <Media Include="assets\sound\healer.mp3">
+      <Filter>assets\sound</Filter>
+    </Media>
+    <Media Include="assets\sound\heavy.mp3">
       <Filter>assets\sound</Filter>
     </Media>
   </ItemGroup>

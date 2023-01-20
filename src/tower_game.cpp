@@ -25,7 +25,6 @@ void TowerGame::UpdateAndDraw()
 	data.dl = ImGui::GetBackgroundDrawList();
 	ImGuiIO& io = ImGui::GetIO();
 	data.deltatime = io.DeltaTime * data.acceleRateTime;
-	data.currentScene = Game;
 
 	if (data.currentScene == Menu)
 	{

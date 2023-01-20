@@ -1,8 +1,6 @@
 #include "explosive.hpp"
 #include "tower_game.hpp"
 #include "calc.hpp"
-#include "Calcul.hpp"
-#include "Collider2D.hpp"
 
 
 

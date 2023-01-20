@@ -25,6 +25,9 @@ void Ralentissante::Upgrade(GameData& data)
 
 void Ralentissante::Shoot(GameData& data)
 {
+	//ma_engine_play_sound(&data.engine, "assets/sound/slowing.mp3", NULL);;
+
+
 	if (this->maxDamage > this->damage)
 	{
 		this->damage += (incrementDamage + data.deltatime);

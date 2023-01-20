@@ -19,9 +19,8 @@
 
 
 
-#define EndOfVector '$'
 
-#define TimerLevel 0.f
+#define TimerLevel 7.f
 #define TimerWave 5.f
 #define nbrOfLevel 5
 #define NbrOfRoad 4

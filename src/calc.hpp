@@ -34,8 +34,27 @@ static inline bool operator<(const float2& a, const float2& b) { if (a.x < b.x &
 
 
 
+
+float toNormVector(const float2& v);
+
+
+float2  Rotationfloat2(float2& P, const float2& R, const float& angle );
+
+    
+
+
+
+float2 normaliseVector(float2& Vector);
+
         
 
+
+
+bool ColSStoSS2d(const float2& C1, float rC1, const float2& C2, float rC2);
+
+
+bool colPoint2dtoAABB2d(const float2& min, const float2& max, const float2& P);
+    
 
 
 

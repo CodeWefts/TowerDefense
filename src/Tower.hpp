@@ -32,7 +32,6 @@ public:
 
    
  
-    bool placed;
 
     int TileX, TileY;
     

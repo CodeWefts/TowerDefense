@@ -1,5 +1,6 @@
 #include "classique.hpp"
 #include "tower_game.hpp"
+#include "calc.hpp"
 
 
 void Classique::Upgrade(GameData& data)
@@ -8,8 +9,8 @@ void Classique::Upgrade(GameData& data)
 	{
 		this->currentLevel++;
 		data.player.coins -= this->cost * this->currentLevel++;
-		this->damage *= 1.5;
-		this->range *= 1.5;
+		this->damage *= int(1.5);
+		this->range *= int(1.5);
 	}
 
 
@@ -19,7 +20,7 @@ void Classique::Upgrade(GameData& data)
 
 void Classique::Shoot(GameData& data)
 {
-	ma_engine_play_sound(&data.engine, "assets/sound/ClassicalSound.wav", NULL);
+	ma_engine_play_sound(&data.engine, "assets/sound/ClassicalSound.wav", NULL);;
 	this->target->currentHealth -= this->damage;
 	this->timer = 0;
 

@@ -4,7 +4,6 @@
 #include"calc.hpp"
 #include "imgui_utils.hpp"
 #include"enemy.hpp"
-#include "Collider2D.hpp"
 
 
 #define mapWidth 18
